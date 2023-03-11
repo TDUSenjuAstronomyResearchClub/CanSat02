@@ -1,0 +1,59 @@
+---想定使用用途---
+外部の温度・湿度・気圧の測定やバッテリーの温度の値をとる
+
+---主な機能---
+温度と湿度、気圧を測定することができる
+
+---使用方法---
+Temperature.pyは温湿度気圧センサの値を得て、その値をreturnで返すプログラムになっている
+＊OSerrorが発生した場合はTrueを返す
+
+動作確認をする際は、TemperatureTest.pyを実行する
+Temperature.Temperature_result()で温湿度気圧センサの値を呼び出せる
+
+---I2Cアドレス---
+I2Cアドレスは以下のように設定した。I2C通信を使用するセンサで同じアドレスのものがある場合は変更する
+i2c_address = 0x76
+
+---ピン番号---
+温湿度気圧センサの表面についてる半田ジャンパについて
+J1　：　はんだ付けしない
+J2　：　はんだ付けしない
+J3　：　はんだ付けする
+
+センサ側　：　ラズパイ側（I2C通信で行う場合）
+VDD　：　VDD
+GND　：　GND
+CSB　：　接続しない
+SDI　：　gpio2
+SDO　：　GND
+SCK　：　gpio3
+
+
+
+---必須ライブラリ---
+import smbus
+#sudo apt-get install python3-smbusを実行し、smbusをインストールする必要があります。
+また、sudo raspi-configから、Interface Optionを選択し、I2Cから、「はい」または「Yes」をEnterで確定して、I2C通信を有効にする必要があります。
+※確定後の再起動は必要ありません。
+
+この手順に関するヘルプは
+https://www.y2c.co.jp/i2c-r/raspberrypi/i2c-enable/
+を参照してください。
+
+sudo nano /etc/rc.localを実行し、エディターを開きます。
+python NineAxisSensor.pyとexit0よりも前に記載し、保存して確定します。
+次回から、起動時にpythonが実行されるようになります。
+※この方法では、Pythonはroot権限で実行されます。
+困ることがある場合は他の方法を参照してください。
+
+
+---参考にしたサイト---
+https://deviceplus.jp/raspberrypi/raspberrypi_entry_039/
+
+
+---温湿度・気圧センサー　AE-BME280---
+取扱説明書
+chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/akizuki/AE-BME280_manu_v1.1.pdf
+秋月のリンク
+https://akizukidenshi.com/catalog/g/gK-09421/

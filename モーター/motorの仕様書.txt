@@ -1,0 +1,29 @@
+---想定使用用途---
+モーターの動作確認を行うプログラム
+
+---主な機能---
+モーターを回し、3秒間直進する。2秒後機体を右に旋回させる
+
+---使用方法---
+moter.pyを実行し、モーターを動かす
+
+---ピン番号---
+素子の凹みを上にし、丸い凹みが開いてる面を上向きにした際の左上（丸い凹みの近く）から左下、右上、右下の順にみる
+素子側（モータードライバ）　：　素子からの接続先
+OUT1（左上) ： MOTER+
+VCC :7.4 V
+VCC :7.4 V
+FIN（左下）: GPIO6
+GND（右上) : GND
+OUT2 : MOTER-
+VREF :7.4 V
+RIN（右下）: GPIO5/GPIO19
+
+---モーター　RA250060-58Y91 ---
+
+---モータードライバ　BD6231F-E2 ---
+秋月のリンク
+https://akizukidenshi.com/catalog/g/gI-05088/
+データシート
+chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/rohm/bd623x-j.pdf
+

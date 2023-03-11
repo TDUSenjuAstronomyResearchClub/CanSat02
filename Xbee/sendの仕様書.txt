@@ -1,0 +1,61 @@
+---想定使用用途---
+大会本番で使用するセンサ値を地上局に送る
+注意！！！　DistanceAzuimuth.pyにゴールの緯度経度を記入する
+
+---主な機能---
+センサ値を取得するソースファイルから値を取得し、その都度Xbeeを使い地上局に値を送信する。
+csvファイル形式で取得した全ての値のログを機体に残す
+注意！！！　DistanceMeasurement.pyにゴールの緯度経度を記入する
+
+---使用方法---
+ラズパイの電源を入れると自動的に実行されるようにする    
+注意！！！　DistanceAzuimuth.pyにゴールの緯度経度を記入する
+
+ポート設定　PORT = '/dev/ttyUSB0'      
+通信レート設定 BAUD_RATE = 9600
+
+詳しいXCTUの操作方法や設定などを柏木とりおとが書いてほしい
+
+
+---ピン番号---
+LED側：ラズパイ側
+USBで接続する
+
+---必須ライブラリ---
+以下ソースファイルをsend.pyと同じディレクトリに用意する
+
+gps.py                      gpsの緯度経度・海抜を求める
+DistanceAzuimuth.py      ゴールとの直線距離を求める
+Distance.py                 超音波距離センサで距離を求める
+NineAxisSensor.py           9軸センサで加速度・速度・角速度・地軸値を求める
+Temperature.py              温湿度気圧センサで温度・湿度・気圧を求める
+SolarPanel.py               太陽光パネルで発電した電流値を求める
+
+serialの導入方法
+pip3 install pyserial　を実行することでpyserialがインストールできる。
+
+numpyの導入方法
+pip3 install numpy
+
+serialの導入方法
+「sudo raspi-config」　を打ち込み、シリアルを有効にする
+「ls /dev/se*」　を打ち込み、/dev/serial0 /dev/serial1　と出力されることを確認
+「cat /boot/cmdline.txt」　を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。
+「sudo apt-get install python-serial」　を入力し、シリアルモジュールをインストールする
+
+smbusの導入方法
+#ダウンロードする9軸を動かすためのライブラリを使用するには、sudo apt-get install python3-smbusを実行し、smbusをインストールする必要があります。
+また、sudo raspi-configから、Interface Optionを選択し、I2Cから、「はい」または「Yes」をEnterで確定して、I2C通信を有効にする必要があります。
+※確定後の再起動は必要ありません。
+
+micropyGPSの導入方法
+micropyGPSは以下のサイトからファイルをダウンロードし、gps.pyが入っているディレクトリに移す
+https://github.com/inmcm/micropyGPS
+
+---参考にしたサイト---
+https://chigusa-web.com/blog/%E3%83%A9%E3%82%BA%E3%83%91%E3%82%A4zero%E3%81%A7l%E3%83%81%E3%82%AB%EF%BC%81/
+
+
+---無線機（Xbee）　XB24CZ7WIT-004---
+秋月のリンク
+https://akizukidenshi.com/catalog/g/gM-10072/

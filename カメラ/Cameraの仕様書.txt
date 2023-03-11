@@ -1,0 +1,46 @@
+---想定使用用途---
+画像の撮影を行い、地上局に送信する
+
+---主な機能---
+カメラで撮った画像を16進数に直し、Xbeeを使い地上局に送信する
+
+*CameraOriginal.pyを実行すると撮影をした時間をファイル名としてjpg形式で保存するだけのプログラム
+
+---使用方法---
+Camera.photograph()でCamera.pyを呼び出す
+CameraTest.pyが実行ファイル
+
+---ピン番号---
+カメラモジュールは専用のカメラモジュールの場所に接続する。
+
+
+---必須ライブラリ---
+opencvをインストールする。
+sudo apt-get install python-opencv
+または
+pip install opencv-python
+または
+pip3 install opencv-python
+よりインストールする。
+
+依存関係のあるライブラリをインストールする。
+sudo apt-get install libhdf5-dev libhdf5-serial-dev libhdf5-100
+sudo apt-get install libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
+sudo apt-get install libatlas-base-dev
+sudo apt-get install libjasper-dev
+
+他にnumpyのバージョンが古いとうまくいかないのでアプデを行うこと。
+sudo pip3 install -U numpy
+
+「vcgencmd get_camera」を入力した際supported=1 detected=0と出た場合
+sudo rpi-update
+sudo reboot 
+https://nagashy.hatenablog.com/entry/2017/01/12/093116
+
+---参考にしたサイト---
+https://python-academia.com/raspberrypi-opencv/
+
+
+---カメラモジュール　913-2664---
+秋月のリンク
+https://akizukidenshi.com/catalog/g/gM-10518/

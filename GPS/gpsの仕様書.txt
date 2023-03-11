@@ -1,0 +1,48 @@
+---想定使用用途---
+機体をGPSの緯度経度によって機体を誘導する。また、その値を地上局に送信する。
+
+---主な機能---
+緯度と経度、海抜を取得できる
+＊衛星番号と仰角、方位角、SN比も取得する場合は工夫が必要
+
+---使用方法---
+gps.pyは温湿度気圧センサの値を得て、その値をreturnで返すプログラムになっている
+動作確認をする際は、gpsTest.pyを実行する
+gps.gps_result()で温湿度気圧センサの値を呼び出せる
+gpsOriginal.pyは参考にしたファイルのソースが書いてある
+
+---ピン番号---
+センサ側：ラズパイ側
+5V　：　5V
+GND　：　GND
+RXD　：　gpio14
+TXD　：　gpio15
+1PPS　：　何も繋がない
+
+---必須ライブラリ---
+serialを入れかた
+「sudo raspi-config」　を打ち込み、シリアルを有効にする
+「ls /dev/se*」　を打ち込み、/dev/serial0 /dev/serial1　と出力されることを確認
+「cat /boot/cmdline.txt」　を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。
+「sudo apt-get install python-serial」　を入力し、シリアルモジュールをインストールする
+
+参考サイトは下にある
+https://ambidata.io/blog/2017/08/02/gps/
+
+micropyGPSは以下のサイトからファイルをダウンロードし、gps.pyが入っているディレクトリに移す
+https://github.com/inmcm/micropyGPS
+
+SyntaxError: Non-ASCII character ‘\xe3’ in file というエラーが出た場合以下のサイトを参考にする
+https://reject.tokyo/syntaxerror-non-ascii-character/
+https://python-academia.com/raspberry-pi-python-version/
+
+
+---参考にしたサイト---
+https://ambidata.io/blog/2017/08/02/gps/
+
+
+---GPSセンサ　AE-GYSFDMAXB---
+取扱説明書
+chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/akizuki/AE-GPS_manual_r1.06_s.pdf
+秋月のリンク
+https://akizukidenshi.com/catalog/g/gK-09991/

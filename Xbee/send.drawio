@@ -1,0 +1,211 @@
+<mxfile host="65bd71144e">
+    <diagram id="ySY117OWKB6-r_1f5zUP" name="ページ1">
+        <mxGraphModel dx="2283" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="20" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="10" target="97" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-490" y="80" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="10" value="開始&lt;br&gt;（ラズパイの電源がつく）" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="-555" y="10" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="終了" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="-820" y="400" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="17" target="11" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-640" y="138" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-765" y="365"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="99" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="17" target="53" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-560" y="190" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="&lt;span style=&quot;&quot;&gt;ラズパイの電源はついているか&lt;/span&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-593.12" y="320" width="186.25" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="-555" y="400" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="105" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="29" target="104" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Temperature.pyのTemperature_result()から温湿度気圧の値をtemperatureに格納" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-609.04" y="1851.75" width="219.36" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="&lt;h1&gt;考慮する点&lt;/h1&gt;&lt;p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;センサの値が受け取れなかったらどうするか&lt;/span&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="-229.99999999999997" y="1740" width="190" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="-620" y="340" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="111" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="38" target="41" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="収集したすべてのデータを機体のSDカードにログを残す（csvファイル形式）" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-559.3599999999999" y="2180" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="112" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="41" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-490" y="310" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-500" y="2330"/>
+                            <mxPoint x="-280" y="2330"/>
+                            <mxPoint x="-280" y="310"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="41" value="time.sleep(2)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-559.36" y="2260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="&lt;h1 style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color);&quot; color=&quot;#fb0404&quot;&gt;←SolarPanel.py&lt;/font&gt;&lt;/h1&gt;&lt;div&gt;未完成&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontColor=#fb0404;" parent="1" vertex="1">
+                    <mxGeometry x="-420" y="2021.75" width="190" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="108" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="49" target="107" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="SolarPanel.pyのSolarPanel_result()から電流値をsolarに格納" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-584.04" y="2021.75" width="169.36" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="53" target="69" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="latitude = gps.&lt;span style=&quot;background-color: initial;&quot;&gt;gps_latitude()&lt;br&gt;緯度の値を&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;格納&lt;/span&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-640.6099999999999" y="430" width="281.25" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="83" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="55" target="82" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="Distance.pyのdistance_result()から距離データを入手しultrasound_distanceに格納" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-605.01" y="1080" width="210.01" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="80" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="59" target="79" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="DistanceMeasurement.pyのDM_result()からゴールとの直線距離を入手し、gps_distanceに格納" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-602.1" y="920" width="205.48" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="68" target="76" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="gps.pyの&lt;span style=&quot;background-color: initial;&quot;&gt;gps_altitude()&lt;/span&gt;から海抜を入手しaltitudeに格納" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-640.6399999999999" y="760" width="281.25" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="69" target="71" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="latitudeの値を地上局に値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-559.36" y="510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="71" target="73" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="gps.pyの&lt;span style=&quot;background-color: initial;&quot;&gt;gps_longitude()から経度の値をlongitude&lt;/span&gt;に格納" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-640.6399999999999" y="590" width="281.25" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="73" target="68" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" value="longitudeの値を地上局に値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-559.36" y="670" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="76" target="59" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" value="&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22longitude%E3%81%AE%E5%80%A4%E3%82%92%E5%9C%B0%E4%B8%8A%E5%B1%80%E3%81%AB%E5%80%A4%E3%82%92%E9%80%81%E4%BF%A1%E3%81%99%E3%82%8B%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-559.36%22%20y%3D%22440%22%20width%3D%22120%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;altitudeの値を地上局に値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-560.01" y="840" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="79" target="55" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22longitude%E3%81%AE%E5%80%A4%E3%82%92%E5%9C%B0%E4%B8%8A%E5%B1%80%E3%81%AB%E5%80%A4%E3%82%92%E9%80%81%E4%BF%A1%E3%81%99%E3%82%8B%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-559.36%22%20y%3D%22440%22%20width%3D%22120%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;gps_distanceの値を地上局に値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-560" y="1000" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="88" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="82" target="84" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-491.2299999999999" y="1300" as="sourcePoint"/>
+                        <mxPoint x="-485.7650000000004" y="1290" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="82" value="&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22longitude%E3%81%AE%E5%80%A4%E3%82%92%E5%9C%B0%E4%B8%8A%E5%B1%80%E3%81%AB%E5%80%A4%E3%82%92%E9%80%81%E4%BF%A1%E3%81%99%E3%82%8B%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-559.36%22%20y%3D%22440%22%20width%3D%22120%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;ultrasound_distanceの&lt;br&gt;値を地上局に値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-573.39" y="1160" width="148.06" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="87" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="84" target="86" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-330.9949999999998" y="1471.75" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="84" value="NineAxisSensor.pyの&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;AccelerationSpeed()から加速度・速度&lt;/span&gt;をacceleration_speedの変数に格納" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-665.67" y="1251.75" width="331.31" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="95" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="85" target="94" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="85" value="NineAxisSensor.pyの&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/span&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;Azimuth()&lt;/span&gt;&lt;br&gt;から磁気データをearth_axisに格納" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-652.6000000000001" y="1645.75" width="305.16" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="90" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="86" target="89" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" value="&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22longitude%E3%81%AE%E5%80%A4%E3%82%92%E5%9C%B0%E4%B8%8A%E5%B1%80%E3%81%AB%E5%80%A4%E3%82%92%E9%80%81%E4%BF%A1%E3%81%99%E3%82%8B%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-559.36%22%20y%3D%22440%22%20width%3D%22120%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;acceleration_speedの&lt;br&gt;値を地上局に値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-574.0400000000001" y="1351.75" width="148.06" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="92" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="89" target="91" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="89" value="NineAxisSensor.pyの&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;AngularVelocity()、&lt;/span&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/span&gt;から角速度の値をangular_velocityに格納" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-652.6" y="1441.75" width="305.16" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="93" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="91" target="85" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="91" value="&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22longitude%E3%81%AE%E5%80%A4%E3%82%92%E5%9C%B0%E4%B8%8A%E5%B1%80%E3%81%AB%E5%80%A4%E3%82%92%E9%80%81%E4%BF%A1%E3%81%99%E3%82%8B%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-559.36%22%20y%3D%22440%22%20width%3D%22120%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;angular_velocityの&lt;br&gt;値を地上局に値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-573.3900000000001" y="1551.75" width="148.06" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="94" target="29" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="94" value="earth_axisの&lt;br&gt;値を地上局に値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-573.3900000000001" y="1761.75" width="148.06" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="96" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" parent="1" source="97" target="98" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="97" value="&lt;font color=&quot;#000000&quot;&gt;「sending+時刻」という名前のファイルを作成し、ファイルオープン&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#fb0404;" parent="1" vertex="1">
+                    <mxGeometry x="-560.01" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="102" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="98" target="101" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="98" value="ログ用のインデックスを作成" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="-560.01" y="161.75" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="110" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="101" target="17" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" value="ファイルをクローズ" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="-560.03" y="240" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="104" target="49" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" value="temperatureの&lt;br&gt;値を地上局に値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-574.0100000000001" y="1931.75" width="148.06" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="109" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="107" target="38" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="107" value="solarの&lt;br&gt;値を地上局に値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-573.3900000000001" y="2101.75" width="148.06" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
