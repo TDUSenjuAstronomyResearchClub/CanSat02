@@ -1,4 +1,8 @@
 # -- coding: utf-8 --
+"""
+Module Name: 緯度経度・海抜取得プログラム
+Description: gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py
+"""
 import serial
 import micropyGPS
 import threading
@@ -31,6 +35,14 @@ gpsthread.daemon = True
 gpsthread.start() # スレッドを起動
 
 def gps_latitude(): #緯度
+    """
+    gpsモジュール（AE-GYSFDMAXB）から緯度を求める関数。
+
+    Returns
+    -------
+    list
+            リスト形式で、[緯度]を返す。
+    """
     i=1
     while i<=20:
         if gps.clean_sentences > 20: # ちゃんとしたデーターがある程度たまったら出力する
@@ -42,6 +54,14 @@ def gps_latitude(): #緯度
         time.sleep(1)
 
 def gps_longitude(): #経度
+    """
+    gpsモジュール（AE-GYSFDMAXB）から経度を求める関数。
+
+    Returns
+    -------
+    list
+            リスト形式で、[経度]を返す。
+    """
     i=1
     while i<=20:
         if gps.clean_sentences > 20: # ちゃんとしたデーターがある程度たまったら出力する
@@ -52,6 +72,14 @@ def gps_longitude(): #経度
         time.sleep(1)
     
 def gps_altitude(): #海抜
+    """
+    gpsモジュール（AE-GYSFDMAXB）から海抜を求める関数。
+
+    Returns
+    -------
+    list
+            リスト形式で、[海抜(m)]を返す。
+    """
     i=1
     while i<=20:
         if gps.clean_sentences > 20: # ちゃんとしたデーターがある程度たまったら出力する
