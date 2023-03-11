@@ -1,6 +1,6 @@
 # -- coding: utf-8 --
 """
-Module Name: 緯度経度・海抜取得プログラム
+Module Name: 緯度経度・海抜取得プログラム<br>
 Description: gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py
 """
 import serial
