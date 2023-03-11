@@ -37,7 +37,8 @@ def photograph():
 
     Returns
     -------
-    なし
+    なし(撮影が出来ないとCannot open cameraが出力される)
+
     """
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
