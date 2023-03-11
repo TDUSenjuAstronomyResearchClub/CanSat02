@@ -4,6 +4,7 @@ Module Name:<br>
 緯度経度・海抜取得プログラム<br><br>
 Description:<br> 
 gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py<br><br>
+Library:<br>
 micropyGPS<br>
 サイト(https://github.com/inmcm/micropyGPS)からファイルをダウンロードし、gps.pyが入っているディレクトリに移す<br>
 serial<br>
