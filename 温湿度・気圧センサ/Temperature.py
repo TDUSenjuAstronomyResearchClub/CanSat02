@@ -1,4 +1,15 @@
 #coding: utf-8
+"""
+Module Name:<br> 
+温湿度気圧センサ<br><br>
+Description:<br> 
+温湿度気圧センサを使って温度、湿度、気圧の値を取得できるプログラム。動作確認用実行ファイルはTemperatureTest.py<br><br>
+Library:<br>
+smbus<br>
+「sudo apt-get install python3-smbus」を実行し、smbusをインストールする必要があります。<br>
+また、sudo raspi-configから、Interface Optionを選択し、I2Cから、「はい」または「Yes」をEnterで確定して、I2C通信を有効にする必要があります。<br>
+※確定後の再起動は必要ありません。<br><br>
+"""
  
 import smbus
 import time
@@ -67,6 +78,16 @@ def get_calib_param():
         return True #OSerrerが発生したか否かを判断する（Trueが出たらエラーが発生した判定）
  
 def Temperature_result():
+    """
+    温湿度気圧センサ(AE-BME280)を使って温度、湿度、気圧の値を返却するプログラム。
+
+    Returns
+    -------
+    list
+            リスト形式で、[温度（℃）、湿度（%）、気圧（hPa）]を返す。
+    bool
+            OSErrorが発生した場合はTrueを返す。
+    """
     try:
         data = []
         result = []
