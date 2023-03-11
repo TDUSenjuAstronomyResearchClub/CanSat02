@@ -9,7 +9,6 @@ import DistanceAzimuth #ゴールとの直線距離を求める
 import Distance #超音波距離センサで距離を求める
 import NineAxisSensor #9軸センサで加速度・速度・角速度・地軸値を求める
 import Temperature #温湿度気圧センサで温度・湿度・気圧を求める
-import SolarPanel #太陽光パネルで発電した電流値を求める
 
 
 #ポート設定
@@ -24,7 +23,7 @@ filename = 'sending' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒') + '.
 #表のインデックスを付ける
 f = open(filename, 'a') 
 writer = csv.writer(f, lineterminator='\n') 
-index=['Times of Day','latitude','longitude','altitude','gps distance','ultrasound distance','acceleration(x axis)','acceleration(y axis)','acceleration(z axis)','speed(x axis)','speed(y axis)','speed(z axis)','angular velocity(x axis)','angular velocity(y axis)','angular velocity(z axis)','earth axis','temperature','barometric pressure','humidity','Bus Voltage(V)','Bus Current(mA)','Power(mW)','Shunt voltage(mV)']
+index=['Times of Day','latitude','longitude','altitude','gps distance','ultrasound distance','acceleration(x axis)','acceleration(y axis)','acceleration(z axis)','speed(x axis)','speed(y axis)','speed(z axis)','angular velocity(x axis)','angular velocity(y axis)','angular velocity(z axis)','azimuth','temperature','barometric pressure','humidity',]
 writer.writerow(index)
 f.close()
 
@@ -106,14 +105,6 @@ while True:
         ser.write(b'temperature,barometric pressure, humidity' + tem.encode('utf-8') + b'\n')    #温湿度気圧センサから温湿度・気圧の値を送信する
 
 
-    #===ソーラーパネルの電流値を取得する===
-    solar = SolarPanel.SolarPanel_result()  
-    if solar == True:   #OS errerが発生した場合
-        print('solar panel OS errer')
-    else:
-        sol=str(solar)
-        ser.write(b'solar'+ sol.encode('utf-8') + b'\n')    #ソーラーパネルの電流値を送信する
-
     ser.close() #シリアルポートを閉じる
 
 
@@ -123,7 +114,7 @@ while True:
     dt_now = datetime.datetime.now() #現在日時を取得する
 
     #加速度・角速度・地軸のxyz追加
-    send_data = (dt_now,latitude,longitude,altitude,gps_distance,ultrasound_distance,acceleration_speed[0],acceleration_speed[1],acceleration_speed[2],acceleration_speed[3],acceleration_speed[4],acceleration_speed[5],angular_velocity[0],angular_velocity[1],angular_velocity[2],earth_axis,temperature[0],temperature[1],temperature[2],solar[0],solar[1],solar[2],solar[3])#データをまとめる           
+    send_data = (dt_now,latitude,longitude,altitude,gps_distance,ultrasound_distance,acceleration_speed[0],acceleration_speed[1],acceleration_speed[2],acceleration_speed[3],acceleration_speed[4],acceleration_speed[5],angular_velocity[0],angular_velocity[1],angular_velocity[2],Azimuth,temperature[0],temperature[1],temperature[2])#データをまとめる           
     
     writer.writerow(send_data)
     f.close()
