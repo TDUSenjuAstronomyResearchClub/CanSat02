@@ -1,3 +1,14 @@
+"""
+Module Name: 緯度経度・海抜取得プログラム<br>
+Description: gps.pyから緯度経度を受け取り、ゴールと機体との緒戦距離と方位角を求めるプログラム<br>
+Notes:<br>
+ソースにあるgoal_latitudeとgoal_longitudeの関数にゴールの緯度経度を入力する必要あり<br>
+Library:<br>
+gps.py 同じディレクトリにプログラムを入れる<br>
+
+
+"""
+
 import gps
 import math
 
@@ -16,7 +27,14 @@ longitude = gps.gps_longitude()
 
 # gpsの緯度経度をラジアンに変換して距離を求める関数　距離(m)を返す
 def get_gpsdistance():
+    """
+    gps.pyから緯度経度を受け取りゴールと機体との直線距離を返すプログラム。
 
+    Returns
+    -------
+    float
+            ゴールと機体との直線距離(m)を返す関数
+    """
     # 緯度経度をラジアンに変換
     lat_goal_latitude= math.radians(goal_latitude)
     lon_goal_longitude = math.radians(goal_longitude)
@@ -37,6 +55,14 @@ def get_gpsdistance():
     return distance/1000000
 
 def get_gpsazimuth():
+    """
+    gps.pyから緯度経度を受け取り方位角(0から360の間の角度で真北から時計回りに測定される)を求める関数
+
+    Returns
+    -------
+    float
+            ゴールと機体との直線距離(m)を返す関数
+    """
     lat1 = math.radians(latitude)
     lat2 = math.radians(goal_latitude)
     diff_lon = math.radians(goal_longitude - longitude)
