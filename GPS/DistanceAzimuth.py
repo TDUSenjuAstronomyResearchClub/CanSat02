@@ -1,10 +1,12 @@
 """
-Module Name: 緯度経度・海抜取得プログラム<br>
-Description: gps.pyから緯度経度を受け取り、ゴールと機体との緒戦距離と方位角を求めるプログラム<br>
+Module Name: <br>
+緯度経度・海抜取得プログラム<br><br>
+Description:<br>
+ gps.pyから緯度経度を受け取り、ゴールと機体との緒戦距離と方位角を求めるプログラム<br><br>
 Notes:<br>
-ソースにあるgoal_latitudeとgoal_longitudeの関数にゴールの緯度経度を入力する必要あり<br>
+ソースにあるgoal_latitudeとgoal_longitudeの関数にゴールの緯度経度を入力する必要あり<br><br>
 Library:<br>
-gps.py 同じディレクトリにプログラムを入れる<br>
+gps.py 同じディレクトリにプログラムを入れる<br><br>
 
 
 """

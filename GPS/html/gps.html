@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>gps API documentation</title>
-<meta name="description" content="Module Name: 緯度経度・海抜取得プログラム&lt;br&gt;
-Description: gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py" />
+<meta name="description" content="Module Name:&lt;br&gt;
+緯度経度・海抜取得プログラム&lt;br&gt;&lt;br&gt;
+Description:&lt;br&gt;
+gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py&lt;br&gt;&lt;br&gt;
+micropyGPS&lt;br&gt;
+…" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -23,16 +27,35 @@ Description: gpsモジュールを使って緯度と経度、海抜を取得で�
 <h1 class="title">Module <code>gps</code></h1>
 </header>
 <section id="section-intro">
-<p>Module Name: 緯度経度・海抜取得プログラム<br>
-Description: gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py</p>
+<p>Module Name:<br>
+緯度経度・海抜取得プログラム<br><br>
+Description:<br>
+gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py<br><br>
+micropyGPS<br>
+サイト(<a href="https://github.com/inmcm/micropyGPS">https://github.com/inmcm/micropyGPS</a>)からファイルをダウンロードし、gps.pyが入っているディレクトリに移す<br>
+serial<br>
+「sudo raspi-config」を打ち込み、シリアルを有効にする<br>
+「ls /dev/se*」を打ち込み、「/dev/serial0 /dev/serial1」と出力されることを確認<br>
+「cat /boot/cmdline.txt」を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。<br>
+「sudo apt-get install python-serial」を入力し、シリアルモジュールをインストールする<br><br></p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python"># -- coding: utf-8 --
 &#34;&#34;&#34;
-Module Name: 緯度経度・海抜取得プログラム&lt;br&gt;
-Description: gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py
+Module Name:&lt;br&gt; 
+緯度経度・海抜取得プログラム&lt;br&gt;&lt;br&gt;
+Description:&lt;br&gt; 
+gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py&lt;br&gt;&lt;br&gt;
+micropyGPS&lt;br&gt;
+サイト(https://github.com/inmcm/micropyGPS)からファイルをダウンロードし、gps.pyが入っているディレクトリに移す&lt;br&gt;
+serial&lt;br&gt;
+「sudo raspi-config」を打ち込み、シリアルを有効にする&lt;br&gt;
+「ls /dev/se*」を打ち込み、「/dev/serial0 /dev/serial1」と出力されることを確認&lt;br&gt;
+「cat /boot/cmdline.txt」を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。&lt;br&gt;
+「sudo apt-get install python-serial」を入力し、シリアルモジュールをインストールする&lt;br&gt;&lt;br&gt;
+
 &#34;&#34;&#34;
 import serial
 import micropyGPS

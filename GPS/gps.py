@@ -1,7 +1,17 @@
 # -- coding: utf-8 --
 """
-Module Name: 緯度経度・海抜取得プログラム<br>
-Description: gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py
+Module Name:<br> 
+緯度経度・海抜取得プログラム<br><br>
+Description:<br> 
+gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py<br><br>
+micropyGPS<br>
+サイト(https://github.com/inmcm/micropyGPS)からファイルをダウンロードし、gps.pyが入っているディレクトリに移す<br>
+serial<br>
+「sudo raspi-config」を打ち込み、シリアルを有効にする<br>
+「ls /dev/se*」を打ち込み、「/dev/serial0 /dev/serial1」と出力されることを確認<br>
+「cat /boot/cmdline.txt」を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。<br>
+「sudo apt-get install python-serial」を入力し、シリアルモジュールをインストールする<br><br>
+
 """
 import serial
 import micropyGPS
