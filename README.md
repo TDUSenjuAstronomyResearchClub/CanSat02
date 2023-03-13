@@ -21,6 +21,12 @@ chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/do
 秋月のリンク<br>
 https://akizukidenshi.com/catalog/g/gK-09421/<br>
 
+温湿度センサ　DHT11<br>
+データシート<br>
+chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/aosong/DHT11_20180119.pdf<br>
+秋月のリンク<br>
+https://akizukidenshi.com/catalog/g/gM-07003/<br>
+
 ９軸センサー　BMX055 <br>
 取扱説明書<br>
 chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/akizuki/AE-BMX055_20220804.pdf<br>
