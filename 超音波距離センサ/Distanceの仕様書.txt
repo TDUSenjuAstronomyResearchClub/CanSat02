@@ -1,0 +1,42 @@
+---想定使用用途---
+距離センサで得た値を他のプログラムで呼び出す
+
+---主な機能---
+超音波距離センサを使い、機体前面にある物体と機体との距離を測定する
+
+
+---ピン番号について---
+センサ側　：　ラズパイ側（I2C通信で行う場合）
+VCC　：　5V
+Trig　：　GPIO 17番ポート
+Echo　：　GPIO 27番ポート（12番ピン）
+このピンは、GPIO27番から出てきたリード線に、5.1kオーム抵抗を直列につなぎ、このピンに入力します。
+また、抵抗器のGPIO側から10Kオーム抵抗を分岐させ、それを、GNDに流します。
+これは、RaspberryPiと、HC-SR04で動作電圧が異なるためです。
+
+GND　：　GND
+回路の作成については、以下の参考にしたサイトを見るとよい
+
+---使用方法---
+測定環境温度はTenperature.pyから温度を追加する
+Distance.pyは距離センサの値を得て、その値をreturnで返すプログラムになっている
+動作確認をする際は、DistanceTest.pyを実行する
+Distance.distance_result()で距離センサの値を呼び出せる
+単位はcmとなる
+
+---必須ライブラリ---
+以下ソースファイルをDistance.pyと同じディレクトリに用意する
+
+Temperature.py              温湿度気圧センサで温度・湿度・気圧を求める
+
+---注意事項---
+SyntaxError: Non-ASCII character ‘\xe3’ in file というエラーが出た場合以下のサイトを参考にする
+https://reject.tokyo/syntaxerror-non-ascii-character/
+https://python-academia.com/raspberry-pi-python-version/
+
+---超音波センサー　HC-SR04---
+秋月のリンク
+https://akizukidenshi.com/catalog/g/gM-11009/
+
+---参考にしたサイト---
+https://s-design-tokyo.com/use-hcsr04/
