@@ -23,7 +23,7 @@ filename = 'sending' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒') + '.
 #表のインデックスを付ける
 f = open(filename, 'a') 
 writer = csv.writer(f, lineterminator='\n') 
-index=['Times of Day','latitude','longitude','altitude','gps distance','ultrasound distance','acceleration(x axis)','acceleration(y axis)','acceleration(z axis)','speed(x axis)','speed(y axis)','speed(z axis)','angular velocity(x axis)','angular velocity(y axis)','angular velocity(z axis)','azimuth','temperature','barometric pressure','humidity',]
+index=['Times of Day','latitude','longitude','altitude','gps distance','ultrasound distance','acceleration(x axis)','acceleration(y axis)','acceleration(z axis)','speed(x axis)','speed(y axis)','speed(z axis)','angular velocity(x axis)','angular velocity(y axis)','angular velocity(z axis)','azimuth','temperature','barometric pressure','humidity','battery temperature','battery humidity']
 writer.writerow(index)
 f.close()
 
@@ -96,13 +96,22 @@ while True:
         
 
 
-    #===温湿度気圧センサから温度・気圧の値を取得する===
+    #===外気用の温湿度気圧センサから温度・気圧・湿度の値を取得する===
     temperature = Temperature.Temperature_result() 
     if temperature == True:   #OS errerが発生した場合
         print('temperature OS errer')
     else:
         tem=str(temperature)
         ser.write(b'temperature,barometric pressure, humidity' + tem.encode('utf-8') + b'\n')    #温湿度気圧センサから温湿度・気圧の値を送信する
+
+    #===バッテリー用の温湿度センサから温度・湿度の値を取得する===
+    temperature = Temperature.Temperature_result() 
+    if temperature == True:   #OS errerが発生した場合
+        print('temperature OS errer')
+    else:
+        tem=str(temperature)
+        ser.write(b'temperature,barometric pressure, humidity' + tem.encode('utf-8') + b'\n')    #温湿度気圧センサから温湿度・気圧の値を送信する
+
 
 
     ser.close() #シリアルポートを閉じる
