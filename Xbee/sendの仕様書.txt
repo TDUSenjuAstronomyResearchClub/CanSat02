@@ -14,7 +14,6 @@ csvファイル形式で取得した全ての値のログを機体に残す
 ポート設定　PORT = '/dev/ttyUSB0'      
 通信レート設定 BAUD_RATE = 9600
 
-詳しいXCTUの操作方法や設定などを柏木とりおとが書いてほしい
 
 
 ---ピン番号---
@@ -25,27 +24,32 @@ USBで接続する
 以下ソースファイルをsend.pyと同じディレクトリに用意する
 
 gps.py                      gpsの緯度経度・海抜を求める
-DistanceAzuimuth.py      ゴールとの直線距離を求める
+DistanceAzuimuth.py         ゴールとの直線距離を求める
 Distance.py                 超音波距離センサで距離を求める
 NineAxisSensor.py           9軸センサで加速度・速度・角速度・地軸値を求める
-Temperature.py              温湿度気圧センサで温度・湿度・気圧を求める
+Temperature.py              温湿度気圧センサで外気の温度・湿度・気圧を求める
+BatteryTemp.py              温湿度センサでバッテリー周辺の温度・湿度を求める
+
+
+
+＊＊＊９軸とバッテリー用温湿度センサで必要なライブラリ導入方法について記載する必要あり＊＊＊
+
 
 serialの導入方法
 pip3 install pyserial　を実行することでpyserialがインストールできる。
-
-numpyの導入方法
-pip3 install numpy
-
-serialの導入方法
 「sudo raspi-config」　を打ち込み、シリアルを有効にする
 「ls /dev/se*」　を打ち込み、/dev/serial0 /dev/serial1　と出力されることを確認
 「cat /boot/cmdline.txt」　を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。
 「sudo apt-get install python-serial」　を入力し、シリアルモジュールをインストールする
 
+numpyの導入方法
+pip3 install numpy
+
 smbusの導入方法
-#ダウンロードする9軸を動かすためのライブラリを使用するには、sudo apt-get install python3-smbusを実行し、smbusをインストールする必要があります。
+「sudo apt-get install python3-smbus」を実行し、smbusをインストールする必要があります。
 また、sudo raspi-configから、Interface Optionを選択し、I2Cから、「はい」または「Yes」をEnterで確定して、I2C通信を有効にする必要があります。
 ※確定後の再起動は必要ありません。
+。
 
 micropyGPSの導入方法
 micropyGPSは以下のサイトからファイルをダウンロードし、gps.pyが入っているディレクトリに移す
