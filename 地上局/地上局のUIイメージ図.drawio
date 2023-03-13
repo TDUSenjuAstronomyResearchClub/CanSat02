@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="Kj4BilxelOrJukMYahr7" name="ページ1">
-        <mxGraphModel dx="1456" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1456" dy="579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -58,13 +58,16 @@
                     <mxGeometry x="1295" y="500" width="150" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="18" value="機体から送信された緯度経度をマップに落とし込み、進んだルートを線で結ぶ" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="470" y="180" width="310" height="440" as="geometry"/>
+                    <mxGeometry x="470" y="180" width="310" height="330" as="geometry"/>
                 </mxCell>
                 <mxCell id="19" value="◀　画像の切り替えボタン　▶" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="170" y="380" width="170" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="9軸センサの値から機体の姿勢をリアルタイムで描画" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="790" y="180" width="310" height="440" as="geometry"/>
+                <mxCell id="20" value="9軸センサの値から機体の姿勢をリアルタイムで描画" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="790" y="180" width="310" height="330" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="コマンド一覧" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="520" width="630" height="95" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
