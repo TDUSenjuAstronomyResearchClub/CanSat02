@@ -277,6 +277,7 @@ while True:
         p4.ChangeDutyCycle(0)
 
         ManualControl() #手動運転に切り替える
+        AngleAdjustment()   #ゴールと機体の向きを一直線にする
 
         gps_distance = DistanceAzimuth.get_gpsdistance()    #gpsセンサでゴールとの直線距離を求める
         if gps_distance == True: #距離センサがOSErrer出てないかの条件分岐
