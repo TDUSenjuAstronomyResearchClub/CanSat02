@@ -53,3 +53,10 @@ https://akizukidenshi.com/catalog/g/gM-08221/<br>
 データシート類<br>
 https://learn.adafruit.com/adafruit-ina219-current-sensor-breakout/downloads<br>
 
+超音波センサー　HC-SR04<br>
+秋月のリンク<br>
+https://akizukidenshi.com/catalog/g/gM-11009/<br>
+参考にしたサイト<br>
+https://s-design-tokyo.com/use-hcsr04/<br>
+
+
