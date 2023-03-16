@@ -22,29 +22,37 @@ p2.start(0)
 p3.start(0)
 p4.start(0)
 
-#３秒間直進して、停止する
-print("３秒間直進")
-p1.ChangeDutyCycle(80) #duty比（moterで動かすための値）
-p2.ChangeDutyCycle(0)
-p3.ChangeDutyCycle(80) #duty比（moterで動かすための値）
-p4.ChangeDutyCycle(0)
-time.sleep(3)
-print("停止")
-p1.ChangeDutyCycle(0)
-p2.ChangeDutyCycle(0)
-p3.ChangeDutyCycle(0)
-p4.ChangeDutyCycle(0)
-print("[３秒間直進して、停止する]終了")
-time.sleep(2)
+def straight():
+    #３秒間直進して、停止する
+    print("３秒間直進")
+    p1.ChangeDutyCycle(80) #duty比（moterで動かすための値）
+    p2.ChangeDutyCycle(0)
+    p3.ChangeDutyCycle(80) #duty比（moterで動かすための値）
+    p4.ChangeDutyCycle(0)
+    time.sleep(3)
+    print("停止")
+    p1.ChangeDutyCycle(0)
+    p2.ChangeDutyCycle(0)
+    p3.ChangeDutyCycle(0)
+    p4.ChangeDutyCycle(0)
+    print("[３秒間直進して、停止する]終了")
+    time.sleep(2)
+    return
 
-#機体を右に旋回する
-print("機体を右に旋回する")
-p1.ChangeDutyCycle(100) #duty比（moterで動かすための値）
-p2.ChangeDutyCycle(0)
-time.sleep(1)   
-print("停止")
-p1.ChangeDutyCycle(0)
-p2.ChangeDutyCycle(0)
-print("[機体を右に旋回する]終了")
-time.sleep(1) 
+
+def right():
+    #機体を右に旋回する
+    print("機体を右に旋回する")
+    p1.ChangeDutyCycle(100) #duty比（moterで動かすための値）
+    p2.ChangeDutyCycle(0)
+    time.sleep(1)   
+    print("停止")
+    p1.ChangeDutyCycle(0)
+    p2.ChangeDutyCycle(0)
+    print("[機体を右に旋回する]終了")
+    time.sleep(1) 
+    return
+
+straight()
+right()
 
