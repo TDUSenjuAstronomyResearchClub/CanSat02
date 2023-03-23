@@ -37,10 +37,9 @@ def get_battery_level():
         # 電池残量を取得
         level = bus.read_byte_data(DEVICE_ADDRESS, 0x00)
         return level
-    except OSError as e:
-        print(f"Error: {e}. Device not found.")
-    except IOError as e:
-        print(f"Error: {e}. Could not access device.")
+    except OSError:
+        return True #OSerrerが発生したか否かを判断する（Trueが出たらエラーが発生した判定）
+
 
 # テスト用の関数呼び出し
 print(get_battery_level())
