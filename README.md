@@ -45,6 +45,13 @@ https://akizukidenshi.com/catalog/g/gM-11009/<br>
 参考にしたサイト<br>
 https://s-design-tokyo.com/use-hcsr04/<br>
 
+気圧センサー　AE-LPS25HB<br>
+秋月のリンク<br>
+https://akizukidenshi.com/catalog/g/gK-13460/<br>
+取扱説明書<br>
+chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/akizuki/ae-lps25hb.pdf<br>
+
+
 無線機（Xbee）　XB24CZ7WIT-004<br>
 秋月のリンク<br>
 https://akizukidenshi.com/catalog/g/gM-10072/<br>
