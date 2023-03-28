@@ -9,7 +9,7 @@ https://tdumedia.sharepoint.com/sites/astronomy?e=1%3Ab9c893ef34ae44f183c59b8d1d
 
 # 使用機器の型番
 
-GPSセンサ　AE-GYSFDMAXB<br>
+GPSモジュール　AE-GYSFDMAXB<br>
 取扱説明書<br>
 chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/akizuki/AE-GPS_manual_r1.06_s.pdf<br>
 秋月のリンク<br>
