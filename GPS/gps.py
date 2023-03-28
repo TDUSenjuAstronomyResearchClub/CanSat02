@@ -1,103 +1,158 @@
-# -- coding: utf-8 --
 """
-Module Name:<br> 
-緯度経度・海抜取得プログラム<br><br>
-Description:<br> 
-gpsモジュールを使って緯度と経度、海抜を取得できるプログラム。動作確認用実行ファイルはgpsTest.py<br><br>
+Module Name: <br>
+緯度経度・海抜・磁器偏角・直線距離・方位角取得プログラム<br><br>
+Description:<br>
+gps.pyから緯度経度、海抜、磁器偏角を取得し、ゴールと機体との直線距離と方位角を求めるプログラム<br><br>
+
 Library:<br>
-micropyGPS<br>
-サイト(https://github.com/inmcm/micropyGPS)からファイルをダウンロードし、gps.pyが入っているディレクトリに移す<br><br>
 serial<br>
 「sudo raspi-config」を打ち込み、シリアルを有効にする<br>
 「ls /dev/se*」を打ち込み、「/dev/serial0 /dev/serial1」と出力されることを確認<br>
 「cat /boot/cmdline.txt」を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。<br>
 「sudo apt-get install python-serial」を入力し、シリアルモジュールをインストールする<br><br>
-
 """
+
+import math
 import serial
-import micropyGPS
-import threading
 import time
+from math import radians, sin, cos, atan2, sqrt ,pi
 
-
-gps = micropyGPS.MicropyGPS(9, 'dd') # MicroGPSオブジェクトを生成する。
-                                    # 引数はタイムゾーンの時差と出力フォーマット
-
-
-
-def rungps(): # GPSモジュールを読み、GPSオブジェクトを更新する
-    try:
-        s = serial.Serial('/dev/serial0', 9600, timeout=10)
-        s.readline() # 最初の1行は中途半端なデーターが読めることがあるので、捨てる
-        while True:
-            sentence = s.readline().decode('utf-8') # GPSデーターを読み、文字列に変換する
-            if sentence[0] != '$': # 先頭が'$'でなければ捨てる
-                continue
-            for x in sentence: # 読んだ文字列を解析してGPSオブジェクトにデーターを追加、更新する
-                gps.update(x)
-    except IndexError:
-        return True
-    except TypeError:
-        return True
-    
-
-gpsthread = threading.Thread(target=rungps, args=()) # 上の関数を実行するスレッドを生成
-gpsthread.daemon = True
-gpsthread.start() # スレッドを起動
-
-def gps_latitude(): #緯度
+def get_gps_data():
     """
-    gpsモジュール（AE-GYSFDMAXB）から緯度を求める関数。
+    GPSデータを取得する関数
 
     Returns
     -------
-    list
-            リスト形式で、[緯度]を返す。
+    lat (float)
+            緯度
+    lon (float)
+            経度
+    alt (float)
+            海抜
+    declination (float)
+            磁気偏角値(m)
     """
-    i=1
-    while i<=20:
-        if gps.clean_sentences > 20: # ちゃんとしたデーターがある程度たまったら出力する
-            h = gps.timestamp[0] if gps.timestamp[0] < 24 else gps.timestamp[0] - 24
-            i=0
-            return gps.latitude[0]
-        
-        i+=1
-        time.sleep(1)
 
-def gps_longitude(): #経度
+    ser = serial.Serial("/dev/serial0", baudrate=9600, timeout=1)
+    ser.flush()
+    lat = None
+    lon = None
+    alt = None
+    declination = None
+    start_time = time.time()
+
+    while time.time() - start_time < 5: #5秒後にタイムアウトします
+        try:
+            if ser.in_waiting > 0:
+                line = ser.readline().decode("utf-8").rstrip()
+                if line.startswith("$GPGGA"):
+                    data = line.split(",")
+                    lat = convert_to_degree(data[2], data[3])
+                    lon = convert_to_degree(data[4], data[5])
+                    alt = float(data[9])
+                elif line.startswith("$GPGSV"):
+                    data = line.split(",")
+                    declination = float(data[4])
+                    break
+        except:
+            continue
+
+    ser.close()
+    return lat, lon, alt, declination
+
+
+def convert_to_degree(value, direction):
     """
-    gpsモジュール（AE-GYSFDMAXB）から経度を求める関数。
+    度分秒形式から10進数形式に変換する関数
+
+    Args
+    -------
+    value (str)
+            度分秒形式の値
+    direction (str)
+            方向（N, E, S, Wのいずれか）
 
     Returns
     -------
-    list
-            リスト形式で、[経度]を返す。
+    degree (float)
+            10進数形式の値
     """
-    i=1
-    while i<=20:
-        if gps.clean_sentences > 20: # ちゃんとしたデーターがある程度たまったら出力する
-            h = gps.timestamp[0] if gps.timestamp[0] < 24 else gps.timestamp[0] - 24
-            i=0
-            return gps.longitude[0]
-        i+=1
-        time.sleep(1)
-    
-def gps_altitude(): #海抜
+    d = float(value[:2])
+    m = float(value[2:4])
+    s = float(value[4:])
+    degree = d + m / 60 + s / 3600
+
+    if direction == "S" or direction == "W":
+        degree *= -1
+
+    return degree
+
+def calculate_distance_bearing(lat2, lon2):
     """
-    gpsモジュール（AE-GYSFDMAXB）から海抜を求める関数。
+    2地点の緯度経度から直線距離と方位角を計算する関数
+
+    Args
+    -------
+    lat2 (float)
+            目的地の緯度
+    lon2 (float)
+            方向（N, E, S, Wのいずれか）
 
     Returns
     -------
-    list
-            リスト形式で、[海抜(m)]を返す。
+    distance(float)
+            2地点間の直線距離 
+    bearing(float)
+            2地点間の方位角 
     """
-    i=1
-    while i<=20:
-        if gps.clean_sentences > 20: # ちゃんとしたデーターがある程度たまったら出力する
-            h = gps.timestamp[0] if gps.timestamp[0] < 24 else gps.timestamp[0] - 24
-            i=0
-            return gps.altitude
-        i+=1
-        time.sleep(1)
-        
+
+    R = 6371  # 地球の半径（km）
+
+    #gpsの緯度経度・磁器偏角値を取得
+    gps_date = get_gps_data()
+    lat1 = gps_date[0]
+    lon1 = gps_date[1]
+    declination = gps_date[3]
+
+    # 緯度経度をラジアンに変換
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+
+    # 2地点間の距離
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    distance = R * c *1000
+
+    # 方位角
+    y = sin(lon2 - lon1) * cos(lat2)
+    x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1)
+    bearing = (atan2(y, x) * 180 / pi + 360) % 360
+
+    # 磁気偏角の補正
+    bearing = (bearing + declination) % 360
+
+    return distance, bearing
+
+
+if __name__ == "__main__":
+    # GPSデータの取得
+    lat, lon, alt, declination = get_gps_data()
+
+    # 結果の表示
+    print("緯度：", lat)
+    print("経度：", lon)
+    print("海抜：", alt)
+    print("磁器偏角値：", declination)
+
+    # 目的地の緯度経度
+    dest_lat = 35.681236
+    dest_lon = 139.767125
+
+    # 現在地と目的地の距離と方位角を計算
+    distance, bearing = calculate_distance_bearing(lat, lon, dest_lat, dest_lon)
+
+    # 結果の表示
+    print("目的地までの距離：", distance, "m")
+    print("方位角：", bearing, "°")
 
