@@ -12,7 +12,6 @@ serial<br>
 「sudo apt-get install python-serial」を入力し、シリアルモジュールをインストールする<br><br>
 """
 
-import math
 import serial
 import time
 from math import radians, sin, cos, atan2, sqrt ,pi
@@ -54,7 +53,8 @@ def get_gps_data():
                     data = line.split(",")
                     declination = float(data[4])
                     break
-        except:
+        except Exception as e:
+            print(e)
             continue
 
     ser.close()
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     dest_lon = 139.767125
 
     # 現在地と目的地の距離と方位角を計算
-    distance, bearing = calculate_distance_bearing(lat, lon, dest_lat, dest_lon)
+    distance, bearing = calculate_distance_bearing(dest_lat, dest_lon)
 
     # 結果の表示
     print("目的地までの距離：", distance, "m")
