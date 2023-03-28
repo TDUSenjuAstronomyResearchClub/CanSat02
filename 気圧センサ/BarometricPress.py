@@ -1,3 +1,13 @@
+"""
+Module Name:<br> 
+気圧・高度・気温取得プログラム<br><br>
+Description:<br> 
+気圧センサを使って気圧、高度、気温を取得できるプログラム<br><br>
+Library:<br>
+smbus2<br>
+pip install smbus2<br><br>
+"""
+
 import smbus2
 import time
 
