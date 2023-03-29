@@ -6,10 +6,8 @@ gps.pyから緯度経度、海抜、磁器偏角を取得し、ゴールと機�
 
 Library:<br>
 serial<br>
-「sudo raspi-config」を打ち込み、シリアルを有効にする<br>
-「ls /dev/se*」を打ち込み、「/dev/serial0 /dev/serial1」と出力されることを確認<br>
-「cat /boot/cmdline.txt」を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。<br>
-「sudo apt-get install python-serial」を入力し、シリアルモジュールをインストールする<br><br>
+「pip install --upgrade pip」を行いpipを最新版にします<br>
+「pip install pyserial」このコマンドを打つことでpyserialを導入できます<br>
 """
 
 import serial
@@ -105,34 +103,39 @@ def calculate_distance_bearing(lat2, lon2):
     bearing(float)
             2地点間の方位角 
     """
+    try:
+        R = 6371  # 地球の半径（km）
 
-    R = 6371  # 地球の半径（km）
+        #gpsの緯度経度・磁器偏角値を取得
+        gps_date = get_gps_data()
+        lat1 = gps_date[0]
+        lon1 = gps_date[1]
+        declination = gps_date[3]
 
-    #gpsの緯度経度・磁器偏角値を取得
-    gps_date = get_gps_data()
-    lat1 = gps_date[0]
-    lon1 = gps_date[1]
-    declination = gps_date[3]
+        # 緯度経度をラジアンに変換
+        lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
 
-    # 緯度経度をラジアンに変換
-    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+        # 2地点間の距離
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+        c = 2 * atan2(sqrt(a), sqrt(1 - a))
+        distance = R * c *1000
 
-    # 2地点間の距離
-    dlat = lat2 - lat1
-    dlon = lon2 - lon1
-    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
-    c = 2 * atan2(sqrt(a), sqrt(1 - a))
-    distance = R * c *1000
+        # 方位角
+        y = sin(lon2 - lon1) * cos(lat2)
+        x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1)
+        bearing = (atan2(y, x) * 180 / pi + 360) % 360
 
-    # 方位角
-    y = sin(lon2 - lon1) * cos(lat2)
-    x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1)
-    bearing = (atan2(y, x) * 180 / pi + 360) % 360
+        # 磁気偏角の補正
+        bearing = (bearing + declination) % 360
 
-    # 磁気偏角の補正
-    bearing = (bearing + declination) % 360
+        return distance, bearing
+    except TypeError:
+        distance = None
+        bearing = None
+        return distance, bearing
 
-    return distance, bearing
 
 
 if __name__ == "__main__":
