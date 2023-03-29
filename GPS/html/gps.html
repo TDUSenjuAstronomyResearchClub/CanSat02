@@ -31,10 +31,8 @@ Description:<br>
 gps.pyから緯度経度、海抜、磁器偏角を取得し、ゴールと機体との直線距離と方位角を求めるプログラム<br><br></p>
 <p>Library:<br>
 serial<br>
-「sudo raspi-config」を打ち込み、シリアルを有効にする<br>
-「ls /dev/se*」を打ち込み、「/dev/serial0 /dev/serial1」と出力されることを確認<br>
-「cat /boot/cmdline.txt」を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。<br>
-「sudo apt-get install python-serial」を入力し、シリアルモジュールをインストールする<br><br></p>
+「pip install &ndash;upgrade pip」を行いpipを最新版にします<br>
+「pip install pyserial」このコマンドを打つことでpyserialを導入できます<br></p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -47,10 +45,8 @@ gps.pyから緯度経度、海抜、磁器偏角を取得し、ゴールと機�
 
 Library:&lt;br&gt;
 serial&lt;br&gt;
-「sudo raspi-config」を打ち込み、シリアルを有効にする&lt;br&gt;
-「ls /dev/se*」を打ち込み、「/dev/serial0 /dev/serial1」と出力されることを確認&lt;br&gt;
-「cat /boot/cmdline.txt」を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。&lt;br&gt;
-「sudo apt-get install python-serial」を入力し、シリアルモジュールをインストールする&lt;br&gt;&lt;br&gt;
+「pip install --upgrade pip」を行いpipを最新版にします&lt;br&gt;
+「pip install pyserial」このコマンドを打つことでpyserialを導入できます&lt;br&gt;
 &#34;&#34;&#34;
 
 import serial
