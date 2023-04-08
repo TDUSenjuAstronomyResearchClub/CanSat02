@@ -3,14 +3,19 @@
 
 
 ---主な機能---
-センサ値の先頭に以下のような文字をつけて送信する
+センサ値の先頭についている文字は以下のように分けるて送信する。
 
-a:gpsについての値
-b:ゴールとの直線距離と方位角についての値
-c:9軸センサについての値
-e:温湿度気圧センサについての値
-f:電池残量計
-g:距離センサについての値
+a:gpsモジュール　　            ：　緯度経度・海抜
+b:gpsモジュール　            　：　ゴールとの直線距離・方位角
+c:9軸センサ　　　            　：　加速度・角速度・方位角
+d:温湿度気圧センサ　　         ：　温度・湿度・気圧
+e:気圧センサ　　　             ：　温度・気圧・高度
+f:電池残量計　　　             ：　電池残量値
+g:距離センサ　　　             ：　障害物との距離の値
+h:土壌水分センサ　             ：　土壌水分率
+i:カメラモジュール             ：　16進数
+j:機体から送信されたメッセージ　：　文字列
+
 
 ---使用方法---
 ポート設定　PORT = '/dev/ttyUSB0'      
@@ -31,34 +36,3 @@ Temperature.py              温湿度気圧センサで外気の温度・湿度�
 Battery.py              　　バッテリー残量を求める
 
 
-
-＊＊＊９軸とバッテリー用温湿度センサで必要なライブラリ導入方法について記載する必要あり＊＊＊
-
-
-serialの導入方法
-pip3 install pyserial　を実行することでpyserialがインストールできる。
-「sudo raspi-config」　を打ち込み、シリアルを有効にする
-「ls /dev/se*」　を打ち込み、/dev/serial0 /dev/serial1　と出力されることを確認
-「cat /boot/cmdline.txt」　を入力し、エディターで「console=serial0,115200」を削除しリブートすることでcmdline.txtを修正し、serial0をコンソールとして使わないように設定する。
-「sudo apt-get install python-serial」　を入力し、シリアルモジュールをインストールする
-
-numpyの導入方法
-pip3 install numpy
-
-smbusの導入方法
-「sudo apt-get install python3-smbus」を実行し、smbusをインストールする必要があります。
-また、sudo raspi-configから、Interface Optionを選択し、I2Cから、「はい」または「Yes」をEnterで確定して、I2C通信を有効にする必要があります。
-※確定後の再起動は必要ありません。
-。
-
-micropyGPSの導入方法
-micropyGPSは以下のサイトからファイルをダウンロードし、gps.pyが入っているディレクトリに移す
-https://github.com/inmcm/micropyGPS
-
----参考にしたサイト---
-https://chigusa-web.com/blog/%E3%83%A9%E3%82%BA%E3%83%91%E3%82%A4zero%E3%81%A7l%E3%83%81%E3%82%AB%EF%BC%81/
-
-
----無線機（Xbee）　XB24CZ7WIT-004---
-秋月のリンク
-https://akizukidenshi.com/catalog/g/gM-10072/
