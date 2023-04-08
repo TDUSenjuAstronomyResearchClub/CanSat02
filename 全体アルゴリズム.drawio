@@ -1,218 +1,136 @@
 <mxfile host="65bd71144e">
     <diagram id="RfQd1FZKVwX_YVwqkUuT" name="ページ1">
-        <mxGraphModel dx="3259" dy="1542" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="4218" dy="1101" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="6" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2" target="5" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="2" value="落下開始判定&lt;br&gt;気圧・9軸から行う" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-276.5" y="260" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="4" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="3" target="2" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="3" value="プログラム実行" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-276.5" y="10" width="120" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="8" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="5" target="7" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="5" value="着地判定&lt;br&gt;9軸の加速度&amp;amp;&lt;br&gt;地上局からコマンド送信" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-325" y="350" width="217" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="10" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="7" target="9" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="7" value="目的地の方向に機体を向ける&lt;br&gt;gpsと9軸の方位角を使う" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-316.5" y="440" width="200" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="12" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="9" target="11" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="9" value="直進させる&lt;br&gt;モータを回す・gpsから直線距離を求める" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-340" y="530" width="247" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="14" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="11" target="13" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="11" value="サンプル採取開始&lt;br&gt;モータを回して採取" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-316.5" y="620" width="200" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="16" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="13" target="15" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="13" value="土壌水分量測定&lt;br&gt;モータを回し土壌水分センサを突き刺す" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-329.5" y="710" width="227" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="19" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="15" target="18" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="15" value="サンプル回収ポイントの方向に機体を向ける&lt;br&gt;gpsと9軸の方位角を使う" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-340" y="800" width="250" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="21" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="18" target="20" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="18" value="直進させる&lt;br&gt;モータを回す・gpsから直線距離を求める" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-332.25" y="880" width="235.5" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="20" value="サンプル回収地点到着" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-280" y="1040" width="127" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="164" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="23" target="159">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="23" value="地上局から値を受信" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="36" y="210" width="230" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="49" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="30" target="48" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="30" value="gpsモジュール&lt;br&gt;緯度経度・高度を取得" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="790" y="260" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="31" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="76" edge="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="-220" y="130" as="sourcePoint"/>
-                        <mxPoint x="650" y="160" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="650" y="130"/>
-                            <mxPoint x="860" y="130"/>
-                        </Array>
+                <mxCell id="49" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="495" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="525" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="52" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="32" target="51" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="32" value="gpsモジュール&lt;br&gt;ゴールとの直線距離・方位角を取得" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="755" y="440" width="210" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="55" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="34" target="54" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="34" value="9軸センサ&lt;br&gt;加速度・角速度・方位角を取得" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="755" y="620" width="210" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="58" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="36" target="57" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="36" value="温湿度センサ&lt;br&gt;温度・湿度・気圧を取得" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="755" y="800" width="210" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="61" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="38" target="60" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="38" value="気圧センサ&lt;br&gt;温度・気圧・高度を取得" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="755" y="980" width="210" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="64" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="40" target="63" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="40" value="電池残量計&lt;br&gt;電池残量値を取得" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="755" y="1160" width="210" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="67" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="42" target="65" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="42" value="超音波距離センサ&lt;br&gt;障害物との距離を取得" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="755" y="1340" width="210" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="50" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="48" target="32" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="48" value="地上局に送信" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="790" y="350" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="53" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="51" target="34" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="51" value="地上局に送信" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="790" y="530" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="56" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="54" target="36" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="54" value="地上局に送信" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="790" y="710" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="59" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="57" target="38" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="57" value="地上局に送信" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="790" y="890" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="62" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="60" target="40" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="60" value="地上局に送信" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="790" y="1070" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="66" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="63" target="42" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="63" value="地上局に送信" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="790" y="1250" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="65" value="地上局に送信" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="790" y="1430" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="75" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="65" edge="1">
+                <mxCell id="52" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="860" y="140" as="targetPoint"/>
-                        <mxPoint x="860" y="1670" as="sourcePoint"/>
-                        <Array as="points">
-                            <mxPoint x="860" y="1550"/>
-                            <mxPoint x="1000" y="1550"/>
-                            <mxPoint x="1000" y="140"/>
-                        </Array>
+                        <mxPoint x="248.00000000000045" y="761" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="791" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="77" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="76" target="30" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="78" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="76" edge="1">
+                <mxCell id="55" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="-220" y="990" as="targetPoint"/>
+                        <mxPoint x="248.00000000000045" y="1031" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="1061" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="58" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="1291" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="1321" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="61" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="1561" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="1591" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="64" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="1831" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="1861" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="67" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="2101.0000000000005" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="2131.0000000000005" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="193" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="585" as="sourcePoint"/>
+                        <mxPoint x="248" y="611" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="196" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="851" as="sourcePoint"/>
+                        <mxPoint x="248" y="881" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="199" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="1121" as="sourcePoint"/>
+                        <mxPoint x="248" y="1141" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="202" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="1380.9999999999995" as="sourcePoint"/>
+                        <mxPoint x="248" y="1411" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="205" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="1651" as="sourcePoint"/>
+                        <mxPoint x="248" y="1681" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="208" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="1921" as="sourcePoint"/>
+                        <mxPoint x="248" y="1951" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="211" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="2191.0000000000005" as="sourcePoint"/>
+                        <mxPoint x="248" y="2221" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="77" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="76" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248.00000000000045" y="435" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="452" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="76" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="600" y="1570" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="740" y="200"/>
-                            <mxPoint x="740" y="990"/>
+                            <mxPoint x="400" y="375"/>
+                            <mxPoint x="400" y="1570"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="76" value="ゴールに到達したか" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="790" y="160" width="140" height="80" as="geometry"/>
+                    <mxGeometry x="178" y="335" width="140" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="79" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="755" y="180" width="40" height="30" as="geometry"/>
+                    <mxGeometry x="298" y="340" width="40" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="80" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="860" y="225" width="40" height="30" as="geometry"/>
+                    <mxGeometry x="248" y="400" width="40" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="83" style="edgeStyle=none;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="84" target="128" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="84" value="main.py&lt;br&gt;ゴールまで機体を移動させる&lt;br&gt;青い四角のセンサについてのログを機体に残す" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="1857" y="67.5" width="261" height="60" as="geometry"/>
+                <mxCell id="84" value="Running.py&lt;br&gt;ゴールまで機体を移動させる&lt;br&gt;青い四角のセンサについてのログを機体に残す" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-1593" y="47.620000000000005" width="261" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="85" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;プログラムの構成図&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="2090" y="30" width="230" height="30" as="geometry"/>
+                    <mxGeometry x="-1360" y="10.120000000000005" width="230" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="86" value="send.py&lt;br&gt;センサの値をXbeeを使いラズパイにログを残しPCに送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="2182" y="412.5" width="184" height="60" as="geometry"/>
+                    <mxGeometry x="-1268" y="392.62" width="184" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="90" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=17;fontColor=#ed0c0c;" parent="1" source="93" target="84" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="2140" y="172.5"/>
+                            <mxPoint x="-1310" y="152.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="91" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="93" target="86" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="2140" y="372.5"/>
+                            <mxPoint x="-1310" y="352.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
@@ -220,48 +138,48 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="93" value="gps.py&lt;br&gt;get_gps_deta()&lt;br&gt;gpsモジュールで求めた緯度経度・海抜・磁器偏角" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-                    <mxGeometry x="1960" y="238.75" width="360" height="60" as="geometry"/>
+                    <mxGeometry x="-1490" y="218.87" width="360" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="95" value="緯度経度・直線距離・方位角" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="2050" y="192.5" width="180" height="30" as="geometry"/>
+                    <mxGeometry x="-1400" y="172.62" width="180" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="96" value="緯度経度・海抜・直線距離・方位角" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="2050" y="327.5" width="220" height="30" as="geometry"/>
+                    <mxGeometry x="-1400" y="307.62" width="220" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="97" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="99" target="84" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="2438" y="172.5"/>
+                            <mxPoint x="-1012" y="152.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="98" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="99" target="86" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="2440" y="372.5"/>
+                            <mxPoint x="-1010" y="352.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="99" value="Distance.py&lt;br&gt;distance_result()&lt;br&gt;距離センサで求めた距離（cm）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-                    <mxGeometry x="2347" y="232.5" width="182" height="60" as="geometry"/>
+                    <mxGeometry x="-1103" y="212.62" width="182" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="102" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="126" target="86" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1744" y="372.5"/>
+                            <mxPoint x="-1706" y="352.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="103" value="距離（cm）" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="2393" y="207.5" width="90" height="30" as="geometry"/>
+                    <mxGeometry x="-1057" y="187.62" width="90" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="104" value="加速度・速度・&lt;br&gt;角速度・方位角" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="1700" y="193.75" width="110" height="40" as="geometry"/>
+                    <mxGeometry x="-1750" y="173.87" width="110" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="105" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=20;startArrow=none;" parent="1" source="126" target="84" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1744" y="172.5"/>
+                            <mxPoint x="-1706" y="152.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
@@ -269,261 +187,1309 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="107" value="ソースファイル名&lt;br&gt;呼び出す関数名&lt;br&gt;取得する値または機能" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="3136.25" y="135" width="132.5" height="60" as="geometry"/>
+                    <mxGeometry x="-313.75" y="115.12" width="132.5" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="108" value="返却する値" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="3205" y="105" width="80" height="30" as="geometry"/>
+                    <mxGeometry x="-245" y="85.12" width="80" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="109" value="距離（cm）" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="2393" y="302.5" width="90" height="30" as="geometry"/>
+                    <mxGeometry x="-1057" y="282.62" width="90" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="110" value="加速度・速度・角速度" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="1705" y="313.75" width="140" height="30" as="geometry"/>
+                    <mxGeometry x="-1745" y="293.87" width="140" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="111" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="112" target="84" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1390" y="172.5"/>
+                            <mxPoint x="-2060" y="152.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="112" value="Camera.py&lt;br&gt;photograph()&lt;br&gt;カメラで写真を撮りバイナリデータに変換し、カメラログ用ファイルを作り機体にログを残す＆PCにXbeeで送信する" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" parent="1" vertex="1">
-                    <mxGeometry x="1220" y="232.5" width="340" height="70" as="geometry"/>
+                    <mxGeometry x="-2230" y="212.62" width="340" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="113" value="呼び出す元のソースファイル名&lt;br&gt;取得する値または機能" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" parent="1" vertex="1">
-                    <mxGeometry x="3110" y="30" width="185" height="60" as="geometry"/>
+                    <mxGeometry x="-340" y="10.120000000000005" width="185" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="114" value="なし" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" parent="1" vertex="1">
-                    <mxGeometry x="1350" y="205" width="50" height="30" as="geometry"/>
+                    <mxGeometry x="-2100" y="185.12" width="50" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="115" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="118" target="86" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="2725" y="372.5"/>
+                            <mxPoint x="-725" y="352.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="116" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="136" target="84" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="2985" y="172.5"/>
+                            <mxPoint x="-465" y="152.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="117" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="118" target="99" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="2601" y="268.75" as="targetPoint"/>
+                        <mxPoint x="-849" y="248.87" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="118" value="Temperature.py&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Temperature_result()&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;外気の温度・湿度・気圧を測る" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#CCE5FF;" parent="1" vertex="1">
-                    <mxGeometry x="2605" y="232.5" width="240" height="60" as="geometry"/>
+                    <mxGeometry x="-845" y="212.62" width="240" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="119" value="温度・気圧・高度" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" parent="1" vertex="1">
-                    <mxGeometry x="2935" y="297.5" width="120" height="30" as="geometry"/>
+                    <mxGeometry x="-515" y="277.62" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="120" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="121" target="84" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1103" y="172.5"/>
+                            <mxPoint x="-2347" y="152.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="121" value="SoilMoisture.py&lt;br&gt;SoilMois_result()&lt;br&gt;&lt;span style=&quot;&quot;&gt;電圧、電流、電力、シャント電圧&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" parent="1" vertex="1">
-                    <mxGeometry x="1000" y="235" width="206.75" height="60" as="geometry"/>
+                    <mxGeometry x="-2450" y="217.62" width="206.75" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="122" value="静電容量値" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" parent="1" vertex="1">
-                    <mxGeometry x="1070" y="207.5" width="80" height="30" as="geometry"/>
+                    <mxGeometry x="-2450" y="182.62" width="80" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="124" value="&lt;h1 style=&quot;border-color: var(--border-color);&quot;&gt;プログラム実行前にやること&lt;/h1&gt;&lt;div&gt;DistanceMeasurement.pyにゴールの緯度経度を入力&lt;/div&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontColor=#fb0404;" parent="1" vertex="1">
-                    <mxGeometry x="2895" y="30" width="190" height="120" as="geometry"/>
+                    <mxGeometry x="-555" y="10.120000000000005" width="190" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="126" value="NineAxis.py&lt;br&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;AccelerationSpeed()、&lt;/span&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;AngularVelocity()、&lt;/span&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;Azimuth()&lt;/span&gt;&lt;br&gt;9軸で求めた加速度・速度・角速度・地軸値" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-                    <mxGeometry x="1598.5" y="238.75" width="291.5" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="127" style="edgeStyle=none;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="128" target="84" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="128" value="ManualMain.py&lt;br&gt;ゴールまで機体を手動で移動させる&lt;br&gt;青い四角のセンサについてのログを機体に残す" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="2250" y="67.5" width="261" height="60" as="geometry"/>
+                    <mxGeometry x="-1851.5" y="218.87" width="291.5" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="129" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;温度&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="2550" y="223.75" width="45" height="28.75" as="geometry"/>
+                    <mxGeometry x="-900" y="203.87" width="45" height="28.75" as="geometry"/>
                 </mxCell>
                 <mxCell id="130" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="131" target="86" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="2271.9999999999995" y="597.5" as="targetPoint"/>
-                        <mxPoint x="3214" y="297.5" as="sourcePoint"/>
+                        <mxPoint x="-1178" y="577.62" as="targetPoint"/>
+                        <mxPoint x="-236" y="277.62" as="sourcePoint"/>
                         <Array as="points">
-                            <mxPoint x="3214" y="372.5"/>
+                            <mxPoint x="-236" y="352.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="131" value="Battery.py&lt;br&gt;BatteryTemp_result()&lt;br&gt;バッテリーの電池残量を測る" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#CCE5FF;" parent="1" vertex="1">
-                    <mxGeometry x="3125.5" y="237.5" width="179" height="60" as="geometry"/>
+                    <mxGeometry x="-324.5" y="217.62" width="179" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="132" value="高度" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="2935" y="205" width="50" height="30" as="geometry"/>
+                    <mxGeometry x="-515" y="185.12" width="50" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="133" value="電池残量" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="3180" y="312.5" width="70" height="30" as="geometry"/>
+                    <mxGeometry x="-270" y="292.62" width="70" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="135" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="136" target="86" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="2108" y="490" as="targetPoint"/>
+                        <mxPoint x="-1342" y="470.12" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="2985" y="372.5"/>
+                            <mxPoint x="-465" y="352.62"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="136" value="BarometicPress.py&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;get_pressure_altitude_temperature()&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;外気の温度・気圧・高度を測る" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#CCE5FF;" parent="1" vertex="1">
-                    <mxGeometry x="2865" y="237.5" width="240" height="60" as="geometry"/>
+                    <mxGeometry x="-585" y="217.62" width="240" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="137" value="温度・湿度・気圧" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" parent="1" vertex="1">
-                    <mxGeometry x="2665" y="298.75" width="120" height="30" as="geometry"/>
+                    <mxGeometry x="-785" y="278.87" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="140" value="磁器偏角値" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="1880" y="238.75" width="80" height="30" as="geometry"/>
+                    <mxGeometry x="-1570" y="218.87" width="80" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="150" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="23">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="-214" y="160" as="sourcePoint"/>
-                        <mxPoint x="186" y="198.1300000000001" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="151" y="160"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="156" value="サンプル採取ポイント：緯度経度&lt;br&gt;サンプル回収ポイント：緯度経度&lt;br&gt;変更" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="298.25" y="390" width="203.5" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="165" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="159">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="146" y="180" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="-14" y="329"/>
-                            <mxPoint x="-14" y="180"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="168" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="159" target="162">
+                <mxCell id="268" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="187" target="233" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="159" value="手動運転切り替えコマンド受信&lt;br&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="41" y="290" width="220" height="77.5" as="geometry"/>
+                <mxCell id="187" value="ラズパイ起動" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="540.15" width="120" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="169" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="162">
+                <mxCell id="194" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="-214" y="420" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="151" y="500"/>
-                            <mxPoint x="-64" y="500"/>
-                            <mxPoint x="-64" y="420"/>
-                        </Array>
+                        <mxPoint x="248" y="671" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="701" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="162" value="手動運転プログラム" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
-                    <mxGeometry x="68.5" y="390" width="165" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="166" value="No&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="20" y="298.75" width="40" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="167" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="110" y="351.25" width="40" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="170" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="-64" y="500" as="sourcePoint"/>
-                        <mxPoint x="-214" y="510" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="-64" y="510"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="171" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="146" y="500" as="sourcePoint"/>
-                        <mxPoint x="-214" y="600" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="146" y="600"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="172" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="146" y="600" as="sourcePoint"/>
-                        <mxPoint x="-214" y="690" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="146" y="690"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="173" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="146" y="690" as="sourcePoint"/>
-                        <mxPoint x="-214" y="785" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="146" y="785"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="174" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="146" y="780" as="sourcePoint"/>
-                        <mxPoint x="-214" y="875" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="146" y="875"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="175" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="146" y="860" as="sourcePoint"/>
-                        <mxPoint x="-214" y="955" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="146" y="955"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="176" value="任意の自動制御処理に戻る" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="76" y="472.5" width="170" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="181" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="179" target="156">
+                <mxCell id="191" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="189" target="190" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="183" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="179">
+                <mxCell id="189" value="ログのファイルを作成&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="178" y="160" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="192" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="190" target="76" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="190" value="ログファイルのインデックスを作成" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="178" y="240" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="197" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="150" y="180" as="targetPoint"/>
+                        <mxPoint x="248" y="941" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="971" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="200" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248" y="1201" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="1231" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="203" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248" y="1471" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="1501" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="206" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248" y="1741" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="1771" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="209" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248" y="2011" as="sourcePoint"/>
+                        <mxPoint x="248.00000000000045" y="2041.0000000000005" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="212" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="248" y="311" as="targetPoint"/>
+                        <mxPoint x="248" y="2281" as="sourcePoint"/>
                         <Array as="points">
-                            <mxPoint x="510" y="180"/>
+                            <mxPoint x="248" y="2321"/>
+                            <mxPoint x="70" y="2321"/>
+                            <mxPoint x="70" y="311"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="179" value="緯度経度変更コマンド受信" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="290" y="295" width="220" height="77.5" as="geometry"/>
+                <mxCell id="232" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="334" target="271" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="964.5" y="171.12" as="sourcePoint"/>
+                        <mxPoint x="964.5" y="199.62" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
-                <mxCell id="180" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="179">
+                <mxCell id="229" value="終了" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="537.26" y="1674" width="127" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="248" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="271" target="241" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="964.5" y="259.62" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="235" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="233" target="234" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="233" value="ログのファイルを作成&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="530.15" y="170.12" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="253" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="234" target="333" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="597.63" y="327.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="234" value="ログファイルのインデックスを作成&lt;br&gt;日時、値の説明、値" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="500.36" y="247.62" width="199.25" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="240" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="337" target="285" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="969.39" y="1661.5" as="sourcePoint"/>
+                        <mxPoint x="969.39" y="1691.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="241" value="hight = 過去の高度 - 現在の高度(high_now)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="848.83" y="279.12" width="246.38" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="247" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="245" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="970" y="98.12" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="841.18" y="914.12"/>
+                            <mxPoint x="840" y="587.12"/>
+                            <mxPoint x="841" y="426.62"/>
+                            <mxPoint x="841" y="98.62"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="423" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="245" target="422" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="245" value="hight &amp;lt; 0 or&lt;br&gt;message == &quot;fall&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="898.4599999999999" y="875.12" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="249" value="No&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="869.1899999999998" y="892.62" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="255" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="333" target="270" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="597.63" y="387.5" as="sourcePoint"/>
+                        <mxPoint x="597.63" y="410" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="261" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="436" target="446" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="934.7450000000001" y="880.87" as="sourcePoint"/>
+                        <mxPoint x="971.7100000000005" y="868.37" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="405" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="494" target="430" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="951.7149999999997" y="599.37" as="sourcePoint"/>
+                        <mxPoint x="951.8650000000002" y="620.87" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="495" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="259" target="494" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="259" value="message =&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;地上局からの値" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="902.6499999999999" y="354.12" width="138.13" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="262" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="968.06" y="937.62" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="265" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="241" target="259" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="964.5" y="513.62" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="417" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="270" target="416" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="270" value="RunningLog&lt;br&gt;(&quot;地上局に送信：&lt;br&gt;走行プログラム実行&quot;,None)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="499.3399999999999" y="415" width="199.94" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="271" value="RunningLog&lt;br&gt;(&quot;高度&quot;,high_now)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="902.8" y="201.37" width="138.13" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="450" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="273" target="449" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="273" value="RunningLog&lt;br&gt;(&quot;地上局に送信：&lt;br&gt;落下開始&quot;,None)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="671" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="274" value="ログをとる" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="188" y="611" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="275" value="ログをとる" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="188" y="881" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="276" value="ログをとる" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="188" y="1141" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="277" value="ログをとる" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="188" y="1411" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="278" value="ログをとる" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="188" y="1681" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="279" value="ログをとる" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="188" y="1951" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="280" value="ログをとる" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="188" y="2221" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="281" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="336" target="283" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="969.39" y="1510" as="targetPoint"/>
+                        <mxPoint x="969.39" y="1481.4999999999995" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="286" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="283" target="337" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="969.39" y="1601.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="283" value="RunningLog(&quot;高度&quot;,high)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="880.8499999999998" y="1362.5" width="176.69" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="462" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="285" target="461" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="285" value="RunningLog()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="908.4" y="1513.5" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="289" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="290" target="294" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="972.83" y="2514.12" as="targetPoint"/>
+                        <mxPoint x="972.64" y="2206.62" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="290" value="time.sleep(0.01)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="908.4" y="2018" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="295" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="294" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="970.18" y="1268" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="816.18" y="2150"/>
+                            <mxPoint x="815.89" y="1769"/>
+                            <mxPoint x="821.18" y="1268"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="459" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="294" target="458" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="294" value="hight == ある定数 or &lt;br&gt;acceleration == ある定数 or&lt;br&gt;massage == &quot;landing&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="843.41" y="2108" width="250" height="84.13" as="geometry"/>
+                </mxCell>
+                <mxCell id="296" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="820.37" y="2118.25" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="297" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="909.4099999999999" y="2178" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="303" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="300" target="302" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="300" value="RunningLog&lt;br&gt;(&quot;地上局に送信：&lt;br&gt;着地&quot;None)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="510.76" y="941" width="179.24" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="307" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="302" target="341" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="703.5" y="2394.9999999999995" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="302" value="パラシュート切り離しモーター作動" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="539.99" y="1033.75" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="309" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="306" target="451" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="600.3600000000001" y="1310" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="306" value="RunningLog&lt;br&gt;(&quot;地上局に送信：&lt;br&gt;パラシュート切り離し&quot;,None)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="483.29" y="1219.5" width="234.95" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="317" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="311" target="313" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="311" value="AngleAdjustment()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1431.62" y="688.0099999999999" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="343" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="313" target="346" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1499.9850000000001" y="965.0099999999999" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="313" value="ゴールまで直進" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1441.08" y="768.8699999999999" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="319" value="地上局にセンサ値を送信&lt;br&gt;先頭文字：a" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="158" y="521" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="320" value="地上局にセンサ値を送信&lt;br&gt;先頭文字：b" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="158" y="791" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="321" value="地上局にセンサ値を送信&lt;br&gt;先頭文字：c" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="158" y="1056" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="322" value="地上局にセンサ値を送信&lt;br&gt;先頭文字：d" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="158" y="1321" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="323" value="地上局にセンサ値を送信&lt;br&gt;先頭文字：e" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="158" y="1591" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="324" value="地上局にセンサ値を送信&lt;br&gt;先頭文字：f" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="158" y="1861" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="325" value="地上局にセンサ値を送信&lt;br&gt;先頭文字：g" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="158" y="2131" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="326" value="超音波距離センサ&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;障害物との距離を取得" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="168" y="2041" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="327" value="電池残量計&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;電池残量値を取得" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="168" y="1771" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="328" value="気圧センサ&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;温度・気圧・高度を取得" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="158" y="1501" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="329" value="温湿度気圧センサ&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;温度・湿度・気圧を取得" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="158" y="1231" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="330" value="9軸センサ&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;加速度・角速度・方位角を取得" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="133" y="968.5" width="230" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="331" value="gpsモジュール&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;ゴールとの直線距離・方位角を取得&lt;br&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="123" y="701" width="250" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="332" value="gpsモジュール&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;緯度経度・高度を取得&lt;br&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="168" y="441" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="333" value="RunningSend&lt;br&gt;(&quot;走行プログラム実行&quot;)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="499.34000000000003" y="328.75" width="201.63" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="334" value="気圧センサ&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;hight_now=高度" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="904.6400000000001" y="111.87" width="134.75" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="386" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="335" target="273" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="335" value="RunningSend&lt;br&gt;(&quot;落下開始&quot;)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="506.75" y="585" width="186.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="336" value="気圧センサ&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;high = 高度" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="899.5300000000001" y="1281.5" width="139.75" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="337" value="9軸センサ&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;acceleration = 加速度" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="895.88" y="1438" width="146.63" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="387" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="340" target="300" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="340" value="RunningSend(&quot;着地&quot;)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="507.44" y="855" width="186.63" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="388" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="341" target="306" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="341" value="RunningSend&lt;br&gt;(&quot;パラシュート切り離し&quot;)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="487.72999999999996" y="1126.25" width="223.16" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="344" value="&lt;h1&gt;走行プログラム：作成すべきメソッド&lt;/h1&gt;&lt;p&gt;ログ記入&lt;/p&gt;&lt;p&gt;地上局に値を送信（引数：センサ値、センサ用先頭文字）&lt;br&gt;&lt;/p&gt;&lt;p&gt;地上局から値を受信（引数：受信した文字列）&lt;/p&gt;&lt;p&gt;緯度経度変更（呼び出されたらサンプル採取地点とゴールの緯度経度の変更を行う）&lt;/p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;ChangeDestination()&lt;/span&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;目的地と機体の向きを一直線にする（ログとメッセージ送信・手動運転機能を入れる）&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;ゴールまで直進（ログとメッセージ送信、自動手動運転自動切替・手動運転機能を入れる）&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;サンプル採取（ログとメッセージ送信機能を入れる）&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;土壌水分量測定（ログとメッセージ送信機能を入れる　土壌水分センサのプログラムも組み込む）&lt;/span&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="-628.4699999999996" y="768.87" width="540" height="329" as="geometry"/>
+                </mxCell>
+                <mxCell id="345" value="&lt;h1&gt;送信プログラム：作成すべきメソッド&lt;/h1&gt;&lt;p&gt;ログ記入&lt;/p&gt;&lt;p&gt;地上局から値を受信（引数：センサ識別文字、センサ値）&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="-630.0000000000002" y="1099.12" width="440" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="519" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="346" target="518" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="346" value="RunningSend&lt;br&gt;(&quot;サンプル採取を行うか？&quot;)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1393.29" y="848.2699999999999" width="216.66" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="500" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="348" target="499" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="348" value="message = 地上局から値" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1411.1799999999998" y="1001" width="176.49" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="352" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="350" edge="1" target="354">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1470" y="1300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="361" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="350" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1502" y="1340" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1602" y="1207"/>
+                            <mxPoint x="1600" y="1340"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="350" value="message = &quot;yes&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1429.4199999999998" y="1167.07" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="353" value="Yes&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1510.9699999999998" y="1225.32" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="360" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="354" target="356" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="354" value="サンプル採取" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1441.08" y="1270" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="355" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="521" target="358" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1501.6499999999987" y="1542.3799999999999" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="522" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="356" target="521" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="356" value="RunningSend&lt;br&gt;(&quot;土壌水分量測定を行うか？&quot;)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1393.32" y="1362.5" width="216.66" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="510" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="358" target="509" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="358" value="message = 地上局から値" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1413.3999999999996" y="1519.9999999999998" width="176.49" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="364" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="359" target="363" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="367" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="359" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1510" y="1860" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1603" y="1730"/>
+                            <mxPoint x="1603" y="1860"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="359" value="message = &quot;yes&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1432.4999999999989" y="1690.9999999999998" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="362" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1553.36" y="1175.32" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="363" value="土壌水分量測定" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1443.9199999999992" y="1787.12" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="365" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1510.9699999999993" y="1754" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="366" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1553.5999999999992" y="1698" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="370" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="363" target="372" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1501.5999999999995" y="1902.8799999999999" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="524" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="372" target="523" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="372" value="RunningSend&lt;br&gt;(&quot;ゴールに向かうか？&quot;)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1395.5899999999995" y="1877.12" width="216.66" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="513" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="374" target="512" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="374" value="message = 地上局から値" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1415.6799999999994" y="2040.0000000000007" width="176.49" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="375" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="451" target="382" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="607.4799999999998" y="1415.87" as="targetPoint"/>
+                        <mxPoint x="607.49" y="1394.62" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="384" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="377" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1500" y="90" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1360" y="2230"/>
+                            <mxPoint x="1360" y="772"/>
+                            <mxPoint x="1360" y="90"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="455" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="377" target="454" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="377" value="message = &quot;yes&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1434.4099999999996" y="2192.13" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="379" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1521.0799999999997" y="2251" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="380" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1405.2399999999998" y="2192.13" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="381" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="382" target="383" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="382" value="AngleAdjustment()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="530.76" y="1399.5" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="385" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="383" target="229" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="383" value="ゴールまで直進" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="540.76" y="1484.5" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="411" value="&lt;h1&gt;今実装予定の機能&lt;/h1&gt;&lt;p&gt;・自律制御でミッションを行う　&lt;/p&gt;&lt;p&gt;・任意のタイミングで手動制御に切り替え、任意の自律制御の処理に戻る&lt;/p&gt;&lt;p&gt;（カメラ撮影、手動運転、土壌水分量測定、サンプル採取を手動で行えるようにする）&lt;/p&gt;&lt;p&gt;・任意のタイミングで、サンプル採取とサンプル回収の緯度経度を変更出来る&lt;/p&gt;&lt;p&gt;・地上局に描くセンサの値を一定時間ごとに送信する&lt;/p&gt;&lt;p&gt;・自律制御から自動的に手動制御に切り替える（障害物検知など）&lt;/p&gt;&lt;p&gt;・機体にログを残す&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="-628.4699999999996" y="498.62" width="526.5" height="245" as="geometry"/>
+                </mxCell>
+                <mxCell id="415" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="189" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="150" y="283.75" as="sourcePoint"/>
-                        <mxPoint x="200" y="233.75" as="targetPoint"/>
+                        <mxPoint x="600" y="120" as="sourcePoint"/>
+                        <mxPoint x="700" y="270" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="400" y="280"/>
+                            <mxPoint x="248" y="120"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="182" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="420" y="355" width="40" height="30" as="geometry"/>
+                <mxCell id="421" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="416" target="335" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="184" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="510" y="315" width="40" height="30" as="geometry"/>
+                <mxCell id="416" value="FallJudgment()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="501" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="186" value="" style="endArrow=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="156">
+                <mxCell id="419" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="418" target="334" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="418" value="FallJudgment()" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="904.3400000000003" y="0.11999999999999744" width="135.36" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="420" value="&lt;h1&gt;地上局からのコマンド一覧&lt;/h1&gt;&lt;p&gt;picture：写真撮影を行う&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;destination：&lt;span style=&quot;background-color: initial;&quot;&gt;サンプル採取地点または、ゴール地点の緯度または、経度の変更を行う&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;fall：機体の落下開始判定を行う（FullJudgment関数以外で使用できない）&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;landing：機体の着地判定を行う（LandingiJudgment関数以外で使用できない）&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;manual：手動運転を行う（着地判定以降でないと使えず、サンプル採取・土壌水分測定中はコマンドは受け付けない）&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;：土壌水分量測定を行う&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;：サンプル採取を行う&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="-628.4700000000005" y="1273.62" width="440" height="430" as="geometry"/>
+                </mxCell>
+                <mxCell id="422" value="return" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="900.7800000000003" y="977.87" width="135.36" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="437" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="430" target="436" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="526" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="430" target="432" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1232.18" y="547.12"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="430" value="massage == &quot;picture&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="900.08" y="506.62" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="443" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="432" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="971.18" y="774.12" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1232.18" y="774.12"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="432" value="Camera.py" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1172.1799999999998" y="569.12" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="434" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1015.3699999999998" y="515.12" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="435" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="924.81" y="569.12" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="441" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="436" target="440" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1145.18" y="644.12"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="436" value="massage == &quot;destination&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="885.4800000000001" y="605.12" width="167.32" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="442" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="440" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="971.18" y="754.12" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1145.18" y="754.12"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="440" value="ChangeDestination()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1069.71" y="667.62" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="444" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1027.84" y="614.12" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="445" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="931.18" y="672.87" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="448" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="446" target="245" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="446" value="time.sleep(0.01)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="897.65" y="797.62" width="141.63" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="460" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="449" target="340" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="449" value="LandingJudgment()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="522.5" y="761" width="155" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="451" value="Mission()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="540.76" y="1309.75" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="623" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" source="453" target="618">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="453" value="Mission()" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1443.9199999999998" y="0.12000000000000366" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="454" value="return" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1445.95" y="2288" width="117.97" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="457" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="456" target="336" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="456" value="LandingJudgment()" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="909.41" y="1169" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="458" value="return" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="908.41" y="2208" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="497" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="461" target="496" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="461" value="message =&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;地上局からの値" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="899.3399999999998" y="1592.5" width="138.13" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="479" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="488" target="290" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="932.5850000000002" y="2153.37" as="sourcePoint"/>
+                        <mxPoint x="968.7350000000002" y="2134.87" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="480" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="482" target="484" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1232.18" y="1788"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="481" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="482" target="488" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="482" value="massage == &quot;picture&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="898.4100000000001" y="1748" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="483" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="484" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="971.18" y="1998" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1232.18" y="1998"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="484" value="Camera.py" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1172.1799999999998" y="1817.12" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="485" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1027.3199999999997" y="1754" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="486" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="924.8099999999998" y="1817.12" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="487" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="488" target="490" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1143.18" y="1887"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="488" value="massage == &quot;destination&quot;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="884.7500000000002" y="1847.12" width="167.32" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="489" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="490" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="968.18" y="1988" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1142.18" y="1988"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="490" value="ChangeDestination()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1067.32" y="1908" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="491" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1031.9599999999998" y="1859" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="492" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="924.8099999999998" y="1919" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="494" value="RunningLog&lt;br&gt;(&quot;地上局からのコマンド&quot;,message)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="847.2299999999999" y="429.12" width="247.98" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="498" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="496" target="482" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="496" value="RunningLog&lt;br&gt;(&quot;地上局からのコマンド&quot;,message)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="895.03" y="1668" width="146.75" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="501" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="499" target="350" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="499" value="RunningLog&lt;br&gt;(&quot;地上局からのコマンド&quot;,message)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1405.24" y="1081" width="188.36" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="502" value="main.py&lt;br&gt;ゴールまで機体を移動させる&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-2112.5" y="578.5" width="261" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="503" value="FallJudgment()&lt;br&gt;落下開始判定を行う関数" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-2215" y="761" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="504" value="LandingJudgment()&lt;br&gt;着地判定を行う関数" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-2200" y="680" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="505" value="Mission()&lt;br&gt;目的地までの移動・サンプル採取・土壌水分測定を行う関数" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-2232.5" y="840" width="235" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="511" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="509" target="359" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="509" value="RunningLog&lt;br&gt;(&quot;地上局からのコマンド&quot;,message)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1422.48" y="1608" width="158.35" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="514" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="512" target="377" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="512" value="RunningLog&lt;br&gt;(&quot;地上局からのコマンド&quot;,message)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1420.66" y="2118" width="167.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="515" value="RunningLog(&quot;値の意味&quot;,変数)&lt;br&gt;走行用プログラムのログをとる" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-1960" y="680" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="516" value="send.py&lt;br&gt;地上局に一定時間間隔で値を送信する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-1481" y="581" width="261" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="517" value="RunningSend&lt;br&gt;(&quot;地上局に送信する文字列&quot;)&lt;br&gt;先頭文字：j" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-1940" y="761" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="520" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="518" target="348" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="518" value="RunningLog&lt;br&gt;(&quot;地上局に送信：サンプル採取を行うか？&quot;,None)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1401.9099999999999" y="922.6199999999999" width="198.34" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="521" value="RunningLog&lt;br&gt;(&quot;地上局に送信：土壌水分測定を行うか？&quot;,None)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1402.4399999999996" y="1440.9999999999998" width="198.34" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="525" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="523" target="374" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="523" value="RunningLog&lt;br&gt;(&quot;地上局に送信：ゴールに向かうか？&quot;,None)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="1405.2399999999993" y="1957.9999999999998" width="198.34" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="527" value="AngleAdjustment()" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="2128.24" y="10.120000000000005" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="580" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="528" target="579">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="528" value="RunningSend&lt;br&gt;(&quot;機体と目的地を一直線にする&quot;)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="2056" y="714.4499999999999" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="582" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="579" target="581">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="579" value="RunningLog&lt;br&gt;(&quot;機体と目的地を一直線にする&quot;,None)&lt;br&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2066" y="798.0100000000001" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="584" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="581" target="583">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="581" value="heading&amp;nbsp; = NineAxis.get_magnetic_heading" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2072.25" y="881.83" width="227.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="586" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="583" target="585">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2537" y="1008"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="663" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" source="583" target="662">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="583" value="heding == True" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2096" y="967.83" width="180" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="701" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontColor=#000000;" edge="1" parent="1" source="585">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2410" y="1580" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="2540" y="1440"/>
+                            <mxPoint x="2410" y="1440"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="585" value="MamualMode()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2460" y="1041.95" width="154" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="587" value="MamualMode()&lt;br&gt;手動制御をするプログラム" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="-1940" y="840" width="204.88" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="589" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1042.51" y="516" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="590" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1052.07" y="614.12" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="591" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1052.07" y="1757.12" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="592" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1057.54" y="1861" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="594" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="597" source="610">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1506.8200000000002" y="367.58000000000004" as="sourcePoint"/>
+                        <mxPoint x="1487.4650000000001" y="499.3299999999999" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="595" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="597" target="603">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="596" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="597" target="599">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1767.7799999999997" y="425.5799999999999"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="597" value="massage == &quot;picture&quot;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1432.4999999999998" y="382.04999999999995" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="598" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="599">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1500" y="653" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1767.7799999999997" y="652.58"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="599" value="Camera.py" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="1707.7799999999997" y="447.5799999999999" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="600" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1550.9699999999998" y="393.5799999999999" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="601" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1460.4099999999999" y="447.5799999999999" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="602" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="603" target="605">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1680.78" y="522.5799999999999"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="624" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" source="603" target="311">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="603" value="massage == &quot;destination&quot;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1418.84" y="480.99999999999994" width="167.32" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="604" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="605">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1500" y="633" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1680.78" y="632.5799999999999"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="605" value="ChangeDestination()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="1605.31" y="546.0799999999999" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="606" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1563.4399999999998" y="492.5799999999999" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="607" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1460.4099999999996" y="550.9999999999999" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="608" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1578.11" y="394.4599999999999" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="609" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1587.6699999999998" y="492.5799999999999" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="613" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" source="610" target="612">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1893.08" y="319.42999999999995"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="610" value="massage == &quot;&lt;span style=&quot;text-align: left;&quot;&gt;manual&lt;/span&gt;&quot;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1432.4999999999998" y="277.10999999999996" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="614" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontColor=#fd0808;" edge="1" parent="1" source="612">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1500" y="668" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1893.08" y="668.43"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="612" value="MamualMode()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="1791.08" y="359.42999999999995" width="204.88" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="615" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1561.08" y="291.29999999999995" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="621" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" source="618" target="620">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="618" value="message = 地上局から値" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="1415.6799999999992" y="122.62000000000029" width="176.49" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="622" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" source="620" target="610">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="620" value="RunningLog&lt;br&gt;(&quot;地上局からのコマンド&quot;,message)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="1420.17" y="201.36999999999983" width="167.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="626" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1593.6" y="122.61999999999995" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="627" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1587.6699999999998" y="199.17999999999995" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="628" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1092.32" y="429.99999999999994" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="629" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1042.51" y="352.04999999999995" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="630" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1042.51" y="1592.5" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="631" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1052.07" y="1668" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="632" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" target="656" source="527">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2188.2400000000002" y="107.62000000000006" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="633" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="651" target="636">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2191.1400000000003" y="395.0800000000001" as="sourcePoint"/>
+                        <mxPoint x="2171.7850000000003" y="526.8299999999999" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="634" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="636" target="643">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="635" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="636" target="638">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2452.1" y="453.08"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="636" value="massage == &quot;picture&quot;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2116.8199999999997" y="409.55" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="637" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="638">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2184.32" y="680.5" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="2452.1" y="680.0799999999999"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="638" value="Camera.py" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2392.1" y="475.08" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="639" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2235.29" y="421.08" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="640" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2144.73" y="475.08" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="641" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="643" target="645">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2365.1" y="550.0799999999999"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="642" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" source="643" target="528">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2185.940000000001" y="715.5099999999998" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="643" value="massage == &quot;destination&quot;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2103.16" y="508.50000000000006" width="167.32" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="644" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="645">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2184.32" y="660.5" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="2365.1" y="660.0799999999999"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="645" value="ChangeDestination()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2289.63" y="573.5799999999999" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="646" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2247.7599999999998" y="520.0799999999999" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="647" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2144.7299999999996" y="578.5" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="648" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2262.43" y="421.96" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="649" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2271.99" y="520.0799999999999" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="650" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" source="651" target="653">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2522" y="347"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="651" value="massage == &quot;&lt;span style=&quot;text-align: left;&quot;&gt;manual&lt;/span&gt;&quot;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2116.8199999999997" y="304.60999999999996" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="652" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontColor=#fd0808;" edge="1" parent="1" source="653">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2184.32" y="695.5" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="2522" y="690"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="653" value="MamualMode()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2420" y="382.05" width="204.88" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="654" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2245.4" y="318.8" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="655" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" source="656" target="658">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="656" value="message = 地上局から値" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2099.999999999999" y="150.1200000000004" width="176.49" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="657" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" edge="1" parent="1" source="658" target="651">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="658" value="RunningLog&lt;br&gt;(&quot;地上局からのコマンド&quot;,message)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2104.4900000000002" y="228.86999999999995" width="167.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="659" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2277.92" y="150.11999999999995" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="660" value="&lt;font color=&quot;#fd0808&quot;&gt;割り込み処理&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2271.99" y="226.68" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="667" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" edge="1" parent="1" source="662" target="664">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="662" value="RunningLog&lt;br&gt;(&quot;9軸の方位角&quot;,heding)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2102.2500000000005" y="1076.33" width="167.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="669" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" edge="1" parent="1" source="664" target="668">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="664" value="destination_heading = gps.calculate_distance_bearing&lt;br&gt;(目的地の緯度,目的地の経度)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2064.94" y="1156.33" width="243.75" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="665" value="&lt;font color=&quot;#000000&quot;&gt;Yes&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#fd0808;" vertex="1" parent="1">
+                    <mxGeometry x="2250" y="975" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="666" value="&lt;font color=&quot;#000000&quot;&gt;No&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#fd0808;" vertex="1" parent="1">
+                    <mxGeometry x="2184.73" y="1033.75" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="671" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" edge="1" parent="1" source="668" target="670">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2398" y="1284"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="675" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" edge="1" parent="1" source="668" target="674">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="668" value="destination_heading == True" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2096.82" y="1243.9499999999998" width="180" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="700" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontColor=#000000;" edge="1" parent="1" source="670">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2400" y="1580" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="670" value="MamualMode()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2321.4" y="1321" width="154" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="672" value="&lt;font color=&quot;#000000&quot;&gt;Yes&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#fd0808;" vertex="1" parent="1">
+                    <mxGeometry x="2266" y="1255.32" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="677" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" edge="1" parent="1" source="674" target="676">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="674" value="RunningLog&lt;br&gt;(&quot;gpsの方位角&quot;,destination_heding)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2066.82" y="1362.5" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="680" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" edge="1" parent="1" source="676" target="679">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="676" value="difference =&amp;nbsp;destination_heading - heading&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2068.69" y="1458.62" width="236.25" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="687" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" edge="1" parent="1" source="679" target="682">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2530" y="1583"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="697" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" edge="1" parent="1" source="679" target="693">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="679" value="difference &amp;gt; 30&amp;nbsp;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2076" y="1542.5" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="681" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="2296" y="1550" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="684" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" edge="1" parent="1" source="682" target="683">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="682" value="RunningSend&lt;br&gt;(&quot;機体と目的地を一直線にした&quot;)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2400" y="1611" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="686" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" edge="1" parent="1" source="683" target="685">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="683" value="RunningLog&lt;br&gt;(&quot;機体と目的地を一直線にした&quot;,None)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2410" y="1694" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="685" value="return" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2470" y="1781" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="688" value="&lt;font color=&quot;#fd0808&quot;&gt;値の調整を試験でする&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2116.8199999999997" y="1550" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="689" value="TurnRight()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2261.42" y="1768" width="130" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="698" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontColor=#000000;" edge="1" parent="1" source="690">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2186" y="110" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="2186" y="1910"/>
+                            <mxPoint x="2040" y="1910"/>
+                            <mxPoint x="2040" y="110"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="690" value="TurnLeft()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2120.7799999999997" y="1768" width="130" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="691" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="693" target="690">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="692" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="693" target="689">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2326" y="1682"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="693" value="difference &amp;gt;= 0" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2102.25" y="1652.5" width="167.05" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="694" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2178.79" y="1703.62" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="695" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2245.4" y="1661" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="699" value="" style="endArrow=none;html=1;fontColor=#000000;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="689">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="150" y="460" as="sourcePoint"/>
-                        <mxPoint x="390" y="472.5" as="targetPoint"/>
+                        <mxPoint x="2180" y="1910" as="sourcePoint"/>
+                        <mxPoint x="2570" y="1980" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="400" y="460"/>
+                            <mxPoint x="2326" y="1910"/>
                         </Array>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="702" value="TurnLeft()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="-1905.0000000000005" y="930" width="130" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="703" value="TurnRight()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="-1905" y="1016.33" width="130" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="704" value="MamualMode()" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2870" y="10.120000000000005" width="120" height="80" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
