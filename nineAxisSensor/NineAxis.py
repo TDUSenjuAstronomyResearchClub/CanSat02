@@ -1,6 +1,6 @@
 """
 Module Name:<br> 
-9軸センサ<br><br>
+nineAxisSensor<br><br>
 Description:<br> 
 加速度・角速度・方位角を求めるプログラム。動作確認用実行ファイルはNineAxisSensorTest.py<br><br>
 Library:<br>

@@ -1,6 +1,6 @@
 """
 Module Name:<br> 
-電池残量計<br><br>
+battery<br><br>
 Description:<br> 
 電池残量計を使ってバッテリーガスゲージから電池残量を取得するプログラム。<br><br>
 Library:<br>

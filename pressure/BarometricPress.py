@@ -30,7 +30,7 @@ bus.write_byte_data(LPS25HB_ADDRESS, LPS25HB_RES_CONF, 0x00)
 
 def get_pressure_altitude_temperature():
     """
-    気圧センサ（AE-LPS25HB）から気圧、高度、気温を読み取ります。
+    pressure（AE-LPS25HB）から気圧、高度、気温を読み取ります。
 
     Returns
     -------

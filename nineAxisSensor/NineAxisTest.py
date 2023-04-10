@@ -1,8 +1,8 @@
-import NineAxisSensor
+import nineAxisSensor
 import time
 
 while True:
-    sensor = NineAxisSensor.BMX055Sensor(declination=7.8) # 磁気偏角（2021年時点で秋田県能代市の磁気偏角は7.8度とされている）
+    sensor = nineAxisSensor.BMX055Sensor(declination=7.8) # 磁気偏角（2021年時点で秋田県能代市の磁気偏角は7.8度とされている）
 
     acceleration = sensor.get_acceleration()
     print(f"Acceleration: {acceleration} m/s^2")
