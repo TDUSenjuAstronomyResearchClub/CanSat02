@@ -71,9 +71,11 @@ class BMX055Sensor:
         """
         try:
             raw_mag = self.bmx055.get_mag_data()
+            gps_date = gps.get_gps_data()
 
             # 地磁気偏角を適用する
-            heading = math.atan2(raw_mag[1], raw_mag[0]) + math.radians(self.declination)
+            declination = self.calculate_declination(gps_date[0], gps_date[1])
+            heading = math.atan2(raw_mag[1], raw_mag[0]) + math.radians(declination)
 
             # 方位角を0から360度の範囲にする
             heading = math.degrees(heading)
