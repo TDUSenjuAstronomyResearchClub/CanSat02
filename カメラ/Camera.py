@@ -27,7 +27,7 @@ import cv2
 import datetime
 import numpy as np
 import serial
-import binascii
+import time
 
 PORT = '/dev/ttyUSB0' 
 
@@ -64,12 +64,22 @@ def photograph():
 
     ser = serial.Serial(PORT, 9600) # XBeeシリアルポートを開く
 
-    with open(today, 'rb') as img: # 画像ファイルをバイナリデータとして開く
-        data = img.read()
-        ser.write(data) # XBeeに送信
+    for i in range(5):
+        with open(today, 'rb') as img: # 画像ファイルをバイナリデータとして開く
+            try:
+                data = img.read()
+                ser.write(data) # XBeeに送信
 
-    ser.close() # XBeeシリアルポートを閉じる
+                ser.close() # XBeeシリアルポートを閉じる
+                return
+            
+            except SerialException:
+                time.sleep(1)
+    
     return
+
+
+
 
 
 
