@@ -109,11 +109,11 @@ while True:
     start_time = 'sending' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
 
     f = open(start_time, 'a')
-    ser = serial.Serial(PORT, BAUD_RATE)
 
     # jsonとして書き込み
     json.dump(data, f, indent=4, ensure_ascii=False)
 
+    ser = serial.Serial(PORT, BAUD_RATE)
     # シリアルにjsonを書き込む
     ser.write(bytes(json.load(f), 'utf-8'))
     f.close()
