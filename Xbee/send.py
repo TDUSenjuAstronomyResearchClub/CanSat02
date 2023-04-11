@@ -19,8 +19,6 @@ PORT = '/dev/ttyUSB0'
 # 通信レート設定
 BAUD_RATE = 9600
 
-dt_start = datetime.datetime.now()
-start_time = 'sending' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
 
 while True:
     gps_data = GPS.get_gps_data()
@@ -66,8 +64,8 @@ while True:
         "距離": Distance.distance_result()
     }
 
-    datetime.datetime.now()
-    'sending' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
+    dt_start = datetime.datetime.now()
+    start_time = 'sending' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
 
     f = open(start_time, 'a')
     ser = serial.Serial(PORT, BAUD_RATE)
