@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-import Temperature
+from ..temperature import Temperature
 
 #測定環境温度
 temp = Temperature.Temperature_result() #温湿度気圧センサから現在の温度値を呼び出す
