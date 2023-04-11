@@ -116,6 +116,7 @@ while True:
     ser = serial.Serial(PORT, BAUD_RATE)
     # シリアルにjsonを書き込む
     ser.write(bytes(json.load(f), 'utf-8'))
+    ser.close()
     f.close()
 
     time.sleep(1)
