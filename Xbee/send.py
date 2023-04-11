@@ -26,7 +26,48 @@ while True:
     sample_distance = GPS.calculate_distance_bearing(lat_lon[0], lat_lon[1])
     goal_distance = GPS.calculate_distance_bearing(lat_lon[2], lat_lon[3])
 
-    nineAxis = NineAxis()
+    nine_axis = NineAxis()
+    nine_acceleration = None
+    nine_angularVelocity = None
+    nine_azimuth = None
+
+    # 9軸センサの値が正常でなければその値をそのまま渡す
+    if type(nine_axis) == list:
+        acc = nine_axis.get_acceleration()
+        ang_velo = nine_axis.get_gyroscope()
+        azimuth = nine_axis.get_magnetic_heading()
+        nine_acceleration = {
+            "X": acc[0],
+            "Y": acc[1],
+            "Z": acc[2]
+        }
+        nine_angularVelocity = {
+            "X": ang_velo[0],
+            "Y": ang_velo[1],
+            "Z": ang_velo[2]
+        }
+        nine_azimuth = {
+            "X": azimuth[0],
+            "Y": azimuth[1],
+            "Z": azimuth[2]
+        }
+    else:
+        nine_acceleration = {
+            "X": nine_axis,
+            "Y": nine_axis,
+            "Z": nine_axis
+        }
+        nine_angularVelocity = {
+            "X": nine_axis,
+            "Y": nine_axis,
+            "Z": nine_axis
+        }
+        nine_azimuth = {
+            "X": nine_axis,
+            "Y": nine_axis,
+            "Z": nine_axis
+        }
+
     bme280 = Temperature.Temperature_result()  # 温湿度気圧センサデータ
     lps25hb = BarometricPress.get_pressure_altitude_temperature()  # 気圧センサ
 
@@ -46,9 +87,9 @@ while True:
             }
         },
         "9軸": {
-            "加速度": nineAxis.get_acceleration(),
-            "角速度": nineAxis.get_gyroscope(),
-            "方位角": nineAxis.get_magnetic_heading()
+            "加速度": nine_acceleration,
+            "角速度": nine_angularVelocity,
+            "方位角": nine_azimuth
         },
         "温湿度気圧": {
             "温度": bme280[0],
