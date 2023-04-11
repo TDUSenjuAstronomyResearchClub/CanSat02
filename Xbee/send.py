@@ -4,12 +4,13 @@ import datetime
 import serial
 
 from ..gps import GPS
-import DistanceAzimuth  # ゴールとの直線距離を求めるモジュール
 from ..nineAxisSensor.NineAxis import BMX055Sensor as NineAxis
 from ..temperature import Temperature
 from ..pressure import BarometricPress
 from ..battery import Battery
 from ..distance import Distance
+
+import Runing #走行プログラムのソースファイル
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -22,6 +23,8 @@ start_time = 'sending' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
 
 while True:
     gps_data = GPS.get_gps_data()
+    
+    gps_distance = GPS.calculate_distance_bearing()
     nineAxis = NineAxis()
     bme280 = Temperature.Temperature_result()  # 温湿度気圧センサデータ
     lps25hb = BarometricPress.get_pressure_altitude_temperature()  # 気圧センサ
