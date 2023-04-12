@@ -12,7 +12,8 @@ serial<br>
 
 import serial
 import time
-from math import radians, sin, cos, atan2, sqrt ,pi
+from math import radians, sin, cos, atan2, sqrt, pi
+
 
 def get_gps_data():
     """
@@ -20,13 +21,13 @@ def get_gps_data():
 
     Returns
     -------
-    lat (float)
+    lat : float
             緯度
-    lon (float)
+    lon : float
             経度
-    alt (float)
+    alt : float
             海抜
-    declination (float)
+    declination : float
             磁気偏角値(m)
     """
 
@@ -38,7 +39,7 @@ def get_gps_data():
     declination = None
     start_time = time.time()
 
-    while time.time() - start_time < 5: #5秒後にタイムアウトします
+    while time.time() - start_time < 5:  # 5秒後にタイムアウトします
         try:
             if ser.in_waiting > 0:
                 line = ser.readline().decode("utf-8").rstrip()
@@ -65,9 +66,9 @@ def convert_to_degree(value, direction):
 
     Args
     -------
-    value (str)
+    value : str
             度分秒形式の値
-    direction (str)
+    direction : str
             方向（N, E, S, Wのいずれか）
 
     Returns
@@ -85,15 +86,16 @@ def convert_to_degree(value, direction):
 
     return degree
 
+
 def calculate_distance_bearing(lat2, lon2):
     """
     2地点の緯度経度から直線距離と方位角を計算する関数
 
     Args
     -------
-    lat2 (float)
+    lat2 : float
             目的地の緯度
-    lon2 (float)
+    lon2 : float
             方向（N, E, S, Wのいずれか）
 
     Returns
@@ -103,10 +105,9 @@ def calculate_distance_bearing(lat2, lon2):
     bearing(float)
             2地点間の方位角 
     """
+    r = 6371  # 地球の半径（km）
     try:
-        R = 6371  # 地球の半径（km）
-
-        #gpsの緯度経度・磁器偏角値を取得
+        # gpsの緯度経度・磁器偏角値を取得
         gps_date = get_gps_data()
         lat1 = gps_date[0]
         lon1 = gps_date[1]
@@ -120,7 +121,7 @@ def calculate_distance_bearing(lat2, lon2):
         dlon = lon2 - lon1
         a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
-        distance = R * c *1000
+        distance = r * c * 1000
 
         # 方位角
         y = sin(lon2 - lon1) * cos(lat2)
@@ -135,27 +136,3 @@ def calculate_distance_bearing(lat2, lon2):
         distance = None
         bearing = None
         return distance, bearing
-
-
-
-if __name__ == "__main__":
-    # GPSデータの取得
-    lat, lon, alt, declination = get_gps_data()
-
-    # 結果の表示
-    print("緯度：", lat)
-    print("経度：", lon)
-    print("海抜：", alt)
-    print("磁器偏角値：", declination)
-
-    # 目的地の緯度経度
-    dest_lat = 35.681236
-    dest_lon = 139.767125
-
-    # 現在地と目的地の距離と方位角を計算
-    distance, bearing = calculate_distance_bearing(dest_lat, dest_lon)
-
-    # 結果の表示
-    print("目的地までの距離：", distance, "m")
-    print("方位角：", bearing, "°")
-
