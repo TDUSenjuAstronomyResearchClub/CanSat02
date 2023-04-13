@@ -66,7 +66,8 @@ def convert_to_degree(value, direction):
     """
     度分形式から10進数形式に変換する関数
 
-    GPGGAフォーマット: ddmm.mmmm
+    GPGGAフォーマット: ddmm.mm
+    https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data
 
     Args
     -------
