@@ -3,6 +3,7 @@ import datetime
 import sys
 
 import serial
+from serial import SerialException
 import time
 
 from ..gps import gps
@@ -52,7 +53,7 @@ while True:
         dist = distance.distance_result()
     except OSError:
         # todo: 地上局にエラーを送信
-        print("Error: Cannot communicate I2C devices", file=sys.stderr)
+        print("Error: I2Cデバイスと正常に通信できません", file=sys.stderr)
 
     data = {
         "gps": {
@@ -108,10 +109,15 @@ while True:
     # jsonとして書き込み
     json.dump(data, f, indent=4, ensure_ascii=False)
 
-    ser = serial.Serial(PORT, BAUD_RATE)
-    # シリアルにjsonを書き込む
-    ser.write(bytes(json.load(f), 'utf-8'))
-    ser.close()
+    try:
+        ser = serial.Serial(PORT, BAUD_RATE)
+        # シリアルにjsonを書き込む
+        ser.write(bytes(json.load(f), 'utf-8'))
+        ser.close()
+    except SerialException as msg:
+        # todo: 地上局にエラーを送信
+        print('Error: シリアルポートでエラーが発生しました', file=sys.stderr)
+
     f.close()
 
     time.sleep(1)
