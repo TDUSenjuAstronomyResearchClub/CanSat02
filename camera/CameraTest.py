@@ -1,5 +1,5 @@
-import Camera
+import camera
 
 print("take picture")
-Camera.photograph()
+camera.photograph()
 print("end")
