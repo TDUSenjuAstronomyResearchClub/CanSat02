@@ -9,7 +9,6 @@ pip install smbus2<br><br>
 """
 
 import smbus2
-import time
 
 # Define constants for the LPS25HB pressure sensor
 LPS25HB_ADDRESS = 0x5C
@@ -27,6 +26,7 @@ bus = smbus2.SMBus(1)
 # Configure the LPS25HB pressure sensor
 bus.write_byte_data(LPS25HB_ADDRESS, LPS25HB_CTRL_REG1, 0xC4)
 bus.write_byte_data(LPS25HB_ADDRESS, LPS25HB_RES_CONF, 0x00)
+
 
 def get_pressure_altitude_temperature():
     """
