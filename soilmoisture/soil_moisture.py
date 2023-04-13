@@ -23,8 +23,8 @@ def get_soil_moisture():
     """
     try:
         moisture = ss.moisture_read()
-        sleep(0.1)  # Wait for 100 ms to allow the sensor to stabilize.
-        return (100 - ((moisture / 65535.0) * 100))
+        sleep(0.1)  # センサが安定するまで 100 ms 待つ
+        return 100 - ((moisture / 65535.0) * 100)
     
     except OSError:
         return True
