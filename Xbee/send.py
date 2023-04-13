@@ -7,7 +7,7 @@ import time
 from ..gps import gps
 from ..nineAxisSensor.nine_axis import BMX055Sensor as NineAxis
 from ..temperature import temperature
-from ..pressure import brometric_press
+from ..pressure import barometric_press
 from ..battery import battery
 from ..distance import distance
 
@@ -21,10 +21,10 @@ BAUD_RATE = 9600
 
 
 while True:
-    gps_data = GPS.get_gps_data()
+    gps_data = gps.get_gps_data()
     lat_lon = Running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
-    sample_distance = GPS.calculate_distance_bearing(lat_lon[0], lat_lon[1])
-    goal_distance = GPS.calculate_distance_bearing(lat_lon[2], lat_lon[3])
+    sample_distance = gps.calculate_distance_bearing(lat_lon[0], lat_lon[1])
+    goal_distance = gps.calculate_distance_bearing(lat_lon[2], lat_lon[3])
 
     nine_axis = NineAxis()
     nine_acceleration = None
@@ -68,8 +68,8 @@ while True:
             "Z": nine_axis
         }
 
-    bme280 = Temperature.temperature_result()  # 温湿度気圧センサデータ
-    lps25hb = BarometricPress.get_pressure_altitude_temperature()  # 気圧センサ
+    bme280 = temperature.temperature_result()  # 温湿度気圧センサデータ
+    lps25hb = barometric_press.get_pressure_altitude_temperature()  # 気圧センサ
 
     data = {
         "gps": {
@@ -101,8 +101,8 @@ while True:
             "高度": lps25hb[1],
             "温度": lps25hb[2]
         },
-        "電池": Battery.get_battery_level(),
-        "距離": Distance.distance_result()
+        "電池": battery.get_battery_level(),
+        "距離": distance.distance_result()
     }
 
     dt_start = datetime.datetime.now()

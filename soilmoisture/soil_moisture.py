@@ -32,8 +32,8 @@ def get_soil_moisture():
     float
         0から100の間のfloat値としての土壌水分率
 
-    OSError
-        OSErrorが発生した場合はエラー文を返す。
+    Exception
+        OSErrorが発生した場合はエラーを返す。
     """
     try:
         moisture = ss.moisture_read()
