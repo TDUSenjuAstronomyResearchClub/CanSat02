@@ -28,7 +28,7 @@ def get_gps_data():
     alt : float
             海抜
     declination : float
-            磁気偏角値(m)
+            磁気偏角(度)
     """
 
     ser = serial.Serial("/dev/serial0", baudrate=9600, timeout=1)
@@ -46,13 +46,17 @@ def get_gps_data():
                 if line.startswith("$GPGGA"):
                     # 時刻・位置・GPS関連情報
                     data = line.split(",")
-                    lat = lat_conv_deg_min_to_decimal(data[2], data[3])
-                    lon = lon_conv_deg_min_to_decimal(data[4], data[5])
+                    lat = lat_conv_deg_min_to_decimal(data[1], data[2])
+                    lon = lon_conv_deg_min_to_decimal(data[3], data[4])
                     alt = float(data[9])
-                elif line.startswith("$GPGSV"):
+                elif line.startswith("$GPRMC"):
                     # 衛星情報
                     data = line.split(",")
-                    declination = float(data[4])
+                    lat = lat_conv_deg_min_to_decimal(data[2], data[3])
+                    lon = lon_conv_deg_min_to_decimal(data[4], data[5])
+
+                    # 磁気偏差
+                    declination = float(data[11])
                     break
         except Exception as e:
             print(e)
@@ -73,7 +77,7 @@ def lat_conv_deg_min_to_decimal(lat, direction):
     lat : str
             度分形式の緯度
     direction : str
-            方向（N, E, S, Wのいずれか）
+            方向（N, Sのどちらか）
 
     Returns
     -------
@@ -82,12 +86,12 @@ def lat_conv_deg_min_to_decimal(lat, direction):
     """
     d = float(lat[:2])
     m = float(lat[2:])
-    degree = d + m / 60
+    decimal = d + m / 60
 
-    if direction == "S" or direction == "W":
-        degree *= -1
+    if direction == "S":
+        decimal *= -1
 
-    return degree
+    return decimal
 
 
 def lon_conv_deg_min_to_decimal(lon, direction):
@@ -101,7 +105,7 @@ def lon_conv_deg_min_to_decimal(lon, direction):
     lon : str
             度分形式の経度
     direction : str
-            方向（N, E, S, Wのいずれか）
+            方向（E, Wのいずれか）
 
     Returns
     -------
@@ -110,12 +114,12 @@ def lon_conv_deg_min_to_decimal(lon, direction):
     """
     d = float(lon[:3])
     m = float(lon[3:])
-    degree = d + m / 60
+    decimal = d + m / 60
 
-    if direction == "S" or direction == "W":
-        degree *= -1
+    if direction == "W":
+        decimal *= -1
 
-    return degree
+    return decimal
 
 
 def calculate_distance_bearing(lat2, lon2):
