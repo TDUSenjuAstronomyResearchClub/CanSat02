@@ -19,17 +19,13 @@ PORT = '/dev/ttyUSB0'
 # 通信レート設定
 BAUD_RATE = 9600
 
+nine_axis = NineAxis()
 
 while True:
     gps_data = gps.get_gps_data()
     lat_lon = Running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
     sample_distance = gps.calculate_distance_bearing(lat_lon[0], lat_lon[1])
     goal_distance = gps.calculate_distance_bearing(lat_lon[2], lat_lon[3])
-
-    nine_axis = NineAxis()
-    nine_acceleration = None
-    nine_angularVelocity = None
-    nine_azimuth = None
 
     acc = nine_axis.get_acceleration()
     ang_velo = nine_axis.get_gyroscope()
