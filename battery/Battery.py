@@ -38,13 +38,8 @@ def get_battery_level():
         # 電池残量を取得
         level = bus.read_byte_data(DEVICE_ADDRESS, 0x00)
         return level
-<<<<<<< HEAD:battery/Battery.py
     except OSError as e:
         return e #OSerrerが発生したか否かを判断する
-=======
-    except OSError:
-        return True  # OSErrorが発生したか否かを判断する（Trueが出たらエラーが発生した判定）
->>>>>>> 270b4861e68780345d2f01b1c829f5d8a1601862:battery/battery.py
 
 
 # テスト用の関数呼び出し
