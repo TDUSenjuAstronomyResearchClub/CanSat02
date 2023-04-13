@@ -86,12 +86,12 @@ def lat_conv_deg_min_to_decimal(lat, direction):
     """
     d = float(lat[:2])
     m = float(lat[2:])
-    degree = d + m / 60
+    decimal = d + m / 60
 
     if direction == "S":
-        degree *= -1
+        decimal *= -1
 
-    return degree
+    return decimal
 
 
 def lon_conv_deg_min_to_decimal(lon, direction):
@@ -114,12 +114,12 @@ def lon_conv_deg_min_to_decimal(lon, direction):
     """
     d = float(lon[:3])
     m = float(lon[3:])
-    degree = d + m / 60
+    decimal = d + m / 60
 
     if direction == "W":
-        degree *= -1
+        decimal *= -1
 
-    return degree
+    return decimal
 
 
 def calculate_distance_bearing(lat2, lon2):
