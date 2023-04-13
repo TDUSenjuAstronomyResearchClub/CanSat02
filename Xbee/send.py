@@ -1,7 +1,9 @@
 import json
 import datetime
+import sys
 
 import serial
+from serial import SerialException
 import time
 
 from ..gps import gps
@@ -19,57 +21,39 @@ PORT = '/dev/ttyUSB0'
 # 通信レート設定
 BAUD_RATE = 9600
 
+nine_axis = NineAxis()
+
+gps_data = None
+lat_lon = None
+sample_distance = None
+goal_distance = None
+acc = None
+ang_velo = None
+azimuth = None
+bme280 = None
+lps25hb = None
+batt = None
+dist = None
 
 while True:
-    gps_data = gps.get_gps_data()
-    lat_lon = Running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
-    sample_distance = gps.calculate_distance_bearing(lat_lon[0], lat_lon[1])
-    goal_distance = gps.calculate_distance_bearing(lat_lon[2], lat_lon[3])
+    try:
+        gps_data = gps.get_gps_data()
+        lat_lon = Running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
+        sample_distance = gps.calculate_distance_bearing(lat_lon[0], lat_lon[1])
+        goal_distance = gps.calculate_distance_bearing(lat_lon[2], lat_lon[3])
 
-    nine_axis = NineAxis()
-    nine_acceleration = None
-    nine_angularVelocity = None
-    nine_azimuth = None
-
-    # 9軸センサの値が正常でなければその値をそのまま渡す
-    if type(nine_axis) == list:
         acc = nine_axis.get_acceleration()
         ang_velo = nine_axis.get_gyroscope()
         azimuth = nine_axis.get_magnetic_heading()
-        nine_acceleration = {
-            "X": acc[0],
-            "Y": acc[1],
-            "Z": acc[2]
-        }
-        nine_angularVelocity = {
-            "X": ang_velo[0],
-            "Y": ang_velo[1],
-            "Z": ang_velo[2]
-        }
-        nine_azimuth = {
-            "X": azimuth[0],
-            "Y": azimuth[1],
-            "Z": azimuth[2]
-        }
-    else:
-        nine_acceleration = {
-            "X": nine_axis,
-            "Y": nine_axis,
-            "Z": nine_axis
-        }
-        nine_angularVelocity = {
-            "X": nine_axis,
-            "Y": nine_axis,
-            "Z": nine_axis
-        }
-        nine_azimuth = {
-            "X": nine_axis,
-            "Y": nine_axis,
-            "Z": nine_axis
-        }
 
-    bme280 = temperature.temperature_result()  # 温湿度気圧センサデータ
-    lps25hb = barometric_press.get_pressure_altitude_temperature()  # 気圧センサ
+        bme280 = temperature.temperature_result()  # 温湿度気圧センサデータ
+        lps25hb = barometric_press.get_pressure_altitude_temperature()  # 気圧センサ
+
+        batt = battery.get_battery_level()
+        dist = distance.distance_result()
+    except OSError:
+        # todo: 地上局にエラーを送信
+        print("Error: I2Cデバイスと正常に通信できません", file=sys.stderr)
 
     data = {
         "gps": {
@@ -87,9 +71,21 @@ while True:
             }
         },
         "9軸": {
-            "加速度": nine_acceleration,
-            "角速度": nine_angularVelocity,
-            "方位角": nine_azimuth
+            "加速度": {
+                "X": acc[0],
+                "Y": acc[1],
+                "Z": acc[2]
+            },
+            "角速度": {
+                "X": ang_velo[0],
+                "Y": ang_velo[1],
+                "Z": ang_velo[2]
+            },
+            "方位角": {
+                "X": azimuth[0],
+                "Y": azimuth[1],
+                "Z": azimuth[2]
+            }
         },
         "温湿度気圧": {
             "温度": bme280[0],
@@ -101,8 +97,8 @@ while True:
             "高度": lps25hb[1],
             "温度": lps25hb[2]
         },
-        "電池": battery.get_battery_level(),
-        "距離": distance.distance_result()
+        "電池": batt,
+        "距離": dist
     }
 
     dt_start = datetime.datetime.now()
@@ -113,10 +109,15 @@ while True:
     # jsonとして書き込み
     json.dump(data, f, indent=4, ensure_ascii=False)
 
-    ser = serial.Serial(PORT, BAUD_RATE)
-    # シリアルにjsonを書き込む
-    ser.write(bytes(json.load(f), 'utf-8'))
-    ser.close()
+    try:
+        ser = serial.Serial(PORT, BAUD_RATE)
+        # シリアルにjsonを書き込む
+        ser.write(bytes(json.load(f), 'utf-8'))
+        ser.close()
+    except SerialException as msg:
+        # todo: 地上局にエラーを送信
+        print('Error: シリアルポートでエラーが発生しました', file=sys.stderr)
+
     f.close()
 
     time.sleep(1)

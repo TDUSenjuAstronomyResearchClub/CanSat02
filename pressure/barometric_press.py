@@ -36,38 +36,30 @@ def get_pressure_altitude_temperature():
     -------
     list
         現在の気圧（hPa）、現在の高度（m）、現在の気温（deg C）をこの順番で要素とするリストが返されます。
-        処理が正常に終了した場合は、要素数3のリストが返されます。
-        OSErrorが発生した場合はエラーを要素に持つリストを返します。
     """
-    try:
-        # 生の気圧と気温データをセンサーから読み取る
-        press_out_xl = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_PRESS_OUT_XL)
-        press_out_l = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_PRESS_OUT_L)
-        press_out_h = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_PRESS_OUT_H)
-        temp_out_l = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_TEMP_OUT_L)
-        temp_out_h = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_TEMP_OUT_H)
+    # 生の気圧と気温データをセンサーから読み取る
+    press_out_xl = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_PRESS_OUT_XL)
+    press_out_l = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_PRESS_OUT_L)
+    press_out_h = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_PRESS_OUT_H)
+    temp_out_l = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_TEMP_OUT_L)
+    temp_out_h = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_TEMP_OUT_H)
 
-        # 生のデータを気圧(hPa) 気温(deg C)に変換
-        raw_pressure = (press_out_h << 16) | (press_out_l << 8) | press_out_xl
-        raw_pressure = raw_pressure >> 4
-        pressure = raw_pressure / 4096.0
+    # 生のデータを気圧(hPa) 気温(deg C)に変換
+    raw_pressure = (press_out_h << 16) | (press_out_l << 8) | press_out_xl
+    raw_pressure = raw_pressure >> 4
+    pressure = raw_pressure / 4096.0
 
-        raw_temperature = (temp_out_h << 8) | temp_out_l
-        temperature = raw_temperature / 480.0 + 42.5
+    raw_temperature = (temp_out_h << 8) | temp_out_l
+    temperature = raw_temperature / 480.0 + 42.5
 
-        # 気圧と温度に基づいた高度を計算
-        sea_level_pressure = 1013.25  # hPa
-        altitude = 44330.0 * (1.0 - pow(pressure / sea_level_pressure, 0.1903))
+    # 気圧と温度に基づいた高度を計算
+    sea_level_pressure = 1013.25  # hPa
+    altitude = 44330.0 * (1.0 - pow(pressure / sea_level_pressure, 0.1903))
 
-        # 小数点以下2桁に数値を丸める
-        pressure = round(pressure, 2)
-        altitude = round(altitude, 2)
-        temperature = round(temperature, 2)
+    # 小数点以下2桁に数値を丸める
+    pressure = round(pressure, 2)
+    altitude = round(altitude, 2)
+    temperature = round(temperature, 2)
 
-        # リストにして返す
-        results = [pressure, altitude, temperature]
-
-        return results
-
-    except OSError as e:
-        return [e, e, e]
+    # リストにして返す
+    return [pressure, altitude, temperature]

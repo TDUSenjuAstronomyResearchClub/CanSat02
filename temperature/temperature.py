@@ -13,10 +13,10 @@ smbus2<br>
 
 import smbus2
 
-bus_number = 1
-i2c_address = 0x76
+BUS_NUMBER = 1
+I2C_ADDRESS = 0x76
 
-bus = smbus2.SMBus(bus_number)
+BUS = smbus2.SMBus(BUS_NUMBER)
 
 digT = []
 digP = []
@@ -26,55 +26,48 @@ t_fine = 0.0
 
 
 def write_reg(reg_address, data):
-    try:
-        bus.write_byte_data(i2c_address, reg_address, data)
-    except OSError:
-        return True
+    BUS.write_byte_data(I2C_ADDRESS, reg_address, data)
 
 
 def get_calib_param():
-    try:
-        calib = []
+    calib = []
 
-        for i in range(0x88, 0x88 + 24):
-            calib.append(bus.read_byte_data(i2c_address, i))
-        calib.append(bus.read_byte_data(i2c_address, 0xA1))
-        for i in range(0xE1, 0xE1 + 7):
-            calib.append(bus.read_byte_data(i2c_address, i))
+    for i in range(0x88, 0x88 + 24):
+        calib.append(BUS.read_byte_data(I2C_ADDRESS, i))
+    calib.append(BUS.read_byte_data(I2C_ADDRESS, 0xA1))
+    for i in range(0xE1, 0xE1 + 7):
+        calib.append(BUS.read_byte_data(I2C_ADDRESS, i))
 
-        digT.append((calib[1] << 8) | calib[0])
-        digT.append((calib[3] << 8) | calib[2])
-        digT.append((calib[5] << 8) | calib[4])
-        digP.append((calib[7] << 8) | calib[6])
-        digP.append((calib[9] << 8) | calib[8])
-        digP.append((calib[11] << 8) | calib[10])
-        digP.append((calib[13] << 8) | calib[12])
-        digP.append((calib[15] << 8) | calib[14])
-        digP.append((calib[17] << 8) | calib[16])
-        digP.append((calib[19] << 8) | calib[18])
-        digP.append((calib[21] << 8) | calib[20])
-        digP.append((calib[23] << 8) | calib[22])
-        digH.append(calib[24])
-        digH.append((calib[26] << 8) | calib[25])
-        digH.append(calib[27])
-        digH.append((calib[28] << 4) | (0x0F & calib[29]))
-        digH.append((calib[30] << 4) | ((calib[29] >> 4) & 0x0F))
-        digH.append(calib[31])
+    digT.append((calib[1] << 8) | calib[0])
+    digT.append((calib[3] << 8) | calib[2])
+    digT.append((calib[5] << 8) | calib[4])
+    digP.append((calib[7] << 8) | calib[6])
+    digP.append((calib[9] << 8) | calib[8])
+    digP.append((calib[11] << 8) | calib[10])
+    digP.append((calib[13] << 8) | calib[12])
+    digP.append((calib[15] << 8) | calib[14])
+    digP.append((calib[17] << 8) | calib[16])
+    digP.append((calib[19] << 8) | calib[18])
+    digP.append((calib[21] << 8) | calib[20])
+    digP.append((calib[23] << 8) | calib[22])
+    digH.append(calib[24])
+    digH.append((calib[26] << 8) | calib[25])
+    digH.append(calib[27])
+    digH.append((calib[28] << 4) | (0x0F & calib[29]))
+    digH.append((calib[30] << 4) | ((calib[29] >> 4) & 0x0F))
+    digH.append(calib[31])
 
-        for i in range(1, 2):
-            if digT[i] & 0x8000:
-                digT[i] = (-digT[i] ^ 0xFFFF) + 1
+    for i in range(1, 2):
+        if digT[i] & 0x8000:
+            digT[i] = (-digT[i] ^ 0xFFFF) + 1
 
-        for i in range(1, 8):
-            if digP[i] & 0x8000:
-                digP[i] = (-digP[i] ^ 0xFFFF) + 1
+    for i in range(1, 8):
+        if digP[i] & 0x8000:
+            digP[i] = (-digP[i] ^ 0xFFFF) + 1
 
-        for i in range(0, 6):
-            if digH[i] & 0x8000:
-                digH[i] = (-digH[i] ^ 0xFFFF) + 1
-
-    except OSError as e:
-        return e  # OSErrorが発生したか否かを判断する
+    for i in range(0, 6):
+        if digH[i] & 0x8000:
+            digH[i] = (-digH[i] ^ 0xFFFF) + 1
 
 
 def temperature_result():
@@ -85,24 +78,19 @@ def temperature_result():
     -------
     list
         リスト形式で、[温度（℃）、湿度（%）、気圧（hPa）]を返す。
-    Exception
-        OSErrorが発生した場合はエラーを返す。
     """
-    try:
-        data = []
-        for i in range(0xF7, 0xF7 + 8):
-            data.append(bus.read_byte_data(i2c_address, i))
-        pres_raw = (data[0] << 12) | (data[1] << 4) | (data[2] >> 4)
-        temp_raw = (data[3] << 12) | (data[4] << 4) | (data[5] >> 4)
-        hum_raw = (data[6] << 8) | data[7]
 
-        temp = compensate_t(temp_raw)
-        pres = compensate_p(pres_raw)
-        hum = compensate_h(hum_raw)
-        result = [temp, pres, hum]
-        return result
-    except OSError as e:
-        return e  # OSErrorが発生したか否かを判断する（Trueが出たらエラーが発生した判定）
+    data = []
+    for i in range(0xF7, 0xF7 + 8):
+        data.append(BUS.read_byte_data(I2C_ADDRESS, i))
+    pres_raw = (data[0] << 12) | (data[1] << 4) | (data[2] >> 4)
+    temp_raw = (data[3] << 12) | (data[4] << 4) | (data[5] >> 4)
+    hum_raw = (data[6] << 8) | data[7]
+
+    temp = compensate_t(temp_raw)
+    pres = compensate_p(pres_raw)
+    hum = compensate_h(hum_raw)
+    return [temp, pres, hum]
 
 
 def compensate_p(adc_p):

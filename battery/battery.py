@@ -29,17 +29,12 @@ def get_battery_level():
     -------
     int
         int型で電池残量を返却する（0-100の範囲で表される整数）
-    Exception
-        OSErrorが発生した場合はエラーを返す。
     """
-    try:
-        # 電池残量を測定するコマンドを送信
-        bus.write_byte_data(DEVICE_ADDRESS, 0x00, COMMAND)
-        # 電池残量を取得
-        level = bus.read_byte_data(DEVICE_ADDRESS, 0x00)
-        return level
-    except OSError as e:
-        return e  # OSErrorが発生したか否かを判断する
+    # 電池残量を測定するコマンドを送信
+    bus.write_byte_data(DEVICE_ADDRESS, 0x00, COMMAND)
+    # 電池残量を取得
+    level = bus.read_byte_data(DEVICE_ADDRESS, 0x00)
+    return level
 
 
 # テスト用の関数呼び出し
