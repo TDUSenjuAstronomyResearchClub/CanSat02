@@ -88,7 +88,7 @@ class BMX055Sensor:
 
             return heading
         except OSError as e:
-            return e
+            return [e,e,e]
 
 if __name__ == "__main__":
     while True:
