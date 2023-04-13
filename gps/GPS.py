@@ -122,45 +122,45 @@ def lon_conv_deg_min_to_decimal(lon, direction):
     return decimal
 
 
-def calculate_distance_bearing(lat2, lon2):
+def calculate_distance_bearing(lat, lon):
     """
-    2地点の緯度経度から直線距離と方位角を計算する関数
+    機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数
 
     Args
     -------
-    lat2 : float
+    lat : float
             目的地の緯度
-    lon2 : float
-            方向（N, E, S, Wのいずれか）
+    lon : float
+            目的地の経度
 
     Returns
     -------
-    distance(float)
+    distance : float
             2地点間の直線距離 
-    bearing(float)
+    bearing : float
             2地点間の方位角 
     """
     r = 6371  # 地球の半径（km）
     try:
         # gpsの緯度経度・磁器偏角値を取得
         gps_date = get_gps_data()
-        lat1 = gps_date[0]
-        lon1 = gps_date[1]
+        now_lat = gps_date[0]
+        now_lon = gps_date[1]
         declination = gps_date[3]
 
         # 緯度経度をラジアンに変換
-        lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+        now_lat, now_lon, lat, lon = map(radians, [now_lat, now_lon, lat, lon])
 
         # 2地点間の距離
-        dlat = lat2 - lat1
-        dlon = lon2 - lon1
-        a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+        dlat = lat - now_lat
+        dlon = lon - now_lon
+        a = sin(dlat / 2) ** 2 + cos(now_lat) * cos(lat) * sin(dlon / 2) ** 2
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
         distance = r * c * 1000
 
         # 方位角
-        y = sin(lon2 - lon1) * cos(lat2)
-        x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1)
+        y = sin(lon - now_lon) * cos(lat)
+        x = cos(now_lat) * sin(lat) - sin(now_lat) * cos(lat) * cos(lon - now_lon)
         bearing = (atan2(y, x) * 180 / pi + 360) % 360
 
         # 磁気偏角の補正
