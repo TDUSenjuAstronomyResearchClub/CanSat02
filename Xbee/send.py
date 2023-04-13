@@ -4,7 +4,7 @@ import datetime
 import serial
 import time
 
-from ..gps import GPS
+from ..gps import gps
 from ..nineAxisSensor.NineAxis import BMX055Sensor as NineAxis
 from ..temperature import Temperature
 from ..pressure import BarometricPress
