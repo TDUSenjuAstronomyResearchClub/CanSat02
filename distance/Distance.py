@@ -41,5 +41,5 @@ def distance_result() :
         #一時停止
         #time.sleep(0.1)
         return str(clc)
-    except TypeError:
-        return True
+    except TypeError as e:
+        return e

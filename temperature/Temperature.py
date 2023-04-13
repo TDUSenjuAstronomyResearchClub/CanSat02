@@ -86,7 +86,7 @@ def Temperature_result():
     list
             リスト形式で、[温度（℃）、湿度（%）、気圧（hPa）]を返す。
     bool
-            OSErrorが発生した場合はTrueを返す。
+            OSErrorが発生した場合、エラー文を返す。
     """
     try:
         data = []
@@ -102,8 +102,8 @@ def Temperature_result():
         hum = compensate_H(hum_raw)
         result = [temp,pres,hum]
         return result
-    except OSError:
-        return True #OSerrerが発生したか否かを判断する（Trueが出たらエラーが発生した判定）
+    except OSError as e:
+        return [e,e,e] #OSerrerが発生したか否かを判断する
  
 def compensate_P(adc_P):
     global  t_fine
