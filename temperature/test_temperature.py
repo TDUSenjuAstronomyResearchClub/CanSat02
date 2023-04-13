@@ -2,13 +2,7 @@ import temperature
 import time
 
 
-def print_data():
-    """
-    温度センサの動作を確認する関数
-    Returns
-    -------
-
-    """
+if __name__ == "__main__":
     while True:
         temp = temperature.temperature_result()
 
