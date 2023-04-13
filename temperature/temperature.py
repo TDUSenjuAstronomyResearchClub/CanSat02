@@ -5,8 +5,8 @@ Module Name:<br>
 Description:<br> 
 温湿度気圧センサを使って温度、湿度、気圧の値を取得できるプログラム。動作確認用実行ファイルはTemperatureTest.py<br><br>
 Library:<br>
-smbus<br>
-「sudo apt-get install python3-smbus」を実行し、smbusをインストールする必要があります。<br>
+smbus2<br>
+「sudo apt-get install python3-smbus2」を実行し、smbus2をインストールする必要があります。<br>
 また、sudo raspi-configから、Interface Optionを選択し、I2Cから、「はい」または「Yes」をEnterで確定して、I2C通信を有効にする必要があります。<br>
 ※確定後の再起動は必要ありません。<br><br>
 """

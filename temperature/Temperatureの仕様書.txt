@@ -34,8 +34,8 @@ SCK　：　gpio3
 
 
 ---必須ライブラリ---
-import smbus
-「sudo apt-get install python3-smbus」を実行し、smbusをインストールする必要があります。
+import smbus2
+「sudo apt-get install python3-smbus2」を実行し、smbus2をインストールする必要があります。
 また、sudo raspi-configから、Interface Optionを選択し、I2Cから、「はい」または「Yes」をEnterで確定して、I2C通信を有効にする必要があります。
 ※確定後の再起動は必要ありません。
 

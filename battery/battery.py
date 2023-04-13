@@ -4,7 +4,7 @@ battery<br><br>
 Description:<br> 
 電池残量計を使ってバッテリーガスゲージから電池残量を取得するプログラム。<br><br>
 Library:<br>
-smbus<br>
+smbus2<br>
 「sudo apt-get install python3-smbus2」を実行し、smbusをインストールする必要があります。<br>
 また、sudo raspi-configから、Interface Optionを選択し、I2Cから、「はい」または「Yes」をEnterで確定して、I2C通信を有効にする必要があります。<br>
 ※確定後の再起動は必要ありません。<br><br>
