@@ -23,19 +23,19 @@ BAUD_RATE = 9600
 
 nine_axis = NineAxis()
 
-gps_data = None
-lat_lon = None
-sample_distance = None
-goal_distance = None
-acc = None
-ang_velo = None
-azimuth = None
-bme280 = None
-lps25hb = None
-batt = None
-dist = None
-
 while True:
+    # ここで初期化することで、エラーが出たときにNoneで値を送れる
+    gps_data = None
+    lat_lon = None
+    sample_distance = None
+    goal_distance = None
+    acc = None
+    ang_velo = None
+    azimuth = None
+    bme280 = None
+    lps25hb = None
+    batt = None
+    dist = None
     try:
         gps_data = gps.get_gps_data()
         lat_lon = Running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
