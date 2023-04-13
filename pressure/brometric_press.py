@@ -66,16 +66,10 @@ def get_pressure_altitude_temperature():
         altitude = round(altitude, 2)
         temperature = round(temperature, 2)
 
-<<<<<<< HEAD:pressure/BarometricPress.py
-        # Create list with results
+        # リストにして返す
         results = [pressure, altitude, temperature]
 
         return results
+
     except OSError as e:
-        return [e,e,e]
-=======
-        # リストにして返す
-        return [pressure, altitude, temperature]
-    except OSError:
-        return True
->>>>>>> 270b4861e68780345d2f01b1c829f5d8a1601862:pressure/brometric_press.py
+        return [e, e, e]
