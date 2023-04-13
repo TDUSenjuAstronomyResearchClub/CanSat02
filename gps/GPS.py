@@ -12,7 +12,8 @@ serial<br>
 
 import serial
 import time
-from math import radians, sin, cos, atan2, sqrt ,pi
+from math import radians, sin, cos, atan2, sqrt, pi
+
 
 def get_gps_data():
     """
@@ -20,14 +21,14 @@ def get_gps_data():
 
     Returns
     -------
-    lat (float)
-            緯度
-    lon (float)
-            経度
-    alt (float)
+    lat : float
+            度分形式の緯度
+    lon : float
+            度分形式の経度
+    alt : float
             海抜
-    declination (float)
-            磁気偏角値(m)
+    declination : float
+            磁気偏角(度)
     """
 
     ser = serial.Serial("/dev/serial0", baudrate=9600, timeout=1)
@@ -38,18 +39,24 @@ def get_gps_data():
     declination = None
     start_time = time.time()
 
-    while time.time() - start_time < 5: #5秒後にタイムアウトします
+    while time.time() - start_time < 5:  # 5秒後にタイムアウトします
         try:
             if ser.in_waiting > 0:
                 line = ser.readline().decode("utf-8").rstrip()
                 if line.startswith("$GPGGA"):
+                    # 時刻・位置・GPS関連情報
                     data = line.split(",")
-                    lat = convert_to_degree(data[2], data[3])
-                    lon = convert_to_degree(data[4], data[5])
+                    lat = lat_conv_deg_min_to_decimal(data[1], data[2])
+                    lon = lon_conv_deg_min_to_decimal(data[3], data[4])
                     alt = float(data[9])
-                elif line.startswith("$GPGSV"):
+                elif line.startswith("$GPRMC"):
+                    # 衛星情報
                     data = line.split(",")
-                    declination = float(data[4])
+                    lat = lat_conv_deg_min_to_decimal(data[2], data[3])
+                    lon = lon_conv_deg_min_to_decimal(data[4], data[5])
+
+                    # 磁気偏差
+                    declination = float(data[11])
                     break
         except Exception as e:
             print(e)
@@ -59,72 +66,101 @@ def get_gps_data():
     return lat, lon, alt, declination
 
 
-def convert_to_degree(value, direction):
+def lat_conv_deg_min_to_decimal(lat, direction):
     """
-    度分秒形式から10進数形式に変換する関数
+    緯度を度分形式から10進数形式に変換する関数
 
+    GPGGA緯度フォーマット: ddmm.mm
+    https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data
     Args
     -------
-    value (str)
-            度分秒形式の値
-    direction (str)
-            方向（N, E, S, Wのいずれか）
+    lat : str
+            度分形式の緯度
+    direction : str
+            方向（N, Sのどちらか）
 
     Returns
     -------
-    degree (float)
-            10進数形式の値
+    degree : float
+            10進数形式の経度
     """
-    d = float(value[:2])
-    m = float(value[2:4])
-    s = float(value[4:])
-    degree = d + m / 60 + s / 3600
+    d = float(lat[:2])
+    m = float(lat[2:])
+    decimal = d + m / 60
 
-    if direction == "S" or direction == "W":
-        degree *= -1
+    if direction == "S":
+        decimal *= -1
 
-    return degree
+    return decimal
 
-def calculate_distance_bearing(lat2, lon2):
+
+def lon_conv_deg_min_to_decimal(lon, direction):
     """
-    2地点の緯度経度から直線距離と方位角を計算する関数
+    経度を度分形式から10進数形式に変換する関数
+
+    GPGGA経度フォーマット: dddmm.mm
+    https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data
+    Args
+    -------
+    lon : str
+            度分形式の経度
+    direction : str
+            方向（E, Wのいずれか）
+
+    Returns
+    -------
+    degree : float
+            10進数形式の経度
+    """
+    d = float(lon[:3])
+    m = float(lon[3:])
+    decimal = d + m / 60
+
+    if direction == "W":
+        decimal *= -1
+
+    return decimal
+
+
+def calculate_distance_bearing(lat, lon):
+    """
+    機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数
 
     Args
     -------
-    lat2 (float)
+    lat : float
             目的地の緯度
-    lon2 (float)
-            方向（N, E, S, Wのいずれか）
+    lon : float
+            目的地の経度
 
     Returns
     -------
-    distance(float)
+    distance : float
             2地点間の直線距離 
-    bearing(float)
+    bearing : float
             2地点間の方位角 
     """
+    r = 6371  # 地球の半径（km）
     try:
-        R = 6371  # 地球の半径（km）
-
-        #gpsの緯度経度・磁器偏角値を取得
+        # gpsの緯度経度・磁器偏角値を取得
         gps_date = get_gps_data()
-        lat1 = gps_date[0]
-        lon1 = gps_date[1]
+        now_lat = gps_date[0]
+        now_lon = gps_date[1]
         declination = gps_date[3]
 
         # 緯度経度をラジアンに変換
-        lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+        now_lat, now_lon, lat, lon = map(radians, [now_lat, now_lon, lat, lon])
 
         # 2地点間の距離
-        dlat = lat2 - lat1
-        dlon = lon2 - lon1
-        a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+        dlat = lat - now_lat
+        dlon = lon - now_lon
+        a = sin(dlat / 2) ** 2 + cos(now_lat) * cos(lat) * sin(dlon / 2) ** 2
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
-        distance = R * c *1000
+        distance = r * c * 1000
 
         # 方位角
-        y = sin(lon2 - lon1) * cos(lat2)
-        x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1)
+        y = sin(lon - now_lon) * cos(lat)
+        x = cos(now_lat) * sin(lat) - sin(now_lat) * cos(lat) * cos(lon - now_lon)
         bearing = (atan2(y, x) * 180 / pi + 360) % 360
 
         # 磁気偏角の補正
@@ -135,27 +171,3 @@ def calculate_distance_bearing(lat2, lon2):
         distance = None
         bearing = None
         return distance, bearing
-
-
-
-if __name__ == "__main__":
-    # GPSデータの取得
-    lat, lon, alt, declination = get_gps_data()
-
-    # 結果の表示
-    print("緯度：", lat)
-    print("経度：", lon)
-    print("海抜：", alt)
-    print("磁器偏角値：", declination)
-
-    # 目的地の緯度経度
-    dest_lat = 35.681236
-    dest_lon = 139.767125
-
-    # 現在地と目的地の距離と方位角を計算
-    distance, bearing = calculate_distance_bearing(dest_lat, dest_lon)
-
-    # 結果の表示
-    print("目的地までの距離：", distance, "m")
-    print("方位角：", bearing, "°")
-
