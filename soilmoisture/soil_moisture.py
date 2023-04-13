@@ -19,15 +19,15 @@ def get_soil_moisture():
         0から100の間のfloat値としての土壌水分率
 
     bool
-        OSErrorが発生した場合はTrueを返す。
+        OSErrorが発生した場合はエラー文を返す。
     """
     try:
         moisture = ss.moisture_read()
         sleep(0.1)  # センサが安定するまで 100 ms 待つ
         return 100 - ((moisture / 65535.0) * 100)
     
-    except OSError:
-        return True
+    except OSError as e:
+        return e
 
 
 # Generate API documentation using pdoc.

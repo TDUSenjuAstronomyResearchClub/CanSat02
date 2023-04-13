@@ -39,7 +39,7 @@ def get_pressure_altitude_temperature():
         処理が正常に終了した場合は、要素数3のリストが返されます。
 
     bool
-        OSErrorが発生した場合はTrueを返す。
+        OSErrorが発生した場合はエラー文を返す。
     """
     try:
         # 生の気圧と気温データをセンサーから読み取る
@@ -67,6 +67,9 @@ def get_pressure_altitude_temperature():
         temperature = round(temperature, 2)
 
         # リストにして返す
-        return [pressure, altitude, temperature]
-    except OSError:
-        return True
+        results = [pressure, altitude, temperature]
+
+        return results
+
+    except OSError as e:
+        return [e, e, e]

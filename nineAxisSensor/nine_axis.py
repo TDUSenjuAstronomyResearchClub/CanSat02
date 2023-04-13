@@ -36,13 +36,13 @@ class BMX055Sensor:
         list
              加速度（x, y, z）（単位:m/s^2）
         bool
-            OSErrorが発生した場合はTrueを返す。
+            OSErrorが発生した場合はエラー文を返す。
         """
         try:
             raw_accel = self.bmx055.get_accel_data()
             return [x / 1000 for x in raw_accel]
-        except OSError:
-            return True
+        except OSError as e:
+            return e
 
     def get_gyroscope(self):
         """
@@ -53,13 +53,13 @@ class BMX055Sensor:
         list
                 角速度（x, y, z）（単位:rad/s）
         bool
-            OSErrorが発生した場合はTrueを返す。
+            OSErrorが発生した場合はエラー文を返す。
         """
         try:
             raw_gyro = self.bmx055.get_gyro_data()
             return [math.radians(x) for x in raw_gyro]
-        except OSError:
-            return True
+        except OSError as e:
+            return e
 
     def get_magnetic_heading(self):
         """
@@ -70,7 +70,7 @@ class BMX055Sensor:
         list
                 方位角（単位：度）
         bool
-            OSErrorが発生した場合はTrueを返す。
+            OSErrorが発生した場合はエラー文を返す。
         """
         try:
             raw_mag = self.bmx055.get_mag_data()
@@ -86,5 +86,5 @@ class BMX055Sensor:
                 heading += 360.0
 
             return heading
-        except OSError:
-            return True
+        except OSError as e:
+            return e
