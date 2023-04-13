@@ -51,9 +51,9 @@ class BMX055Sensor:
         Returns
         -------
         list
-                角速度（x, y, z）（単位:rad/s）
-        bool
-            OSErrorが発生した場合はエラー文を返す。
+            角速度（x, y, z）（単位:rad/s）
+        Exception
+            OSErrorが発生した場合はエラーを返す。
         """
         try:
             raw_gyro = self.bmx055.get_gyro_data()
