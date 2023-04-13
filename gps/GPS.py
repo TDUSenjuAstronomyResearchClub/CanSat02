@@ -73,7 +73,7 @@ def lat_conv_deg_min_to_decimal(lat, direction):
     lat : str
             度分形式の緯度
     direction : str
-            方向（N, E, S, Wのいずれか）
+            方向（N, Sのどちらか）
 
     Returns
     -------
@@ -84,7 +84,7 @@ def lat_conv_deg_min_to_decimal(lat, direction):
     m = float(lat[2:])
     degree = d + m / 60
 
-    if direction == "S" or direction == "W":
+    if direction == "S":
         degree *= -1
 
     return degree
@@ -101,7 +101,7 @@ def lon_conv_deg_min_to_decimal(lon, direction):
     lon : str
             度分形式の経度
     direction : str
-            方向（N, E, S, Wのいずれか）
+            方向（E, Wのいずれか）
 
     Returns
     -------
@@ -112,7 +112,7 @@ def lon_conv_deg_min_to_decimal(lon, direction):
     m = float(lon[3:])
     degree = d + m / 60
 
-    if direction == "S" or direction == "W":
+    if direction == "W":
         degree *= -1
 
     return degree
