@@ -11,12 +11,12 @@ smbus<br>
 ※確定後の再起動は必要ありません。<br><br>
 """
 
-import smbus
+import smbus2
 
 bus_number = 1
 i2c_address = 0x76
 
-bus = smbus.SMBus(bus_number)
+bus = smbus2.SMBus(bus_number)
 
 digT = []
 digP = []
