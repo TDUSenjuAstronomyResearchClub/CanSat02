@@ -55,7 +55,7 @@ def photograph():
     ret, frame = cap.read()
     if not ret:
         # todo: 地上局にエラーを送信
-        print("フレームを読めません", file=sys.stderr)
+        print("Error: フレームを読めません", file=sys.stderr)
         cap.release()
 
     # ウィンドウをリサイズ
