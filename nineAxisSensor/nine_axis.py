@@ -36,7 +36,7 @@ class BMX055Sensor:
         -------
         list
              加速度（x, y, z）（単位:m/s^2）
-        OSError
+        Exception
             OSErrorが発生した場合はエラー文を返す。
         """
         try:
@@ -70,7 +70,7 @@ class BMX055Sensor:
         -------
         list
                 方位角（単位：度）
-        OSError
+        Exception
             OSErrorが発生した場合はエラー文を返す。
         """
         try:
