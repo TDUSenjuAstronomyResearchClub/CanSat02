@@ -5,7 +5,7 @@ import serial
 import time
 
 from ..gps import gps
-from ..nineAxisSensor.NineAxis import BMX055Sensor as NineAxis
+from ..nineAxisSensor.nine_axis import BMX055Sensor as NineAxis
 from ..temperature import temperature
 from ..pressure import brometric_press
 from ..battery import Battery

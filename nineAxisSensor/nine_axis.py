@@ -12,10 +12,12 @@ import BMX055
 import math
 from gps import gps
 
+
 class BMX055Sensor:
     """
     BMX055センサを制御し、加速度・角速度・方位角を求めるクラス。
     """
+
     def __init__(self, declination=0):
         """
         BMX055センサを初期化する。
