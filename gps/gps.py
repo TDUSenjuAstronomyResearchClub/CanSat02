@@ -40,27 +40,23 @@ def get_gps_data():
     start_time = time.time()
 
     while time.time() - start_time < 5:  # 5秒後にタイムアウトします
-        try:
-            if ser.in_waiting > 0:
-                line = ser.readline().decode("utf-8").rstrip()
-                if line.startswith("$GPGGA"):
-                    # 時刻・位置・GPS関連情報
-                    data = line.split(",")
-                    lat = lat_conv_deg_min_to_decimal(data[1], data[2])
-                    lon = lon_conv_deg_min_to_decimal(data[3], data[4])
-                    alt = float(data[9])
-                elif line.startswith("$GPRMC"):
-                    # 衛星情報
-                    data = line.split(",")
-                    lat = lat_conv_deg_min_to_decimal(data[2], data[3])
-                    lon = lon_conv_deg_min_to_decimal(data[4], data[5])
+        if ser.in_waiting > 0:
+            line = ser.readline().decode("utf-8").rstrip()
+            if line.startswith("$GPGGA"):
+                # 時刻・位置・GPS関連情報
+                data = line.split(",")
+                lat = lat_conv_deg_min_to_decimal(data[1], data[2])
+                lon = lon_conv_deg_min_to_decimal(data[3], data[4])
+                alt = float(data[9])
+            elif line.startswith("$GPRMC"):
+                # 衛星情報
+                data = line.split(",")
+                lat = lat_conv_deg_min_to_decimal(data[2], data[3])
+                lon = lon_conv_deg_min_to_decimal(data[4], data[5])
 
-                    # 磁気偏差
-                    declination = float(data[11])
-                    break
-        except Exception as e:
-            print(e)
-            continue
+                # 磁気偏差
+                declination = float(data[11])
+                break
 
     ser.close()
     return lat, lon, alt, declination
@@ -141,33 +137,28 @@ def calculate_distance_bearing(lat, lon):
             2地点間の方位角 
     """
     r = 6371  # 地球の半径（km）
-    try:
-        # gpsの緯度経度・磁器偏角値を取得
-        gps_date = get_gps_data()
-        now_lat = gps_date[0]
-        now_lon = gps_date[1]
-        declination = gps_date[3]
+    # gpsの緯度経度・磁器偏角値を取得
+    gps_date = get_gps_data()
+    now_lat = gps_date[0]
+    now_lon = gps_date[1]
+    declination = gps_date[3]
 
-        # 緯度経度をラジアンに変換
-        now_lat, now_lon, lat, lon = map(radians, [now_lat, now_lon, lat, lon])
+    # 緯度経度をラジアンに変換
+    now_lat, now_lon, lat, lon = map(radians, [now_lat, now_lon, lat, lon])
 
-        # 2地点間の距離
-        dlat = lat - now_lat
-        dlon = lon - now_lon
-        a = sin(dlat / 2) ** 2 + cos(now_lat) * cos(lat) * sin(dlon / 2) ** 2
-        c = 2 * atan2(sqrt(a), sqrt(1 - a))
-        distance = r * c * 1000
+    # 2地点間の距離
+    dlat = lat - now_lat
+    dlon = lon - now_lon
+    a = sin(dlat / 2) ** 2 + cos(now_lat) * cos(lat) * sin(dlon / 2) ** 2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    distance = r * c * 1000
 
-        # 方位角
-        y = sin(lon - now_lon) * cos(lat)
-        x = cos(now_lat) * sin(lat) - sin(now_lat) * cos(lat) * cos(lon - now_lon)
-        bearing = (atan2(y, x) * 180 / pi + 360) % 360
+    # 方位角
+    y = sin(lon - now_lon) * cos(lat)
+    x = cos(now_lat) * sin(lat) - sin(now_lat) * cos(lat) * cos(lon - now_lon)
+    bearing = (atan2(y, x) * 180 / pi + 360) % 360
 
-        # 磁気偏角の補正
-        bearing = (bearing + declination) % 360
+    # 磁気偏角の補正
+    bearing = (bearing + declination) % 360
 
-        return distance, bearing
-    except TypeError:
-        distance = None
-        bearing = None
-        return distance, bearing
+    return distance, bearing
