@@ -1,13 +1,9 @@
-"""
-Module Name:<br> 
-battery<br><br>
-Description:<br> 
-電池残量計を使ってバッテリーガスゲージから電池残量を取得するプログラム。<br><br>
-Library:<br>
-smbus2<br>
-「sudo apt-get install python3-smbus2」を実行し、smbusをインストールする必要があります。<br>
-また、sudo raspi-configから、Interface Optionを選択し、I2Cから、「はい」または「Yes」をEnterで確定して、I2C通信を有効にする必要があります。<br>
-※確定後の再起動は必要ありません。<br><br>
+"""電池残量計を使ってバッテリーガスゲージから電池残量を取得するモジュール.
+
+使用するにはI2Cが有効になっている必要があります
+
+使用しているライブラリ:
+    smbus2
 """
 
 import smbus2
@@ -22,20 +18,16 @@ bus = smbus2.SMBus(1)
 
 # 電池残量を取得する関数
 def get_battery_level():
-    """
-    電池残量計(SKU 8806)を使って電池残量を取得するプログラム。
+    """電池残量計(SKU 8806)を使って電池残量を取得するプログラム
 
-    Returns
-    -------
-    int
-        int型で電池残量を返却する（0-100の範囲で表される整数）
+    Returns:
+        int: 電池残量を返却する（0-100の範囲で表される整数）
+
+    Raises:
+        OSError: I2C通信が正常に行えなかった際に発生
     """
     # 電池残量を測定するコマンドを送信
     bus.write_byte_data(DEVICE_ADDRESS, 0x00, COMMAND)
     # 電池残量を取得
     level = bus.read_byte_data(DEVICE_ADDRESS, 0x00)
     return level
-
-
-# テスト用の関数呼び出し
-print(get_battery_level())
