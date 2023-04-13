@@ -1,8 +1,8 @@
-import Temperature
+import temperature
 import time
 
 while True:
-    temp = Temperature.Temperature_result()
+    temp = Temperature.temperature_result()
     
     if temp == True:
         print('OSerrer')
