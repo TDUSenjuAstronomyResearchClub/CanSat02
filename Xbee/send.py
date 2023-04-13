@@ -31,42 +31,9 @@ while True:
     nine_angularVelocity = None
     nine_azimuth = None
 
-    # 9軸センサの値が正常でなければその値をそのまま渡す
-    if type(nine_axis) == list:
-        acc = nine_axis.get_acceleration()
-        ang_velo = nine_axis.get_gyroscope()
-        azimuth = nine_axis.get_magnetic_heading()
-        nine_acceleration = {
-            "X": acc[0],
-            "Y": acc[1],
-            "Z": acc[2]
-        }
-        nine_angularVelocity = {
-            "X": ang_velo[0],
-            "Y": ang_velo[1],
-            "Z": ang_velo[2]
-        }
-        nine_azimuth = {
-            "X": azimuth[0],
-            "Y": azimuth[1],
-            "Z": azimuth[2]
-        }
-    else:
-        nine_acceleration = {
-            "X": nine_axis,
-            "Y": nine_axis,
-            "Z": nine_axis
-        }
-        nine_angularVelocity = {
-            "X": nine_axis,
-            "Y": nine_axis,
-            "Z": nine_axis
-        }
-        nine_azimuth = {
-            "X": nine_axis,
-            "Y": nine_axis,
-            "Z": nine_axis
-        }
+    acc = nine_axis.get_acceleration()
+    ang_velo = nine_axis.get_gyroscope()
+    azimuth = nine_axis.get_magnetic_heading()
 
     bme280 = temperature.temperature_result()  # 温湿度気圧センサデータ
     lps25hb = barometric_press.get_pressure_altitude_temperature()  # 気圧センサ
@@ -87,9 +54,21 @@ while True:
             }
         },
         "9軸": {
-            "加速度": nine_acceleration,
-            "角速度": nine_angularVelocity,
-            "方位角": nine_azimuth
+            "加速度": {
+                "X": acc[0],
+                "Y": acc[1],
+                "Z": acc[2]
+            },
+            "角速度": {
+                "X": ang_velo[0],
+                "Y": ang_velo[1],
+                "Z": ang_velo[2]
+            },
+            "方位角": {
+                "X": azimuth[0],
+                "Y": azimuth[1],
+                "Z": azimuth[2]
+            }
         },
         "温湿度気圧": {
             "温度": bme280[0],
