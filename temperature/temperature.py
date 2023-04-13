@@ -84,15 +84,9 @@ def temperature_result():
     Returns
     -------
     list
-<<<<<<< HEAD
-            リスト形式で、[温度（℃）、湿度（%）、気圧（hPa）]を返す。
-    OSError
-            OSErrorが発生した場合はエラー文を返す。
-=======
         リスト形式で、[温度（℃）、湿度（%）、気圧（hPa）]を返す。
     Exception
         OSErrorが発生した場合はエラーを返す。
->>>>>>> dd9a47bf909dc2364d306c94e95221c00765c675
     """
     try:
         data = []
