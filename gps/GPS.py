@@ -46,8 +46,8 @@ def get_gps_data():
                 if line.startswith("$GPGGA"):
                     # 時刻・位置・GPS関連情報
                     data = line.split(",")
-                    lat = convert_to_degree(data[2], data[3])
-                    lon = convert_to_degree(data[4], data[5])
+                    lat = lat_conv_deg_min_to_decimal(data[2], data[3])
+                    lon = lon_conv_deg_min_to_decimal(data[4], data[5])
                     alt = float(data[9])
                 elif line.startswith("$GPGSV"):
                     # 衛星情報
@@ -62,27 +62,54 @@ def get_gps_data():
     return lat, lon, alt, declination
 
 
-def convert_to_degree(value, direction):
+def lat_conv_deg_min_to_decimal(lat, direction):
     """
-    度分形式から10進数形式に変換する関数
+    緯度を度分形式から10進数形式に変換する関数
 
-    GPGGAフォーマット: ddmm.mm
+    GPGGA緯度フォーマット: ddmm.mm
     https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data
-
     Args
     -------
-    value : str
-            度分形式の値
+    lat : str
+            度分形式の緯度
     direction : str
             方向（N, E, S, Wのいずれか）
 
     Returns
     -------
     degree : float
-            10進数形式の値
+            10進数形式の経度
     """
-    d = float(value[:2])
-    m = float(value[2:])
+    d = float(lat[:2])
+    m = float(lat[2:])
+    degree = d + m / 60
+
+    if direction == "S" or direction == "W":
+        degree *= -1
+
+    return degree
+
+
+def lon_conv_deg_min_to_decimal(lon, direction):
+    """
+    経度を度分形式から10進数形式に変換する関数
+
+    GPGGA経度フォーマット: dddmm.mm
+    https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data
+    Args
+    -------
+    lon : str
+            度分形式の経度
+    direction : str
+            方向（N, E, S, Wのいずれか）
+
+    Returns
+    -------
+    degree : float
+            10進数形式の経度
+    """
+    d = float(lon[:3])
+    m = float(lon[3:])
     degree = d + m / 60
 
     if direction == "S" or direction == "W":
