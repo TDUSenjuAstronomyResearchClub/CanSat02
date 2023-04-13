@@ -22,9 +22,9 @@ def get_gps_data():
     Returns
     -------
     lat : float
-            緯度
+            度分形式の緯度
     lon : float
-            経度
+            度分形式の経度
     alt : float
             海抜
     declination : float
@@ -44,11 +44,13 @@ def get_gps_data():
             if ser.in_waiting > 0:
                 line = ser.readline().decode("utf-8").rstrip()
                 if line.startswith("$GPGGA"):
+                    # 時刻・位置・GPS関連情報
                     data = line.split(",")
                     lat = convert_to_degree(data[2], data[3])
                     lon = convert_to_degree(data[4], data[5])
                     alt = float(data[9])
                 elif line.startswith("$GPGSV"):
+                    # 衛星情報
                     data = line.split(",")
                     declination = float(data[4])
                     break
@@ -62,24 +64,25 @@ def get_gps_data():
 
 def convert_to_degree(value, direction):
     """
-    度分秒形式から10進数形式に変換する関数
+    度分形式から10進数形式に変換する関数
+
+    GPGGAフォーマット: ddmm.mmmm
 
     Args
     -------
     value : str
-            度分秒形式の値
+            度分形式の値
     direction : str
             方向（N, E, S, Wのいずれか）
 
     Returns
     -------
-    degree (float)
+    degree : float
             10進数形式の値
     """
     d = float(value[:2])
-    m = float(value[2:4])
-    s = float(value[4:])
-    degree = d + m / 60 + s / 3600
+    m = float(value[2:])
+    degree = d + m / 60
 
     if direction == "S" or direction == "W":
         degree *= -1
