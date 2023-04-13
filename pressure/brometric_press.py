@@ -49,7 +49,7 @@ def get_pressure_altitude_temperature():
         temp_out_l = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_TEMP_OUT_L)
         temp_out_h = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_TEMP_OUT_H)
 
-        # 生のデータを気圧(hPa) 気温(C゜)に変換
+        # 生のデータを気圧(hPa) 気温(deg C)に変換
         raw_pressure = (press_out_h << 16) | (press_out_l << 8) | press_out_xl
         raw_pressure = raw_pressure >> 4
         pressure = raw_pressure / 4096.0
