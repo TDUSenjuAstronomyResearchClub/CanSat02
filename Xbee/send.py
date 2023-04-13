@@ -6,10 +6,10 @@ import time
 
 from ..gps import gps
 from ..nineAxisSensor.NineAxis import BMX055Sensor as NineAxis
-from ..temperature import Temperature
+from ..temperature import temperature
 from ..pressure import brometric_press
 from ..battery import Battery
-from ..distance import Distance
+from ..distance import distance
 
 import Running  # 走行プログラムのソースファイル
 
@@ -68,7 +68,7 @@ while True:
             "Z": nine_axis
         }
 
-    bme280 = Temperature.Temperature_result()  # 温湿度気圧センサデータ
+    bme280 = Temperature.temperature_result()  # 温湿度気圧センサデータ
     lps25hb = BarometricPress.get_pressure_altitude_temperature()  # 気圧センサ
 
     data = {

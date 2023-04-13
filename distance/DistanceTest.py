@@ -1,6 +1,6 @@
 # -- coding: utf-8 --
 #Distance.pyの動作確認をするための実行プログラム
-import Distance
+import distance
 import time
 
 while True:
