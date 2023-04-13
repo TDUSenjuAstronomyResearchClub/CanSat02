@@ -8,7 +8,7 @@ from ..gps import gps
 from ..nineAxisSensor.nine_axis import BMX055Sensor as NineAxis
 from ..temperature import temperature
 from ..pressure import brometric_press
-from ..battery import Battery
+from ..battery import battery
 from ..distance import distance
 
 import Running  # 走行プログラムのソースファイル
