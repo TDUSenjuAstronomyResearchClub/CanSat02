@@ -1,5 +1,6 @@
 import json
 import datetime
+import sys
 
 import serial
 import time
@@ -21,18 +22,37 @@ BAUD_RATE = 9600
 
 nine_axis = NineAxis()
 
+gps_data = None
+lat_lon = None
+sample_distance = None
+goal_distance = None
+acc = None
+ang_velo = None
+azimuth = None
+bme280 = None
+lps25hb = None
+batt = None
+dist = None
+
 while True:
-    gps_data = gps.get_gps_data()
-    lat_lon = Running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
-    sample_distance = gps.calculate_distance_bearing(lat_lon[0], lat_lon[1])
-    goal_distance = gps.calculate_distance_bearing(lat_lon[2], lat_lon[3])
+    try:
+        gps_data = gps.get_gps_data()
+        lat_lon = Running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
+        sample_distance = gps.calculate_distance_bearing(lat_lon[0], lat_lon[1])
+        goal_distance = gps.calculate_distance_bearing(lat_lon[2], lat_lon[3])
 
-    acc = nine_axis.get_acceleration()
-    ang_velo = nine_axis.get_gyroscope()
-    azimuth = nine_axis.get_magnetic_heading()
+        acc = nine_axis.get_acceleration()
+        ang_velo = nine_axis.get_gyroscope()
+        azimuth = nine_axis.get_magnetic_heading()
 
-    bme280 = temperature.temperature_result()  # 温湿度気圧センサデータ
-    lps25hb = barometric_press.get_pressure_altitude_temperature()  # 気圧センサ
+        bme280 = temperature.temperature_result()  # 温湿度気圧センサデータ
+        lps25hb = barometric_press.get_pressure_altitude_temperature()  # 気圧センサ
+
+        batt = battery.get_battery_level()
+        dist = distance.distance_result()
+    except OSError:
+        # todo: 地上局にエラーを送信
+        print("Error: Cannot communicate I2C devices", file=sys.stderr)
 
     data = {
         "gps": {
@@ -76,8 +96,8 @@ while True:
             "高度": lps25hb[1],
             "温度": lps25hb[2]
         },
-        "電池": battery.get_battery_level(),
-        "距離": distance.distance_result()
+        "電池": batt,
+        "距離": dist
     }
 
     dt_start = datetime.datetime.now()
