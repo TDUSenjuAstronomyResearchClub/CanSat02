@@ -73,8 +73,8 @@ def get_calib_param():
             if digH[i] & 0x8000:
                 digH[i] = (-digH[i] ^ 0xFFFF) + 1
 
-    except OSError:
-        return True  # OSErrorが発生したか否かを判断する（Trueが出たらエラーが発生した判定）
+    except OSError as e:
+        return e  # OSErrorが発生したか否かを判断する
 
 
 def temperature_result():
@@ -85,8 +85,8 @@ def temperature_result():
     -------
     list
             リスト形式で、[温度（℃）、湿度（%）、気圧（hPa）]を返す。
-    bool
-            OSErrorが発生した場合はTrueを返す。
+    OSError
+            OSErrorが発生した場合はエラー文を返す。
     """
     try:
         data = []
@@ -101,8 +101,8 @@ def temperature_result():
         hum = compensate_h(hum_raw)
         result = [temp, pres, hum]
         return result
-    except OSError:
-        return True  # OSErrorが発生したか否かを判断する（Trueが出たらエラーが発生した判定）
+    except OSError as e:
+        return e  # OSErrorが発生したか否かを判断する（Trueが出たらエラーが発生した判定）
 
 
 def compensate_p(adc_p):

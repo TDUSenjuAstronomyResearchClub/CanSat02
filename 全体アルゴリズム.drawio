@@ -2107,36 +2107,36 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2027" value="StraightLine()&lt;br&gt;3秒間前進する" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-1402.4800000000005" y="4071.26" width="190" height="61.2" as="geometry"/>
+                    <mxGeometry x="-1402.4800000000005" y="4076.21" width="190" height="61.2" as="geometry"/>
                 </mxCell>
                 <mxCell id="2028" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2029" target="2031" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2029" value="duty比を80と0にそれぞれのモーターを設定する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-1367.4800000000005" y="4163.45" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="-1367.4800000000005" y="4168.4" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="2030" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2031" target="2033" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2031" value="time.sleep(3)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-1367.4800000000005" y="4245.2" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="-1367.4800000000005" y="4250.15" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="2032" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2033" target="2035" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2033" value="duty比を0と0にそれぞれのモーターを設定する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-1367.4800000000005" y="4325.2" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="-1367.4800000000005" y="4330.15" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="2034" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2035" target="2036" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="-1317.4800000000005" y="4522.650000000001" as="targetPoint"/>
+                        <mxPoint x="-1317.4800000000005" y="4527.6" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="2035" value="time.sleep(1)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-1367.4800000000005" y="4403.45" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="-1367.4800000000005" y="4408.4" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="2036" value="return" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-1367.4800000000005" y="4485.97" width="120" height="56.38" as="geometry"/>
+                    <mxGeometry x="-1367.4800000000005" y="4490.92" width="120" height="56.38" as="geometry"/>
                 </mxCell>
                 <mxCell id="2037" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2038" target="2040" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -2206,13 +2206,13 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2058" value="TurnLeft()&lt;br&gt;左旋回する" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-646.5900000000009" y="4076.21" width="190" height="61.2" as="geometry"/>
+                    <mxGeometry x="-647.4900000000009" y="4086.59" width="190" height="61.2" as="geometry"/>
                 </mxCell>
                 <mxCell id="2059" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2060" target="2062" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2060" value="duty比を80と0に左モーターを設定する" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-611.5900000000009" y="4160.63" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="-611.5900000000009" y="4165.5" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="2061" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2062" target="2064" edge="1">
                     <mxGeometry relative="1" as="geometry"/>

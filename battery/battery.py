@@ -29,7 +29,7 @@ def get_battery_level():
     -------
     int
             int型で電池残量を返却する（0-100の範囲で表される整数）
-    bool
+    OSError
             OSErrorが発生した場合はエラー文を返す。
     """
     try:

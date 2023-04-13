@@ -1,3 +1,17 @@
+"""
+Module Name:<br> 
+土壌水分量測定プログラム<br><br>
+Description:<br> 
+土壌水分センサを使って土壌水分率を取得できるプログラム<br><br>
+Library:<br>
+board<br>
+pip install board<br><br>
+busio<br>
+pip install adafruit-blinka<br><br>
+Seesaw<br>
+pip install adafruit-circuitpython-seesaw<br><br>
+
+"""
 from time import sleep
 import board
 import busio
@@ -18,7 +32,7 @@ def get_soil_moisture():
     float
         0から100の間のfloat値としての土壌水分率
 
-    bool
+    OSError
         OSErrorが発生した場合はエラー文を返す。
     """
     try:

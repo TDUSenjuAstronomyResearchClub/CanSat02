@@ -10,6 +10,7 @@ pip install bmx055<br><br>
 
 import BMX055
 import math
+import time
 from gps import gps
 
 
@@ -35,14 +36,14 @@ class BMX055Sensor:
         -------
         list
              加速度（x, y, z）（単位:m/s^2）
-        bool
+        OSError
             OSErrorが発生した場合はエラー文を返す。
         """
         try:
             raw_accel = self.bmx055.get_accel_data()
             return [x / 1000 for x in raw_accel]
         except OSError as e:
-            return e
+            return [e,e,e]
 
     def get_gyroscope(self):
         """
@@ -52,14 +53,14 @@ class BMX055Sensor:
         -------
         list
                 角速度（x, y, z）（単位:rad/s）
-        bool
+        OSError
             OSErrorが発生した場合はエラー文を返す。
         """
         try:
             raw_gyro = self.bmx055.get_gyro_data()
             return [math.radians(x) for x in raw_gyro]
         except OSError as e:
-            return e
+            return [e,e,e]
 
     def get_magnetic_heading(self):
         """
@@ -69,7 +70,7 @@ class BMX055Sensor:
         -------
         list
                 方位角（単位：度）
-        bool
+        OSError
             OSErrorが発生した場合はエラー文を返す。
         """
         try:
@@ -88,3 +89,17 @@ class BMX055Sensor:
             return heading
         except OSError as e:
             return e
+
+if __name__ == "__main__":
+    while True:
+        sensor = BMX055Sensor()  
+        acceleration = sensor.get_acceleration()
+        print(f"Acceleration: {acceleration} m/s^2")
+
+        gyroscope = sensor.get_gyroscope()
+        print(f"Gyroscope: {gyroscope} rad/s")
+
+        magnetic_heading = sensor.get_magnetic_heading()
+        print(f"Magnetic heading: {magnetic_heading} degrees")
+
+        time.sleep(1)
