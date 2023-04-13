@@ -22,14 +22,16 @@ sudo apt-get install libjasper-dev<br><br>
 sudo pip3 install -U numpy<br>
 """
 
-from time import strftime
-import cv2
 import datetime
-import numpy as np
-import serial
+import sys
 import time
 
-PORT = '/dev/ttyUSB0' 
+import cv2
+import serial
+from serial import SerialException
+
+PORT = '/dev/ttyUSB0'
+
 
 def photograph():
     """
@@ -42,44 +44,38 @@ def photograph():
     """
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
-        print("Cannot open camera")
-        
+        # todo: 地上局にエラーを送信
+        print("Error: カメラを開けません", file=sys.stderr)
 
-    #画像ファイルの作成
-    now =datetime.datetime.now()
+    # 画像ファイルの作成
+    now = datetime.datetime.now()
     d = now.strftime('%Y-%m-%d_%H-%M-%S')
-    today = d + '.jpg' 
+    today = d + '.jpg'
 
-    ret, Frame = cap.read()
+    ret, frame = cap.read()
     if not ret:
-        print("Cannot read frame")
+        # todo: 地上局にエラーを送信
+        print("フレームを読めません", file=sys.stderr)
         cap.release()
-        
-    
-    #resize the window
-    windowsize = (200, 200)
-    frame = cv2.resize(Frame, windowsize)   #画像サイズ
-    cv2.imwrite(today, frame)   #名前付け保存
+
+    # ウィンドウをリサイズ
+    window_size = (200, 200)
+    frame = cv2.resize(frame, window_size)  # 画像サイズ
+    cv2.imwrite(today, frame)  # 名前付け保存
     cap.release()
 
-    ser = serial.Serial(PORT, 9600) # XBeeシリアルポートを開く
+    ser = serial.Serial(PORT, 9600)  # XBeeシリアルポートを開く
 
     for i in range(5):
-        with open(today, 'rb') as img: # 画像ファイルをバイナリデータとして開く
+        with open(today, 'rb') as img:  # 画像ファイルをバイナリデータとして開く
             try:
                 data = img.read()
-                ser.write(data) # XBeeに送信
+                ser.write(data)  # XBeeに送信
 
-                ser.close() # XBeeシリアルポートを閉じる
+                ser.close()  # XBeeシリアルポートを閉じる
                 return
-            
+
             except SerialException:
                 time.sleep(1)
-    
+
     return
-
-
-
-
-
-
