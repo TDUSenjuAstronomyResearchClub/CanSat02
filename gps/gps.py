@@ -84,9 +84,9 @@ def lon_conv_deg_min_to_decimal(lon: str, direction: str) -> float:
     https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data
 
     Args:
-        lon : str
+        lon: str
                 度分形式の経度
-        direction : str
+        direction: str
                 方向（E, Wのいずれか）
 
     Returns:
