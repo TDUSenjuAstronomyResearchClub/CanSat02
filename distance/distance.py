@@ -1,8 +1,7 @@
-"""
-Module Name:<br> 
-distance<br><br>
-Description:<br> 
-超音波距離センサを使い、機体前面にある物体と機体との距離を取得するプログラム<br><br>
+"""超音波距離センサを使い、機体前面にある物体と機体との距離を取得するプログラム
+
+使用しているライブラリ:
+    rpi.gpio
 """
 
 import RPi.GPIO as GPIO
@@ -21,17 +20,14 @@ GPIO.setup(17, GPIO.OUT)
 GPIO.setup(27, GPIO.IN)
 
 
-
 def distance_result():
-    """
-    超音波距離センサ(HC-SR04)を使って機体前面にある物体と機体との距離を取得するプログラム。
+    """超音波距離センサ(HC-SR04)を使って機体前面にある物体と機体との距離を取得する
 
-    Returns
-    -------
-    str
-            str型で距離(cm)を返却する
-    OSError
-            OSErrorが発生した場合はエラー文を返す。
+    Returns:
+        float: 距離(cm)
+
+    Raises:
+        TypeError
     """
     try:
         # トリガ信号出力
@@ -53,7 +49,6 @@ def distance_result():
         # 時間から距離に変換(TEMPは測定環境温度)
         clc = clc * (331.50 + (0.6 * TEMP)) / 2 * 100
 
-
-        return str(clc)
-    except TypeError as e:
-        return e
+        return clc
+    except TypeError:
+        raise TypeError
