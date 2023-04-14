@@ -119,6 +119,7 @@ def lon_conv_deg_min_to_decimal(lon, direction):
 
 
 def calculate_distance_bearing(lat, lon):
+    # todo: I/Oとロジックの切り分けを行う
     """
     機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数
 

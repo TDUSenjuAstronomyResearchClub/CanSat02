@@ -41,19 +41,35 @@ while True:
         lat_lon = Running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
         sample_distance = gps.calculate_distance_bearing(lat_lon[0], lat_lon[1])
         goal_distance = gps.calculate_distance_bearing(lat_lon[2], lat_lon[3])
+    except SerialException:
+        print("Error: GPSとのシリアル通信でエラーが発生しました", file=sys.stderr)
 
+    try:
         acc = nine_axis.get_acceleration()
         ang_velo = nine_axis.get_gyroscope()
         azimuth = nine_axis.get_magnetic_heading()
+    except OSError:
+        print("Error: 9軸センサと正常に通信できません", file=sys.stderr)
 
+    try:
         bme280 = temperature.temperature_result()  # 温湿度気圧センサデータ
-        lps25hb = barometric_press.get_pressure_altitude_temperature()  # 気圧センサ
+    except OSError:
+        print("Error: 温湿度気圧センサと正常に通信できません", file=sys.stderr)
 
+    try:
+        lps25hb = barometric_press.get_pressure_altitude_temperature()  # 気圧センサ
+    except OSError:
+        print("Error: 気圧センサと正常に通信できません", file=sys.stderr)
+
+    try:
         batt = battery.get_battery_level()
+    except OSError:
+        print("Error: 電池残量計と正常に通信できません", file=sys.stderr)
+
+    try:
         dist = distance.distance_result()
     except OSError:
-        # todo: 地上局にエラーを送信
-        print("Error: I2Cデバイスと正常に通信できません", file=sys.stderr)
+        print("Error: 超音波センサと正常に通信できません", file=sys.stderr)
 
     data = {
         "gps": {
