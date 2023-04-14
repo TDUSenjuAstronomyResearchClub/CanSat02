@@ -1,14 +1,11 @@
-# coding: utf-8
-"""
-Module Name:<br> 
-温湿度気圧センサ<br><br>
-Description:<br> 
-温湿度気圧センサを使って温度、湿度、気圧の値を取得できるプログラム。動作確認用実行ファイルはTemperatureTest.py<br><br>
-Library:<br>
-smbus2<br>
-「sudo apt-get install python3-smbus2」を実行し、smbus2をインストールする必要があります。<br>
-また、sudo raspi-configから、Interface Optionを選択し、I2Cから、「はい」または「Yes」をEnterで確定して、I2C通信を有効にする必要があります。<br>
-※確定後の再起動は必要ありません。<br><br>
+"""温湿度気圧センサモジュール
+
+温湿度気圧センサを使って温度、湿度、気圧の値を取得できるモジュール
+
+使用するにはI2Cが有効になっている必要があります
+
+使用しているライブラリ:
+    smbus2
 """
 
 import smbus2
@@ -25,7 +22,13 @@ digH = []
 t_fine = 0.0
 
 
-def write_reg(reg_address, data):
+def write_reg(reg_address: int, data: int):
+    """レジスタへの書き込みを行います
+
+    Args:
+        reg_address (int): 書き込み先レジスタのアドレス
+        data (int): 書き込むバイトデータ
+    """
     BUS.write_byte_data(I2C_ADDRESS, reg_address, data)
 
 
@@ -70,14 +73,11 @@ def get_calib_param():
             digH[i] = (-digH[i] ^ 0xFFFF) + 1
 
 
-def temperature_result():
-    """
-    温湿度気圧センサ(AE-BME280)を使って温度、湿度、気圧の値を返却するプログラム。
+def temperature_result() -> list:
+    """温湿度気圧センサ(AE-BME280)を使って温度、湿度、気圧の値を返却します
 
-    Returns
-    -------
-    list
-        リスト形式で、[温度（℃）、湿度（%）、気圧（hPa）]を返す。
+    Returns:
+        list: [温度(℃), 湿度(%), 気圧(hPa)]
     """
 
     data = []
