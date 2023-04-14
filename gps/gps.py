@@ -59,10 +59,8 @@ def lat_conv_deg_min_to_decimal(lat: str, direction: str) -> float:
     https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data
 
     Args:
-        lat: str
-                度分形式の緯度
-        direction: str
-                方向（N, Sのどちらか）
+        lat (str): 度分形式の緯度
+        direction (str): 方向（N, Sのどちらか）
 
     Returns:
         float: 10進数形式の経度
@@ -84,10 +82,8 @@ def lon_conv_deg_min_to_decimal(lon: str, direction: str) -> float:
     https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data
 
     Args:
-        lon: str
-                度分形式の経度
-        direction: str
-                方向（E, Wのいずれか）
+        lon (str): 度分形式の経度
+        direction (str): 方向（E, Wのいずれか）
 
     Returns:
         float: 10進数形式の経度
@@ -106,10 +102,8 @@ def calculate_distance_bearing(lat: float, lon: float) -> list[float]:
     """機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数
 
     Args:
-        lat: float
-            目的地の緯度
-        lon: float
-            目的地の経度
+        lat (float): 目的地の緯度
+        lon (float): 目的地の経度
 
     Returns:
         list[float]: 2地点間の直線距離, 2地点間の方位角
