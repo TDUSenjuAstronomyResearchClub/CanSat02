@@ -25,13 +25,13 @@ nine_axis = NineAxis()
 
 while True:
     # ここで初期化することで、エラーが出たときにNoneで値を送れる
-    gps_data = None
+    gps_data: list[float] | None = None
     lat_lon = None
-    sample_distance = None
-    goal_distance = None
-    acc = None
-    ang_velo = None
-    azimuth = None
+    sample_distance: list[float] | None = None
+    goal_distance: list[float] | None = None
+    acc: list[float] | None = None
+    ang_velo: list[float] | None = None
+    azimuth: float | None = None
     bme280 = None
     lps25hb = None
     batt = None
