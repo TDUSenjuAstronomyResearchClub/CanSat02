@@ -23,7 +23,6 @@ sudo pip3 install -U numpy<br>
 """
 
 import datetime
-import sys
 import time
 
 import cv2
@@ -34,18 +33,14 @@ PORT = '/dev/ttyUSB0'
 
 
 def photograph():
-    """
-    カメラモジュールを使って画像を撮影、地上局に送信ができるプログラム。
+    """カメラモジュールを使って画像を撮影、地上局に送信ができるプログラム
 
-    Returns
-    -------
-    なし(撮影が出来ないとCannot open cameraが出力される)
-
+    Raises:
+        CameraError: カメラに不具合があった際に発生
     """
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
-        # todo: 地上局にエラーを送信
-        print("Error: カメラを開けません", file=sys.stderr)
+        raise CameraError("カメラを開けません")
 
     # 画像ファイルの作成
     now = datetime.datetime.now()
@@ -54,9 +49,8 @@ def photograph():
 
     ret, frame = cap.read()
     if not ret:
-        # todo: 地上局にエラーを送信
-        print("Error: フレームを読めません", file=sys.stderr)
         cap.release()
+        raise CameraError("フレームを開けません")
 
     # ウィンドウをリサイズ
     window_size = (200, 200)
@@ -79,3 +73,9 @@ def photograph():
                 time.sleep(1)
 
     return
+
+
+class CameraError(Exception):
+    """カメラ使用時のエラー
+    """
+    pass
