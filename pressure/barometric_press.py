@@ -26,11 +26,11 @@ bus.write_byte_data(LPS25HB_ADDRESS, LPS25HB_CTRL_REG1, 0xC4)
 bus.write_byte_data(LPS25HB_ADDRESS, LPS25HB_RES_CONF, 0x00)
 
 
-def get_pressure_altitude_temperature() -> list:
+def get_pressure_altitude_temperature() -> list[float]:
     """気圧センサ (AE-LPS25HB）から気圧、高度、気温を読み取る
 
     Returns:
-        list: 現在の気圧(hPa), 現在の高度(m), 現在の気温(deg C), をこの順番で要素とするリスト
+        list[float]: 現在の気圧(hPa), 現在の高度(m), 現在の気温(deg C), をこの順番で要素とするリスト
     """
     # 生の気圧と気温データをセンサーから読み取る
     press_out_xl = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_PRESS_OUT_XL)
