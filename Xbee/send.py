@@ -68,7 +68,7 @@ while True:
 
     try:
         dist = distance.distance_result()
-    except OSError:
+    except TypeError:
         print("Error: 超音波センサと正常に通信できません", file=sys.stderr)
 
     data = {
