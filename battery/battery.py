@@ -17,7 +17,7 @@ bus = smbus2.SMBus(1)
 
 
 # 電池残量を取得する関数
-def get_battery_level():
+def get_battery_level() -> int:
     """電池残量計(SKU 8806)を使って電池残量を取得するプログラム
 
     Returns:
