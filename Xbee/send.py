@@ -32,10 +32,11 @@ while True:
     acc: list[float] | None = None
     ang_velo: list[float] | None = None
     azimuth: float | None = None
-    bme280 = None
-    lps25hb = None
-    batt = None
-    dist = None
+    bme280: list | None = None
+    lps25hb: list[float] | None = None
+    batt: int | None = None
+    dist: float | None = None
+
     try:
         gps_data = gps.get_gps_data()
         lat_lon = Running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
