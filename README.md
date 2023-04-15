@@ -104,7 +104,7 @@ AE-XBEE-USB
 Kypom リポバッテリー　1300mA、7.4 V
 
 - リンク
-  - <www.amazon.co.jp/dp/B017VOKS4U>
+  - <https://www.amazon.co.jp/dp/B017VOKS4U>
 
 ### モーター
 
