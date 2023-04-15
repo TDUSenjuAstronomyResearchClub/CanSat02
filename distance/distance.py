@@ -12,7 +12,7 @@ from temperature import temperature
 try:
     temp = temperature.temperature_result()  # 温湿度気圧センサから現在の温度値を呼び出す
     TEMP = temp[0]
-except OSError:  # OSerrerが発生した場合は、25度として計算をしていく
+except OSError:  # OSErrorが発生した場合は、25度として計算をしていく
     TEMP = 25
 
 # GPIO設定
