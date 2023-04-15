@@ -48,7 +48,7 @@ def distance_result():
     while GPIO.input(27) == GPIO.HIGH:
         son = time.time()  # HIGHレベル終了時刻
 
-        if son-start >10:
+        if son-start >10:   #10秒よりも長くHIGHレベルにならなかった場合は、Noneを返却する
             return None
 
     # HIGHレベル期間の計算
