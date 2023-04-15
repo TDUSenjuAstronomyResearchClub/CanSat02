@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="RfQd1FZKVwX_YVwqkUuT" name="ページ1">
-        <mxGraphModel dx="4820" dy="724" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+        <mxGraphModel dx="4516" dy="771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -828,7 +828,7 @@
                 <mxCell id="1693" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#fd0808;" parent="1" source="1694" target="1764" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="1694" value="heding == True" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="1694" value="&lt;div style=&quot;background-color: rgb(255, 255, 255); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;OSError発生&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="146" y="1004.3900000000001" width="180" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="1695" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" parent="1" source="1696" target="1946" edge="1">
@@ -1133,8 +1133,8 @@
                 <mxCell id="1770" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" parent="1" source="1771" target="1775" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="1771" value="destination_heading == 'None'" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="146.8199999999997" y="1280.5100000000002" width="180" height="80" as="geometry"/>
+                <mxCell id="1771" value="destination_heading == 'None'&lt;br&gt;or&lt;br&gt;&lt;div style=&quot;background-color: rgb(255, 255, 255); line-height: 19px;&quot;&gt;&lt;font face=&quot;Consolas, Courier New, monospace&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;SerialException発生&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="126.82" y="1270.74" width="220" height="99.49" as="geometry"/>
                 </mxCell>
                 <mxCell id="1772" value="MamualMode()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
                     <mxGeometry x="386.6900000000005" y="1345.5200000000004" width="154" height="60" as="geometry"/>
@@ -2899,7 +2899,7 @@
                     <mxGeometry x="-355.13" y="3447.95" width="255" height="65" as="geometry"/>
                 </mxCell>
                 <mxCell id="2290" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="200" y="1345" width="40" height="30" as="geometry"/>
+                    <mxGeometry x="194.73" y="1361.12" width="40" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="MfEr-L3ophbymwKM7E30-2296" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2294" target="MfEr-L3ophbymwKM7E30-2295" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
