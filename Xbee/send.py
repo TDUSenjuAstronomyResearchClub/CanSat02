@@ -98,11 +98,7 @@ while True:
                 "Y": ang_velo[1],
                 "Z": ang_velo[2]
             },
-            "方位角": {
-                "X": azimuth[0],
-                "Y": azimuth[1],
-                "Z": azimuth[2]
-            }
+            "方位角": azimuth
         },
         "温湿度気圧": {
             "温度": bme280[0],
