@@ -10,8 +10,8 @@ from gps import gps
 from nineAxisSensor.nine_axis import BMX055Sensor as NineAxis
 from temperature import temperature
 from pressure import barometric_press
-from battery import battery
-from distance import distance
+from battery import battery as battery_gauge
+from distance import distance as distance_sensor
 
 import Running  # 走行プログラムのソースファイル
 
@@ -34,8 +34,8 @@ while True:
     azimuth: float | None = None
     bme280: list | None = None
     lps25hb: list[float] | None = None
-    batt: int | None = None
-    dist: float | None = None
+    battery_level: int | None = None
+    distance: float | None = None
 
     try:
         gps_data = gps.get_gps_data()
@@ -63,12 +63,12 @@ while True:
         print("Error: 気圧センサと正常に通信できません", file=sys.stderr)
 
     try:
-        batt = battery.get_battery_level()
+        battery_level = battery_gauge.get_battery_level()
     except OSError:
         print("Error: 電池残量計と正常に通信できません", file=sys.stderr)
 
     try:
-        dist = distance.distance_result()
+        distance = distance_sensor.distance_result()
     except TypeError:
         print("Error: 超音波センサと正常に通信できません", file=sys.stderr)
 
@@ -110,8 +110,8 @@ while True:
             "高度": lps25hb[1],
             "温度": lps25hb[2]
         },
-        "電池": batt,
-        "距離": dist
+        "電池": battery_level,
+        "距離": distance
     }
 
     dt_start = datetime.datetime.now()
