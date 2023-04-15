@@ -1,92 +1,128 @@
 # CanSat用のプログラム
 
-能代宇宙イベントで使用する機体のプログラムがあります<br>
+能代宇宙イベントで使用する機体のプログラムです
 
-# 機体作成に当たって使用している他のサイト
+## 機体作成に当たって使用している他のサイト
 
-SharePoint<br>
-https://tdumedia.sharepoint.com/sites/astronomy?e=1%3Ab9c893ef34ae44f183c59b8d1de73116<br>
+### SharePoint
 
-# 使用機器の型番
+<https://tdumedia.sharepoint.com/sites/astronomy>
 
-GPSモジュール　AE-GYSFDMAXB<br>
-取扱説明書<br>
-chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/akizuki/AE-GPS_manual_r1.06_s.pdf<br>
-秋月のリンク<br>
-https://akizukidenshi.com/catalog/g/gK-09991/<br>
+## 使用パーツ
 
-温湿度・気圧センサー　AE-BME280<br>
-取扱説明書<br>
-chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/akizuki/AE-BME280_manu_v1.1.pdf<br>
-秋月のリンク<br>
-https://akizukidenshi.com/catalog/g/gK-09421/<br>
+### GPSモジュール
 
-電池残量計　SKU 8806<br>
-データシート<br>
-chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf<br>
-サイエンススイッチのリンク<br>
-https://www.switch-science.com/products/8806<br>
+AE-GYSFDMAXB
 
-９軸センサー　BMX055 <br>
-取扱説明書<br>
-chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/akizuki/AE-BMX055_20220804.pdf<br>
-秋月のリンク<br>
-https://akizukidenshi.com/catalog/g/gK-13010/<br>
+- 取扱説明書  
+  - <https://akizukidenshi.com/download/ds/akizuki/AE-GPS_manual_r1.06_s.pdf>
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gK-09991/>
 
-土壌水分センサ Adafruit STEMMA Soil Sensor － I2C CapacitiveMoisture Sensor <br>
-秋月リンク<br>
-https://akizukidenshi.com/catalog/g/gM-16357/<br>
-データシート類<br>
-https://learn.adafruit.com/adafruit-ina219-current-sensor-breakout/downloads<br>
+### 温湿度・気圧センサー
 
-超音波センサー　HC-SR04<br>
-秋月のリンク<br>
-https://akizukidenshi.com/catalog/g/gM-11009/<br>
-参考にしたサイト<br>
-https://s-design-tokyo.com/use-hcsr04/<br>
+AE-BME280
 
-気圧センサー　AE-LPS25HB<br>
-秋月のリンク<br>
-https://akizukidenshi.com/catalog/g/gK-13460/<br>
-取扱説明書<br>
-chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/akizuki/ae-lps25hb.pdf<br>
+- 取扱説明書
+  - <https://akizukidenshi.com/download/ds/akizuki/AE-BME280_manu_v1.1.pdf>
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gK-09421/>
 
+### 電池残量計
 
-無線機（Xbee）　XB24CZ7WIT-004<br>
-秋月のリンク<br>
-https://akizukidenshi.com/catalog/g/gM-10072/<br>
+SKU 8806
 
-Xbee USBエクスプローラー　AE-XBEE-USB<br>
-秋月のリンク<br>
-https://akizukidenshi.com/catalog/g/gK-06188/<br>
+- データシート
+  - <http://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf>
+- スイッチサイエンスのリンク
+  - <https://www.switch-science.com/products/8806>
 
-カメラ　913-2664<br>
-秋月のリンク<br>
-https://akizukidenshi.com/catalog/g/gM-10518/<br>
+### 9軸センサー
 
-USB向け降圧型DC-DCコンバータモジュール <br>
-リンク<br>
-https://strawberry-linux.com/catalog/items?code=18697<br>
+BMX055
 
-バッテリー　Kypom リポバッテリー　1300mA、7.4 V<br>
-リンク<br>
-https://www.amazon.co.jp/Kypom-7-4V-1300mAh-30C60C-%E3%83%90%E3%83%83%E3%83%86%E3%83%AA%E3%83%BC/dp/B017VOKS4U/ref=asc_df_B017VOKS4U/?tag=jpgo-22&linkCode=df0&hvadid=553905724024&hvpos=&hvnetw=g&hvrand=8622782523434099061&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1009208&hvtargid=pla-1643968713775&psc=1<br>
+- 取扱説明書
+  - <https://akizukidenshi.com/download/ds/akizuki/AE-BMX055_20220804.pdf>
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gK-13010/>
 
-モーター　RSPRO(238-9721)<br>
-モノタロウのリンク<br>
-https://www.monotaro.com/p/4122/4969/?utm_id=g_pla&cq_med=pla&cq_plt=gp&utm_medium=cpc&utm_source=google&utm_campaign=246-833-4061_6466659573_shopping&utm_content=77481173956&utm_term=_380615429419_x_aud-368712506548:pla-888444747587&gclid=CjwKCAjwiOCgBhAgEiwAjv5whOgxvPbACOQinQAx2f55e1GXF9Swgxp0zRSl3qG0rpa_O7sYK9K2_BoCJSQQAvD_BwE<br>
+### 土壌水分センサ
 
-モータードライバ　TB67H450FNG<br>
-データシート<br>
-chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://akizukidenshi.com/download/ds/Toshiba/TB67H450FNG_datasheet_ja_20190401.pdf<br>
-秋月のリンク<br>
-https://akizukidenshi.com/catalog/g/gI-14967/<br>
+Adafruit STEMMA Soil Sensor - I2C CapacitiveMoisture Sensor
 
-raspberry pi 3 model a+<br>
-秋月のリンク<br>
-https://akizukidenshi.com/catalog/g/gM-14878/<br>
+- データシート類
+  - <https://learn.adafruit.com/adafruit-ina219-current-sensor-breakout/downloads>
+- 秋月リンク
+  - <https://akizukidenshi.com/catalog/g/gM-16357/>
 
+### 超音波センサー
 
+HC-SR04
 
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gM-11009/>
+- 参考にしたサイト
+  - <https://s-design-tokyo.com/use-hcsr04/>
 
+### 気圧センサー
 
+AE-LPS25HB
+
+- 取扱説明書
+  - <https://akizukidenshi.com/download/ds/akizuki/ae-lps25hb.pdf>
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gK-13460/>
+
+### 無線機 (XBee)
+
+XB24CZ7WIT-004
+
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gM-10072/>
+
+### Xbee USBエクスプローラー
+
+AE-XBEE-USB
+
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gK-06188/>
+
+### カメラ
+
+913-2664
+
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gM-10518/>
+
+### USB向け降圧型DC-DCコンバータモジュール
+
+- リンク
+  - <https://strawberry-linux.com/catalog/items?code=18697>
+
+### バッテリー
+
+Kypom リポバッテリー　1300mA、7.4 V
+
+- リンク
+  - <www.amazon.co.jp/dp/B017VOKS4U>
+
+### モーター
+
+RSPRO(238-9721)
+
+- モノタロウのリンク
+  - <https://www.monotaro.com/p/4122/4969/>
+
+### モータードライバ
+
+TB67H450FNG
+
+- データシート
+  - <https://akizukidenshi.com/download/ds/Toshiba/TB67H450FNG_datasheet_ja_20190401.pdf>
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gI-14967/>
+
+### Raspberry Pi 3 Model A+
+
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gM-14878/>
