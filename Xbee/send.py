@@ -6,12 +6,12 @@ import serial
 from serial import SerialException
 import time
 
-from ..gps import gps
-from ..nineAxisSensor.nine_axis import BMX055Sensor as NineAxis
-from ..temperature import temperature
-from ..pressure import barometric_press
-from ..battery import battery
-from ..distance import distance
+from gps import gps
+from nineAxisSensor.nine_axis import BMX055Sensor as NineAxis
+from temperature import temperature
+from pressure import barometric_press
+from battery import battery
+from distance import distance
 
 import Running  # 走行プログラムのソースファイル
 
