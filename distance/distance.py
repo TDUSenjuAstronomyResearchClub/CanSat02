@@ -44,8 +44,12 @@ def distance_result():
     while GPIO.input(27)==GPIO.LOW: 
         soff = time.time()  # LOWレベル終了時刻
 
+    start = time.time()
     while GPIO.input(27) == GPIO.HIGH:
         son = time.time()  # HIGHレベル終了時刻
+
+        if son-start >10:
+            return None
 
     # HIGHレベル期間の計算
     clc = son - soff
