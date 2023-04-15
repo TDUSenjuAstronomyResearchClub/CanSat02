@@ -20,7 +20,7 @@ GPIO.setup(17, GPIO.OUT)
 GPIO.setup(27, GPIO.IN)
 
 
-def distance_result():
+def distance_result() -> float:
     """超音波距離センサ(HC-SR04)を使って機体前面にある物体と機体との距離を取得する
 
     Returns:
