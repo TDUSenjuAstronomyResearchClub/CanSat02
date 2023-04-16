@@ -7,12 +7,12 @@ import Running  # 走行プログラムのソースファイル
 import serial
 from serial import SerialException
 
-from nineaxissensor import NineAxisSensor
-from barometer import Barometer
-from batteryfuelgauge import BatteryFuelGauge
-import distance as distance_sensor
-import gps
-import temperature
+from cansatapi import NineAxisSensor
+from cansatapi import Barometer
+from cansatapi import BatteryFuelGauge
+from cansatapi import distance as distance_sensor
+from cansatapi import gps
+from cansatapi import temperature
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
