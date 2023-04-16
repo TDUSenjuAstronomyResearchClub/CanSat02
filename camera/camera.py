@@ -29,7 +29,11 @@ import cv2
 import serial
 from serial import SerialException
 
+# ポート設定
 PORT = '/dev/ttyUSB0'
+
+# 通信レート設定
+BAUD_RATE = 9600
 
 
 def photograph():
@@ -78,4 +82,10 @@ def photograph():
 class CameraError(Exception):
     """カメラ使用時のエラー
     """
-    pass
+    try:
+        ser = serial.Serial(PORT, BAUD_RATE)
+        exception = str(Exception)
+        ser.write(exception.encode('utf-8') + b'\n')
+        ser.close()      
+    except SerialException:
+        pass    #Runing.pyのログ用ファイルにエラーが起きたことを記入する
