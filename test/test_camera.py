@@ -1,4 +1,4 @@
-from src.CanSatAPI import camera
+from CanSatAPI import camera
 
 if __name__ == "__main__":
     print("take picture")

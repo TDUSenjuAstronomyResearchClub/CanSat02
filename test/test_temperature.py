@@ -1,4 +1,4 @@
-from src.CanSatAPI import temperature
+from CanSatAPI import temperature
 import time
 
 

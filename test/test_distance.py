@@ -1,4 +1,4 @@
-from src.CanSatAPI import distance
+from CanSatAPI import distance
 import time
 
 if __name__ == "__main__":
