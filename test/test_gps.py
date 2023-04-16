@@ -1,6 +1,6 @@
 import math
 import unittest
-from CanSatAPI.gps import *
+from cansatapi.gps import *
 
 if __name__ == "__main__":
     # GPSデータの取得
