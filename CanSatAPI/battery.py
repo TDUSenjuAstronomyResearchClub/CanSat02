@@ -12,22 +12,27 @@ import smbus2
 DEVICE_ADDRESS = 0x36  # I2Cデバイスのアドレス
 COMMAND = 0xB4  # 電池残量を測定するコマンド
 
+
 # バスを初期化
-bus = smbus2.SMBus(1)
+class Battery:
+    """電池残量計(SKU 8806)を扱うクラス
 
-
-# 電池残量を取得する関数
-def get_battery_level() -> int:
-    """電池残量計(SKU 8806)を使って電池残量を取得するプログラム
-
-    Returns:
-        int: 電池残量を返却する（0-100の範囲で表される整数）
-
-    Raises:
-        OSError: I2C通信が正常に行えなかった際に発生
+    データシート: https://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf
     """
-    # 電池残量を測定するコマンドを送信
-    bus.write_byte_data(DEVICE_ADDRESS, 0x00, COMMAND)
-    # 電池残量を取得
-    level = bus.read_byte_data(DEVICE_ADDRESS, 0x00)
-    return level
+
+    def __init__(self):
+        self.bus = smbus2.SMBus(1)
+
+    def get_level(self) -> int:
+        """電池残量(%)を取得するメソッド
+
+        Returns:
+            int: 電池残量(%)を返却する（0-100の範囲で表される整数）
+
+        Raises:
+            OSError: I2C通信が正常に行えなかった際に発生
+        """
+        # 電池残量を測定するコマンドを送信
+        self.bus.write_byte_data(DEVICE_ADDRESS, 0x00, COMMAND)
+        # 電池残量を取得
+        return self.bus.read_byte_data(DEVICE_ADDRESS, 0x00)
