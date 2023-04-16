@@ -7,12 +7,12 @@ import Running  # 走行プログラムのソースファイル
 import serial
 from serial import SerialException
 
-import barometric_press
+from nineaxissensor import NineAxisSensor
+from barometer import Barometer
+from batteryfuelgauge import BatteryFuelGauge
 import distance as distance_sensor
 import gps
 import temperature
-import battery as battery_gauge
-from .nine_axis import BMX055Sensor as NineAxis
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -20,7 +20,9 @@ PORT = '/dev/ttyUSB0'
 # 通信レート設定
 BAUD_RATE = 9600
 
-nine_axis = NineAxis()
+nine_axis = NineAxisSensor()
+barometer = Barometer()
+battery_fuel_gauge = BatteryFuelGauge()
 
 while True:
     # ここで初期化することで、エラーが出たときにNoneで値を送れる
@@ -57,12 +59,12 @@ while True:
         print("Error: 温湿度気圧センサと正常に通信できません", file=sys.stderr)
 
     try:
-        lps25hb = barometric_press.get_pressure_altitude_temperature()  # 気圧センサ
+        lps25hb = barometer.get_pressure_altitude_temperature()  # 気圧センサ
     except OSError:
         print("Error: 気圧センサと正常に通信できません", file=sys.stderr)
 
     try:
-        battery_level = battery_gauge.get_battery_level()
+        battery_level = battery_fuel_gauge.get_level()
     except OSError:
         print("Error: 電池残量計と正常に通信できません", file=sys.stderr)
 

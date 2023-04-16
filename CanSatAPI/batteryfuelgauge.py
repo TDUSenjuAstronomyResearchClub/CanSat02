@@ -13,8 +13,7 @@ DEVICE_ADDRESS = 0x36  # I2Cデバイスのアドレス
 COMMAND = 0xB4  # 電池残量を測定するコマンド
 
 
-# バスを初期化
-class Battery:
+class BatteryFuelGauge:
     """電池残量計(SKU 8806)を扱うクラス
 
     データシート: https://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf

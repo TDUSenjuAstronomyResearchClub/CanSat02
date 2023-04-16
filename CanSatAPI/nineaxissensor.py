@@ -9,7 +9,7 @@ import math
 import gps
 
 
-class BMX055Sensor:
+class NineAxisSensor:
     """BMX055センサを制御し、加速度・角速度・方位角を求めるクラス
 
     データシート: https://akizukidenshi.com/download/ds/bosch/BST-BMX055-DS000.pdf
