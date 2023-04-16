@@ -6,7 +6,7 @@
 
 import RPi.GPIO as GPIO
 import time
-from src.CanSatAPI.temperature import temperature
+import temperature
 
 # 測定環境温度
 try:

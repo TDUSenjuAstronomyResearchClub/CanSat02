@@ -6,12 +6,9 @@ import serial
 from serial import SerialException
 import time
 
-from src.CanSatAPI.gps import gps
-from src.CanSatAPI.nine_axis.nine_axis import BMX055Sensor as NineAxis
-from src.CanSatAPI.temperature import temperature
-from src.CanSatAPI.pressure import barometric_press
+from src.CanSatAPI.nine_axis import BMX055Sensor as NineAxis
+from src.CanSatAPI import temperature, distance as distance_sensor, barometric_press, gps
 from src.CanSatAPI.battery import battery as battery_gauge
-from src.CanSatAPI.distance import distance as distance_sensor
 
 import Running  # 走行プログラムのソースファイル
 

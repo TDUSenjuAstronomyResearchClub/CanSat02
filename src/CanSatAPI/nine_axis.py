@@ -6,7 +6,7 @@
 
 import BMX055
 import math
-from src.CanSatAPI.gps import gps
+import gps
 
 
 class BMX055Sensor:
