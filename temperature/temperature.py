@@ -78,6 +78,9 @@ def temperature_result() -> list:
 
     Returns:
         list: [温度(℃), 湿度(%), 気圧(hPa)]
+
+    Raises:
+    OSError: I2C通信が正常に行えなかった際に発生
     """
 
     data = []

@@ -28,6 +28,9 @@ def distance_result() -> float:
 
     Returns:
         float: 距離(cm)
+
+    Raises:
+        TypeError: タイプエラーが発生したときに動作
     """
 
     # トリガ信号出力

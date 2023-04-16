@@ -26,6 +26,9 @@ class BMX055Sensor:
         """加速度を取得する
         Returns:
             list[float]: 加速度（x, y, z）（単位:m/s^2）
+
+        Raises:
+        OSError: I2C通信が正常に行えなかった際に発生
         """
         raw_accel = self.bmx055.get_accel_data()
         return [x / 1000 for x in raw_accel]
@@ -35,6 +38,9 @@ class BMX055Sensor:
 
         Returns:
             list[float]: 角速度（x, y, z）（単位:rad/s）
+        
+        Raises:
+        OSError: I2C通信が正常に行えなかった際に発生
         """
         raw_gyro = self.bmx055.get_gyro_data()
         return [math.radians(x) for x in raw_gyro]
@@ -44,6 +50,9 @@ class BMX055Sensor:
 
         Returns:
             float: 方位角（単位：度）
+
+        Raises:
+        OSError: I2C通信が正常に行えなかった際に発生
         """
         raw_mag = self.bmx055.get_mag_data()
         gps_date = gps.get_gps_data()

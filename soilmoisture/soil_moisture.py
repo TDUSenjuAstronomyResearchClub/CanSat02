@@ -25,10 +25,6 @@ def get_soil_moisture() -> float:
     Raises:
         OSError: I2C通信が正常に行えなかった際に発生
     """
-    try:
-        moisture = ss.moisture_read()
-        sleep(0.1)  # センサが安定するまで 100 ms 待つ
-        return 100 - ((moisture / 65535.0) * 100)
-    
-    except OSError:
-        raise OSError
+    moisture = ss.moisture_read()
+    sleep(0.1)  # センサが安定するまで 100 ms 待つ
+    return 100 - ((moisture / 65535.0) * 100)

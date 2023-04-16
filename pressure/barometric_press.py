@@ -31,6 +31,9 @@ def get_pressure_altitude_temperature() -> list[float]:
 
     Returns:
         list[float]: 現在の気圧(hPa), 現在の高度(m), 現在の気温(deg C), をこの順番で要素とするリスト
+
+    Raises:
+    OSError: I2C通信が正常に行えなかった際に発生
     """
     # 生の気圧と気温データをセンサーから読み取る
     press_out_xl = bus.read_byte_data(LPS25HB_ADDRESS, LPS25HB_PRESS_OUT_XL)
