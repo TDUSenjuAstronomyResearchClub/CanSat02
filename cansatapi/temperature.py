@@ -25,6 +25,25 @@ class Temperature:
     def __init__(self):
         self.BUS = smbus2.SMBus(BUS_NUMBER)
 
+        osrs_t = 1  # Temperature oversampling x 1
+        osrs_p = 1  # Pressure oversampling x 1
+        osrs_h = 1  # Humidity oversampling x 1
+        mode = 3  # Normal mode
+        t_sb = 5  # Tstandby 1000ms
+        fil = 0  # Filter off
+        spi3w_en = 0  # 3-wire SPI Disable
+
+        ctrl_meas_reg = (osrs_t << 5) | (osrs_p << 2) | mode
+        config_reg = (t_sb << 5) | (fil << 2) | spi3w_en
+        ctrl_hum_reg = osrs_h
+
+        self.write_reg(0xF2, ctrl_hum_reg)
+        self.write_reg(0xF4, ctrl_meas_reg)
+        self.write_reg(0xF5, config_reg)
+
+        self.get_calib_param()
+        self.temperature_result()
+
     def write_reg(self, reg_address: int, data: int):
         """レジスタへの書き込みを行います
 
@@ -144,27 +163,3 @@ def compensate_h(adc_h):
         var_h = 0.0
     # print "hum : %6.2f ％" % (var_h)
     return "%.2f" % var_h
-
-
-def setup():
-    osrs_t = 1  # Temperature oversampling x 1
-    osrs_p = 1  # Pressure oversampling x 1
-    osrs_h = 1  # Humidity oversampling x 1
-    mode = 3  # Normal mode
-    t_sb = 5  # Tstandby 1000ms
-    fil = 0  # Filter off
-    spi3w_en = 0  # 3-wire SPI Disable
-
-    ctrl_meas_reg = (osrs_t << 5) | (osrs_p << 2) | mode
-    config_reg = (t_sb << 5) | (fil << 2) | spi3w_en
-    ctrl_hum_reg = osrs_h
-
-    write_reg(0xF2, ctrl_hum_reg)
-    write_reg(0xF4, ctrl_meas_reg)
-    write_reg(0xF5, config_reg)
-
-
-if __name__ == "__main__":
-    setup()
-    get_calib_param()
-    temperature_result()
