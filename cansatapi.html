@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cansatapi package &mdash; CanSatAPI 2.0.0 ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="CanSatAPIのドキュメントへようこそ!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CanSatAPI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">コンテンツ:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cansatapi package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.barometer">cansatapi.barometer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.barometer.Barometer"><code class="docutils literal notranslate"><span class="pre">Barometer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.barometer.Barometer.get_pressure"><code class="docutils literal notranslate"><span class="pre">Barometer.get_pressure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.barometer.Barometer.get_pressure_altitude_temperature"><code class="docutils literal notranslate"><span class="pre">Barometer.get_pressure_altitude_temperature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.barometer.Barometer.get_temperature"><code class="docutils literal notranslate"><span class="pre">Barometer.get_temperature()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.barometer.byte_pressure_to_hpa"><code class="docutils literal notranslate"><span class="pre">byte_pressure_to_hpa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.barometer.byte_temp_to_deg_c"><code class="docutils literal notranslate"><span class="pre">byte_temp_to_deg_c()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.batteryfuelgauge">cansatapi.batteryfuelgauge module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.batteryfuelgauge.BatteryFuelGauge"><code class="docutils literal notranslate"><span class="pre">BatteryFuelGauge</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.batteryfuelgauge.BatteryFuelGauge.get_level"><code class="docutils literal notranslate"><span class="pre">BatteryFuelGauge.get_level()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.camera">cansatapi.camera module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.camera.CameraError"><code class="docutils literal notranslate"><span class="pre">CameraError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.camera.photograph"><code class="docutils literal notranslate"><span class="pre">photograph()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.distance">cansatapi.distance module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.distance.distance_result"><code class="docutils literal notranslate"><span class="pre">distance_result()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.gps">cansatapi.gps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.calc_distance_between_two_points"><code class="docutils literal notranslate"><span class="pre">calc_distance_between_two_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.calculate_distance_bearing"><code class="docutils literal notranslate"><span class="pre">calculate_distance_bearing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.get_gps_data"><code class="docutils literal notranslate"><span class="pre">get_gps_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.lat_conv_deg_min_to_decimal"><code class="docutils literal notranslate"><span class="pre">lat_conv_deg_min_to_decimal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.lon_conv_deg_min_to_decimal"><code class="docutils literal notranslate"><span class="pre">lon_conv_deg_min_to_decimal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.nineaxissensor">cansatapi.nineaxissensor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_acceleration"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_gyroscope"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_gyroscope()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_magnetic_heading"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_magnetic_heading()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.soil_moisture">cansatapi.soil_moisture module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.soil_moisture.SoilMoistureSensor"><code class="docutils literal notranslate"><span class="pre">SoilMoistureSensor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.soil_moisture.SoilMoistureSensor.get_soil_moisture"><code class="docutils literal notranslate"><span class="pre">SoilMoistureSensor.get_soil_moisture()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.temperature">cansatapi.temperature module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.temperature.Temperature"><code class="docutils literal notranslate"><span class="pre">Temperature</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.temperature.Temperature.get_calib_param"><code class="docutils literal notranslate"><span class="pre">Temperature.get_calib_param()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.temperature.Temperature.temperature_result"><code class="docutils literal notranslate"><span class="pre">Temperature.temperature_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.temperature.Temperature.write_reg"><code class="docutils literal notranslate"><span class="pre">Temperature.write_reg()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.temperature.compensate_h"><code class="docutils literal notranslate"><span class="pre">compensate_h()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.temperature.compensate_p"><code class="docutils literal notranslate"><span class="pre">compensate_p()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.temperature.compensate_t"><code class="docutils literal notranslate"><span class="pre">compensate_t()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.temperature.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CanSatAPI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">cansatapi package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cansatapi.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cansatapi-package">
+<h1>cansatapi package<a class="headerlink" href="#cansatapi-package" title="この見出しへのパーマリンク"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="この見出しへのパーマリンク"></a></h2>
+</section>
+<section id="module-cansatapi.barometer">
+<span id="cansatapi-barometer-module"></span><h2>cansatapi.barometer module<a class="headerlink" href="#module-cansatapi.barometer" title="この見出しへのパーマリンク"></a></h2>
+<p>気圧・高度・気温取得モジュール</p>
+<p>気圧センサ(AE-LPS25HB)を使って気圧、高度、気温を取得できるモジュール</p>
+<dl class="simple">
+<dt>使用しているライブラリ:</dt><dd><p>smbus2</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.barometer.Barometer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.barometer.</span></span><span class="sig-name descname"><span class="pre">Barometer</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/barometer.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.barometer.Barometer" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>気圧センサ (AE-LPS25HB)を扱うクラス</p>
+<p>データシート: <a class="reference external" href="https://www.st.com/resource/en/datasheet/lps25hb.pdf">https://www.st.com/resource/en/datasheet/lps25hb.pdf</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.barometer.Barometer.get_pressure">
+<span class="sig-name descname"><span class="pre">get_pressure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/barometer.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.barometer.Barometer.get_pressure" title="この定義へのパーマリンク"></a></dt>
+<dd><p>気圧を読み取るメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>気圧(hPa)</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.barometer.Barometer.get_pressure_altitude_temperature">
+<span class="sig-name descname"><span class="pre">get_pressure_altitude_temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/barometer.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.barometer.Barometer.get_pressure_altitude_temperature" title="この定義へのパーマリンク"></a></dt>
+<dd><p>気圧・高度・気温を読み取る</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>現在の気圧(hPa), 現在の高度(m), 現在の気温(℃), をこの順番で要素とするリスト</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.barometer.Barometer.get_temperature">
+<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/barometer.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.barometer.Barometer.get_temperature" title="この定義へのパーマリンク"></a></dt>
+<dd><p>内蔵の温度計から温度を読み取るメソッド</p>
+<p>LPS25HBの内蔵温度計の公差は±2℃です。
+また、有効範囲は0℃から+65℃です。
+内蔵なので温度が気温よりすこし高めに出る傾向があります。</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>温度(℃)</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.barometer.byte_pressure_to_hpa">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.barometer.</span></span><span class="sig-name descname"><span class="pre">byte_pressure_to_hpa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_byte</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/barometer.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.barometer.byte_pressure_to_hpa" title="この定義へのパーマリンク"></a></dt>
+<dd><p>生の気圧データをhPaに変換する関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>raw_byte</strong> (<em>list</em>) -- LPS25HBから読み取った生の気圧データ</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>気圧(hpa)</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.barometer.byte_temp_to_deg_c">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.barometer.</span></span><span class="sig-name descname"><span class="pre">byte_temp_to_deg_c</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_byte</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/barometer.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.barometer.byte_temp_to_deg_c" title="この定義へのパーマリンク"></a></dt>
+<dd><p>生の温度データを℃に変換する関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>raw_byte</strong> (<em>list</em>) -- LPS25HBから読み取った生のデータ</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>温度(℃)</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-cansatapi.batteryfuelgauge">
+<span id="cansatapi-batteryfuelgauge-module"></span><h2>cansatapi.batteryfuelgauge module<a class="headerlink" href="#module-cansatapi.batteryfuelgauge" title="この見出しへのパーマリンク"></a></h2>
+<p>電池残量計を使ってバッテリーガスゲージから電池残量を取得するモジュール.</p>
+<p>使用するにはI2Cが有効になっている必要があります</p>
+<dl class="simple">
+<dt>使用しているライブラリ:</dt><dd><p>smbus2</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.batteryfuelgauge.BatteryFuelGauge">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.batteryfuelgauge.</span></span><span class="sig-name descname"><span class="pre">BatteryFuelGauge</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/batteryfuelgauge.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.batteryfuelgauge.BatteryFuelGauge" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>電池残量計(SKU 8806)を扱うクラス</p>
+<p>データシート: <a class="reference external" href="https://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf">https://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.batteryfuelgauge.BatteryFuelGauge.get_level">
+<span class="sig-name descname"><span class="pre">get_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/batteryfuelgauge.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.batteryfuelgauge.BatteryFuelGauge.get_level" title="この定義へのパーマリンク"></a></dt>
+<dd><p>電池残量(%)を取得するメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>電池残量(%)を返却する（0-100の範囲で表される整数）</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">例外<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>OSError</strong> -- I2C通信が正常に行えなかった際に発生</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cansatapi.camera">
+<span id="cansatapi-camera-module"></span><h2>cansatapi.camera module<a class="headerlink" href="#module-cansatapi.camera" title="この見出しへのパーマリンク"></a></h2>
+<p>カメラモジュール</p>
+<p>カメラモジュールを使って画像を撮影、地上局に送信するモジュール</p>
+<dl class="simple">
+<dt>使用しているライブラリ:</dt><dd><p>open-cv</p>
+</dd>
+</dl>
+<p>依存関係のあるライブラリ:
+sudo apt-get install libhdf5-dev libhdf5-serial-dev libhdf5-100
+sudo apt-get install libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
+sudo apt-get install libatlas-base-dev
+sudo apt-get install libjasper-dev</p>
+<p>他にnumpyのバージョンが古いとうまくいかないのでアプデを行うこと
+sudo pip3 install -U numpy</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="cansatapi.camera.CameraError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.camera.</span></span><span class="sig-name descname"><span class="pre">CameraError</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/camera.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.camera.CameraError" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>カメラ使用時のエラー</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.camera.photograph">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.camera.</span></span><span class="sig-name descname"><span class="pre">photograph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/camera.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.camera.photograph" title="この定義へのパーマリンク"></a></dt>
+<dd><p>カメラモジュールを使って画像を撮影、地上局に送信ができるプログラム</p>
+<dl class="field-list simple">
+<dt class="field-odd">例外<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#cansatapi.camera.CameraError" title="cansatapi.camera.CameraError"><strong>CameraError</strong></a> -- カメラに不具合があった際に発生</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-cansatapi.distance">
+<span id="cansatapi-distance-module"></span><h2>cansatapi.distance module<a class="headerlink" href="#module-cansatapi.distance" title="この見出しへのパーマリンク"></a></h2>
+<p>超音波距離センサを使い、機体前面にある物体と機体との距離を取得するプログラム</p>
+<dl class="simple">
+<dt>使用しているライブラリ:</dt><dd><p>rpi.gpio</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.distance.distance_result">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.distance.</span></span><span class="sig-name descname"><span class="pre">distance_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/distance.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.distance.distance_result" title="この定義へのパーマリンク"></a></dt>
+<dd><p>超音波距離センサ(HC-SR04)を使って機体前面にある物体と機体との距離を取得する</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>距離(cm)</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">例外<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> -- タイプエラーが発生したときに動作</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-cansatapi.gps">
+<span id="cansatapi-gps-module"></span><h2>cansatapi.gps module<a class="headerlink" href="#module-cansatapi.gps" title="この見出しへのパーマリンク"></a></h2>
+<p>緯度経度・海抜・磁気偏角・直線距離・方位角取得モジュール</p>
+<p>GPSから緯度経度・海抜・磁気偏角を取得し、そこから2地点間の距離を計算します</p>
+<dl class="simple">
+<dt>使用しているライブラリ:</dt><dd><p>pyserial</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.gps.calc_distance_between_two_points">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">calc_distance_between_two_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">declination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.calc_distance_between_two_points" title="この定義へのパーマリンク"></a></dt>
+<dd><p>指定された2地点間の距離と始点からの方位角を返す関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>from_lat</strong> (<em>float</em>) -- 始点の緯度</p></li>
+<li><p><strong>from_lon</strong> (<em>float</em>) -- 始点の経度</p></li>
+<li><p><strong>dest_lat</strong> (<em>float</em>) -- 終点の緯度</p></li>
+<li><p><strong>dest_lon</strong> (<em>float</em>) -- 終点の緯度</p></li>
+<li><p><strong>declination</strong> (<em>float</em>) -- 補正に使う磁気偏差</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>2地点間の直線距離, 始点から見た方位角</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.gps.calculate_distance_bearing">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">calculate_distance_bearing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.calculate_distance_bearing" title="この定義へのパーマリンク"></a></dt>
+<dd><p>機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lat</strong> (<em>float</em>) -- 目的地の緯度</p></li>
+<li><p><strong>lon</strong> (<em>float</em>) -- 目的地の経度</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>2地点間の直線距離, 現在地点から見た方位角</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.gps.get_gps_data">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">get_gps_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.get_gps_data" title="この定義へのパーマリンク"></a></dt>
+<dd><p>GPSデータを取得する関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>緯度(ddmm.mm), 経度(dddmm.mm), 海抜(m), 磁気偏角(度)</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[float]</p>
+</dd>
+<dt class="field-odd">例外<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>SerialError</strong> -- シリアル通信時に発生する可能性がある</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.gps.lat_conv_deg_min_to_decimal">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">lat_conv_deg_min_to_decimal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.lat_conv_deg_min_to_decimal" title="この定義へのパーマリンク"></a></dt>
+<dd><p>緯度を度分形式から10進数形式に変換する関数</p>
+<p>GPGGA緯度フォーマット: ddmm.mm
+<a class="reference external" href="https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data">https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lat</strong> (<em>str</em>) -- 度分形式の緯度</p></li>
+<li><p><strong>direction</strong> (<em>str</em>) -- 方向（N, Sのどちらか）</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>10進数形式の経度</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.gps.lon_conv_deg_min_to_decimal">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">lon_conv_deg_min_to_decimal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.lon_conv_deg_min_to_decimal" title="この定義へのパーマリンク"></a></dt>
+<dd><p>経度を度分形式から10進数形式に変換する関数</p>
+<p>GPGGA経度フォーマット: dddmm.mm
+<a class="reference external" href="https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data">https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lon</strong> (<em>str</em>) -- 度分形式の経度</p></li>
+<li><p><strong>direction</strong> (<em>str</em>) -- 方向（E, Wのいずれか）</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>10進数形式の経度</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-cansatapi.nineaxissensor">
+<span id="cansatapi-nineaxissensor-module"></span><h2>cansatapi.nineaxissensor module<a class="headerlink" href="#module-cansatapi.nineaxissensor" title="この見出しへのパーマリンク"></a></h2>
+<p>加速度・角速度・方位角を求めるモジュール</p>
+<dl class="simple">
+<dt>使用しているライブラリ:</dt><dd><p>bmx055</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.nineaxissensor.</span></span><span class="sig-name descname"><span class="pre">NineAxisSensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">declination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>BMX055センサを制御し、加速度・角速度・方位角を求めるクラス</p>
+<p>データシート: <a class="reference external" href="https://akizukidenshi.com/download/ds/bosch/BST-BMX055-DS000.pdf">https://akizukidenshi.com/download/ds/bosch/BST-BMX055-DS000.pdf</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor.get_acceleration">
+<span class="sig-name descname"><span class="pre">get_acceleration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor.get_acceleration" title="この定義へのパーマリンク"></a></dt>
+<dd><p>加速度を取得する
+:returns: 加速度（x, y, z）（単位:m/s^2）
+:rtype: list[float]</p>
+<p>Raises:
+OSError: I2C通信が正常に行えなかった際に発生</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor.get_gyroscope">
+<span class="sig-name descname"><span class="pre">get_gyroscope</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor.get_gyroscope" title="この定義へのパーマリンク"></a></dt>
+<dd><p>角速度を取得する</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>角速度（x, y, z）（単位:rad/s）</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[float]</p>
+</dd>
+</dl>
+<p>Raises:
+OSError: I2C通信が正常に行えなかった際に発生</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor.get_magnetic_heading">
+<span class="sig-name descname"><span class="pre">get_magnetic_heading</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor.get_magnetic_heading" title="この定義へのパーマリンク"></a></dt>
+<dd><p>地磁気センサから方位角を計算する</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>方位角（単位：度）</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+<p>Raises:
+OSError: I2C通信が正常に行えなかった際に発生</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cansatapi.soil_moisture">
+<span id="cansatapi-soil-moisture-module"></span><h2>cansatapi.soil_moisture module<a class="headerlink" href="#module-cansatapi.soil_moisture" title="この見出しへのパーマリンク"></a></h2>
+<p>土壌水分量測定モジュール</p>
+<p>土壌水分センサを使って土壌水分率を取得するモジュール</p>
+<dl class="simple">
+<dt>使用しているライブラリ:</dt><dd><p>Adafruit-Blinka
+adafruit-circuitpython-seesaw</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.soil_moisture.SoilMoistureSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.soil_moisture.</span></span><span class="sig-name descname"><span class="pre">SoilMoistureSensor</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/soil_moisture.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.soil_moisture.SoilMoistureSensor" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>土壌水分センサ(Adafruit STEMMA Soil Sensor - I2C CapacitiveMoisture Sensor)を扱うクラス</p>
+<p>製品ページ: <a class="reference external" href="https://learn.adafruit.com/adafruit-stemma-soil-sensor-i2c-capacitive-moisture-sensor">https://learn.adafruit.com/adafruit-stemma-soil-sensor-i2c-capacitive-moisture-sensor</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.soil_moisture.SoilMoistureSensor.get_soil_moisture">
+<span class="sig-name descname"><span class="pre">get_soil_moisture</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/soil_moisture.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.soil_moisture.SoilMoistureSensor.get_soil_moisture" title="この定義へのパーマリンク"></a></dt>
+<dd><p>土壌水分率(%)を取得します</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>0.0から100.0の間の土壌水分率(%)</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">例外<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>OSError</strong> -- I2C通信が正常に行えなかった際に発生</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cansatapi.temperature">
+<span id="cansatapi-temperature-module"></span><h2>cansatapi.temperature module<a class="headerlink" href="#module-cansatapi.temperature" title="この見出しへのパーマリンク"></a></h2>
+<p>温湿度気圧センサモジュール</p>
+<p>温湿度気圧センサを使って温度、湿度、気圧の値を取得できるモジュール</p>
+<p>使用するにはI2Cが有効になっている必要があります</p>
+<dl class="simple">
+<dt>使用しているライブラリ:</dt><dd><p>smbus2</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.temperature.Temperature">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.temperature.</span></span><span class="sig-name descname"><span class="pre">Temperature</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/temperature.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.temperature.Temperature" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.temperature.Temperature.get_calib_param">
+<span class="sig-name descname"><span class="pre">get_calib_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/temperature.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.temperature.Temperature.get_calib_param" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.temperature.Temperature.temperature_result">
+<span class="sig-name descname"><span class="pre">temperature_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/temperature.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.temperature.Temperature.temperature_result" title="この定義へのパーマリンク"></a></dt>
+<dd><p>温湿度気圧センサ(AE-BME280)を使って温度、湿度、気圧の値を返却します</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[温度(℃), 湿度(%), 気圧(hPa)]</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.temperature.Temperature.write_reg">
+<span class="sig-name descname"><span class="pre">write_reg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reg_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/temperature.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.temperature.Temperature.write_reg" title="この定義へのパーマリンク"></a></dt>
+<dd><p>レジスタへの書き込みを行います</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reg_address</strong> (<em>int</em>) -- 書き込み先レジスタのアドレス</p></li>
+<li><p><strong>data</strong> (<em>int</em>) -- 書き込むバイトデータ</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.temperature.compensate_h">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.temperature.</span></span><span class="sig-name descname"><span class="pre">compensate_h</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adc_h</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/temperature.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.temperature.compensate_h" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.temperature.compensate_p">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.temperature.</span></span><span class="sig-name descname"><span class="pre">compensate_p</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adc_p</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/temperature.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.temperature.compensate_p" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.temperature.compensate_t">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.temperature.</span></span><span class="sig-name descname"><span class="pre">compensate_t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adc_t</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/temperature.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.temperature.compensate_t" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.temperature.setup">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.temperature.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/add_sphinx_doc/cansatapi/temperature.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.temperature.setup" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-cansatapi">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cansatapi" title="この見出しへのパーマリンク"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="CanSatAPIのドキュメントへようこそ!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, TDU Asnotonomy Research Club.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
