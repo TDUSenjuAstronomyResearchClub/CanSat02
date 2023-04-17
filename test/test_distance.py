@@ -1,5 +1,4 @@
-# Distance.pyの動作確認をするための実行プログラム
-import distance
+from cansatapi import distance
 import time
 
 if __name__ == "__main__":

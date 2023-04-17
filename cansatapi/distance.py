@@ -6,11 +6,11 @@
 
 import RPi.GPIO as GPIO
 import time
-from temperature import temperature
+from . import Temperature
 
 # 測定環境温度
 try:
-    temp = temperature.temperature_result()  # 温湿度気圧センサから現在の温度値を呼び出す
+    temp = Temperature().temperature_result()  # 温湿度気圧センサから現在の温度値を呼び出す
     TEMP = temp[0]
 except OSError:  # OSErrorが発生した場合は、25度として計算をしていく
     TEMP = 25

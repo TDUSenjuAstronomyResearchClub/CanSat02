@@ -1,0 +1,21 @@
+[project]
+name = "CanSatAPI"
+version = "2.0.0"
+authors = [
+  { name="東京電機大学千住キャンパス天文学研究部チーム芭蕉", email="author@example.com" },
+]
+description = "チーム芭蕉のCanSat機体のAPIです"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: POSIX :: Linux",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/pypa/sampleproject"
+"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

@@ -106,28 +106,40 @@ def calculate_distance_bearing(lat: float, lon: float) -> list[float]:
         lon (float): 目的地の経度
 
     Returns:
-        list[float]: 2地点間の直線距離, 2地点間の方位角
+        list[float]: 2地点間の直線距離, 現在地点から見た方位角
     """
-    r = 6371  # 地球の半径（km）
     # gpsの緯度経度・磁器偏角値を取得
-    gps_date = get_gps_data()
-    now_lat = gps_date[0]
-    now_lon = gps_date[1]
-    declination = gps_date[3]
+    gps_data = get_gps_data()
+    return calc_distance_between_two_points(gps_data[0], gps_data[1], lat, lon, gps_data[3])
 
-    # 緯度経度をラジアンに変換
-    now_lat, now_lon, lat, lon = map(radians, [now_lat, now_lon, lat, lon])
 
+def calc_distance_between_two_points(from_lat: float, from_lon: float,
+                                     dest_lat: float, dest_lon, declination: float) -> list[float]:
+    """指定された2地点間の距離と始点からの方位角を返す関数
+
+    Args:
+        from_lat (float): 始点の緯度
+        from_lon (float): 始点の経度
+        dest_lat (float): 終点の緯度
+        dest_lon (float): 終点の緯度
+        declination (float): 補正に使う磁気偏差
+
+    Returns:
+        list[float]: 2地点間の直線距離, 始点から見た方位角
+    """
+    from_lat, from_lon, dest_lat, dest_lon = map(radians, [from_lat, from_lon, dest_lat, dest_lon])
+
+    r = 6371  # 地球の半径（km
     # 2地点間の距離
-    dlat = lat - now_lat
-    dlon = lon - now_lon
-    a = sin(dlat / 2) ** 2 + cos(now_lat) * cos(lat) * sin(dlon / 2) ** 2
+    dlat = dest_lat - from_lat
+    dlon = dest_lon - from_lon
+    a = sin(dlat / 2) ** 2 + cos(from_lat) * cos(dest_lat) * sin(dlon / 2) ** 2
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
     distance = r * c * 1000
 
     # 方位角
-    y = sin(lon - now_lon) * cos(lat)
-    x = cos(now_lat) * sin(lat) - sin(now_lat) * cos(lat) * cos(lon - now_lon)
+    y = sin(dest_lon - from_lon) * cos(dest_lat)
+    x = cos(from_lat) * sin(dest_lat) - sin(from_lat) * cos(dest_lat) * cos(dest_lon - from_lon)
     bearing = (atan2(y, x) * 180 / pi + 360) % 360
 
     # 磁気偏角の補正
