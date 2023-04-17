@@ -44,5 +44,4 @@ def linkcode_resolve(domain, info):
     if not info['module']:
         return None
     filename = info['module'].replace('.', '/')
-    # todo: mainにマージ後URLを修正
-    return "https://github.com/Else156/CanSat02/tree/add_sphinx_doc/%s.py" % filename
+    return "https://github.com/Else156/CanSat02/%s.py" % filename
