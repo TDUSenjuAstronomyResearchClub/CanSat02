@@ -6,7 +6,7 @@
 
 import BMX055
 import math
-import gps
+from . import gps
 
 
 class NineAxisSensor:

@@ -13,8 +13,6 @@ import smbus2
 BUS_NUMBER = 1
 I2C_ADDRESS = 0x76
 
-BUS = smbus2.SMBus(BUS_NUMBER)
-
 digT = []
 digP = []
 digH = []
@@ -22,75 +20,78 @@ digH = []
 t_fine = 0.0
 
 
-def write_reg(reg_address: int, data: int):
-    """レジスタへの書き込みを行います
+class Temperature:
 
-    Args:
-        reg_address (int): 書き込み先レジスタのアドレス
-        data (int): 書き込むバイトデータ
-    """
-    BUS.write_byte_data(I2C_ADDRESS, reg_address, data)
+    def __init__(self):
+        self.BUS = smbus2.SMBus(BUS_NUMBER)
 
+    def write_reg(self, reg_address: int, data: int):
+        """レジスタへの書き込みを行います
 
-def get_calib_param():
-    calib = []
+        Args:
+            reg_address (int): 書き込み先レジスタのアドレス
+            data (int): 書き込むバイトデータ
+        """
+        self.BUS.write_byte_data(I2C_ADDRESS, reg_address, data)
 
-    for i in range(0x88, 0x88 + 24):
-        calib.append(BUS.read_byte_data(I2C_ADDRESS, i))
-    calib.append(BUS.read_byte_data(I2C_ADDRESS, 0xA1))
-    for i in range(0xE1, 0xE1 + 7):
-        calib.append(BUS.read_byte_data(I2C_ADDRESS, i))
+    def get_calib_param(self):
+        calib = []
 
-    digT.append((calib[1] << 8) | calib[0])
-    digT.append((calib[3] << 8) | calib[2])
-    digT.append((calib[5] << 8) | calib[4])
-    digP.append((calib[7] << 8) | calib[6])
-    digP.append((calib[9] << 8) | calib[8])
-    digP.append((calib[11] << 8) | calib[10])
-    digP.append((calib[13] << 8) | calib[12])
-    digP.append((calib[15] << 8) | calib[14])
-    digP.append((calib[17] << 8) | calib[16])
-    digP.append((calib[19] << 8) | calib[18])
-    digP.append((calib[21] << 8) | calib[20])
-    digP.append((calib[23] << 8) | calib[22])
-    digH.append(calib[24])
-    digH.append((calib[26] << 8) | calib[25])
-    digH.append(calib[27])
-    digH.append((calib[28] << 4) | (0x0F & calib[29]))
-    digH.append((calib[30] << 4) | ((calib[29] >> 4) & 0x0F))
-    digH.append(calib[31])
+        for i in range(0x88, 0x88 + 24):
+            calib.append(self.BUS.read_byte_data(I2C_ADDRESS, i))
+        calib.append(self.BUS.read_byte_data(I2C_ADDRESS, 0xA1))
+        for i in range(0xE1, 0xE1 + 7):
+            calib.append(self.BUS.read_byte_data(I2C_ADDRESS, i))
 
-    for i in range(1, 2):
-        if digT[i] & 0x8000:
-            digT[i] = (-digT[i] ^ 0xFFFF) + 1
+        digT.append((calib[1] << 8) | calib[0])
+        digT.append((calib[3] << 8) | calib[2])
+        digT.append((calib[5] << 8) | calib[4])
+        digP.append((calib[7] << 8) | calib[6])
+        digP.append((calib[9] << 8) | calib[8])
+        digP.append((calib[11] << 8) | calib[10])
+        digP.append((calib[13] << 8) | calib[12])
+        digP.append((calib[15] << 8) | calib[14])
+        digP.append((calib[17] << 8) | calib[16])
+        digP.append((calib[19] << 8) | calib[18])
+        digP.append((calib[21] << 8) | calib[20])
+        digP.append((calib[23] << 8) | calib[22])
+        digH.append(calib[24])
+        digH.append((calib[26] << 8) | calib[25])
+        digH.append(calib[27])
+        digH.append((calib[28] << 4) | (0x0F & calib[29]))
+        digH.append((calib[30] << 4) | ((calib[29] >> 4) & 0x0F))
+        digH.append(calib[31])
 
-    for i in range(1, 8):
-        if digP[i] & 0x8000:
-            digP[i] = (-digP[i] ^ 0xFFFF) + 1
+        for i in range(1, 2):
+            if digT[i] & 0x8000:
+                digT[i] = (-digT[i] ^ 0xFFFF) + 1
 
-    for i in range(0, 6):
-        if digH[i] & 0x8000:
-            digH[i] = (-digH[i] ^ 0xFFFF) + 1
+        for i in range(1, 8):
+            if digP[i] & 0x8000:
+                digP[i] = (-digP[i] ^ 0xFFFF) + 1
 
+        for i in range(0, 6):
+            if digH[i] & 0x8000:
+                digH[i] = (-digH[i] ^ 0xFFFF) + 1
 
-def temperature_result() -> list:
-    """温湿度気圧センサ(AE-BME280)を使って温度、湿度、気圧の値を返却します
+    def temperature_result(self) -> list:
+        """温湿度気圧センサ(AE-BME280)を使って温度、湿度、気圧の値を返却します
 
-    Returns:
-        list: [温度(℃), 湿度(%), 気圧(hPa)]
-    """
+        Returns:
+            list: [温度(℃), 湿度(%), 気圧(hPa)]
+        """
 
-    data = []
-    for i in range(0xF7, 0xF7 + 8):
-        data.append(BUS.read_byte_data(I2C_ADDRESS, i))
-    pres_raw = (data[0] << 12) | (data[1] << 4) | (data[2] >> 4)
-    temp_raw = (data[3] << 12) | (data[4] << 4) | (data[5] >> 4)
-    hum_raw = (data[6] << 8) | data[7]
+        data = []
+        for i in range(0xF7, 0xF7 + 8):
+            data.append(self.BUS.read_byte_data(I2C_ADDRESS, i))
+        pres_raw = (data[0] << 12) | (data[1] << 4) | (data[2] >> 4)
+        temp_raw = (data[3] << 12) | (data[4] << 4) | (data[5] >> 4)
+        hum_raw = (data[6] << 8) | data[7]
 
-    temp = compensate_t(temp_raw)
-    pres = compensate_p(pres_raw)
-    hum = compensate_h(hum_raw)
-    return [temp, pres, hum]
+        temp = compensate_t(temp_raw)
+        pres = compensate_p(pres_raw)
+        hum = compensate_h(hum_raw)
+        return [temp, pres, hum]
 
 
 def compensate_p(adc_p):
@@ -133,7 +134,7 @@ def compensate_h(adc_h):
     var_h = t_fine - 76800.0
     if var_h != 0:
         var_h = (adc_h - (digH[3] * 64.0 + digH[4] / 16384.0 * var_h)) * (
-                    digH[1] / 65536.0 * (1.0 + digH[5] / 67108864.0 * var_h * (1.0 + digH[2] / 67108864.0 * var_h)))
+                digH[1] / 65536.0 * (1.0 + digH[5] / 67108864.0 * var_h * (1.0 + digH[2] / 67108864.0 * var_h)))
     else:
         return 0
     var_h = var_h * (1.0 - digH[0] * var_h / 524288.0)
@@ -163,6 +164,7 @@ def setup():
     write_reg(0xF5, config_reg)
 
 
-setup()
-get_calib_param()
-temperature_result()
+if __name__ == "__main__":
+    setup()
+    get_calib_param()
+    temperature_result()
