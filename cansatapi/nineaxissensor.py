@@ -4,6 +4,7 @@
     bmx055
 """
 
+# todo: BMX055は存在しない
 import BMX055
 import math
 from . import gps
