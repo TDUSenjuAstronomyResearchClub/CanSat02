@@ -48,18 +48,29 @@ class NineAxisSensor:
 
         # 加速度計の設定
         # PMU_RANGEレジスタに加速度の測定範囲を設定
-        # 0x05 = ±4g
-        self.bus.write_byte_data(ACCL_ADDR, 0x0F, 0x05)
+        # 0b0101 = ±4g
+        self.bus.write_byte_data(ACCL_ADDR, 0x0F, 0b0101)
 
         # PMU_BWレジスタにデータフィルターの帯域幅を設定
-        # 0x08 = 7.81Hz
-        self.bus.write_byte_data(ACCL_ADDR, 0x10, 0x08)
+        # 恐らくノイズ除去用
+        # 0b1000 = 7.81Hz
+        self.bus.write_byte_data(ACCL_ADDR, 0x10, 0b1000)
 
-        # PMU_LPWレジスタに電源周りの設定を書き込む
+        # PMU_LPWレジスタに主電源モードと低電力時スリープ時間を設定
         # 0x00 = NORMAL mode, sleep duration = 0.5ms
         self.bus.write_byte_data(ACCL_ADDR, 0x11, 0x00)
 
-        time.sleep(0.5)
+        # ジャイロの設定
+        # RANGEレジスタに角速度の測定範囲設定
+        # 0b0010 = ±500°/s
+        self.bus.write_byte_data(GYRO_ADDR, 0x0F, 0b0010)
+
+        # BWレジスタにアウトプットのレートとフィルター帯域幅を設定
+        # 0b0111 = レート 100Hz, フィルタ帯域幅 32Hz
+        self.bus.write_byte_data(GYRO_ADDR, 0x10, 0b0111)
+
+        # LPM1レジスタに主電源モードと低電力時スリープ時間を設定
+        self.bus.write_byte_data(GYRO_ADDR, 0x11, 0x00)
 
         self.declination = declination
 
