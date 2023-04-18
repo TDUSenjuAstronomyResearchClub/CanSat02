@@ -1,14 +1,36 @@
 """加速度・角速度・方位角を求めるモジュール
 
 使用しているライブラリ:
-    bmx055
+    smbus2
 """
 
-# todo: BMX055は存在しない
-import BMX055
 import math
+import time
+
+import smbus2
+
 from . import gps
 
+# アドレスはデータシートのp.145に記載
+# 回路によってアドレスが変わるのでコメントアウトしておきます
+# 詳しくは説明書 https://akizukidenshi.com/download/ds/akizuki/AE-BMX055_20220804.pdf を参照
+# データシートp.145のTable 64にも記載あり
+
+# 加速度計のアドレス
+ACCL_ADDR = 0x18
+# ACCL_ADDR = 0x19
+
+# ジャイロのアドレス
+GYRO_ADDR = 0x68
+# GYRO_ADDR = 0x69
+
+# 磁気コンパスのアドレス
+MAG_ADDR = 0x10
+
+
+# MAG_ADDR = 0x11
+# MAG_ADDR = 0x12
+# MAG_ADDR = 0x13
 
 class NineAxisSensor:
     """BMX055センサを制御し、加速度・角速度・方位角を求めるクラス
@@ -22,7 +44,23 @@ class NineAxisSensor:
         Args:
             declination (float): 地磁気偏角（単位：度）。省略時はゼロを指定する。
         """
-        self.bmx055 = BMX055.BMX055()
+        self.bus = smbus2.SMBus(1)
+
+        # 加速度計の設定
+        # PMU_RANGEレジスタに加速度の測定範囲を設定
+        # 0x05 = ±4g
+        self.bus.write_byte_data(ACCL_ADDR, 0x0F, 0x05)
+
+        # PMU_BWレジスタにデータフィルターの帯域幅を設定
+        # 0x08 = 7.81Hz
+        self.bus.write_byte_data(ACCL_ADDR, 0x10, 0x08)
+
+        # PMU_LPWレジスタに電源周りの設定を書き込む
+        # 0x00 = NORMAL mode, sleep duration = 0.5ms
+        self.bus.write_byte_data(ACCL_ADDR, 0x11, 0x00)
+
+        time.sleep(0.5)
+
         self.declination = declination
 
     def get_acceleration(self) -> list[float]:
@@ -34,7 +72,7 @@ class NineAxisSensor:
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
         """
-        raw_accel = self.bmx055.get_accel_data()
+        raw_accel = self.bus.read_i2c_block_data()
         return [x / 1000 for x in raw_accel]
 
     def get_gyroscope(self) -> list[float]:
