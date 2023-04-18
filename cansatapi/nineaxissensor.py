@@ -5,7 +5,6 @@
 """
 
 import math
-import time
 
 import smbus2
 
