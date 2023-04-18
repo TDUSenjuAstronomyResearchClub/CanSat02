@@ -27,6 +27,7 @@ class NineAxisSensor:
 
     def get_acceleration(self) -> list[float]:
         """加速度を取得する
+
         Returns:
             list[float]: 加速度（x, y, z）（単位:m/s^2）
 
