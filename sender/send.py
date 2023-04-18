@@ -117,7 +117,7 @@ while True:
     }
 
     dt_start = datetime.datetime.now()
-    start_time = 'sending' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
+    start_time = 'sending_data' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
 
     f = open(start_time, 'a')
 
