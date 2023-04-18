@@ -459,10 +459,14 @@ sudo pip3 install -U numpy</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor.get_acceleration">
 <span class="sig-name descname"><span class="pre">get_acceleration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor.get_acceleration" title="この定義へのパーマリンク"></a></dt>
-<dd><p>加速度を取得する
-:returns: 加速度（x, y, z）（単位:m/s^2）
-:rtype: list[float]</p>
+<dd><p>加速度を取得する</p>
 <dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>加速度（x, y, z）（単位:m/s^2）</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[float]</p>
+</dd>
 <dt class="field-odd">例外<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>OSError</strong> -- I2C通信が正常に行えなかった際に発生</p>
 </dd>
