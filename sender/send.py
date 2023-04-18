@@ -12,7 +12,7 @@ from cansatapi import Barometer
 from cansatapi import BatteryFuelGauge
 from cansatapi import distance as distance_sensor
 from cansatapi import gps
-from cansatapi import temperature
+from cansatapi import Temperature
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -23,6 +23,7 @@ BAUD_RATE = 9600
 nine_axis = NineAxisSensor()
 barometer = Barometer()
 battery_fuel_gauge = BatteryFuelGauge()
+temperature = Temperature()
 
 while True:
     # ここで初期化することで、エラーが出たときにNoneで値を送れる
