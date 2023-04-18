@@ -72,6 +72,27 @@ class NineAxisSensor:
         # LPM1レジスタに主電源モードと低電力時スリープ時間を設定
         self.bus.write_byte_data(GYRO_ADDR, 0x11, 0x00)
 
+        # 磁気コンパスの設定
+        # MAGレジスタに電源管理・ソフトリセット・SPIインターフェースモードを設定
+        # 0x83 = 0b1000_0011 = Soft Reset
+        self.bus.write_byte_data(MAG_ADDR, 0x4B, 0x83)
+
+        # MAGレジスタに実行モードとアウトプットのレートを設定
+        # 0x00 = Normal mode, レート 10Hz
+        self.bus.write_byte_data(MAG_ADDR, 0x4C, 0x00)
+
+        # MAGレジスタに割り込みとどの軸を有効にするかの設定をする
+        # 0x84 = DRDY pinをhighにする(読みだし準備が完了したことを通知する)
+        self.bus.write_byte_data(MAG_ADDR, 0x4E, 0x84)
+
+        # MAGレジスタにx, y軸に対する反復の回数を設定する
+        # 0x04 = 9回
+        self.bus.write_byte_data(0x10, 0x51, 0x04)
+
+        # MAGレジスタにz軸に対する反復の回数を設定する
+        # 0x0F = 15回
+        self.bus.write_byte_data(0x10, 0x52, 0x0F)
+
         self.declination = declination
 
     def get_acceleration(self) -> list[float]:
