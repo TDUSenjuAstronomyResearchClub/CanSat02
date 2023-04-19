@@ -162,10 +162,10 @@ class NineAxisSensor:
         return [accl_x, accl_y, accl_z]
 
     def get_angular_rate(self) -> list[float]:
-        """角速度を取得する
+        """角速度[°/s]を取得する
 
         Returns:
-            list[float]: 角速度（x, y, z）（単位:rad/s）
+            list[float]: 角速度（x, y, z）（単位:[°/s]）
         
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
