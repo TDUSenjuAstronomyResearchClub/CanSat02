@@ -31,6 +31,18 @@ MAG_ADDR = 0x10
 # MAG_ADDR = 0x12
 # MAG_ADDR = 0x13
 
+def conv_g_to_m_per_s2(data: list[float]) -> list[float]:
+    """単位を[g]から[m/s^2]に変換する関数
+
+    Args:
+        data (list[float]): 加速度(x, y, z)[g]
+
+    Returns:
+        list[float]: 加速度(x, y, z)[m/s^2]
+    """
+    return list(map(lambda x: x / 9.80665, data))
+
+
 class NineAxisSensor:
     """BMX055センサを制御し、加速度・角速度・方位角を求めるクラス
 
@@ -103,8 +115,34 @@ class NineAxisSensor:
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
         """
-        raw_accel = self.bus.read_i2c_block_data()
-        return [x / 1000 for x in raw_accel]
+        return conv_g_to_m_per_s2(self.get_acceleration())
+
+    def __get_acceleration(self) -> list[float]:
+        """加速度[g]を取得する
+
+        Returns:
+            list[float]: 加速度(x, y, z)[g]
+
+        Raises:
+            OSError: I2C通信が正常に行えなかった際に発生
+        """
+        # レジスタから値を読む
+        raw_accl_x = self.bus.read_i2c_block_data(ACCL_ADDR, 0x02, 6)
+        raw_accl_y = self.bus.read_i2c_block_data(ACCL_ADDR, 0x04, 2)
+        raw_accl_z = self.bus.read_i2c_block_data(ACCL_ADDR, 0x06, 2)
+
+        # データを12bitsに変換
+        accl_x = ((raw_accl_x[1] * 256) + (raw_accl_x[0] & 0xF0)) / 16
+        if accl_x > 2047:
+            accl_x -= 4096
+        accl_y = ((raw_accl_y[1] * 256) + (raw_accl_y[0] & 0xF0)) / 16
+        if accl_y > 2047:
+            accl_y -= 4096
+        accl_z = ((raw_accl_z[1] * 256) + (raw_accl_z[0] & 0xF0)) / 16
+        if accl_z > 2047:
+            accl_z -= 4096
+
+        return [accl_x, accl_y, accl_z]
 
     def get_gyroscope(self) -> list[float]:
         """角速度を取得する
