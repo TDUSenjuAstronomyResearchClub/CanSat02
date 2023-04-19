@@ -49,7 +49,7 @@ while True:
 
     try:
         acc = nine_axis.get_acceleration()
-        ang_velo = nine_axis.get_gyroscope()
+        ang_velo = nine_axis.get_angular_rate()
         azimuth = nine_axis.get_magnetic_heading()
     except OSError:
         print("Error: 9軸センサと正常に通信できません", file=sys.stderr)
