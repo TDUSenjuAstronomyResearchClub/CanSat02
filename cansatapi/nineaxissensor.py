@@ -40,7 +40,7 @@ def conv_g_to_m_per_s2(data: list[float]) -> list[float]:
     Returns:
         list[float]: 加速度(x, y, z)[m/s^2]
     """
-    return list(map(lambda x: x / 9.80665, data))
+    return list(map(lambda x: x * 9.80665, data))
 
 
 class NineAxisSensor:
