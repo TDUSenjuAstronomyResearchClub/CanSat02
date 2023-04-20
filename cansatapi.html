@@ -82,7 +82,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.nineaxissensor">cansatapi.nineaxissensor module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_acceleration"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_acceleration()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_gyroscope"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_gyroscope()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_angular_rate"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_angular_rate()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_magnetic_heading"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_magnetic_heading()</span></code></a></li>
 </ul>
 </li>
@@ -447,7 +447,7 @@ sudo pip3 install -U numpy</p>
 <span id="cansatapi-nineaxissensor-module"></span><h2>cansatapi.nineaxissensor module<a class="headerlink" href="#module-cansatapi.nineaxissensor" title="この見出しへのパーマリンク"></a></h2>
 <p>加速度・角速度・方位角を求めるモジュール</p>
 <dl class="simple">
-<dt>使用しているライブラリ:</dt><dd><p>bmx055</p>
+<dt>使用しているライブラリ:</dt><dd><p>smbus2</p>
 </dd>
 </dl>
 <dl class="py class">
@@ -459,7 +459,7 @@ sudo pip3 install -U numpy</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor.get_acceleration">
 <span class="sig-name descname"><span class="pre">get_acceleration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor.get_acceleration" title="この定義へのパーマリンク"></a></dt>
-<dd><p>加速度を取得する</p>
+<dd><p>加速度[m/s^2]を取得する</p>
 <dl class="field-list simple">
 <dt class="field-odd">戻り値<span class="colon">:</span></dt>
 <dd class="field-odd"><p>加速度（x, y, z）（単位:m/s^2）</p>
@@ -474,12 +474,12 @@ sudo pip3 install -U numpy</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor.get_gyroscope">
-<span class="sig-name descname"><span class="pre">get_gyroscope</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor.get_gyroscope" title="この定義へのパーマリンク"></a></dt>
-<dd><p>角速度を取得する</p>
+<dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor.get_angular_rate">
+<span class="sig-name descname"><span class="pre">get_angular_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor.get_angular_rate" title="この定義へのパーマリンク"></a></dt>
+<dd><p>角速度[°/s]を取得する</p>
 <dl class="field-list simple">
 <dt class="field-odd">戻り値<span class="colon">:</span></dt>
-<dd class="field-odd"><p>角速度（x, y, z）（単位:rad/s）</p>
+<dd class="field-odd"><p>角速度（x, y, z）（単位:[°/s]）</p>
 </dd>
 <dt class="field-even">戻り値の型<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[float]</p>
