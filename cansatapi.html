@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cansatapi package &mdash; CanSatAPI 2.0.0 ドキュメント</title>
+  <title>cansatapi パッケージ &mdash; CanSatAPI 2.0.0 ドキュメント</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,6 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="cansatapi.util パッケージ" href="util.html" />
     <link rel="prev" title="CanSatAPIのドキュメントへようこそ!" href="index.html" /> 
 </head>
 
@@ -42,9 +43,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">コンテンツ:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">cansatapi package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.barometer">cansatapi.barometer module</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cansatapi パッケージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-barometer">cansatapi.barometer モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.barometer.Barometer"><code class="docutils literal notranslate"><span class="pre">Barometer</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.barometer.Barometer.get_pressure"><code class="docutils literal notranslate"><span class="pre">Barometer.get_pressure()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.barometer.Barometer.get_pressure_altitude_temperature"><code class="docutils literal notranslate"><span class="pre">Barometer.get_pressure_altitude_temperature()</span></code></a></li>
@@ -55,23 +55,23 @@
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.barometer.byte_temp_to_deg_c"><code class="docutils literal notranslate"><span class="pre">byte_temp_to_deg_c()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.batteryfuelgauge">cansatapi.batteryfuelgauge module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-batteryfuelgauge">cansatapi.batteryfuelgauge モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.batteryfuelgauge.BatteryFuelGauge"><code class="docutils literal notranslate"><span class="pre">BatteryFuelGauge</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.batteryfuelgauge.BatteryFuelGauge.get_level"><code class="docutils literal notranslate"><span class="pre">BatteryFuelGauge.get_level()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.camera">cansatapi.camera module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-camera">cansatapi.camera モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.camera.CameraError"><code class="docutils literal notranslate"><span class="pre">CameraError</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.camera.photograph"><code class="docutils literal notranslate"><span class="pre">photograph()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.distance">cansatapi.distance module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-distance">cansatapi.distance モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.distance.distance_result"><code class="docutils literal notranslate"><span class="pre">distance_result()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.gps">cansatapi.gps module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-gps">cansatapi.gps モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.calc_distance_between_two_points"><code class="docutils literal notranslate"><span class="pre">calc_distance_between_two_points()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.calculate_distance_bearing"><code class="docutils literal notranslate"><span class="pre">calculate_distance_bearing()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.get_gps_data"><code class="docutils literal notranslate"><span class="pre">get_gps_data()</span></code></a></li>
@@ -79,7 +79,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.lon_conv_deg_min_to_decimal"><code class="docutils literal notranslate"><span class="pre">lon_conv_deg_min_to_decimal()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.nineaxissensor">cansatapi.nineaxissensor module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-nineaxissensor">cansatapi.nineaxissensor モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_acceleration"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_acceleration()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_angular_rate"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_angular_rate()</span></code></a></li>
@@ -88,14 +88,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.soil_moisture">cansatapi.soil_moisture module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-soil-moisture">cansatapi.soil_moisture モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.soil_moisture.SoilMoistureSensor"><code class="docutils literal notranslate"><span class="pre">SoilMoistureSensor</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.soil_moisture.SoilMoistureSensor.get_soil_moisture"><code class="docutils literal notranslate"><span class="pre">SoilMoistureSensor.get_soil_moisture()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.temperature">cansatapi.temperature module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-temperature">cansatapi.temperature モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.temperature.Temperature"><code class="docutils literal notranslate"><span class="pre">Temperature</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.temperature.Temperature.get_calib_param"><code class="docutils literal notranslate"><span class="pre">Temperature.get_calib_param()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.temperature.Temperature.temperature_result"><code class="docutils literal notranslate"><span class="pre">Temperature.temperature_result()</span></code></a></li>
@@ -107,9 +107,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.temperature.compensate_t"><code class="docutils literal notranslate"><span class="pre">compensate_t()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">cansatapi.util パッケージ</a></li>
 </ul>
 
         </div>
@@ -126,7 +126,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">cansatapi package</li>
+      <li class="breadcrumb-item active">cansatapi パッケージ</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cansatapi.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -136,14 +136,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cansatapi-package">
-<h1>cansatapi package<a class="headerlink" href="#cansatapi-package" title="この見出しへのパーマリンク"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="この見出しへのパーマリンク"></a></h2>
-</section>
-<section id="module-cansatapi.barometer">
-<span id="cansatapi-barometer-module"></span><h2>cansatapi.barometer module<a class="headerlink" href="#module-cansatapi.barometer" title="この見出しへのパーマリンク"></a></h2>
-<p>気圧・高度・気温取得モジュール</p>
+  <section id="cansatapi">
+<h1>cansatapi パッケージ<a class="headerlink" href="#cansatapi" title="この見出しへのパーマリンク"></a></h1>
+<section id="cansatapi-barometer">
+<h2>cansatapi.barometer モジュール<a class="headerlink" href="#cansatapi-barometer" title="この見出しへのパーマリンク"></a></h2>
+<span class="target" id="module-cansatapi.barometer"></span><p>気圧・高度・気温取得モジュール</p>
 <p>気圧センサ(AE-LPS25HB)を使って気圧、高度、気温を取得できるモジュール</p>
 <dl class="simple">
 <dt>使用しているライブラリ:</dt><dd><p>smbus2</p>
@@ -237,9 +234,9 @@
 </dd></dl>
 
 </section>
-<section id="module-cansatapi.batteryfuelgauge">
-<span id="cansatapi-batteryfuelgauge-module"></span><h2>cansatapi.batteryfuelgauge module<a class="headerlink" href="#module-cansatapi.batteryfuelgauge" title="この見出しへのパーマリンク"></a></h2>
-<p>電池残量計を使ってバッテリーガスゲージから電池残量を取得するモジュール.</p>
+<section id="cansatapi-batteryfuelgauge">
+<h2>cansatapi.batteryfuelgauge モジュール<a class="headerlink" href="#cansatapi-batteryfuelgauge" title="この見出しへのパーマリンク"></a></h2>
+<span class="target" id="module-cansatapi.batteryfuelgauge"></span><p>電池残量計を使ってバッテリーガスゲージから電池残量を取得するモジュール.</p>
 <p>使用するにはI2Cが有効になっている必要があります</p>
 <dl class="simple">
 <dt>使用しているライブラリ:</dt><dd><p>smbus2</p>
@@ -271,9 +268,9 @@
 </dd></dl>
 
 </section>
-<section id="module-cansatapi.camera">
-<span id="cansatapi-camera-module"></span><h2>cansatapi.camera module<a class="headerlink" href="#module-cansatapi.camera" title="この見出しへのパーマリンク"></a></h2>
-<p>カメラモジュール</p>
+<section id="cansatapi-camera">
+<h2>cansatapi.camera モジュール<a class="headerlink" href="#cansatapi-camera" title="この見出しへのパーマリンク"></a></h2>
+<span class="target" id="module-cansatapi.camera"></span><p>カメラモジュール</p>
 <p>カメラモジュールを使って画像を撮影、地上局に送信するモジュール</p>
 <dl class="simple">
 <dt>使用しているライブラリ:</dt><dd><p>open-cv</p>
@@ -305,9 +302,9 @@ sudo pip3 install -U numpy</p>
 </dd></dl>
 
 </section>
-<section id="module-cansatapi.distance">
-<span id="cansatapi-distance-module"></span><h2>cansatapi.distance module<a class="headerlink" href="#module-cansatapi.distance" title="この見出しへのパーマリンク"></a></h2>
-<p>超音波距離センサを使い、機体前面にある物体と機体との距離を取得するプログラム</p>
+<section id="cansatapi-distance">
+<h2>cansatapi.distance モジュール<a class="headerlink" href="#cansatapi-distance" title="この見出しへのパーマリンク"></a></h2>
+<span class="target" id="module-cansatapi.distance"></span><p>超音波距離センサを使い、機体前面にある物体と機体との距離を取得するプログラム</p>
 <dl class="simple">
 <dt>使用しているライブラリ:</dt><dd><p>rpi.gpio</p>
 </dd>
@@ -330,9 +327,9 @@ sudo pip3 install -U numpy</p>
 </dd></dl>
 
 </section>
-<section id="module-cansatapi.gps">
-<span id="cansatapi-gps-module"></span><h2>cansatapi.gps module<a class="headerlink" href="#module-cansatapi.gps" title="この見出しへのパーマリンク"></a></h2>
-<p>緯度経度・海抜・磁気偏角・直線距離・方位角取得モジュール</p>
+<section id="cansatapi-gps">
+<h2>cansatapi.gps モジュール<a class="headerlink" href="#cansatapi-gps" title="この見出しへのパーマリンク"></a></h2>
+<span class="target" id="module-cansatapi.gps"></span><p>緯度経度・海抜・磁気偏角・直線距離・方位角取得モジュール</p>
 <p>GPSから緯度経度・海抜・磁気偏角を取得し、そこから2地点間の距離を計算します</p>
 <dl class="simple">
 <dt>使用しているライブラリ:</dt><dd><p>pyserial</p>
@@ -443,9 +440,9 @@ sudo pip3 install -U numpy</p>
 </dd></dl>
 
 </section>
-<section id="module-cansatapi.nineaxissensor">
-<span id="cansatapi-nineaxissensor-module"></span><h2>cansatapi.nineaxissensor module<a class="headerlink" href="#module-cansatapi.nineaxissensor" title="この見出しへのパーマリンク"></a></h2>
-<p>加速度・角速度・方位角を求めるモジュール</p>
+<section id="cansatapi-nineaxissensor">
+<h2>cansatapi.nineaxissensor モジュール<a class="headerlink" href="#cansatapi-nineaxissensor" title="この見出しへのパーマリンク"></a></h2>
+<span class="target" id="module-cansatapi.nineaxissensor"></span><p>加速度・角速度・方位角を求めるモジュール</p>
 <dl class="simple">
 <dt>使用しているライブラリ:</dt><dd><p>smbus2</p>
 </dd>
@@ -510,9 +507,9 @@ sudo pip3 install -U numpy</p>
 </dd></dl>
 
 </section>
-<section id="module-cansatapi.soil_moisture">
-<span id="cansatapi-soil-moisture-module"></span><h2>cansatapi.soil_moisture module<a class="headerlink" href="#module-cansatapi.soil_moisture" title="この見出しへのパーマリンク"></a></h2>
-<p>土壌水分量測定モジュール</p>
+<section id="cansatapi-soil-moisture">
+<h2>cansatapi.soil_moisture モジュール<a class="headerlink" href="#cansatapi-soil-moisture" title="この見出しへのパーマリンク"></a></h2>
+<span class="target" id="module-cansatapi.soil_moisture"></span><p>土壌水分量測定モジュール</p>
 <p>土壌水分センサを使って土壌水分率を取得するモジュール</p>
 <dl class="simple">
 <dt>使用しているライブラリ:</dt><dd><p>Adafruit-Blinka
@@ -545,9 +542,9 @@ adafruit-circuitpython-seesaw</p>
 </dd></dl>
 
 </section>
-<section id="module-cansatapi.temperature">
-<span id="cansatapi-temperature-module"></span><h2>cansatapi.temperature module<a class="headerlink" href="#module-cansatapi.temperature" title="この見出しへのパーマリンク"></a></h2>
-<p>温湿度気圧センサモジュール</p>
+<section id="cansatapi-temperature">
+<h2>cansatapi.temperature モジュール<a class="headerlink" href="#cansatapi-temperature" title="この見出しへのパーマリンク"></a></h2>
+<span class="target" id="module-cansatapi.temperature"></span><p>温湿度気圧センサモジュール</p>
 <p>温湿度気圧センサを使って温度、湿度、気圧の値を取得できるモジュール</p>
 <p>使用するにはI2Cが有効になっている必要があります</p>
 <dl class="simple">
@@ -609,9 +606,6 @@ adafruit-circuitpython-seesaw</p>
 <dd></dd></dl>
 
 </section>
-<section id="module-cansatapi">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cansatapi" title="この見出しへのパーマリンク"></a></h2>
-</section>
 </section>
 
 
@@ -619,12 +613,13 @@ adafruit-circuitpython-seesaw</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="CanSatAPIのドキュメントへようこそ!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="util.html" class="btn btn-neutral float-right" title="cansatapi.util パッケージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, TDU Asnotonomy Research Club.</p>
+    <p>&#169; Copyright 2023, 東京電機大学 千住キャンパス 天文学研究部.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

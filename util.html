@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cansatapi.util パッケージ &mdash; CanSatAPI 2.0.0 ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="cansatapi パッケージ" href="cansatapi.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CanSatAPI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">コンテンツ:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cansatapi.html">cansatapi パッケージ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cansatapi.util パッケージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.util.convert">cansatapi.util.convert モジュール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.acceleration_to_pitch"><code class="docutils literal notranslate"><span class="pre">acceleration_to_pitch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.acceleration_to_roll"><code class="docutils literal notranslate"><span class="pre">acceleration_to_roll()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.g_to_m_per_s2"><code class="docutils literal notranslate"><span class="pre">g_to_m_per_s2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.raw_ang_rate_to_ang_per_s"><code class="docutils literal notranslate"><span class="pre">raw_ang_rate_to_ang_per_s()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.ut_to_azimuth"><code class="docutils literal notranslate"><span class="pre">ut_to_azimuth()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CanSatAPI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">cansatapi.util パッケージ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/util.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cansatapi-util">
+<h1>cansatapi.util パッケージ<a class="headerlink" href="#cansatapi-util" title="この見出しへのパーマリンク"></a></h1>
+<section id="module-cansatapi.util.convert">
+<span id="cansatapi-util-convert"></span><h2>cansatapi.util.convert モジュール<a class="headerlink" href="#module-cansatapi.util.convert" title="この見出しへのパーマリンク"></a></h2>
+<p>単位などの変換をする関数をまとめたモジュールです</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.util.convert.acceleration_to_pitch">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">acceleration_to_pitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.acceleration_to_pitch" title="この定義へのパーマリンク"></a></dt>
+<dd><p>X, Y, Z軸の加速度[m/s^2]からピッチ角[rad]を計算する</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) -- X軸の加速度[m/s^2]</p></li>
+<li><p><strong>y</strong> (<em>float</em>) -- Y軸の加速度[m/s^2]</p></li>
+<li><p><strong>z</strong> (<em>float</em>) -- Z軸の加速度[m/s^2]</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>ピッチ角[rad]</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.util.convert.acceleration_to_roll">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">acceleration_to_roll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.acceleration_to_roll" title="この定義へのパーマリンク"></a></dt>
+<dd><p>X, Y軸の加速度[m/s^2]からロール角[rad]を計算する</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) -- X軸の加速度[m/s^2]</p></li>
+<li><p><strong>y</strong> (<em>float</em>) -- Y軸の加速度[m/s^2]</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>ロール角[rad]</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.util.convert.g_to_m_per_s2">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">g_to_m_per_s2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.g_to_m_per_s2" title="この定義へのパーマリンク"></a></dt>
+<dd><p>単位を[g]から[m/s^2]に変換する関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) -- 加速度(x, y, z)[g]</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>加速度(x, y, z)[m/s^2]</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.util.convert.raw_ang_rate_to_ang_per_s">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">raw_ang_rate_to_ang_per_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range_abs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.raw_ang_rate_to_ang_per_s" title="この定義へのパーマリンク"></a></dt>
+<dd><p>生の角速度データを[°/s]に変換する関数</p>
+<p>生データの範囲はrange_absで変更できます</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) -- 生の角速度データ</p></li>
+<li><p><strong>range_abs</strong> (<em>int</em>) -- 角速度センサの測定範囲[°]</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>角速度(x, y, z)[°/s]</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.util.convert.ut_to_azimuth">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">ut_to_azimuth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.ut_to_azimuth" title="この定義へのパーマリンク"></a></dt>
+<dd><p>3軸の地磁気[μT]から方位角[°]を計算する</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> -- X軸の地磁気[μT]</p></li>
+<li><p><strong>y</strong> -- Y軸の地磁気[μT]</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>方位角[°]</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cansatapi.html" class="btn btn-neutral float-left" title="cansatapi パッケージ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 東京電機大学 千住キャンパス 天文学研究部.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
