@@ -35,7 +35,7 @@ exclude_patterns = []
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
-autodoc_mock_imports = ["fcntl", "BMX055", "RPi", "cv2"]
+autodoc_mock_imports = ["fcntl", "RPi", "cv2"]
 
 
 def linkcode_resolve(domain, info):
