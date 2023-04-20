@@ -74,6 +74,35 @@ def conv_ut_to_azimuth(data: list[float]) -> float:
     # 計算方法は？
 
 
+def conv_acceleration_to_roll(x: float, y: float) -> float:
+    """X, Y軸の加速度[m/s^2]からロール角[rad]を計算する
+
+    Args:
+        x (float): X軸の加速度[m/s^2]
+        y (float): Y軸の加速度[m/s^2]
+
+    Returns:
+        float: ロール角[rad]
+    """
+    return math.atan(y / x)
+
+
+def conv_acceleration_to_pitch(x: float, y: float, z: float) -> float:
+    """X, Y, Z軸の加速度[m/s^2]からピッチ角[rad]を計算する
+
+    Args:
+        x (float): X軸の加速度[m/s^2]
+        y (float): Y軸の加速度[m/s^2]
+        z (float): Z軸の加速度[m/s^2]
+
+    Returns:
+        float: ピッチ角[rad]
+    """
+    roll = conv_acceleration_to_roll(x, y)
+    denominator = y * math.sin(roll) + z * math.cos(roll)
+    return math.atan(-x / denominator)
+
+
 class NineAxisSensor:
     """BMX055センサを制御し、加速度・角速度・方位角を求めるクラス
 
