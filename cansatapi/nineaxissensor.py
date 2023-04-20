@@ -25,11 +25,10 @@ GYRO_ADDR = 0x68
 
 # 磁気コンパスのアドレス
 MAG_ADDR = 0x10
-
-
 # MAG_ADDR = 0x11
 # MAG_ADDR = 0x12
 # MAG_ADDR = 0x13
+
 
 def conv_g_to_m_per_s2(data: list[float]) -> list[float]:
     """単位を[g]から[m/s^2]に変換する関数
