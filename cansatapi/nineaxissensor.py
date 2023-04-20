@@ -58,19 +58,19 @@ def conv_raw_ang_rate_to_ang_per_s(data: list[float], range_abs: int) -> list[fl
     return list(map(lambda x: (x + 32767) / 65534 * 2 * range_abs - range_abs, data))
 
 
-def conv_ut_to_azimuth(data: list[float]) -> float:
+def conv_ut_to_azimuth(x: float, y: float) -> float:
     """3軸の地磁気[μT]から方位角[°]を計算する
 
     Args:
-        data (list[float]): 地磁気(x, y, z)[μT]
+        x: X軸の地磁気[μT]
+        y: Y軸の地磁気[μT]
 
     Returns:
         float: 方位角[°]
     """
-    # todo:
-    # キャリブレーションする？
-    # 地磁気偏角は考慮する？
-    # 計算方法は？
+    # todo: センサーの傾きを考慮した式にする
+    # todo: キャリブレーションを追加する
+    return math.atan(x/y)
 
 
 def conv_acceleration_to_roll(x: float, y: float) -> float:
