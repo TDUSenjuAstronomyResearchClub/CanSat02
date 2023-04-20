@@ -181,8 +181,18 @@ class NineAxisSensor:
         """
         # レジスタから値を読む
         raw_ang_rate = self.bus.read_i2c_block_data(GYRO_ADDR, 0x02, 6)
-        # ±32767の範囲内に収まるように値を加工
-        return list(map(lambda x: x - 65536 if x > 32767 else x, raw_ang_rate))
+
+        # ビット範囲の変換
+        ang_rate_x = raw_ang_rate[1] * 256 + raw_ang_rate[0]
+        if ang_rate_x > 32767:
+            ang_rate_x -= 65536
+        ang_rate_y = raw_ang_rate[3] * 256 + raw_ang_rate[2]
+        if ang_rate_y > 32767:
+            ang_rate_y -= 65536
+        ang_rate_z = raw_ang_rate[5] * 256 + raw_ang_rate[4]
+        if ang_rate_z > 32767:
+            ang_rate_z -= 65536
+        return [ang_rate_x, ang_rate_y, ang_rate_z]
 
     def get_magnetic_heading(self) -> float:
         """地磁気センサから方位角を計算する
