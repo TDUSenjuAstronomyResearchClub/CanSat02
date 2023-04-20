@@ -48,8 +48,8 @@ def conv_raw_ang_rate_to_ang_per_s(data: list[float], range_abs: int) -> list[fl
     生データの範囲はrange_absで変更できます
 
     Args:
-        data: 生の角速度データ
-        range_abs: 角速度センサの測定範囲[°]
+        data (list[float]): 生の角速度データ
+        range_abs (int): 角速度センサの測定範囲[°]
 
     Returns:
         list[float]: 角速度(x, y, z)[°/s]
