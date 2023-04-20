@@ -11,10 +11,11 @@ CanSatAPIのドキュメントへようこそ!
    :caption: コンテンツ:
 
    cansatapi
+   util
 
 
 
-Indices and tables
+索引と検索
 ==================
 
 * :ref:`genindex`

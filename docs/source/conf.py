@@ -11,8 +11,8 @@ sys.path.insert(0, os.path.abspath('../../'))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'CanSatAPI'
-copyright = '2023, TDU Asnotonomy Research Club'
-author = 'TDU Asnotonomy Research Club'
+copyright = '2023, 東京電機大学 千住キャンパス 天文学研究部'
+author = '東京電機大学 千住キャンパス 天文学研究部'
 release = '2.0.0'
 
 language = "ja"

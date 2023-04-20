@@ -1,10 +1,7 @@
-cansatapi package
+cansatapi パッケージ
 =================
 
-Submodules
-----------
-
-cansatapi.barometer module
+cansatapi.barometer モジュール
 --------------------------
 
 .. automodule:: cansatapi.barometer
@@ -12,7 +9,7 @@ cansatapi.barometer module
    :undoc-members:
    :show-inheritance:
 
-cansatapi.batteryfuelgauge module
+cansatapi.batteryfuelgauge モジュール
 ---------------------------------
 
 .. automodule:: cansatapi.batteryfuelgauge
@@ -20,7 +17,7 @@ cansatapi.batteryfuelgauge module
    :undoc-members:
    :show-inheritance:
 
-cansatapi.camera module
+cansatapi.camera モジュール
 -----------------------
 
 .. automodule:: cansatapi.camera
@@ -28,7 +25,7 @@ cansatapi.camera module
    :undoc-members:
    :show-inheritance:
 
-cansatapi.distance module
+cansatapi.distance モジュール
 -------------------------
 
 .. automodule:: cansatapi.distance
@@ -36,7 +33,7 @@ cansatapi.distance module
    :undoc-members:
    :show-inheritance:
 
-cansatapi.gps module
+cansatapi.gps モジュール
 --------------------
 
 .. automodule:: cansatapi.gps
@@ -44,7 +41,7 @@ cansatapi.gps module
    :undoc-members:
    :show-inheritance:
 
-cansatapi.nineaxissensor module
+cansatapi.nineaxissensor モジュール
 -------------------------------
 
 .. automodule:: cansatapi.nineaxissensor
@@ -52,7 +49,7 @@ cansatapi.nineaxissensor module
    :undoc-members:
    :show-inheritance:
 
-cansatapi.soil\_moisture module
+cansatapi.soil\_moisture モジュール
 -------------------------------
 
 .. automodule:: cansatapi.soil_moisture
@@ -60,18 +57,10 @@ cansatapi.soil\_moisture module
    :undoc-members:
    :show-inheritance:
 
-cansatapi.temperature module
+cansatapi.temperature モジュール
 ----------------------------
 
 .. automodule:: cansatapi.temperature
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: cansatapi
    :members:
    :undoc-members:
    :show-inheritance:
