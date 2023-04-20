@@ -1,8 +1,8 @@
 cansatapi パッケージ
-=================
+======================
 
 cansatapi.barometer モジュール
---------------------------
+----------------------------------
 
 .. automodule:: cansatapi.barometer
    :members:
@@ -10,7 +10,7 @@ cansatapi.barometer モジュール
    :show-inheritance:
 
 cansatapi.batteryfuelgauge モジュール
----------------------------------
+-----------------------------------------
 
 .. automodule:: cansatapi.batteryfuelgauge
    :members:
@@ -18,7 +18,7 @@ cansatapi.batteryfuelgauge モジュール
    :show-inheritance:
 
 cansatapi.camera モジュール
------------------------
+------------------------------
 
 .. automodule:: cansatapi.camera
    :members:
@@ -26,7 +26,7 @@ cansatapi.camera モジュール
    :show-inheritance:
 
 cansatapi.distance モジュール
--------------------------
+--------------------------------
 
 .. automodule:: cansatapi.distance
    :members:
@@ -34,7 +34,7 @@ cansatapi.distance モジュール
    :show-inheritance:
 
 cansatapi.gps モジュール
---------------------
+---------------------------
 
 .. automodule:: cansatapi.gps
    :members:
@@ -42,7 +42,7 @@ cansatapi.gps モジュール
    :show-inheritance:
 
 cansatapi.nineaxissensor モジュール
--------------------------------
+--------------------------------------
 
 .. automodule:: cansatapi.nineaxissensor
    :members:
@@ -50,7 +50,7 @@ cansatapi.nineaxissensor モジュール
    :show-inheritance:
 
 cansatapi.soil\_moisture モジュール
--------------------------------
+--------------------------------------
 
 .. automodule:: cansatapi.soil_moisture
    :members:
@@ -58,7 +58,7 @@ cansatapi.soil\_moisture モジュール
    :show-inheritance:
 
 cansatapi.temperature モジュール
-----------------------------
+-----------------------------------
 
 .. automodule:: cansatapi.temperature
    :members:

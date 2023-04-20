@@ -8,10 +8,16 @@ CanSatAPIのドキュメントへようこそ!
 
 .. toctree::
    :maxdepth: 4
-   :caption: コンテンツ:
+   :caption: パッケージ：
 
    cansatapi
    util
+
+.. toctree::
+   :maxdepth: 4
+   :caption: その他：
+
+   how_to_build_docs
 
 
 
