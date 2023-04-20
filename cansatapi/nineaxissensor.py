@@ -59,6 +59,21 @@ def conv_raw_ang_rate_to_ang_per_s(data: list[float], range_abs: int) -> list[fl
     return list(map(lambda x: (x + 32767) / 65534 * 2 * range_abs - range_abs, data))
 
 
+def conv_ut_to_azimuth(data: list[float]) -> float:
+    """3軸の地磁気[μT]から方位角[°]を計算する
+
+    Args:
+        data (list[float]): 地磁気(x, y, z)[μT]
+
+    Returns:
+        float: 方位角[°]
+    """
+    # todo:
+    # キャリブレーションする？
+    # 地磁気偏角は考慮する？
+    # 計算方法は？
+
+
 class NineAxisSensor:
     """BMX055センサを制御し、加速度・角速度・方位角を求めるクラス
 
@@ -203,16 +218,29 @@ class NineAxisSensor:
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
         """
-        raw_mag = self.bmx055.get_mag_data()
-        gps_date = gps.get_gps_data()
+        return conv_ut_to_azimuth(self.__get_magnetic_field_data())
 
-        # 地磁気偏角を適用する
-        declination = self.calculate_declination(gps_date[0], gps_date[1])
-        heading = math.atan2(raw_mag[1], raw_mag[0]) + math.radians(declination)
+    def __get_magnetic_field_data(self) -> list[float]:
+        """3軸地磁気センサから3軸の地磁気[μT]を取得する
 
-        # 方位角を0から360度の範囲にする
-        heading = math.degrees(heading)
-        if heading < 0:
-            heading += 360.0
+        Returns:
+            list[float]: 地磁気[μT] (x, y, z)
+        """
+        # レジスタから値を読む
+        raw_mag_x_y = self.bus.read_i2c_block_data(MAG_ADDR, 0x42, 4)
+        raw_mag_z = self.bus.read_i2c_block_data(MAG_ADDR, 0x46, 2)
 
-        return heading
+        # 13ビットに変換
+        mag_x = ((raw_mag_x_y[1] * 256) + (raw_mag_x_y[0] & 0xF8)) / 8
+        if mag_x > 4095:
+            mag_x -= 8192
+        mag_y = ((raw_mag_x_y[3] * 256) + (raw_mag_x_y[2] & 0xF8)) / 8
+        if mag_y > 4095:
+            mag_y -= 8192
+
+        # 15ビットに変換
+        mag_z = ((raw_mag_z[5] * 256) + (raw_mag_z[4] & 0xFE)) / 2
+        if mag_z > 16383:
+            mag_z -= 32768
+
+        return [mag_x, mag_y, mag_z]
