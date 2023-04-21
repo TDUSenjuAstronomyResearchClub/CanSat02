@@ -8,6 +8,9 @@
 
 <https://tdumedia.sharepoint.com/sites/astronomy>
 
+### API仕様書
+<https://tdusenjuastronomyresearchclub.github.io/CanSat02/>
+
 ## 使用パーツ
 
 ### GPSモジュール
