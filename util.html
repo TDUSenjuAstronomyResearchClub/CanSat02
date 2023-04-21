@@ -93,13 +93,14 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="cansatapi.util.convert.acceleration_to_pitch">
 <span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">acceleration_to_pitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.acceleration_to_pitch" title="この定義へのパーマリンク"></a></dt>
-<dd><p>X, Y, Z軸の加速度[m/s^2]からピッチ角[rad]を計算する</p>
+<dd><p>X, Y, Z軸の加速度からピッチ角[rad]を計算する</p>
+<p>加速度の比からピッチ角を算出するので加速度の単位は問いません</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>float</em>) -- X軸の加速度[m/s^2]</p></li>
-<li><p><strong>y</strong> (<em>float</em>) -- Y軸の加速度[m/s^2]</p></li>
-<li><p><strong>z</strong> (<em>float</em>) -- Z軸の加速度[m/s^2]</p></li>
+<li><p><strong>x</strong> (<em>float</em>) -- X軸の加速度</p></li>
+<li><p><strong>y</strong> (<em>float</em>) -- Y軸の加速度</p></li>
+<li><p><strong>z</strong> (<em>float</em>) -- Z軸の加速度</p></li>
 </ul>
 </dd>
 <dt class="field-even">戻り値<span class="colon">:</span></dt>
@@ -114,12 +115,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="cansatapi.util.convert.acceleration_to_roll">
 <span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">acceleration_to_roll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.acceleration_to_roll" title="この定義へのパーマリンク"></a></dt>
-<dd><p>X, Y軸の加速度[m/s^2]からロール角[rad]を計算する</p>
+<dd><p>X, Y軸の加速度からロール角[rad]を計算する</p>
+<p>加速度の比からロール角を算出するので加速度の単位は問いません</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>float</em>) -- X軸の加速度[m/s^2]</p></li>
-<li><p><strong>y</strong> (<em>float</em>) -- Y軸の加速度[m/s^2]</p></li>
+<li><p><strong>x</strong> (<em>float</em>) -- X軸の加速度</p></li>
+<li><p><strong>y</strong> (<em>float</em>) -- Y軸の加速度</p></li>
 </ul>
 </dd>
 <dt class="field-even">戻り値<span class="colon">:</span></dt>
@@ -172,12 +174,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="cansatapi.util.convert.ut_to_azimuth">
 <span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">ut_to_azimuth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.ut_to_azimuth" title="この定義へのパーマリンク"></a></dt>
-<dd><p>3軸の地磁気[μT]から方位角[°]を計算する</p>
+<dd><p>3軸の地磁気から方位角[°]を計算する</p>
+<p>地磁気の比から方位角を算出するので地磁気の単位は問いません</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> -- X軸の地磁気[μT]</p></li>
-<li><p><strong>y</strong> -- Y軸の地磁気[μT]</p></li>
+<li><p><strong>x</strong> -- X軸の地磁気</p></li>
+<li><p><strong>y</strong> -- Y軸の地磁気</p></li>
 </ul>
 </dd>
 <dt class="field-even">戻り値<span class="colon">:</span></dt>
