@@ -45,7 +45,7 @@ def ut_to_azimuth(x: float, y: float) -> float:
     """
     # todo: センサーの傾きを考慮した式にする
     # todo: キャリブレーションを追加する
-    return math.atan(x / y)
+    return math.atan2(y, x)
 
 
 def acceleration_to_roll(x: float, y: float) -> float:
@@ -60,7 +60,7 @@ def acceleration_to_roll(x: float, y: float) -> float:
     Returns:
         float: ロール角[rad]
     """
-    return math.atan(y / x)
+    return math.atan2(y, x)
 
 
 def acceleration_to_pitch(x: float, y: float, z: float) -> float:
@@ -78,4 +78,4 @@ def acceleration_to_pitch(x: float, y: float, z: float) -> float:
     """
     roll = acceleration_to_roll(x, y)
     denominator = y * math.sin(roll) + z * math.cos(roll)
-    return math.atan(-x / denominator)
+    return math.atan2(denominator, -x)
