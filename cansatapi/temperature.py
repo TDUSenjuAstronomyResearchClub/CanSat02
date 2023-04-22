@@ -37,21 +37,12 @@ class Temperature:
         config_reg = (t_sb << 5) | (fil << 2) | spi3w_en
         ctrl_hum_reg = osrs_h
 
-        self.write_reg(0xF2, ctrl_hum_reg)
-        self.write_reg(0xF4, ctrl_meas_reg)
-        self.write_reg(0xF5, config_reg)
+        self.BUS.write_byte_data(I2C_ADDRESS, 0xF2, ctrl_hum_reg)
+        self.BUS.write_byte_data(I2C_ADDRESS, 0xF4, ctrl_meas_reg)
+        self.BUS.write_byte_data(I2C_ADDRESS, 0xF5, config_reg)
 
         self.get_calib_param()
         self.temperature_result()
-
-    def write_reg(self, reg_address: int, data: int):
-        """レジスタへの書き込みを行います
-
-        Args:
-            reg_address (int): 書き込み先レジスタのアドレス
-            data (int): 書き込むバイトデータ
-        """
-        self.BUS.write_byte_data(I2C_ADDRESS, reg_address, data)
 
     def get_calib_param(self):
         calib = []
