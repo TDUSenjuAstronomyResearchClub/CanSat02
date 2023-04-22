@@ -1,11 +1,17 @@
-import datetime
-import json
+#ラズパイから各種センサの値を一定時間ごとに取得し、json形式のデータを作成するプログラム。
+#json形式のデータを地上局に送信するのはsend_recive.pyのsend関数の中で行う。
+#ログとしてjson形式のデータをjsonファイルにしてラズパイのローカルに保存する
+
+
 import sys
 import time
 
-import Running  # 走行プログラムのソースファイル
-import serial
+import running  # 走行プログラムのソースファイル
+import send_receive #地上局と値を送受信するプログラム
+
 from serial import SerialException
+import datetime
+import json
 
 from cansatapi.nineaxissensor import NineAxisSensor
 from cansatapi.barometer import Barometer
@@ -14,16 +20,16 @@ from cansatapi import distance as distance_sensor
 from cansatapi import gps
 from cansatapi.temperature import Temperature
 
-# ポート設定
-PORT = '/dev/ttyUSB0'
-
-# 通信レート設定
-BAUD_RATE = 9600
 
 nine_axis = NineAxisSensor()
 barometer = Barometer()
 battery_fuel_gauge = BatteryFuelGauge()
 temperature = Temperature()
+
+#ログファイルのファイル名を作成
+dt_start = datetime.datetime.now()
+start_time = 'send_sensor_data' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
+
 
 while True:
     # ここで初期化することで、エラーが出たときにNoneで値を送れる
@@ -41,7 +47,7 @@ while True:
 
     try:
         gps_data = gps.get_gps_data()
-        lat_lon = Running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
+        lat_lon = running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
         sample_distance = gps.calculate_distance_bearing(lat_lon[0], lat_lon[1])
         goal_distance = gps.calculate_distance_bearing(lat_lon[2], lat_lon[3])
     except SerialException:
@@ -115,24 +121,12 @@ while True:
         "電池": battery_level,
         "距離": distance
     }
-
-    dt_start = datetime.datetime.now()
-    start_time = 'sending_data' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
-
+    
+    #ログ用ファイルをオープン
     f = open(start_time, 'a')
-
     # jsonとして書き込み
     json.dump(data, f, indent=4, ensure_ascii=False)
-
-    try:
-        ser = serial.Serial(PORT, BAUD_RATE)
-        # シリアルにjsonを書き込む
-        ser.write(bytes(json.load(f), 'utf-8'))
-        ser.close()
-    except SerialException as msg:
-        # todo: 地上局にエラーを送信
-        print('Error: シリアルポートでエラーが発生しました', file=sys.stderr)
-
     f.close()
 
+    send_receive.send(data)  #json形式のデータを送信する
     time.sleep(1)
