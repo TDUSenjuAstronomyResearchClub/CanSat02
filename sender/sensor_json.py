@@ -1,6 +1,5 @@
 #ラズパイから各種センサの値を一定時間ごとに取得し、json形式のデータを作成するプログラム。
 #json形式のデータを地上局に送信するのはsend_recive.pyのsend関数の中で行う。
-#ログとしてjson形式のデータをjsonファイルにしてラズパイのローカルに保存する
 
 
 import sys
@@ -11,7 +10,6 @@ import send_receive #地上局と値を送受信するプログラム
 
 from serial import SerialException
 import datetime
-import json
 
 from cansatapi.nineaxissensor import NineAxisSensor
 from cansatapi.barometer import Barometer
@@ -44,6 +42,8 @@ while True:
     lps25hb: list[float] | None = None
     battery_level: int | None = None
     distance: float | None = None
+
+    now = datetime.datetime.now()   #センサ値取得開始日時の取得
 
     try:
         gps_data = gps.get_gps_data()
@@ -81,6 +81,7 @@ while True:
         print("Error: 超音波センサと正常に通信できません", file=sys.stderr)
 
     data = {
+        "時間":now,
         "gps": {
             "緯度": gps_data[0],
             "経度": gps_data[1],
@@ -121,12 +122,6 @@ while True:
         "電池": battery_level,
         "距離": distance
     }
-    
-    #ログ用ファイルをオープン
-    f = open(start_time, 'a')
-    # jsonとして書き込み
-    json.dump(data, f, indent=4, ensure_ascii=False)
-    f.close()
 
-    send_receive.send(data)  #json形式のデータを送信する
+    send_receive.send(start_time,data)  #json形式のデータを送信する
     time.sleep(1)
