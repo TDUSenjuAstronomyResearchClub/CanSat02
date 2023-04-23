@@ -49,28 +49,27 @@ def send(filename,json_data):
     return
 
 
-#===値受信用関数　引数：なし　戻り値：受信値 (例外発生時の戻り値:None)===
+#===値受信用関数　引数：なし　戻り値：受信値 (例外発生時の戻り値:None ポート使用時の戻り値:port)===
 def receive():
-    while True:
-        if serial_port_flg == False:
-            #シリアルポート使用判定フラグを使用中にする
-            global serial_port_flg
-            serial_port_flg = True   
+    if serial_port_flg == False:
+        #シリアルポート使用判定フラグを使用中にする
+        global serial_port_flg
+        serial_port_flg = True   
 
-            try:     
-                ser = serial.Serial(PORT, BAUD_RATE,timeout=0.1)
-                utf8_string = ser.read_all()    #機体から値を受け取る
-                ser.close()
+        try:     
+            ser = serial.Serial(PORT, BAUD_RATE,timeout=0.1)
+            utf8_string = ser.read_all()    #機体から値を受け取る
+            ser.close()
 
-                serial_port_flg =False
-                return utf8_string
-            
-            except SerialException: #デバイスが見つからない、または構成できない場合
-                serial_port_flg =False
-                return None   
-            
-        else:
-            time.sleep(0.5)
+            serial_port_flg =False
+            return utf8_string
+        
+        except SerialException: #デバイスが見つからない、または構成できない場合
+            serial_port_flg =False
+            return None   
+        
+    else:
+        return "port"
 
 
 
