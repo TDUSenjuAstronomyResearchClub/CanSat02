@@ -6,7 +6,7 @@
 
 import RPi.GPIO as GPIO
 import time
-from . import Temperature
+from .temperature import Temperature
 
 # 測定環境温度
 try:
