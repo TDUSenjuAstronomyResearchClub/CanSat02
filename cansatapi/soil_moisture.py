@@ -30,10 +30,7 @@ class SoilMoistureSensor:
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
         """
-        try:
-            moisture = self.seesaw.moisture_read()
-            sleep(0.1)  # センサが安定するまで 100 ms 待つ
-            return 100 - ((moisture / 65535.0) * 100)
+        moisture = self.seesaw.moisture_read()
+        sleep(0.1)  # センサが安定するまで 100 ms 待つ
+        return 100 - ((moisture / 65535.0) * 100)
 
-        except OSError:
-            raise OSError
