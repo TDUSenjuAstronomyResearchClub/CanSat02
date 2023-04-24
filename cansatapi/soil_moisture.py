@@ -26,9 +26,6 @@ class SoilMoistureSensor:
 
         Returns:
             float: 0.0から100.0の間の土壌水分率(%)
-
-        Raises:
-            OSError: I2C通信が正常に行えなかった際に発生
         """
         moisture = self.seesaw.moisture_read()
         sleep(0.1)  # センサが安定するまで 100 ms 待つ
