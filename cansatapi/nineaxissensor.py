@@ -62,8 +62,8 @@ class NineAxisSensor:
         # 0b0010 = ±500°/s
         self.bus.write_byte_data(GYRO_ADDR, 0x0F, 0b0010)
 
-        # BWレジスタにアウトプットのレートとフィルター帯域幅を設定
-        # 0b0111 = レート 100Hz, フィルタ帯域幅 32Hz
+        # BWレジスタにアウトプットのレートとローパスフィルターのカットオフ周波数を設定
+        # 0b0111 = レート 100Hz, カットオフ周波数 32Hz
         self.bus.write_byte_data(GYRO_ADDR, 0x10, 0b0111)
 
         # LPM1レジスタに主電源モードと低電力時スリープ時間を設定
