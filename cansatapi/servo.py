@@ -1,13 +1,10 @@
-"""サーボモーター制御モジュール
+"""サーボモーターを制御するモジュール
 """
 import time
 
 import RPi.GPIO as GPIO
 
 from cansatapi.util.convert import conv_range
-
-# ピン番号は適切に変えること
-SERVO_PIN = 18
 
 
 def calc_duty(angle: float) -> float:
@@ -28,17 +25,23 @@ def calc_duty(angle: float) -> float:
 
 
 class Servo:
-    def __init__(self):
+    def __init__(self, pin_number: int):
+        """サーボを初期化するメソッド
+
+        Args:
+            pin_number: サーボのピン番号
+        """
+        self.servo_pin = pin_number
         # GPIOの番号指定モードをBOARDに設定(ボードの番号と一致するモード)
         GPIO.setmode(GPIO.BOARD)
 
         # SERVO_PINを出力モードに設定
-        GPIO.setup(SERVO_PIN, GPIO.OUT)
+        GPIO.setup(self.servo_pin, GPIO.OUT)
 
         # PWMの設定
         # 周波数指定がよくわからないのでいったん50Hzで試してみる
         # SG90と特性が似ているっぽいので恐らくPWMの周波数は20ms
-        self.servo = GPIO.PWM(SERVO_PIN, 50)
+        self.servo = GPIO.PWM(self.servo_pin, 50)
 
         # サーボの制御を開始する
         self.servo.start(0)
