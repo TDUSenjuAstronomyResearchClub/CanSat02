@@ -23,7 +23,7 @@ MG92B
 - Adafruitのページ(詳しく書いてある)
   - <https://www.adafruit.com/product/2307>
 - 秋月のリンク
-  - <https://akizukidenshi.com/catalog/g/gM-08914/>
+  - <https://akizukidenshi.com/catalog/g/gM-13228/>
 
 ### GPSモジュール
 
