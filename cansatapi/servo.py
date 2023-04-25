@@ -36,7 +36,7 @@ class Servo:
         # SG90と特性が似ているっぽいので恐らくPWMの周波数は20ms
         self.servo = GPIO.PWM(SERVO_PIN, 50)
 
-        #
+        # サーボの制御を開始する
         self.servo.start(0)
 
     def angle(self, angle: int):
