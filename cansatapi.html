@@ -88,6 +88,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.servo">cansatapi.servo モジュール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.servo.Servo"><code class="docutils literal notranslate"><span class="pre">Servo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.angle"><code class="docutils literal notranslate"><span class="pre">Servo.angle()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.servo.calc_duty"><code class="docutils literal notranslate"><span class="pre">calc_duty()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.soil_moisture">cansatapi.soil_moisture モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.soil_moisture.SoilMoistureSensor"><code class="docutils literal notranslate"><span class="pre">SoilMoistureSensor</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.soil_moisture.SoilMoistureSensor.get_soil_moisture"><code class="docutils literal notranslate"><span class="pre">SoilMoistureSensor.get_soil_moisture()</span></code></a></li>
@@ -507,6 +515,39 @@ sudo pip3 install -U numpy</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+</section>
+<section id="module-cansatapi.servo">
+<span id="cansatapi-servo"></span><h2>cansatapi.servo モジュール<a class="headerlink" href="#module-cansatapi.servo" title="この見出しへのパーマリンク"></a></h2>
+<p>サーボモーター制御モジュール</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.servo.Servo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.servo.</span></span><span class="sig-name descname"><span class="pre">Servo</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.servo.Servo.angle">
+<span class="sig-name descname"><span class="pre">angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.angle" title="この定義へのパーマリンク"></a></dt>
+<dd><p>サーボモーターを指定の角度へ動かすメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> -- 角度[°]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.servo.calc_duty">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.servo.</span></span><span class="sig-name descname"><span class="pre">calc_duty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.calc_duty" title="この定義へのパーマリンク"></a></dt>
+<dd><p>指定の角度からデューティ比を求める関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<em>float</em>) -- 角度[°]</p>
+</dd>
+</dl>
+<p>Returns:</p>
 </dd></dl>
 
 </section>
