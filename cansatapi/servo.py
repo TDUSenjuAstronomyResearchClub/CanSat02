@@ -20,6 +20,10 @@ def calc_duty(angle: float) -> float:
 
     """
     # 範囲変換式で±90°からパルス幅1~2msに収める
+    if angle > 90:
+        angle = 90
+    elif angle < -90:
+        angle = -90
     return conv_range(angle, -90, 90, 1, 2)
 
 
@@ -42,8 +46,10 @@ class Servo:
     def angle(self, angle: int):
         """サーボモーターを指定の角度へ動かすメソッド
 
+        範囲は±90°
+
         Args:
-            angle: 角度[°]
+            angle: 範囲[-90, 90]の角度[°]
         """
         self.servo.ChangeDutyCycle(calc_duty(angle))
         time.sleep(0.3)
