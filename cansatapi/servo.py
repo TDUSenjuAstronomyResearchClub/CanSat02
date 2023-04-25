@@ -46,10 +46,11 @@ class Servo:
         # サーボの制御を開始する
         self.servo.start(0)
 
-    def angle(self, angle: int):
-        """サーボモーターを指定の角度へ動かすメソッド
+    def rotate_to_angle(self, angle: int):
+        """サーボモーターを指定の角度[°]へ動かすメソッド
 
-        範囲は±90°
+        範囲は±90°で指定してください。
+        指定された角度が[-90, 90]の範囲を越えていた場合はこの範囲に収めます。
 
         Args:
             angle: 範囲[-90, 90]の角度[°]
