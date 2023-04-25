@@ -48,6 +48,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.util.convert">cansatapi.util.convert モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.acceleration_to_pitch"><code class="docutils literal notranslate"><span class="pre">acceleration_to_pitch()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.acceleration_to_roll"><code class="docutils literal notranslate"><span class="pre">acceleration_to_roll()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.conv_range"><code class="docutils literal notranslate"><span class="pre">conv_range()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.g_to_m_per_s2"><code class="docutils literal notranslate"><span class="pre">g_to_m_per_s2()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.raw_ang_rate_to_ang_per_s"><code class="docutils literal notranslate"><span class="pre">raw_ang_rate_to_ang_per_s()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.ut_to_azimuth"><code class="docutils literal notranslate"><span class="pre">ut_to_azimuth()</span></code></a></li>
@@ -126,6 +127,29 @@
 </dd>
 <dt class="field-even">戻り値<span class="colon">:</span></dt>
 <dd class="field-even"><p>ロール角[rad]</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.util.convert.conv_range">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">conv_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.conv_range" title="この定義へのパーマリンク"></a></dt>
+<dd><p>数値xを範囲[a, b]から範囲[c, d]へ変換する関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> -- 変換する数値</p></li>
+<li><p><strong>a</strong> -- 変換元の範囲の最小値</p></li>
+<li><p><strong>b</strong> -- 変換元の範囲の最大値</p></li>
+<li><p><strong>c</strong> -- 変換先の範囲の最小値</p></li>
+<li><p><strong>d</strong> -- 変換先の範囲の最大値</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>範囲変換後のx</p>
 </dd>
 <dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
