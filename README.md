@@ -13,6 +13,18 @@
 
 ## 使用パーツ
 
+
+### サーボモーター
+
+MG92B
+
+- データシート(情報少)
+  - <https://akizukidenshi.com/download/ds/towerpro/mg92b.pdf>
+- Adafruitのページ(詳しく書いてある)
+  - <https://www.adafruit.com/product/2307>
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gM-08914/>
+
 ### GPSモジュール
 
 AE-GYSFDMAXB
