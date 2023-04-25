@@ -79,3 +79,19 @@ def acceleration_to_pitch(x: float, y: float, z: float) -> float:
     roll = acceleration_to_roll(x, y)
     denominator = y * math.sin(roll) + z * math.cos(roll)
     return math.atan2(denominator, -x)
+
+
+def conv_range(x: float, a: float, b: float, c: float, d: float) -> float:
+    """数値xを範囲[a, b]から範囲[c, d]へ変換する関数
+
+    Args:
+        x: 変換する数値
+        a: 変換元の範囲の最小値
+        b: 変換元の範囲の最大値
+        c: 変換先の範囲の最小値
+        d: 変換先の範囲の最大値
+
+    Returns:
+        float: 範囲変換後のx
+    """
+    return ((x - a) / (b - a)) * (d - c) + c
