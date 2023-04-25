@@ -90,7 +90,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.servo">cansatapi.servo モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.servo.Servo"><code class="docutils literal notranslate"><span class="pre">Servo</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.angle"><code class="docutils literal notranslate"><span class="pre">Servo.angle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.rotate_to_angle"><code class="docutils literal notranslate"><span class="pre">Servo.rotate_to_angle()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.servo.calc_duty"><code class="docutils literal notranslate"><span class="pre">calc_duty()</span></code></a></li>
@@ -526,10 +526,11 @@ sudo pip3 install -U numpy</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.servo.</span></span><span class="sig-name descname"><span class="pre">Servo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pin_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo" title="この定義へのパーマリンク"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="cansatapi.servo.Servo.angle">
-<span class="sig-name descname"><span class="pre">angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.angle" title="この定義へのパーマリンク"></a></dt>
-<dd><p>サーボモーターを指定の角度へ動かすメソッド</p>
-<p>範囲は±90°</p>
+<dt class="sig sig-object py" id="cansatapi.servo.Servo.rotate_to_angle">
+<span class="sig-name descname"><span class="pre">rotate_to_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.rotate_to_angle" title="この定義へのパーマリンク"></a></dt>
+<dd><p>サーボモーターを指定の角度[°]へ動かすメソッド</p>
+<p>範囲は±90°で指定してください。
+指定された角度が[-90, 90]の範囲を越えていた場合はこの範囲に収めます。</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>angle</strong> -- 範囲[-90, 90]の角度[°]</p>
