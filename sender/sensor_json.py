@@ -121,4 +121,4 @@ while True:
     }
 
     send_receive.send(start_time, json.dumps(data))  # json形式のデータを送信する
-    time.sleep(1)
+    time.sleep(5)
