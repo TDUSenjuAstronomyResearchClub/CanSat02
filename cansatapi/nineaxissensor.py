@@ -62,8 +62,8 @@ class NineAxisSensor:
         # 0b0010 = ±500°/s
         self.bus.write_byte_data(GYRO_ADDR, 0x0F, 0b0010)
 
-        # BWレジスタにアウトプットのレートとフィルター帯域幅を設定
-        # 0b0111 = レート 100Hz, フィルタ帯域幅 32Hz
+        # BWレジスタにアウトプットのレートとローパスフィルターのカットオフ周波数を設定
+        # 0b0111 = レート 100Hz, カットオフ周波数 32Hz
         self.bus.write_byte_data(GYRO_ADDR, 0x10, 0b0111)
 
         # LPM1レジスタに主電源モードと低電力時スリープ時間を設定
@@ -119,6 +119,7 @@ class NineAxisSensor:
 
         # データを12bitsに変換
         accl_x = ((raw_accl_x[1] * 256) + (raw_accl_x[0] & 0xF0)) / 16
+        # 符号付整数なので、0ビット目が1ならば負の数に変換する
         if accl_x > 2047:
             accl_x -= 4096
         accl_y = ((raw_accl_y[1] * 256) + (raw_accl_y[0] & 0xF0)) / 16
@@ -153,6 +154,7 @@ class NineAxisSensor:
 
         # ビット範囲の変換
         ang_rate_x = raw_ang_rate[1] * 256 + raw_ang_rate[0]
+        # 符号付整数なので、0ビット目が1ならば負の数に変換する
         if ang_rate_x > 32767:
             ang_rate_x -= 65536
         ang_rate_y = raw_ang_rate[3] * 256 + raw_ang_rate[2]
@@ -187,6 +189,7 @@ class NineAxisSensor:
 
         # 13ビットに変換
         mag_x = ((raw_mag_x_y[1] * 256) + (raw_mag_x_y[0] & 0xF8)) / 8
+        # 符号付整数なので、0ビット目が1ならば負の数に変換する
         if mag_x > 4095:
             mag_x -= 8192
         mag_y = ((raw_mag_x_y[3] * 256) + (raw_mag_x_y[2] & 0xF8)) / 8

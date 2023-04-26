@@ -49,6 +49,14 @@ cansatapi.nineaxissensor モジュール
    :undoc-members:
    :show-inheritance:
 
+cansatapi.servo モジュール
+--------------------------------------
+
+.. automodule:: cansatapi.servo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 cansatapi.soil\_moisture モジュール
 --------------------------------------
 

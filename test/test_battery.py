@@ -1,4 +1,5 @@
-from cansatapi import batteryfuelgauge
+from cansatapi.batteryfuelgauge import BatteryFuelGauge
 
 if __name__ == "__main__":
-    print(battery.get_battery_level())
+    battery = BatteryFuelGauge()
+    print(battery.get_level())
