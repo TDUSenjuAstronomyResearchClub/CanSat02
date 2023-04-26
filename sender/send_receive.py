@@ -23,9 +23,9 @@ def send(filename, json_data):
     f.close()
 
     while True:
-        if serial_port_flg == False:  # シリアルポートは使用中ではないか
+        global serial_port_flg
+        if not serial_port_flg:  # シリアルポートは使用中ではないか
             # シリアルポート使用判定フラグを使用中にする
-            global serial_port_flg
             serial_port_flg = True
 
             try:
@@ -49,9 +49,9 @@ def send(filename, json_data):
 
 # ===値受信用関数　引数：なし　戻り値：受信値 (例外発生時の戻り値:None ポート使用時の戻り値:port)===
 def receive():
-    if serial_port_flg == False:
+    global serial_port_flg
+    if not serial_port_flg:
         # シリアルポート使用判定フラグを使用中にする
-        global serial_port_flg
         serial_port_flg = True
 
         try:
