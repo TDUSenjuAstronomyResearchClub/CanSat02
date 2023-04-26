@@ -1,12 +1,12 @@
-#ラズパイから各種センサの値を一定時間ごとに取得し、json形式のデータを作成するプログラム。
-#json形式のデータを地上局に送信するのはsend_recive.pyのsend関数の中で行う。
+# ラズパイから各種センサの値を一定時間ごとに取得し、json形式のデータを作成するプログラム。
+# json形式のデータを地上局に送信するのはsend_recive.pyのsend関数の中で行う。
 
 
 import sys
 import time
 
 import running  # 走行プログラムのソースファイル
-import send_receive #地上局と値を送受信するプログラム
+import send_receive  # 地上局と値を送受信するプログラム
 
 from serial import SerialException
 import datetime
@@ -18,16 +18,14 @@ from cansatapi import distance as distance_sensor
 from cansatapi import gps
 from cansatapi.temperature import Temperature
 
-
 nine_axis = NineAxisSensor()
 barometer = Barometer()
 battery_fuel_gauge = BatteryFuelGauge()
 temperature = Temperature()
 
-#ログファイルのファイル名を作成
+# ログファイルのファイル名を作成
 dt_start = datetime.datetime.now()
 start_time = 'send_sensor_data' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
-
 
 while True:
     # ここで初期化することで、エラーが出たときにNoneで値を送れる
@@ -43,11 +41,11 @@ while True:
     battery_level: int | None = None
     distance: float | None = None
 
-    now = datetime.datetime.now()   #センサ値取得開始日時の取得
+    now = datetime.datetime.now()  # センサ値取得開始日時の取得
 
     try:
         gps_data = gps.get_gps_data()
-        lat_lon = running.SeeValue()    # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
+        lat_lon = running.SeeValue()  # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
         sample_distance = gps.calculate_distance_bearing(lat_lon[0], lat_lon[1])
         goal_distance = gps.calculate_distance_bearing(lat_lon[2], lat_lon[3])
     except SerialException:
@@ -81,7 +79,7 @@ while True:
         print("Error: 超音波センサと正常に通信できません", file=sys.stderr)
 
     data = {
-        "時間":now,
+        "時間": now,
         "gps": {
             "緯度": gps_data[0],
             "経度": gps_data[1],
@@ -123,5 +121,5 @@ while True:
         "距離": distance
     }
 
-    send_receive.send(start_time,data)  #json形式のデータを送信する
+    send_receive.send(start_time, data)  # json形式のデータを送信する
     time.sleep(1)
