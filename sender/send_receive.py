@@ -44,7 +44,7 @@ def send(filename,json_data):
                 break   #ここの処理について要件等
         
         else:
-            time.sleep(0.5)
+            time.sleep(5)
 
     return
 
