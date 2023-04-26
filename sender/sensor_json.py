@@ -78,46 +78,57 @@ while True:
         print("Error: 超音波センサと正常に通信できません", file=sys.stderr)
 
     data = {
-        "時間": now,
+        "time": now,
         "gps": {
-            "緯度": gps_data[0],
-            "経度": gps_data[1],
-            "海抜": gps_data[2],
+            "latitude": gps_data[0],
+            "longitude": gps_data[1],
+            "altitude": gps_data[2],
 
-            "サンプル": {
-                "直線距離": sample_distance[0],
-                "方位角": sample_distance[1]
+            "distance":{
+                "sample": {
+                    "description": sample_distance[0],
+                },
+                "goal": {
+                    "description": goal_distance[0],
+                }
             },
-            "ゴール": {
-                "直線距離": goal_distance[0],
-                "方位角": goal_distance[1]
+            "azimuth":{
+               "sample": {
+                    "description": sample_distance[1]
+                },
+                "goal": {
+                    "description": goal_distance[1]
+                } 
             }
         },
-        "9軸": {
-            "加速度": {
+
+        "nine-axis": {
+            "acceleration": {
                 "X": acc[0],
                 "Y": acc[1],
                 "Z": acc[2]
             },
-            "角速度": {
+            "angular-velocity": {
                 "X": ang_velo[0],
                 "Y": ang_velo[1],
                 "Z": ang_velo[2]
             },
-            "方位角": azimuth
+            "azimuth": azimuth
         },
-        "温湿度気圧": {
-            "温度": bme280[0],
-            "湿度": bme280[1],
-            "気圧": bme280[2]
+
+        "bme280": {
+            "temperature": bme280[0],
+            "humidity": bme280[1],
+            "pressure": bme280[2]
         },
-        "気圧": {
-            "気圧": lps25hb[0],
-            "高度": lps25hb[1],
-            "温度": lps25hb[2]
+
+        "lps25hb": {
+            "temperature": lps25hb[2],
+            "pressure": lps25hb[0],
+            "高度": lps25hb[1]
         },
-        "電池": battery_level,
-        "距離": distance
+        "battery": battery_level,
+        "distance": distance
     }
 
     send_receive.send(start_time, json.dumps(data))  # json形式のデータを送信する
