@@ -1,7 +1,6 @@
 # ラズパイから各種センサの値を一定時間ごとに取得し、json形式のデータを作成するプログラム。
 # json形式のデータを地上局に送信するのはsend_recive.pyのsend関数の中で行う。
-
-
+import json
 import sys
 import time
 
@@ -121,5 +120,5 @@ while True:
         "距離": distance
     }
 
-    send_receive.send(start_time, data)  # json形式のデータを送信する
+    send_receive.send(start_time, json.dumps(data))  # json形式のデータを送信する
     time.sleep(1)
