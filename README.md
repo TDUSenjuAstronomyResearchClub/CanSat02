@@ -141,7 +141,7 @@ TB67H450FNG
 SS-5GL2
 
 - モノタロウのリンク
-  -<https://www.monotaro.com/p/3257/7106/>
+  - <https://www.monotaro.com/p/3257/7106/>
 
 ### Raspberry Pi 3 Model A+
 
