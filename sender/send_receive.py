@@ -1,4 +1,5 @@
-# 地上局から値を受信する事と、機体から値を送信する事を行う。
+"""機体と地上局の通信を行うモジュール
+"""
 
 import json
 import time
@@ -11,11 +12,16 @@ PORT = '/dev/ttyUSB0'
 BAUD_RATE = 9600
 
 # シリアルポート使用判定フラグ(使用中はTrue)
-serial_port_flg = False
+is_using_serial_port = False
 
 
-# ===値送信用関数　引数：json形式で書かれたデータ　戻り値：なし===
-def send(filename, json_data):
+def send(filename: str, json_data: str):
+    """データ送信用関数
+
+    Args:
+        filename (str): ファイルネーム
+        json_data (str): JSON形式のデータ
+    """
     # ログ用ファイルをオープン
     f = open(filename, 'a')
     # jsonとして書き込み
@@ -23,10 +29,10 @@ def send(filename, json_data):
     f.close()
 
     while True:
-        global serial_port_flg
-        if not serial_port_flg:  # シリアルポートは使用中ではないか
+        global is_using_serial_port
+        if not is_using_serial_port:  # シリアルポートは使用中ではないか
             # シリアルポート使用判定フラグを使用中にする
-            serial_port_flg = True
+            is_using_serial_port = True
 
             try:
                 ser = serial.Serial(PORT, BAUD_RATE)
@@ -34,11 +40,11 @@ def send(filename, json_data):
                 ser.write(json_data.encode('utf-8'))
                 ser.close()
 
-                serial_port_flg = False
+                is_using_serial_port = False
                 break
 
             except SerialException:  # デバイスが見つからない、または構成できない場合
-                serial_port_flg = False
+                is_using_serial_port = False
                 break  # ここの処理について要件等
 
         else:
@@ -47,24 +53,32 @@ def send(filename, json_data):
     return
 
 
-# ===値受信用関数　引数：なし　戻り値：受信値 (例外発生時の戻り値:None ポート使用時の戻り値:port)===
-def receive():
-    global serial_port_flg
-    if not serial_port_flg:
+def receive() -> str:
+    """データ送信用関数
+
+    Returns:
+        str: 受信した文字列
+
+    Raises:
+        SerialException: デバイスがみつからないときに発生します
+        PortNotOpenError: ポートが空いていないときに発生します
+    """
+    global is_using_serial_port
+    if not is_using_serial_port:
         # シリアルポート使用判定フラグを使用中にする
-        serial_port_flg = True
+        is_using_serial_port = True
 
         try:
             ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
             utf8_string = ser.read_all()  # 機体から値を受け取る
             ser.close()
 
-            serial_port_flg = False
+            is_using_serial_port = False
             return utf8_string
 
         except SerialException:  # デバイスが見つからない、または構成できない場合
-            serial_port_flg = False
-            return None
+            is_using_serial_port = False
+            raise SerialException
 
     else:
-        return "port"
+        raise serial.PortNotOpenError
