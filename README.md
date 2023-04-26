@@ -137,7 +137,7 @@ TB67H450FNG
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gI-14967/>
 
-###　マイクロスイッチ
+### マイクロスイッチ
 SS-5GL2
 
 - モノタロウのリンク
