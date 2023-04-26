@@ -137,6 +137,12 @@ TB67H450FNG
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gI-14967/>
 
+###　マイクロスイッチ
+SS-5GL2
+
+- モノタロウのリンク
+  -<https://www.monotaro.com/p/3257/7106/>
+
 ### Raspberry Pi 3 Model A+
 
 - 秋月のリンク
