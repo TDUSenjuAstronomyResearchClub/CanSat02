@@ -125,7 +125,7 @@ while True:
         "lps25hb": {
             "temperature": lps25hb[2],
             "pressure": lps25hb[0],
-            "高度": lps25hb[1]
+            "altitude": lps25hb[1]
         },
         "battery": battery_level,
         "distance": distance
