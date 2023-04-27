@@ -101,7 +101,7 @@ class Temperature:
         temp = compensate_t(temp_raw)
         pres = compensate_p(pres_raw)
         hum = compensate_h(hum_raw)
-        return [temp, pres, hum]
+        return [temp, hum, pres]
 
 
 def compensate_p(adc_p):
