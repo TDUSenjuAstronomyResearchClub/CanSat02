@@ -3,6 +3,7 @@
 
 import json
 import time
+import datetime
 import serial
 from serial import SerialException
 
@@ -53,7 +54,7 @@ def send(filename: str, json_data: str):
     return
 
 
-def receive() -> str:
+def receive(filename: str) -> str:
     """データ送信用関数
 
     Returns:
@@ -69,9 +70,20 @@ def receive() -> str:
         is_using_serial_port = True
 
         try:
+            now = datetime.datetime.now()  # センサ値取得開始日時の取得
             ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
             utf8_string = ser.read_all()  # 機体から値を受け取る
             ser.close()
+            
+            catch_value = {
+                "time": now,
+                "message":utf8_string
+            }
+            # ログ用ファイルをオープン
+            f = open(filename, 'a')
+            # jsonとして書き込み
+            json.dump(catch_value, f, indent=4, ensure_ascii=False)
+            f.close()
 
             is_using_serial_port = False
             return utf8_string
