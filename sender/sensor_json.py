@@ -1,5 +1,7 @@
-# ラズパイから各種センサの値を一定時間ごとに取得し、json形式のデータを作成するプログラム。
-# json形式のデータを地上局に送信するのはsend_recive.pyのsend関数の中で行う。
+""" ラズパイから各種センサの値を一定時間ごとに取得し、JSON形式のデータを作成するモジュール
+
+JSON形式のデータを地上局に送信するのはsend_recive.pyのsend関数の中で行う。
+"""
 import json
 import sys
 import time
@@ -84,7 +86,7 @@ while True:
             "longitude": gps_data[1],
             "altitude": gps_data[2],
 
-            "distance":{
+            "distance": {
                 "sample": {
                     "description": sample_distance[0],
                 },
@@ -92,13 +94,13 @@ while True:
                     "description": goal_distance[0],
                 }
             },
-            "azimuth":{
-               "sample": {
+            "azimuth": {
+                "sample": {
                     "description": sample_distance[1]
                 },
                 "goal": {
                     "description": goal_distance[1]
-                } 
+                }
             }
         },
 
