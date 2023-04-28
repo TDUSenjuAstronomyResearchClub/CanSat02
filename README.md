@@ -138,7 +138,7 @@ Kypom リポバッテリー　1300mA、7.4 V
 - リンク
   - <https://www.amazon.co.jp/dp/B017VOKS4U>
 
-### モーター
+### ギアードモーター
 
 RSPRO(238-9721)
 
@@ -154,11 +154,33 @@ TB67H450FNG
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gI-14967/>
 
+###　サーボモーター（土壌水分、サンプル採取用）	
+
+MG92B
+
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gM-13228/>
+
+###　DCモーター
+
+RE-280RA-2865
+
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gP-06438/>
+
+###　フルブリッジドライバＩＣ
+
+BD6231F-E2
+
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gI-05088/>
+
 ### マイクロスイッチ
 SS-5GL2
 
 - モノタロウのリンク
   - <https://www.monotaro.com/p/3257/7106/>
+
 
 ### Raspberry Pi 3 Model A+
 
