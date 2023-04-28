@@ -91,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.servo">cansatapi.servo モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.servo.Servo"><code class="docutils literal notranslate"><span class="pre">Servo</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.rotate_to_angle"><code class="docutils literal notranslate"><span class="pre">Servo.rotate_to_angle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.stop"><code class="docutils literal notranslate"><span class="pre">Servo.stop()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.servo.calc_duty"><code class="docutils literal notranslate"><span class="pre">calc_duty()</span></code></a></li>
@@ -536,6 +537,13 @@ sudo pip3 install -U numpy</p>
 <dd class="field-odd"><p><strong>angle</strong> -- 範囲[-90, 90]の角度[°]</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.servo.Servo.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.stop" title="この定義へのパーマリンク"></a></dt>
+<dd><p>サーボモーターを停止させるメソッド</p>
+<p>サーボモーター使用後は必ず呼び出すこと</p>
 </dd></dl>
 
 </dd></dl>
