@@ -67,10 +67,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.camera.photograph"><code class="docutils literal notranslate"><span class="pre">photograph()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.distance">cansatapi.distance モジュール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cansatapi.distance.distance_result"><code class="docutils literal notranslate"><span class="pre">distance_result()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-distance">cansatapi.distance モジュール</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.gps">cansatapi.gps モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.calc_distance_between_two_points"><code class="docutils literal notranslate"><span class="pre">calc_distance_between_two_points()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.calculate_distance_bearing"><code class="docutils literal notranslate"><span class="pre">calculate_distance_bearing()</span></code></a></li>
@@ -106,13 +103,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.bme280">cansatapi.bme280 モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.bme280.BME280"><code class="docutils literal notranslate"><span class="pre">BME280</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cansatapi.bme280.BME280.get_calib_param"><code class="docutils literal notranslate"><span class="pre">BME280.get_calib_param()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.bme280.BME280.temperature_result"><code class="docutils literal notranslate"><span class="pre">BME280.temperature_result()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#cansatapi.bme280.compensate_h"><code class="docutils literal notranslate"><span class="pre">compensate_h()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cansatapi.bme280.compensate_p"><code class="docutils literal notranslate"><span class="pre">compensate_p()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cansatapi.bme280.compensate_t"><code class="docutils literal notranslate"><span class="pre">compensate_t()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -314,30 +307,8 @@ sudo pip3 install -U numpy</p>
 </dd></dl>
 
 </section>
-<section id="module-cansatapi.distance">
-<span id="cansatapi-distance"></span><h2>cansatapi.distance モジュール<a class="headerlink" href="#module-cansatapi.distance" title="この見出しへのパーマリンク"></a></h2>
-<p>超音波距離センサを使い、機体前面にある物体と機体との距離を取得するプログラム</p>
-<dl class="simple">
-<dt>使用しているライブラリ:</dt><dd><p>rpi.gpio</p>
-</dd>
-</dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="cansatapi.distance.distance_result">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.distance.</span></span><span class="sig-name descname"><span class="pre">distance_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/distance.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.distance.distance_result" title="この定義へのパーマリンク"></a></dt>
-<dd><p>超音波距離センサ(HC-SR04)を使って機体前面にある物体と機体との距離を取得する</p>
-<dl class="field-list simple">
-<dt class="field-odd">戻り値<span class="colon">:</span></dt>
-<dd class="field-odd"><p>距離(cm)</p>
-</dd>
-<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
-</dd>
-<dt class="field-odd">例外<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>TypeError</strong> -- タイプエラーが発生したときに動作</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="cansatapi-distance">
+<h2>cansatapi.distance モジュール<a class="headerlink" href="#cansatapi-distance" title="この見出しへのパーマリンク"></a></h2>
 </section>
 <section id="module-cansatapi.gps">
 <span id="cansatapi-gps"></span><h2>cansatapi.gps モジュール<a class="headerlink" href="#module-cansatapi.gps" title="この見出しへのパーマリンク"></a></h2>
@@ -599,7 +570,7 @@ adafruit-circuitpython-seesaw</p>
 <p>温湿度気圧センサを使って温度、湿度、気圧の値を取得できるモジュール</p>
 <p>使用するにはI2Cが有効になっている必要があります</p>
 <dl class="simple">
-<dt>使用しているライブラリ:</dt><dd><p>smbus2</p>
+<dt>使用しているライブラリ:</dt><dd><p>bme280</p>
 </dd>
 </dl>
 <dl class="py class">
@@ -607,17 +578,12 @@ adafruit-circuitpython-seesaw</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.bme280.</span></span><span class="sig-name descname"><span class="pre">BME280</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/bme280.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.bme280.BME280" title="この定義へのパーマリンク"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="cansatapi.bme280.BME280.get_calib_param">
-<span class="sig-name descname"><span class="pre">get_calib_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/bme280.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.bme280.BME280.get_calib_param" title="この定義へのパーマリンク"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="cansatapi.bme280.BME280.temperature_result">
 <span class="sig-name descname"><span class="pre">temperature_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/bme280.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.bme280.BME280.temperature_result" title="この定義へのパーマリンク"></a></dt>
 <dd><p>温湿度気圧センサ(AE-BME280)を使って温度、湿度、気圧の値を返却します</p>
 <dl class="field-list simple">
 <dt class="field-odd">戻り値<span class="colon">:</span></dt>
-<dd class="field-odd"><p>[温度(℃), 湿度(%), 気圧(hPa)]</p>
+<dd class="field-odd"><p>[温度[℃], 湿度[%], 気圧[hPa]]</p>
 </dd>
 <dt class="field-even">戻り値の型<span class="colon">:</span></dt>
 <dd class="field-even"><p>list</p>
@@ -626,21 +592,6 @@ adafruit-circuitpython-seesaw</p>
 </dd></dl>
 
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cansatapi.bme280.compensate_h">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.bme280.</span></span><span class="sig-name descname"><span class="pre">compensate_h</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adc_h</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/bme280.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.bme280.compensate_h" title="この定義へのパーマリンク"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cansatapi.bme280.compensate_p">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.bme280.</span></span><span class="sig-name descname"><span class="pre">compensate_p</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adc_p</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/bme280.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.bme280.compensate_p" title="この定義へのパーマリンク"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cansatapi.bme280.compensate_t">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.bme280.</span></span><span class="sig-name descname"><span class="pre">compensate_t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adc_t</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/bme280.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.bme280.compensate_t" title="この定義へのパーマリンク"></a></dt>
-<dd></dd></dl>
 
 </section>
 </section>
