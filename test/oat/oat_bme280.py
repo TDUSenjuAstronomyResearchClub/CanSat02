@@ -1,10 +1,10 @@
 import sys
 import time
 
-from cansatapi.temperature import Temperature
+from cansatapi.bme280 import BME280
 
 if __name__ == "__main__":
-    temp = Temperature()
+    temp = BME280()
     while True:
         try:
             result = temp.temperature_result()

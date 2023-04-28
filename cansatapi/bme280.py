@@ -20,7 +20,7 @@ digH = []
 t_fine = 0.0
 
 
-class Temperature:
+class BME280:
 
     def __init__(self):
         self.BUS = smbus2.SMBus(BUS_NUMBER)
