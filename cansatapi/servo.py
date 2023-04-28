@@ -21,7 +21,7 @@ def calc_duty(angle: float) -> float:
         angle = 90
     elif angle < -90:
         angle = -90
-    return conv_range(angle, -90, 90, 1, 2)
+    return conv_range(-90, 90, 2.5, 12.0, angle)
 
 
 class Servo:
@@ -32,15 +32,14 @@ class Servo:
             pin_number: サーボのピン番号
         """
         self.servo_pin = pin_number
-        # GPIOの番号指定モードをBOARDに設定(ボードの番号と一致するモード)
-        GPIO.setmode(GPIO.BOARD)
+        # GPIOの番号指定モードをBCMに設定
+        GPIO.setmode(GPIO.BCM)
 
         # SERVO_PINを出力モードに設定
         GPIO.setup(self.servo_pin, GPIO.OUT)
 
         # PWMの設定
-        # 周波数指定がよくわからないのでいったん50Hzで試してみる
-        # SG90と特性が似ているっぽいので恐らくPWMの周波数は20ms
+        # SG90と同じように制御できるっぽい
         self.servo = GPIO.PWM(self.servo_pin, 50)
 
         # サーボの制御を開始する
@@ -57,3 +56,11 @@ class Servo:
         """
         self.servo.ChangeDutyCycle(calc_duty(angle))
         time.sleep(0.3)
+
+    def stop(self):
+        """サーボモーターを停止させるメソッド
+
+        サーボモーター使用後は必ず呼び出すこと
+        """
+        self.servo.stop()
+        GPIO.cleanup()
