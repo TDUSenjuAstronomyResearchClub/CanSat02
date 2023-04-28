@@ -65,10 +65,10 @@ cansatapi.soil\_moisture モジュール
    :undoc-members:
    :show-inheritance:
 
-cansatapi.temperature モジュール
+cansatapi.bme280 モジュール
 -----------------------------------
 
-.. automodule:: cansatapi.temperature
+.. automodule:: cansatapi.bme280
    :members:
    :undoc-members:
    :show-inheritance:
