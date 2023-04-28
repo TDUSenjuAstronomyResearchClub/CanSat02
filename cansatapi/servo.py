@@ -16,7 +16,7 @@ def calc_duty(angle: float) -> float:
     Returns:
 
     """
-    # 範囲変換式で±90°からパルス幅1~2msに収める
+    # 範囲変換式で±90°からデューティ比2.5~12[%]に収める
     if angle > 90:
         angle = 90
     elif angle < -90:
