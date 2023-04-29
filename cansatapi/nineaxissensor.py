@@ -14,18 +14,18 @@ from .util import convert
 # データシートp.145のTable 64にも記載あり
 
 # 加速度計のアドレス
-ACCL_ADDR = 0x18
-# ACCL_ADDR = 0x19
+# ACCL_ADDR = 0x18
+ACCL_ADDR = 0x19
 
 # ジャイロのアドレス
-GYRO_ADDR = 0x68
-# GYRO_ADDR = 0x69
+# GYRO_ADDR = 0x68
+GYRO_ADDR = 0x69
 
 # 磁気コンパスのアドレス
-MAG_ADDR = 0x10
+# MAG_ADDR = 0x10
 # MAG_ADDR = 0x11
 # MAG_ADDR = 0x12
-# MAG_ADDR = 0x13
+MAG_ADDR = 0x13
 
 
 class NineAxisSensor:
@@ -84,11 +84,11 @@ class NineAxisSensor:
 
         # MAGレジスタにx, y軸に対する反復の回数を設定する
         # 0x04 = 9回
-        self.bus.write_byte_data(0x10, 0x51, 0x04)
+        self.bus.write_byte_data(MAG_ADDR, 0x51, 0x04)
 
         # MAGレジスタにz軸に対する反復の回数を設定する
         # 0x0F = 15回
-        self.bus.write_byte_data(0x10, 0x52, 0x0F)
+        self.bus.write_byte_data(MAG_ADDR, 0x52, 0x0F)
 
         self.declination = declination
 
