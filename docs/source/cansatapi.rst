@@ -1,10 +1,10 @@
 cansatapi パッケージ
 ======================
 
-cansatapi.barometer モジュール
+cansatapi.lps25hb モジュール
 ----------------------------------
 
-.. automodule:: cansatapi.barometer
+.. automodule:: cansatapi.lps25hb
    :members:
    :undoc-members:
    :show-inheritance:
