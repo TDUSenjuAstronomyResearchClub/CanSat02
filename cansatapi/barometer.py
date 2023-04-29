@@ -19,9 +19,6 @@ PRESS_OUT_H = 0x2A
 TEMP_OUT_L = 0x2B
 TEMP_OUT_H = 0x2C
 
-# 海面気圧
-SEA_LEVEL_PRESSURE = 1013.25
-
 
 def byte_pressure_to_hpa(raw_byte: list) -> float:
     """生の気圧データをhPaに変換する関数
