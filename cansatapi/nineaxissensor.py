@@ -113,7 +113,7 @@ class NineAxisSensor:
             OSError: I2C通信が正常に行えなかった際に発生
         """
         # レジスタから値を読む
-        raw_accl_x = self.bus.read_i2c_block_data(ACCL_ADDR, 0x02, 6)
+        raw_accl_x = self.bus.read_i2c_block_data(ACCL_ADDR, 0x02, 2)
         raw_accl_y = self.bus.read_i2c_block_data(ACCL_ADDR, 0x04, 2)
         raw_accl_z = self.bus.read_i2c_block_data(ACCL_ADDR, 0x06, 2)
 
@@ -129,6 +129,10 @@ class NineAxisSensor:
         if accl_z > 2047:
             accl_z -= 4096
 
+        # ±4gモードでは出力される値の単位は1.95mgなのでgに変換する
+        accl_x *= 0.00195
+        accl_y *= 0.00195
+        accl_z *= 0.00195
         return [accl_x, accl_y, accl_z]
 
     def get_angular_rate(self) -> list[float]:
