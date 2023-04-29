@@ -62,7 +62,7 @@ def calc_altitude(pressure: float, sea_level_pressure: float = 1013.25) -> float
     return 44330.0 * (1.0 - pow(pressure / sea_level_pressure, 0.1903))
 
 
-class Barometer:
+class LPS25HB:
     """気圧センサ (AE-LPS25HB)を扱うクラス
 
     データシート: https://www.st.com/resource/en/datasheet/lps25hb.pdf

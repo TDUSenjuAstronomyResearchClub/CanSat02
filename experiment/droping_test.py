@@ -6,7 +6,7 @@ import time
 import datetime
 import math
 
-from cansatapi.lps25hb import Barometer
+from cansatapi.lps25hb import LPS25HB
 from cansatapi.lps25hb import calc_altitude
 from cansatapi.nineaxissensor import NineAxisSensor
 
@@ -67,7 +67,7 @@ class Logger:
 
 
 if __name__ == "__main__":
-    barometer = Barometer()
+    barometer = LPS25HB()
     nine_axis = NineAxisSensor()
 
     # ログ用ファイルの作成

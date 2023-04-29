@@ -13,14 +13,14 @@ from serial import SerialException
 import datetime
 
 from cansatapi.nineaxissensor import NineAxisSensor
-from cansatapi.lps25hb import Barometer
+from cansatapi.lps25hb import LPS25HB
 from cansatapi.batteryfuelgauge import BatteryFuelGauge
 from cansatapi import distance as distance_sensor
 from cansatapi import gps
 from cansatapi.bme280 import BME280
 
 nine_axis = NineAxisSensor()
-barometer = Barometer()
+barometer = LPS25HB()
 battery_fuel_gauge = BatteryFuelGauge()
 temperature = BME280()
 
