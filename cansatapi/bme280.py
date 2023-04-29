@@ -29,3 +29,27 @@ class BME280:
             list: [温度[℃], 湿度[%], 気圧[hPa]]
         """
         return [bme280.read_temperature(), bme280.read_humidity(), bme280.read_pressure()]
+
+    def get_temperature(self) -> float:
+        """温度[℃]を取得します
+
+        Returns:
+            float: 温度[℃]
+        """
+        return bme280.read_temperature()
+
+    def get_humidity(self) -> float:
+        """湿度[%]を取得します
+
+        Returns:
+            float: 湿度[%]
+        """
+        return bme280.read_humidity()
+
+    def get_pressure(self) -> float:
+        """気圧[hPa]を取得します
+
+        Returns:
+            float: 気圧[hPa]
+        """
+        return bme280.read_pressure()
