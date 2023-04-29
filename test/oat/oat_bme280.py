@@ -1,3 +1,5 @@
+"""BME280の動作確認用モジュール
+"""
 import sys
 import time
 
