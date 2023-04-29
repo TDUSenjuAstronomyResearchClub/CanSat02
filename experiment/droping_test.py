@@ -6,8 +6,8 @@ import time
 import datetime
 import math
 
-from cansatapi.barometer import Barometer
-from cansatapi.barometer import calc_altitude
+from cansatapi.lps25hb import Barometer
+from cansatapi.lps25hb import calc_altitude
 from cansatapi.nineaxissensor import NineAxisSensor
 
 
