@@ -25,6 +25,9 @@ class BME280:
     def temperature_result(self) -> list:
         """温湿度気圧センサ(AE-BME280)を使って温度、湿度、気圧の値を返却します
 
+        Deprecated:
+            後方互換性のために残しています
+
         Returns:
             list: [温度[℃], 湿度[%], 気圧[hPa]]
         """
