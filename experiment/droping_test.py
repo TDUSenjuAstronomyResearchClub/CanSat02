@@ -10,15 +10,19 @@ barometer = Barometer()
 nine_axis = NineAxisSensor()
 
 
-# ===logを残す関数　引数：log_type(この値が何の意味を持つのかの説明),value(変数値)　戻り値：なし===
-def log(filename, log_type, value) -> None:
-    dat_now = datetime.datetime.now()  # 現在日時を取得する
-    explanation = log_type
-    variable = value
-    writer = csv.writer(f, lineterminator='\n')
-    log_list = [dat_now, explanation, variable]  # リストに各値を挿入
+def log(filename: str, description: str, msg: str):
+    """
 
+    Args:
+        filename (str): ログを書き込むファイル名
+        description (str): ログの説明文
+        msg (str): ログメッセージ
+    """
+    dat_now = datetime.datetime.now()  # 現在日時を取得する
     f = open(filename, 'a')
+    writer = csv.writer(f, lineterminator='\n')
+    log_list = [dat_now, description, msg]  # リストに各値を挿入
+
     writer.writerow(log_list)
     print(log_list)
     f.close()
