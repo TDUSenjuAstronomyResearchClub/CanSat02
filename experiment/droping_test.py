@@ -7,6 +7,7 @@ import datetime
 import math
 
 from cansatapi.barometer import Barometer
+from cansatapi.barometer import calc_altitude
 from cansatapi.nineaxissensor import NineAxisSensor
 
 
@@ -80,8 +81,7 @@ if __name__ == "__main__":
     while True:
 
         try:
-            d = barometer.get_pressure_altitude_temperature()
-            altitude_now = d[0]  # 現在の高度を求める
+            altitude_now = calc_altitude(barometer.get_pressure())
             logger.log("[高度]", altitude_now)  # ログを残す
         except OSError:
             logger.error("気圧センサーでOSError")
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     while True:
 
         try:
-            altitude = barometer.get_pressure_altitude_temperature()[1]
+            altitude = calc_altitude(barometer.get_pressure())
             logger.log("[高度]", altitude)  # ログを残す
         except OSError:
             logger.error("気圧センサでOSError")
