@@ -197,7 +197,7 @@ class NineAxisSensor:
             mag_y -= 8192
 
         # 15ビットに変換
-        mag_z = ((raw_mag_z[5] * 256) + (raw_mag_z[4] & 0xFE)) / 2
+        mag_z = ((raw_mag_z[1] * 256) + (raw_mag_z[0] & 0xFE)) / 2
         if mag_z > 16383:
             mag_z -= 32768
 
