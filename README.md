@@ -140,10 +140,10 @@ Kypom リポバッテリー　1300mA、7.4 V
 
 ### ギアードモーター
 
-RSPRO(238-9721)
+RA250060-58Y91
 
-- モノタロウのリンク
-  - <https://www.monotaro.com/p/4122/4969/>
+-千石電商のリンク
+  ‐<https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-0SE4>
 
 ### モータードライバ
 
@@ -154,14 +154,14 @@ TB67H450FNG
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gI-14967/>
 
-###　サーボモーター（土壌水分、サンプル採取用）	
+### サーボモーター（土壌水分、サンプル採取用）	
 
 MG92B
 
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gM-13228/>
 
-###　DCモーター
+### DCモーター
 
 RE-280RA-2865
 
