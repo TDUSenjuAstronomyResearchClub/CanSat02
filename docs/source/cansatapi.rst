@@ -1,10 +1,10 @@
 cansatapi パッケージ
 ======================
 
-cansatapi.barometer モジュール
+cansatapi.lps25hb モジュール
 ----------------------------------
 
-.. automodule:: cansatapi.barometer
+.. automodule:: cansatapi.lps25hb
    :members:
    :undoc-members:
    :show-inheritance:
@@ -65,10 +65,10 @@ cansatapi.soil\_moisture モジュール
    :undoc-members:
    :show-inheritance:
 
-cansatapi.temperature モジュール
+cansatapi.bme280 モジュール
 -----------------------------------
 
-.. automodule:: cansatapi.temperature
+.. automodule:: cansatapi.bme280
    :members:
    :undoc-members:
    :show-inheritance:

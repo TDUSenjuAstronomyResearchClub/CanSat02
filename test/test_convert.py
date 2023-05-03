@@ -20,26 +20,26 @@ class TestConvert(unittest.TestCase):
         self.assertAlmostEqual(raw_ang_rate_to_ang_per_s(per_s, absss), -250)
 
     def ut_to_azimuth(self):
-        azim = 100
-        muth = 100
-        self.assertAlmostEqual(ut_to_azimuth(azim, muth), 45)
+        x = 100
+        y = 100
+        self.assertAlmostEqual(ut_to_azimuth(x, y), 45)
 
     def acceleration_to_roll(self):
-        accel = 1
-        roll = 1
-        self.assertAlmostEqual(acceleration_to_roll(accel, roll), 0.78)
+        x = 1
+        y = 1
+        self.assertAlmostEqual(acceleration_to_roll(x, y), 0.78)
 
     def acceleration_to_pitch(self):
-        rec = 1
-        tec = 1
-        xec = 1
-        self.assertAlmostEqual(acceleration_to_pitch(rec, tec, xec), 0.61)
+        x = 1
+        y = 1
+        z = 1
+        self.assertAlmostEqual(acceleration_to_pitch(x, y, z), 0.61)
 
     def conv_range(self):
-        xcc = 50
-        xdd = 0
-        xee = 100
-        xff = 0
-        xgg = 1
-        self.assertAlmostEqual(conv_range(xcc, xdd, xee, xff, xgg), 0.5)
+        a_min = 50
+        a_max = 0
+        b_min = 100
+        b_max = 0
+        target = 1
+        self.assertAlmostEqual(conv_range(a_min, a_max, b_min, b_max, target), 0.5)
 

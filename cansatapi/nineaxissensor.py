@@ -14,18 +14,18 @@ from .util import convert
 # データシートp.145のTable 64にも記載あり
 
 # 加速度計のアドレス
-ACCL_ADDR = 0x18
-# ACCL_ADDR = 0x19
+# ACCL_ADDR = 0x18
+ACCL_ADDR = 0x19
 
 # ジャイロのアドレス
-GYRO_ADDR = 0x68
-# GYRO_ADDR = 0x69
+# GYRO_ADDR = 0x68
+GYRO_ADDR = 0x69
 
 # 磁気コンパスのアドレス
-MAG_ADDR = 0x10
+# MAG_ADDR = 0x10
 # MAG_ADDR = 0x11
 # MAG_ADDR = 0x12
-# MAG_ADDR = 0x13
+MAG_ADDR = 0x13
 
 
 class NineAxisSensor:
@@ -72,23 +72,23 @@ class NineAxisSensor:
         # 磁気コンパスの設定
         # MAGレジスタに電源管理・ソフトリセット・SPIインターフェースモードを設定
         # 0x83 = 0b1000_0011 = Soft Reset
-        self.bus.write_byte_data(MAG_ADDR, 0x4B, 0x83)
+        # self.bus.write_word_data(MAG_ADDR, 0x4B, 0x83)
 
         # MAGレジスタに実行モードとアウトプットのレートを設定
         # 0x00 = Normal mode, レート 10Hz
-        self.bus.write_byte_data(MAG_ADDR, 0x4C, 0x00)
+        # self.bus.write_word_data(MAG_ADDR, 0x4C, 0x00)
 
         # MAGレジスタに割り込みとどの軸を有効にするかの設定をする
         # 0x84 = DRDY pinをhighにする(読みだし準備が完了したことを通知する)
-        self.bus.write_byte_data(MAG_ADDR, 0x4E, 0x84)
+        # self.bus.write_word_data(MAG_ADDR, 0x4E, 0x84)
 
         # MAGレジスタにx, y軸に対する反復の回数を設定する
         # 0x04 = 9回
-        self.bus.write_byte_data(0x10, 0x51, 0x04)
+        # self.bus.write_word_data(MAG_ADDR, 0x51, 0x04)
 
         # MAGレジスタにz軸に対する反復の回数を設定する
         # 0x0F = 15回
-        self.bus.write_byte_data(0x10, 0x52, 0x0F)
+        # self.bus.write_word_data(MAG_ADDR, 0x52, 0x0F)
 
         self.declination = declination
 
@@ -101,7 +101,7 @@ class NineAxisSensor:
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
         """
-        return convert.g_to_m_per_s2(self.get_acceleration())
+        return convert.g_to_m_per_s2(self.__get_acceleration())
 
     def __get_acceleration(self) -> list[float]:
         """加速度[g]を取得する
@@ -113,7 +113,7 @@ class NineAxisSensor:
             OSError: I2C通信が正常に行えなかった際に発生
         """
         # レジスタから値を読む
-        raw_accl_x = self.bus.read_i2c_block_data(ACCL_ADDR, 0x02, 6)
+        raw_accl_x = self.bus.read_i2c_block_data(ACCL_ADDR, 0x02, 2)
         raw_accl_y = self.bus.read_i2c_block_data(ACCL_ADDR, 0x04, 2)
         raw_accl_z = self.bus.read_i2c_block_data(ACCL_ADDR, 0x06, 2)
 
@@ -129,6 +129,10 @@ class NineAxisSensor:
         if accl_z > 2047:
             accl_z -= 4096
 
+        # ±4gモードでは出力される値の単位は1.95mgなのでgに変換する
+        accl_x *= 0.00195
+        accl_y *= 0.00195
+        accl_z *= 0.00195
         return [accl_x, accl_y, accl_z]
 
     def get_angular_rate(self) -> list[float]:
@@ -197,7 +201,7 @@ class NineAxisSensor:
             mag_y -= 8192
 
         # 15ビットに変換
-        mag_z = ((raw_mag_z[5] * 256) + (raw_mag_z[4] & 0xFE)) / 2
+        mag_z = ((raw_mag_z[1] * 256) + (raw_mag_z[0] & 0xFE)) / 2
         if mag_z > 16383:
             mag_z -= 32768
 

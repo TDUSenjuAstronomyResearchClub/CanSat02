@@ -19,9 +19,6 @@ PRESS_OUT_H = 0x2A
 TEMP_OUT_L = 0x2B
 TEMP_OUT_H = 0x2C
 
-# 海面気圧
-SEA_LEVEL_PRESSURE = 1013.25
-
 
 def byte_pressure_to_hpa(raw_byte: list) -> float:
     """生の気圧データをhPaに変換する関数
@@ -49,7 +46,23 @@ def byte_temp_to_deg_c(raw_byte: list) -> float:
     return (raw_byte[1] << 8) | raw_byte[0] / 480 + 42.5
 
 
-class Barometer:
+def calc_altitude(pressure: float, sea_level_pressure: float = 1013.25) -> float:
+    """気圧[hPa]から高度[m]を計算する関数
+
+    海面気圧に基づいて高度を計算するので低気圧接近時などにズレが生じます。
+    絶対値として使うのではなく、相対値として(差分を計算して)使用してください。
+
+    Args:
+        pressure (float): 気圧[hPa]
+        sea_level_pressure (float): 海面気圧[hPa]
+
+    Returns:
+        float: 計算された高度[m]
+    """
+    return 44330.0 * (1.0 - pow(pressure / sea_level_pressure, 0.1903))
+
+
+class LPS25HB:
     """気圧センサ (AE-LPS25HB)を扱うクラス
 
     データシート: https://www.st.com/resource/en/datasheet/lps25hb.pdf
@@ -89,7 +102,10 @@ class Barometer:
         return byte_temp_to_deg_c(temp_out)
 
     def get_pressure_altitude_temperature(self) -> list[float]:
-        """気圧・高度・気温を読み取る
+        """気圧・高度・気温を読み取るメソッド
+
+        Deprecated:
+            後方互換性のために残しています。
 
         Returns:
             list[float]: 現在の気圧(hPa), 現在の高度(m), 現在の気温(℃), をこの順番で要素とするリスト
@@ -109,7 +125,7 @@ class Barometer:
         raw_temperature = (temp_out_h << 8) | temp_out_l
         temperature = raw_temperature / 480.0 + 42.5
 
-        # 気圧と温度に基づいた高度を計算
+        # 気圧に基づいた高度を計算
         sea_level_pressure = 1013.25  # hPa
         altitude = 44330.0 * (1.0 - pow(pressure / sea_level_pressure, 0.1903))
 

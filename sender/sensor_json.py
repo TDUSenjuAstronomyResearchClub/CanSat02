@@ -13,16 +13,16 @@ from serial import SerialException
 import datetime
 
 from cansatapi.nineaxissensor import NineAxisSensor
-from cansatapi.barometer import Barometer
+from cansatapi.lps25hb import LPS25HB
 from cansatapi.batteryfuelgauge import BatteryFuelGauge
 from cansatapi import distance as distance_sensor
 from cansatapi import gps
-from cansatapi.temperature import Temperature
+from cansatapi.bme280 import BME280
 
 nine_axis = NineAxisSensor()
-barometer = Barometer()
+barometer = LPS25HB()
 battery_fuel_gauge = BatteryFuelGauge()
-temperature = Temperature()
+temperature = BME280()
 
 # ログファイルのファイル名を作成
 dt_start = datetime.datetime.now()
