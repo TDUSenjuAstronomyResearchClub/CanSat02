@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from battery_fuel_gauge import BatteryFuelGauge
+from batteryfuelgauge import BatteryFuelGauge
 
 
 class TestBatteryFuelGauge(unittest.TestCase):
