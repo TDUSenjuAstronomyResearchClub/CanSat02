@@ -49,6 +49,14 @@ cansatapi.nineaxissensor モジュール
    :undoc-members:
    :show-inheritance:
 
+cansatapi.roll モジュール
+--------------------------------------
+
+.. automodule:: cansatapi.roll
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 cansatapi.servo モジュール
 --------------------------------------
 
