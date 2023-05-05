@@ -81,7 +81,7 @@ class LPS25HB:
         """気圧を読み取るメソッド
 
         Returns:
-            float: 気圧(hPa)
+            float: 気圧[hPa]
         """
         # PRESS_OUT_XL(0x28)からPRESS_OUT_H(0x2A)までの3つを読み取る
         # 参考: https://github.com/ControlEverythingCommunity/LPS25HB/blob/master/Python/LPS25HB.py
@@ -96,7 +96,7 @@ class LPS25HB:
         内蔵なので温度が気温よりすこし高めに出る傾向があります。
 
         Returns:
-            float: 温度(℃)
+            float: 温度[℃]
         """
         temp_out = self.bus.read_i2c_block_data(LPS25HB_ADDRESS, TEMP_OUT_L | CMD_REG, 2)
         return byte_temp_to_deg_c(temp_out)
@@ -108,7 +108,7 @@ class LPS25HB:
             後方互換性のために残しています。
 
         Returns:
-            list[float]: 現在の気圧(hPa), 現在の高度(m), 現在の気温(℃), をこの順番で要素とするリスト
+            list[float]: 現在の気圧[hPa], 現在の高度[m], 現在の気温[℃], をこの順番で要素とするリスト
         """
         # 生の気圧と気温データをセンサーから読み取る
         press_out_xl = self.bus.read_byte_data(LPS25HB_ADDRESS, PRESS_OUT_XL)

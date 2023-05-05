@@ -23,10 +23,10 @@ class BatteryFuelGauge:
         self.bus = smbus2.SMBus(1)
 
     def get_level(self) -> int:
-        """電池残量(%)を取得するメソッド
+        """電池残量[%]を取得するメソッド
 
         Returns:
-            int: 電池残量(%)を返却する（0-100の範囲で表される整数）
+            int: 電池残量[%]を返却する（0-100の範囲で表される整数）
 
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
