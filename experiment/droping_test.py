@@ -45,14 +45,14 @@ if __name__ == "__main__":
 
         try:
             altitude = calc_altitude(barometer.get_pressure())
-            logger.log("[高度]", altitude)  # ログを残す
+            logger.log("高度", altitude)  # ログを残す
         except OSError:
             logger.error("気圧センサでOSError")
 
         try:
             accel = nine_axis.get_acceleration()
             accel_abs = math.sqrt(accel[0] ** 2 + accel[1] ** 2 + accel[2] ** 2)  # 9軸から加速度の大きさを求める
-            logger.log("[加速度]", accel_abs)  # ログを残す
+            logger.log("加速度", accel_abs)  # ログを残す
         except OSError:
             logger.error("9軸センサでOSError")
 
