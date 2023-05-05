@@ -49,8 +49,8 @@ if __name__ == "__main__":
         except OSError:
             LOGGER.error("気圧センサーでOSError")
 
-        # 5回連続で気圧が下がったら落下判定とする
-        if pressure_past > pressure_now:
+        # 5回連続で気圧が上がったら落下判定とする
+        if pressure_past < pressure_now:
             drop_count += 1
             if drop_count >= 5:
                 drop_start_s = time.time()
