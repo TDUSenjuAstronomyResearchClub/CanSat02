@@ -2,39 +2,50 @@
 """
 import RPi.GPIO as GPIO
 
-# GPIOピンの設定
-PWM_PIN = 18
 
-# PWM周波数の設定
-PWM_FREQ = 100
-
-# 初期化
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(PWM_PIN, GPIO.OUT)
-
-# PWMオブジェクトの作成
-pwm = GPIO.PWM(PWM_PIN, PWM_FREQ)
-
-
-def start_motor():
-    """モーターを回転させる関数
+class DcMotor:
+    """DCモーターを制御するクラス
     """
-    pwm.start(0)
-    pwm.ChangeDutyCycle(50)  # 50%のデューティ比で回転
 
+    def __init__(self, pin: int, freq: int = 100):
+        """DCモーターを初期化するメソッド
 
-def stop_motor():
-    """モーターを停止させる関数
-    """
-    pwm.ChangeDutyCycle(0)  # 停止
+        Args:
+            pin (int): PWM制御用のピン
+            freq (int): PWMの周波数[Hz]
+        """
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(pin, GPIO.OUT)
+        self.pwm = GPIO.PWM(pin, freq)
 
+    def start_motor(self, duty: int):
+        """モーターを回転させるメソッド
 
-def cleanup():
-    """モーターの使用後に呼び出す関数
+        Args:
+            duty (int): デューティ比[%] デフォルトは50%
+        """
+        self.pwm.start(0)
+        self.pwm.ChangeDutyCycle(duty)
 
-    GPIOのクリーンアップを行います。
-    DCモーター使用後は必ず呼び出して下さい。
-    """
-    stop_motor()
-    pwm.stop()
-    GPIO.cleanup()
+    def change_duty(self, duty: int):
+        """モーターのデューティ比を変更するメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+        self.pwm.ChangeDutyCycle(duty)
+
+    def stop_motor(self):
+        """モーターを停止させるメソッド
+        """
+        self.pwm.ChangeDutyCycle(0)  # 停止
+
+    def cleanup(self):
+        """モーターの使用後に呼び出すメソッド
+
+        GPIOのクリーンアップを行います。
+        DCモーター使用後は必ず呼び出して下さい。
+        """
+        self.stop_motor()
+        self.pwm.stop()
+        GPIO.cleanup()
