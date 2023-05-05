@@ -5,8 +5,7 @@ on:
       - main
 
 jobs:
-  release:
-    name: Build
+  build-document:
     runs-on: ubuntu-latest
 
     permissions:
@@ -24,7 +23,7 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dependencies libs
+      - name: Install dependent libs
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
