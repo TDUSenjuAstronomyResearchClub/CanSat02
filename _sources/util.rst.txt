@@ -9,6 +9,9 @@ cansatapi.util.convert モジュール
    :undoc-members:
    :show-inheritance:
 
+cansatapi.util.logger モジュール
+---------------------------------
+
 .. automodule:: cansatapi.util.logger
    :members:
    :undoc-members:
