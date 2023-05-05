@@ -49,10 +49,10 @@ cansatapi.nineaxissensor モジュール
    :undoc-members:
    :show-inheritance:
 
-cansatapi.roll モジュール
+cansatapi.dcmotor モジュール
 --------------------------------------
 
-.. automodule:: cansatapi.roll
+.. automodule:: cansatapi.dcmotor
    :members:
    :undoc-members:
    :show-inheritance:
