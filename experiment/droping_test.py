@@ -39,12 +39,15 @@ if __name__ == "__main__":
         time.sleep(0.5)
 
     # 着地判定
-    altitude = 0
-    accel_abs = 0
+    pressure = 0.0
+    altitude = 0.0
+    accel_abs = 0.0
     while True:
 
         try:
-            altitude = calc_altitude(barometer.get_pressure())
+            pressure = barometer.get_pressure()
+            logger.log("気圧", pressure)
+            altitude = calc_altitude(pressure)
             logger.log("高度", altitude)  # ログを残す
         except OSError:
             logger.error("気圧センサでOSError")
