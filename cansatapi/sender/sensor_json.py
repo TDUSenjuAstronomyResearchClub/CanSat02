@@ -1,6 +1,6 @@
 """ ラズパイから各種センサの値を一定時間ごとに取得し、JSON形式のデータを作成するモジュール
 
-JSON形式のデータを地上局に送信するのはsend_recive.pyのsend関数の中で行う。
+JSON形式のデータを地上局に送信するのはsend_receive.pyのsend関数の中で行う。
 """
 import json
 import sys
