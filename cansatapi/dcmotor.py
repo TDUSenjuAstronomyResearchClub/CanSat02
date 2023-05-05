@@ -3,7 +3,7 @@
 import RPi.GPIO as GPIO
 
 
-class DcMotor:
+class DCMotor:
     """DCモーターを制御するクラス
     """
 

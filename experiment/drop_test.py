@@ -7,7 +7,7 @@ import math
 from cansatapi.lps25hb import LPS25HB
 from cansatapi.lps25hb import calc_altitude
 from cansatapi.nineaxissensor import NineAxisSensor
-from cansatapi.dcmotor import DcMotor
+from cansatapi.dcmotor import DCMotor
 from cansatapi.util.logger import Logger
 
 if __name__ == "__main__":
@@ -72,7 +72,7 @@ if __name__ == "__main__":
         time.sleep(0.5)
 
     # DCモータでパラシュートを分離させる
-    para_motor = DcMotor(18)
+    para_motor = DCMotor(18)
     logger.msg("パラシュート切り離し開始")
     para_motor.start_motor()
 
