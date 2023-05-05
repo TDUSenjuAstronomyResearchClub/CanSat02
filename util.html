@@ -52,6 +52,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.g_to_m_per_s2"><code class="docutils literal notranslate"><span class="pre">g_to_m_per_s2()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.raw_ang_rate_to_ang_per_s"><code class="docutils literal notranslate"><span class="pre">raw_ang_rate_to_ang_per_s()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.convert.ut_to_azimuth"><code class="docutils literal notranslate"><span class="pre">ut_to_azimuth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.util.logger.Logger"><code class="docutils literal notranslate"><span class="pre">Logger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.util.logger.Logger.error"><code class="docutils literal notranslate"><span class="pre">Logger.error()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.util.logger.Logger.log"><code class="docutils literal notranslate"><span class="pre">Logger.log()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.util.logger.Logger.msg"><code class="docutils literal notranslate"><span class="pre">Logger.msg()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -215,6 +221,51 @@
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
+</dd></dl>
+
+<span class="target" id="module-cansatapi.util.logger"></span><p>ロギングモジュール</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.util.logger.Logger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.util.logger.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/logger.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.logger.Logger" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>ロガークラス</p>
+<p>CSV形式でロギングを行います。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.util.logger.Logger.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/logger.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.logger.Logger.error" title="この定義へのパーマリンク"></a></dt>
+<dd><p>エラーロギング用のメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) -- エラーメッセージ</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.util.logger.Logger.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/logger.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.logger.Logger.log" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ロギング用のメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>category</strong> (<em>str</em>) -- ログのカテゴリ</p></li>
+<li><p><strong>content</strong> (<em>str</em>) -- ログメッセージ</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.util.logger.Logger.msg">
+<span class="sig-name descname"><span class="pre">msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/logger.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.logger.Logger.msg" title="この定義へのパーマリンク"></a></dt>
+<dd><p>メッセージロギング用メソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) -- メッセージ</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>

@@ -8,3 +8,8 @@ cansatapi.util.convert モジュール
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. automodule:: cansatapi.util.logger
+   :members:
+   :undoc-members:
+   :show-inheritance:
