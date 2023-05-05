@@ -32,16 +32,16 @@ class Logger:
         self.writer.writerow(['現在日時', '説明', '内容'])
         self.file.close()
 
-    def log(self, description: str, content: str | float):
-        """ロギング用のプライベートメソッド
+    def log(self, category: str, content: str | float):
+        """ロギング用のメソッド
 
         Args:
-            description (str): ログの説明文
+            category (str): ログのカテゴリ
             content (str): ログメッセージ
         """
         self.file = open(self.file.name, 'a')
         dt_now = datetime.datetime.now()  # 現在日時を取得する
-        log_list = [dt_now, description, content]  # リストに各値を挿入
+        log_list = [dt_now, category, content]  # リストに各値を挿入
 
         self.writer.writerow(log_list)
         self.file.close()
