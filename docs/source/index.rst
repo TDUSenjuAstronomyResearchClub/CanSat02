@@ -17,6 +17,7 @@ CanSatAPIのドキュメントへようこそ!
    :maxdepth: 4
    :caption: その他：
 
+   operation_check
    how_to_build_docs
 
 

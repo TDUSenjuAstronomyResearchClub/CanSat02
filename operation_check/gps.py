@@ -1,3 +1,5 @@
+"""GPSの動作確認用モジュール
+"""
 from cansatapi.gps import *
 
 if __name__ == "__main__":
