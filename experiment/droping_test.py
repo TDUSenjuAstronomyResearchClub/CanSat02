@@ -22,6 +22,7 @@ if __name__ == "__main__":
     # 落下開始判定
     altitude_past = -1  # 高度比較用に使用する過去の高度値を初期化する
     altitude_now = 0
+    drop_start = time.time()
     while True:
 
         try:
@@ -62,6 +63,10 @@ if __name__ == "__main__":
         # 高度と加速度の着地判定の基準値を書き込む
         if altitude < 0 or accel_abs < 0:
             logger.msg("着地判定が行われました")
+            break
+
+        if drop_start + 120 < time.time():
+            logger.msg("時間経過で強制的に着地判定が行われました")
             break
 
         time.sleep(0.5)
