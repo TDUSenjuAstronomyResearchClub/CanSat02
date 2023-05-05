@@ -35,22 +35,29 @@ if __name__ == "__main__":
     LOGGER = Logger(filename)
 
     # 落下開始判定
-    altitude_past = -1  # 高度比較用に使用する過去の高度値を初期化する
-    altitude_now = 0
-    drop_start = time.time()
+    pressure_past = barometer.get_pressure()
+    pressure_now = 0
+    drop_start_s = time.time()  # 落下後経過時間を初期化
+    drop_count = 0
     while True:
 
         try:
-            altitude_now = calc_altitude(barometer.get_pressure())
-            LOGGER.log("高度", altitude_now)  # ログを残す
+            pressure_now = barometer.get_pressure()
+            LOGGER.log("気圧", pressure_now)
+            alt = calc_altitude(barometer.get_pressure())
+            LOGGER.log("高度", alt)  # ログを残す
         except OSError:
             LOGGER.error("気圧センサーでOSError")
 
-        if altitude_past > altitude_now:
-            LOGGER.msg("落下判定が行われました")
-            break
+        # 5回連続で気圧が下がったら落下判定とする
+        if pressure_past > pressure_now:
+            drop_count += 1
+            if drop_count >= 5:
+                drop_start_s = time.time()
+                LOGGER.msg("落下判定が行われました")
+                break
 
-        altitude_past = altitude_now
+        pressure_past = pressure_now
 
         time.sleep(0.5)
 
@@ -81,7 +88,7 @@ if __name__ == "__main__":
             break
 
         # 降下開始から2分経過で強制的に着地判定とする
-        if drop_start + 120 < time.time():
+        if drop_start_s + 120 < time.time():
             LOGGER.msg("時間経過で強制的に着地判定が行われました")
             break
 
