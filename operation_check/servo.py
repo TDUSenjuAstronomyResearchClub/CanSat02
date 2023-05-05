@@ -1,3 +1,5 @@
+"""サーボモーターの動作確認用モジュール
+"""
 from cansatapi.servo import Servo
 import sys
 
