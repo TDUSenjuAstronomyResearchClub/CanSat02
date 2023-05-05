@@ -80,6 +80,7 @@ if __name__ == "__main__":
             LOGGER.msg("着地判定が行われました")
             break
 
+        # 降下開始から2分経過で強制的に着地判定とする
         if drop_start + 120 < time.time():
             LOGGER.msg("時間経過で強制的に着地判定が行われました")
             break
