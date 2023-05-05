@@ -4,41 +4,53 @@ import RPi.GPIO as GPIO
 
 
 class DCMotor:
-    """DCモーターを制御するクラス
+    """DCモーターをTB67H450FNGを通して制御するクラス
     """
 
-    def __init__(self, pin: int, freq: int = 100):
+    def __init__(self, in1: int, in2: int, freq: int = 100):
         """DCモーターを初期化するメソッド
 
         Args:
-            pin (int): PWM制御用のピン
+            in1 (int): PWM制御用のピン1
+            in2 (int): PWM制御用のピン2
             freq (int): PWMの周波数[Hz]
         """
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(pin, GPIO.OUT)
-        self.pwm = GPIO.PWM(pin, freq)
+        GPIO.setup(in1, GPIO.OUT)
+        GPIO.setup(in2, GPIO.OUT)
+        self.in1 = GPIO.PWM(in1, freq)
+        self.in2 = GPIO.PWM(in2, freq)
 
-    def start_motor(self, duty: int = 50):
-        """モーターを回転させるメソッド
+        # デューティ比0を指定しLOWにしてモーターをスタンバイモードに入れる
+        self.in1 = GPIO.start(0)
+        self.in2 = GPIO.start(0)
 
-        Args:
-            duty (int): デューティ比[%] デフォルトは50%
-        """
-        self.pwm.start(0)
-        self.pwm.ChangeDutyCycle(duty)
-
-    def change_duty(self, duty: int):
-        """モーターのデューティ比を変更するメソッド
+    def forward(self, duty: int = 50):
+        """モーターを正転させます
 
         Args:
             duty (int): デューティ比[%]
         """
-        self.pwm.ChangeDutyCycle(duty)
+        self.in1.ChangeDutyCycle(duty)
+        self.in2.ChangeDutyCycle(0)
+
+    def backward(self, duty: int = 50):
+        """モーターを逆転させます
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+        self.in1.ChangeDutyCycle(0)
+        self.in2.ChangeDutyCycle(duty)
 
     def stop_motor(self):
         """モーターを停止させるメソッド
+
+        モーターは停止から1[ms]経過後にスタンバイモードに入ります。
         """
-        self.pwm.ChangeDutyCycle(0)  # 停止
+        # 両方がLOWになる
+        self.in1.ChangeDutyCycle(0)
+        self.in2.ChangeDutyCycle(0)
 
     def cleanup(self):
         """モーターの使用後に呼び出すメソッド
@@ -47,5 +59,6 @@ class DCMotor:
         DCモーター使用後は必ず呼び出して下さい。
         """
         self.stop_motor()
-        self.pwm.stop()
+        self.in1.stop()
+        self.in2.stop()
         GPIO.cleanup()
