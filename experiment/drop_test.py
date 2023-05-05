@@ -94,4 +94,5 @@ if __name__ == "__main__":
 
         time.sleep(0.5)
 
-    detach_parachute(LOGGER)
+    # 5/6 モーター回路不具合のためパラシュート切り離しはやらないことになりました
+    # detach_parachute(LOGGER)
