@@ -7,7 +7,7 @@ import sys
 import time
 
 import running  # 走行プログラムのソースファイル
-from cansatapi.sender import send_receive  # 地上局と値を送受信するプログラム
+from cansatapi.xbee import XBee  # 地上局と値を送受信するプログラム
 
 from serial import SerialException
 import datetime
@@ -133,5 +133,5 @@ while True:
         "distance": distance
     }
 
-    send_receive.send(start_time, json.dumps(data))  # json形式のデータを送信する
+    XBee.send(start_time, json.dumps(data))  # json形式のデータを送信する
     time.sleep(5)
