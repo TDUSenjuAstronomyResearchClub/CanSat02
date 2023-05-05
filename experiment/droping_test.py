@@ -7,8 +7,8 @@ import math
 from cansatapi.lps25hb import LPS25HB
 from cansatapi.lps25hb import calc_altitude
 from cansatapi.nineaxissensor import NineAxisSensor
+from cansatapi.dcmotor import DcMotor
 from cansatapi.util.logger import Logger
-
 
 if __name__ == "__main__":
     barometer = LPS25HB()
@@ -66,5 +66,13 @@ if __name__ == "__main__":
 
         time.sleep(0.5)
 
-# DCモータでパラシュートを分離させる
-# プログラム作成の必要あり
+    # DCモータでパラシュートを分離させる
+    para_motor = DcMotor(18)
+    logger.msg("パラシュート切り離し開始")
+    para_motor.start_motor()
+
+    time.sleep(10)  # 10秒間巻取り
+
+    para_motor.stop_motor()
+    para_motor.cleanup()
+    logger.msg("パラシュート切り離し終了")
