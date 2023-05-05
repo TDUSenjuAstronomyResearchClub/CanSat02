@@ -75,7 +75,7 @@ if __name__ == "__main__":
         except OSError:
             LOGGER.error("9軸センサでOSError")
 
-        # 高度と加速度の着地判定の基準値を書き込む
+        # todo: 着地判定の高度と加速度の閾値を書き込む
         if altitude < 0 or accel_abs < 0:
             LOGGER.msg("着地判定が行われました")
             break
