@@ -55,7 +55,7 @@ def send(filename: str, json_data: str):
 
 
 def receive(filename: str) -> str:
-    """データ送信用関数
+    """データ受信用関数
 
     Returns:
         str: 受信した文字列
@@ -74,10 +74,10 @@ def receive(filename: str) -> str:
             ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
             utf8_string = ser.read_all()  # 機体から値を受け取る
             ser.close()
-            
+
             catch_value = {
                 "time": now,
-                "message":utf8_string
+                "message": utf8_string
             }
             # ログ用ファイルをオープン
             f = open(filename, 'a')
