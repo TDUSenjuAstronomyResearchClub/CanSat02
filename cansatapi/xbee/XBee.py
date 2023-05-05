@@ -14,9 +14,6 @@ PORT = '/dev/ttyUSB0'
 # 通信レート設定
 BAUD_RATE = 9600
 
-# シリアルポート使用判定フラグ(使用中はTrue)
-is_using_serial_port = False
-
 
 def send(filename: str, json_data: str):
     """データ送信用関数
