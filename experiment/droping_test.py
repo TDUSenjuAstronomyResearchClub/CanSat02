@@ -53,8 +53,8 @@ class Logger:
         Args:
             msg (str): メッセージ
         """
-        self.log("[LOG]", msg)
-        print(msg, file=sys.stdout)
+        self.log("message", msg)
+        print("[Msg]" + msg, file=sys.stdout)
 
     def error(self, msg: str):
         """エラーロギング用のメソッド
@@ -62,8 +62,8 @@ class Logger:
         Args:
             msg (str): エラーメッセージ
         """
-        self.log("[ERROR]", msg)
-        print(msg, file=sys.stderr)
+        self.log("ERROR", msg)
+        print("[Error]" + msg, file=sys.stderr)
 
 
 if __name__ == "__main__":
