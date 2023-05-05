@@ -72,9 +72,9 @@ if __name__ == "__main__":
         time.sleep(0.5)
 
     # DCモータでパラシュートを分離させる
-    para_motor = DCMotor(18)
+    para_motor = DCMotor(9, 10)
     logger.msg("パラシュート切り離し開始")
-    para_motor.start_motor()
+    para_motor.forward()
 
     time.sleep(10)  # 10秒間巻取り
 
