@@ -7,7 +7,7 @@ import sys
 import time
 
 import running  # 走行プログラムのソースファイル
-import send_receive  # 地上局と値を送受信するプログラム
+from cansatapi.sender import send_receive  # 地上局と値を送受信するプログラム
 
 from serial import SerialException
 import datetime

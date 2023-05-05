@@ -12,6 +12,7 @@ CanSatAPIのドキュメントへようこそ!
 
    cansatapi
    util
+   sender
 
 .. toctree::
    :maxdepth: 4
