@@ -1,3 +1,5 @@
+"""9軸センサ(BMX055)用の動作確認モジュール
+"""
 from cansatapi.nineaxissensor import NineAxisSensor
 import sys
 import time
