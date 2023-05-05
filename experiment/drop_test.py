@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
         try:
             altitude_now = calc_altitude(barometer.get_pressure())
-            logger.log("[高度]", altitude_now)  # ログを残す
+            logger.log("高度", altitude_now)  # ログを残す
         except OSError:
             logger.error("気圧センサーでOSError")
 
