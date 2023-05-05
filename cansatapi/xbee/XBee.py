@@ -59,6 +59,9 @@ def send(filename: str, json_data: str):
 def receive(filename: str) -> str:
     """データ受信用関数
 
+    Args:
+        filename (str): 受信データのログファイル名
+
     Returns:
         str: 受信した文字列
 
