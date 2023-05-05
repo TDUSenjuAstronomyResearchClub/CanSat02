@@ -18,7 +18,7 @@ class DcMotor:
         GPIO.setup(pin, GPIO.OUT)
         self.pwm = GPIO.PWM(pin, freq)
 
-    def start_motor(self, duty: int):
+    def start_motor(self, duty: int = 50):
         """モーターを回転させるメソッド
 
         Args:
