@@ -8,11 +8,3 @@ cansatapi.sender.send_receive モジュール
    :members:
    :undoc-members:
    :show-inheritance:
-
-cansatapi.sender.sensor_json モジュール
---------------------------------------------------
-
-.. automodule:: cansatapi.sender.sensor_json
-   :members:
-   :undoc-members:
-   :show-inheritance:
