@@ -65,7 +65,7 @@ def photograph():
             try:
                 data = img.read()
                 camera_data = data.hex()
-                json_data = json.dumps({"camera": camera_data}) 
+                json_data = json.dumps({"camera": camera_data , "time":d}) 
                 
                 ser.write(json_data)  # XBeeに送信
 
