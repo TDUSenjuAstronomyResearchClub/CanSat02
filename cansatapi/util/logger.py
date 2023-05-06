@@ -20,12 +20,13 @@ class Logger:
         Args:
             file_name: ログファイルの名前
         """
-        self.file = open(file_name, 'a')
-        self.writer = csv.writer(self.file, lineterminator='\n')
+        self.file_name = file_name
+        file = open(file_name, 'a')
+        writer = csv.writer(file, lineterminator='\n')
 
         # CSVにインデックスをつける
-        self.writer.writerow(['現在日時', '説明', '内容'])
-        self.file.close()
+        writer.writerow(['現在日時', '説明', '内容'])
+        file.close()
 
     def log(self, category: str, content: str | float):
         """ロギング用のメソッド
@@ -34,13 +35,13 @@ class Logger:
             category (str): ログのカテゴリ
             content (str): ログメッセージ
         """
-        self.file = open(self.file.name, 'a')
-        self.writer = csv.writer(self.file, lineterminator='\n')
+        file = open(self.file_name, 'a')
+        writer = csv.writer(file, lineterminator='\n')
         dt_now = datetime.datetime.now()  # 現在日時を取得する
         log_list = [dt_now, category, content]  # リストに各値を挿入
 
-        self.writer.writerow(log_list)
-        self.file.close()
+        writer.writerow(log_list)
+        file.close()
         time.sleep(0.1)
 
     def msg(self, msg: str):
