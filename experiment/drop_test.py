@@ -56,6 +56,8 @@ if __name__ == "__main__":
                 drop_start_s = time.time()
                 LOGGER.msg("落下判定が行われました")
                 break
+        else:
+            drop_count = 0
 
         pressure_past = pressure_now
 
