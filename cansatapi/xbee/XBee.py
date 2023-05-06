@@ -1,7 +1,7 @@
 """機体と地上局の通信を行うモジュール
 """
 
-import datetime
+from datetime import datetime
 import json
 import time
 
@@ -15,11 +15,10 @@ PORT = '/dev/ttyUSB0'
 BAUD_RATE = 9600
 
 
-def send(filename: str, json_data: str):
+def send(json_data: str):
     """データ送信用関数
 
     Args:
-        filename (str): ファイルネーム
         json_data (str): JSON形式のデータ
 
     Raises:
@@ -27,7 +26,7 @@ def send(filename: str, json_data: str):
         SerialException: デバイスがみつからないときに発生します
     """
     # ログ用ファイルをオープン
-    f = open(filename, 'a')
+    f = open('send_data' + datetime.now().strftime('%Y年%m月%d日_%H時%M分%S秒') + '.json', 'a')
     # jsonとして書き込み
     json.dump(json_data, f, indent=4, ensure_ascii=False)
     f.close()
@@ -53,18 +52,15 @@ def send(filename: str, json_data: str):
             raise SerialException  # ここの処理について要件等
 
 
-def receive(filename: str) -> str:
+def receive() -> str:
     """データ受信用関数
-
-    Args:
-        filename (str): 受信データのログファイル名
 
     Returns:
         str: 受信した文字列
 
     Raises:
         SerialException: デバイスがみつからないときに発生します
-        PortNotOpenError: ポートが空いていないときに発生します
+        PortNotOpenError: ポートが空いておらず、リトライにも失敗した場合発生します
     """
     retry_c = 0
     while True:
@@ -74,11 +70,11 @@ def receive(filename: str) -> str:
             ser.close()
 
             catch_value = {
-                "time": datetime.datetime.now(),
+                "time": datetime.now(),
                 "message": receive_data
             }
             # ログ用ファイルをオープン
-            f = open(filename, 'a')
+            f = open('receive_data' + datetime.now().strftime('%Y年%m月%d日_%H時%M分%S秒') + '.json', 'a')
             # jsonとして書き込み
             json.dump(catch_value, f, indent=4, ensure_ascii=False)
             f.close()

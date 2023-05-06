@@ -24,10 +24,6 @@ barometer = LPS25HB()
 battery_fuel_gauge = BatteryFuelGauge()
 temperature = BME280()
 
-# ログファイルのファイル名を作成
-dt_start = datetime.datetime.now()
-start_time = 'send_sensor_data' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
-
 while True:
     # ここで初期化することで、エラーが出たときにNoneで値を送れる
     gps_data: list[float] | None = None
@@ -133,5 +129,5 @@ while True:
         "distance": distance
     }
 
-    XBee.send(start_time, json.dumps(data))  # json形式のデータを送信する
+    XBee.send(json.dumps(data))  # json形式のデータを送信する
     time.sleep(5)
