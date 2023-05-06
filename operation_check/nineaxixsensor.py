@@ -20,3 +20,5 @@ if __name__ == "__main__":
             time.sleep(1)
         except KeyboardInterrupt:
             sys.exit(0)
+        except OSError as e:
+            print(e)
