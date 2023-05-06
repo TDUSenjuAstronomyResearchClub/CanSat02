@@ -43,7 +43,10 @@ def byte_temp_to_deg_c(raw_byte: list) -> float:
         float: 温度(℃)
     """
     # 参考: https://garretlab.web.fc2.com/arduino/lab/barometer_and_temperature_sensor/
-    return (raw_byte[1] << 8) | raw_byte[0] / 480 + 42.5
+    temp = raw_byte[1] << 8 | raw_byte[0]
+    if temp >= 32768:
+        temp -= 65536
+    return 42.5 + temp / 480
 
 
 def calc_altitude(pressure: float, sea_level_pressure: float = 1013.25) -> float:
