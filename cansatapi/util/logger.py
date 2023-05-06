@@ -35,6 +35,7 @@ class Logger:
             content (str): ログメッセージ
         """
         self.file = open(self.file.name, 'a')
+        self.writer = csv.writer(self.file, lineterminator='\n')
         dt_now = datetime.datetime.now()  # 現在日時を取得する
         log_list = [dt_now, category, content]  # リストに各値を挿入
 
