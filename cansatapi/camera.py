@@ -22,6 +22,9 @@ import cv2
 import serial
 from serial import SerialException
 
+import json
+from cansatapi import camera
+
 # ポート設定
 PORT = '/dev/ttyUSB0'
 
@@ -61,7 +64,10 @@ def photograph():
         with open(today, 'rb') as img:  # 画像ファイルをバイナリデータとして開く
             try:
                 data = img.read()
-                ser.write(data)  # XBeeに送信
+                camera_data = data.hex()
+                json_data = json.dumps({"camera": camera_data}) 
+                
+                ser.write(json_data)  # XBeeに送信
 
                 ser.close()  # XBeeシリアルポートを閉じる
                 return
