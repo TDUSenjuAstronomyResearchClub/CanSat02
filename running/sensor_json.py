@@ -1,13 +1,13 @@
 """ ラズパイから各種センサの値を一定時間ごとに取得し、JSON形式のデータを作成するモジュール
 
-JSON形式のデータを地上局に送信するのはsend_recive.pyのsend関数の中で行う。
+JSON形式のデータを地上局に送信するのはsend_receive.pyのsend関数の中で行う。
 """
 import json
 import sys
 import time
 
 import running  # 走行プログラムのソースファイル
-from cansatapi.sender import send_receive  # 地上局と値を送受信するプログラム
+from cansatapi.xbee import XBee  # 地上局と値を送受信するプログラム
 
 from serial import SerialException
 import datetime
@@ -23,10 +23,6 @@ nine_axis = NineAxisSensor()
 barometer = LPS25HB()
 battery_fuel_gauge = BatteryFuelGauge()
 temperature = BME280()
-
-# ログファイルのファイル名を作成
-dt_start = datetime.datetime.now()
-start_time = 'send_sensor_data' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')
 
 while True:
     # ここで初期化することで、エラーが出たときにNoneで値を送れる
@@ -133,5 +129,5 @@ while True:
         "distance": distance
     }
 
-    send_receive.send(start_time, json.dumps(data))  # json形式のデータを送信する
+    XBee.send(json.dumps(data))  # json形式のデータを送信する
     time.sleep(5)
