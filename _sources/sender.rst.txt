@@ -1,18 +1,10 @@
 cansatapi.sender パッケージ
 ======================================
 
-cansatapi.sender.send_receive モジュール
+cansatapi.xbee.XBee モジュール
 --------------------------------------------------
 
-.. automodule:: cansatapi.sender.send_receive
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-cansatapi.sender.sensor_json モジュール
---------------------------------------------------
-
-.. automodule:: cansatapi.sender.sensor_json
+.. automodule:: cansatapi.xbee.XBee
    :members:
    :undoc-members:
    :show-inheritance:
