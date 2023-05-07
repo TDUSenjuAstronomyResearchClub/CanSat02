@@ -26,15 +26,18 @@ def detach_parachute(logger: Logger):
 
 
 if __name__ == "__main__":
-    barometer = LPS25HB()
-    nine_axis = NineAxisSensor()
-
     # ログ用ファイルの作成
     dt_start = datetime.datetime.now()  # 現在日時を取得する
     filename = 'driving' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒') + '.csv'  # ファイル名を現在時刻にする
     LOGGER = Logger(filename)
 
+    LOGGER.msg("初期化開始")
+    barometer = LPS25HB()
+    nine_axis = NineAxisSensor()
+    LOGGER.msg("初期化完了")
+
     # 落下開始判定
+    LOGGER.msg("落下待機中")
     pressure_past = barometer.get_pressure()
     pressure_now = 0
     drop_start_s = time.time()  # 落下後経過時間を初期化
