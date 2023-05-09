@@ -5,6 +5,8 @@ import sys
 import time
 import datetime
 
+LOG_DIR = "./log/"
+
 
 class Logger:
     """ロガークラス
@@ -20,7 +22,7 @@ class Logger:
         Args:
             file_name: ログファイルの名前
         """
-        self.file_name = file_name
+        self.log_path = LOG_DIR + file_name
         file = open(file_name, 'a')
         writer = csv.writer(file, lineterminator='\n')
 
@@ -35,7 +37,7 @@ class Logger:
             category (str): ログのカテゴリ
             content (str): ログメッセージ
         """
-        file = open(self.file_name, 'a')
+        file = open(self.log_path, 'a')
         writer = csv.writer(file, lineterminator='\n')
         dt_now = datetime.datetime.now()  # 現在日時を取得する
         log_list = [dt_now, category, content]  # リストに各値を挿入
