@@ -60,14 +60,14 @@ AE-BME280
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gK-09421/>
 
-### 電池残量計
+### 電池残量計用IC
 
-SKU 8806
+MCP3008 
 
 - データシート
-  - <http://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf>
+  - <https://akizukidenshi.com/download/ds/microchip/mcp3008.pdf>
 - スイッチサイエンスのリンク
-  - <https://www.switch-science.com/products/8806>
+  - <https://akizukidenshi.com/catalog/g/gI-09485/>
 
 ### 9軸センサー
 
