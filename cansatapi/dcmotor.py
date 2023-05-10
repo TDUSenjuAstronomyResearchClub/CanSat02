@@ -30,7 +30,7 @@ class DCMotor:
     def forward(self, duty: int = 50):
         """モーターを正転させます
 
-        PWM制御モードA(Low<->High-Z)で制御します
+        PWM制御モードA(Low<->High-Z, HIGH固定)で制御します。
 
         Args:
             duty (int): デューティ比[%]
@@ -41,7 +41,7 @@ class DCMotor:
     def reverse(self, duty: int = 50):
         """モーターを逆転させます
 
-        PWM制御モードA(Low<->High-Z)で制御します
+        PWM制御モードA(Low<->High-Z, HIGH固定)で制御します。
 
         Args:
             duty (int): デューティ比[%]
