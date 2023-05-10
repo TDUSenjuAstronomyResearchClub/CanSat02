@@ -38,7 +38,7 @@ class DCMotor:
         self.fin.ChangeDutyCycle(duty)
         self.rin.ChangeDutyCycle(0)
 
-    def backward(self, duty: int = 50):
+    def reverse(self, duty: int = 50):
         """モーターを逆転させます
 
         PWM制御モードA(Low<->High-Z)で制御します
