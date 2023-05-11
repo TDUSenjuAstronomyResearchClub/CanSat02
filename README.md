@@ -147,12 +147,12 @@ RA250060-58Y91
 
 ### モータードライバ
 
-TB67H450FNG
+BD6231F-E2
 
 - データシート
-  - <https://akizukidenshi.com/download/ds/Toshiba/TB67H450FNG_datasheet_ja_20190401.pdf>
+  - <https://akizukidenshi.com/download/ds/rohm/bd623x-j.pdf>
 - 秋月のリンク
-  - <https://akizukidenshi.com/catalog/g/gI-14967/>
+  - <https://akizukidenshi.com/catalog/g/gI-05088/>
 
 ### サーボモーター（土壌水分、サンプル採取用）	
 
