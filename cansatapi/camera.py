@@ -16,14 +16,12 @@ sudo pip3 install -U numpy
 """
 
 import datetime
+import json
 import time
 
 import cv2
 import serial
 from serial import SerialException
-
-import json
-from cansatapi import camera
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -65,8 +63,8 @@ def photograph():
             try:
                 data = img.read()
                 camera_data = data.hex()
-                json_data = json.dumps({"camera": camera_data , "time":d}) 
-                
+                json_data = json.dumps({"camera": camera_data, "time": d})
+
                 ser.write(json_data)  # XBeeに送信
 
                 ser.close()  # XBeeシリアルポートを閉じる
@@ -85,6 +83,6 @@ class CameraError(Exception):
         ser = serial.Serial(PORT, BAUD_RATE)
         exception = str(Exception)
         ser.write(exception.encode('utf-8') + b'\n')
-        ser.close()      
+        ser.close()
     except SerialException:
-        pass    #Runing.pyのログ用ファイルにエラーが起きたことを記入する
+        pass  # Runing.pyのログ用ファイルにエラーが起きたことを記入する
