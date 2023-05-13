@@ -67,11 +67,12 @@ async def receive() -> str:
     while True:
         try:
             ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
-            receive_data: str = None
-            while receive_data is None:
-                receive_data = ser.read_all()  # 機体から値を受け取る
+            receive_data: bytes = bytes()
+            while len(receive_data) == 0:
+                receive_data = ser.readline()
+
             ser.close()
-            return receive_data
+            return str(receive_data)
 
         except PortNotOpenError:
             # 5回リトライに失敗したらエラーを吐く
