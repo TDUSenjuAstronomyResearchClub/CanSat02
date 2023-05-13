@@ -68,16 +68,6 @@ def receive() -> str:
             ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
             receive_data = ser.read_all()  # 機体から値を受け取る
             ser.close()
-
-            catch_value = {
-                "time": datetime.now(),
-                "message": receive_data
-            }
-            # ログ用ファイルをオープン
-            f = open('receive_data' + datetime.now().strftime('%Y年%m月%d日_%H時%M分%S秒') + '.json', 'a')
-            # jsonとして書き込み
-            json.dump(catch_value, f, indent=4, ensure_ascii=False)
-            f.close()
             return receive_data
 
         except PortNotOpenError:
