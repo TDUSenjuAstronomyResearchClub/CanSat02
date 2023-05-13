@@ -7,6 +7,6 @@ if __name__ == "__main__":
         try:
             XBee.send("test")
             print("Send message")
-            time.sleep(1000)
+            time.sleep(1)
         except KeyboardInterrupt:
             sys.exit(0)
