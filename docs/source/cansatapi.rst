@@ -80,3 +80,11 @@ cansatapi.bme280 モジュール
    :members:
    :undoc-members:
    :show-inheritance:
+
+cansatapi.XBee モジュール
+-----------------------------------
+
+.. automodule:: cansatapi.XBee
+   :members:
+   :undoc-members:
+   :show-inheritance:
