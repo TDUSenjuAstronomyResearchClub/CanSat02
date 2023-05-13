@@ -765,6 +765,13 @@ adafruit-circuitpython-seesaw</p>
 <dt class="sig sig-object py" id="cansatapi.XBee.receive">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.XBee.</span></span><span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/XBee.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.XBee.receive" title="この定義へのパーマリンク"></a></dt>
 <dd><p>データ受信用非同期関数</p>
+<p>XBeeでデータを受信するまで待つ関数です。
+処理を止めてしまうので非同期で実行するようにしてください。</p>
+<p class="rubric">サンプル</p>
+<p>ブロッキング実行するサンプル</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">XBee</span><span class="o">.</span><span class="n">receive</span><span class="p">())</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">戻り値<span class="colon">:</span></dt>
 <dd class="field-odd"><p>受信した文字列</p>
