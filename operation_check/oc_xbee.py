@@ -1,7 +1,7 @@
 import sys
 import time
 
-from cansatapi.xbee import XBee
+from cansatapi import XBee
 if __name__ == "__main__":
     while True:
         try:
