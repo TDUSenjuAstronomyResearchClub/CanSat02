@@ -55,6 +55,16 @@ def send(msg: str):
 async def receive() -> str:
     """データ受信用非同期関数
 
+    XBeeでデータを受信するまで待つ関数です。
+    処理を止めてしまうので非同期で実行するようにしてください。
+
+    Examples:
+        ブロッキング実行するサンプル
+
+        ::
+
+            asyncio.run(XBee.receive())
+
     Returns:
         str: 受信した文字列
 
