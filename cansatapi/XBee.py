@@ -4,6 +4,7 @@
 from datetime import datetime
 import json
 import time
+import asyncio
 
 import serial
 from serial import SerialException
@@ -52,8 +53,8 @@ def send(msg: str):
             raise SerialException  # ここの処理について要件等
 
 
-def receive() -> str:
-    """データ受信用関数
+async def receive() -> str:
+    """データ受信用非同期関数
 
     Returns:
         str: 受信した文字列
@@ -66,7 +67,9 @@ def receive() -> str:
     while True:
         try:
             ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
-            receive_data = ser.read_all()  # 機体から値を受け取る
+            receive_data: str = None
+            while receive_data is None:
+                receive_data = ser.read_all()  # 機体から値を受け取る
             ser.close()
             return receive_data
 
