@@ -15,11 +15,11 @@ PORT = '/dev/ttyUSB0'
 BAUD_RATE = 9600
 
 
-def send(json_data: str):
+def send(msg: str):
     """データ送信用関数
 
     Args:
-        json_data (str): JSON形式のデータ
+        msg (str): 送信するメッセージ
 
     Raises:
         PortNotOpenError: ポートが空いておらず、リトライにも失敗した場合発生します
@@ -28,7 +28,7 @@ def send(json_data: str):
     # ログ用ファイルをオープン
     f = open('send_data' + datetime.now().strftime('%Y年%m月%d日_%H時%M分%S秒') + '.json', 'a')
     # jsonとして書き込み
-    json.dump(json_data, f, indent=4, ensure_ascii=False)
+    json.dump(msg, f, indent=4, ensure_ascii=False)
     f.close()
 
     retry_c = 0
@@ -36,7 +36,7 @@ def send(json_data: str):
         try:
             ser = serial.Serial(PORT, BAUD_RATE)
             # シリアルにjsonを書き込む
-            ser.write(json_data.encode('utf-8'))
+            ser.write(msg.encode('utf-8'))
             ser.close()
             return
 
