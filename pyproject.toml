@@ -1,5 +1,5 @@
 [project]
-name = "CanSatAPI"
+name = "cansatapi"
 version = "2.0.0"
 authors = [
   { name="東京電機大学千住キャンパス天文学研究部チーム芭蕉", email="author@example.com" },
