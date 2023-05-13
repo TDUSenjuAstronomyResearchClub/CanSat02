@@ -1,14 +1,13 @@
 """機体と地上局の通信を行うモジュール
 """
 
-from datetime import datetime
 import json
 import time
-import asyncio
+from datetime import datetime
 
 import serial
-from serial import SerialException
 from serial import PortNotOpenError
+from serial import SerialException
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
