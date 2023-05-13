@@ -72,7 +72,7 @@ async def receive() -> str:
                 receive_data = ser.readline()
 
             ser.close()
-            return str(receive_data)
+            return receive_data.decode("utf-8")
 
         except PortNotOpenError:
             # 5回リトライに失敗したらエラーを吐く
