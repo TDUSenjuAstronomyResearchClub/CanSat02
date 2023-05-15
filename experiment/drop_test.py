@@ -38,38 +38,46 @@ if __name__ == "__main__":
 
     # 落下開始判定
     LOGGER.msg("落下待機中")
-    pressure_past = barometer.get_pressure()
-    pressure_now = 0
+
+    try:
+        accel = nine_axis.get_acceleration()
+        accel_abs_past = math.sqrt(accel[0] ** 2 + accel[1] ** 2 + accel[2] ** 2)  # 9軸から加速度の大きさを求める
+        LOGGER.log("加速度", accel_abs_past)  # ログを残す
+    except OSError:
+        LOGGER.error("9軸センサでOSError")
+    accel_abs = 0.0 
+
     drop_start_s = time.time()  # 落下後経過時間を初期化
     drop_count = 0
+
+
     while True:
 
         try:
-            pressure_now = barometer.get_pressure()
-            LOGGER.log("気圧", pressure_now)
-            alt = calc_altitude(barometer.get_pressure())
-            LOGGER.log("高度", alt)  # ログを残す
+            accel = nine_axis.get_acceleration()
+            accel_abs = math.sqrt(accel[0] ** 2 + accel[1] ** 2 + accel[2] ** 2)  # 9軸から加速度の大きさを求める
+            LOGGER.log("加速度", accel_abs)  # ログを残す
         except OSError:
-            LOGGER.error("気圧センサーでOSError")
+            LOGGER.error("9軸センサでOSError")
 
-        # 5回連続で気圧が上がったら落下判定とする
-        if pressure_past < pressure_now:
+        # todo: 落下開始判定を行う加速度の差の閾値を書き込む
+        # 5回連続で加速度の差が0 m/s^2以上だったら落下開始判定とする
+        if accel_abs-accel_abs_past > 0:
             drop_count += 1
             if drop_count >= 5:
                 drop_start_s = time.time()
-                LOGGER.msg("落下判定が行われました")
+                LOGGER.msg("落下開始判定が行われました")
                 break
         else:
             drop_count = 0
 
-        pressure_past = pressure_now
+        accel_abs_past = accel_abs
 
         time.sleep(0.5)
 
     # 着地判定
     pressure = 0.0
     altitude = 0.0
-    accel_abs = 0.0
     while True:
 
         try:
@@ -99,5 +107,4 @@ if __name__ == "__main__":
 
         time.sleep(0.5)
 
-    # 5/6 モーター回路不具合のためパラシュート切り離しはやらないことになりました
-    # detach_parachute(LOGGER)
+    detach_parachute(LOGGER)
