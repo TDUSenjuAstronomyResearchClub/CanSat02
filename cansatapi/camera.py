@@ -30,7 +30,7 @@ def photograph():
     picam2 = Picamera2()
 
     # 画像サイズの設定
-    preview_config = picam2.create_preview_configuration(main={"size": (800, 600)})
+    preview_config = picam2.create_preview_configuration(main={"size": (200, 200)})
     picam2.configure(preview_config)
 
     # 画像ファイル名の作成
