@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import json
 
-from type import SensorJson, Gps, NineAxis, Bme280, Lps25Hb
+from .type import SensorJson, Gps, NineAxis, Bme280, Lps25Hb
 
 
 def generate_json(
