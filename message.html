@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cansatapi.message パッケージ &mdash; CanSatAPI 2.0.0 ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="動作確認用のやりかた" href="operation_check.html" />
+    <link rel="prev" title="cansatapi.util パッケージ" href="util.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CanSatAPI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">パッケージ：</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cansatapi.html">cansatapi パッケージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">cansatapi.util パッケージ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cansatapi.message パッケージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-message-jsongenerator">cansatapi.message.jsonGenerator モジュール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.message.type">cansatapi.message.type モジュール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.message.type.Acceleration"><code class="docutils literal notranslate"><span class="pre">Acceleration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Acceleration.x"><code class="docutils literal notranslate"><span class="pre">Acceleration.x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Acceleration.y"><code class="docutils literal notranslate"><span class="pre">Acceleration.y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Acceleration.z"><code class="docutils literal notranslate"><span class="pre">Acceleration.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.message.type.AngularVelocity"><code class="docutils literal notranslate"><span class="pre">AngularVelocity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.AngularVelocity.x"><code class="docutils literal notranslate"><span class="pre">AngularVelocity.x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.AngularVelocity.y"><code class="docutils literal notranslate"><span class="pre">AngularVelocity.y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.AngularVelocity.z"><code class="docutils literal notranslate"><span class="pre">AngularVelocity.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.message.type.Azimuth"><code class="docutils literal notranslate"><span class="pre">Azimuth</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Azimuth.goal"><code class="docutils literal notranslate"><span class="pre">Azimuth.goal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Azimuth.sample"><code class="docutils literal notranslate"><span class="pre">Azimuth.sample</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.message.type.Bme280"><code class="docutils literal notranslate"><span class="pre">Bme280</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Bme280.humidity"><code class="docutils literal notranslate"><span class="pre">Bme280.humidity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Bme280.pressure"><code class="docutils literal notranslate"><span class="pre">Bme280.pressure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Bme280.temperature"><code class="docutils literal notranslate"><span class="pre">Bme280.temperature</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.message.type.Distance"><code class="docutils literal notranslate"><span class="pre">Distance</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Distance.goal"><code class="docutils literal notranslate"><span class="pre">Distance.goal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Distance.sample"><code class="docutils literal notranslate"><span class="pre">Distance.sample</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.message.type.Gps"><code class="docutils literal notranslate"><span class="pre">Gps</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Gps.altitude"><code class="docutils literal notranslate"><span class="pre">Gps.altitude</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Gps.azimuth"><code class="docutils literal notranslate"><span class="pre">Gps.azimuth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Gps.distance"><code class="docutils literal notranslate"><span class="pre">Gps.distance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Gps.latitude"><code class="docutils literal notranslate"><span class="pre">Gps.latitude</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Gps.longitude"><code class="docutils literal notranslate"><span class="pre">Gps.longitude</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.message.type.Lps25Hb"><code class="docutils literal notranslate"><span class="pre">Lps25Hb</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Lps25Hb.altitude"><code class="docutils literal notranslate"><span class="pre">Lps25Hb.altitude</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Lps25Hb.pressure"><code class="docutils literal notranslate"><span class="pre">Lps25Hb.pressure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.Lps25Hb.temperature"><code class="docutils literal notranslate"><span class="pre">Lps25Hb.temperature</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.message.type.NineAxis"><code class="docutils literal notranslate"><span class="pre">NineAxis</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.NineAxis.acceleration"><code class="docutils literal notranslate"><span class="pre">NineAxis.acceleration</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.NineAxis.angular_velocity"><code class="docutils literal notranslate"><span class="pre">NineAxis.angular_velocity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.NineAxis.azimuth"><code class="docutils literal notranslate"><span class="pre">NineAxis.azimuth</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.message.type.SensorJson"><code class="docutils literal notranslate"><span class="pre">SensorJson</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.SensorJson.battery"><code class="docutils literal notranslate"><span class="pre">SensorJson.battery</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.SensorJson.bme280"><code class="docutils literal notranslate"><span class="pre">SensorJson.bme280</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.SensorJson.camera"><code class="docutils literal notranslate"><span class="pre">SensorJson.camera</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.SensorJson.distance"><code class="docutils literal notranslate"><span class="pre">SensorJson.distance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.SensorJson.gps"><code class="docutils literal notranslate"><span class="pre">SensorJson.gps</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.SensorJson.lps25hb"><code class="docutils literal notranslate"><span class="pre">SensorJson.lps25hb</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.SensorJson.message"><code class="docutils literal notranslate"><span class="pre">SensorJson.message</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.SensorJson.nine_axis"><code class="docutils literal notranslate"><span class="pre">SensorJson.nine_axis</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.SensorJson.soil_moisture"><code class="docutils literal notranslate"><span class="pre">SensorJson.soil_moisture</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.message.type.SensorJson.time"><code class="docutils literal notranslate"><span class="pre">SensorJson.time</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">その他：</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="operation_check.html">動作確認用のやりかた</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_build_docs.html">ドキュメントのビルド・カスタム方法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CanSatAPI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">cansatapi.message パッケージ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/message.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cansatapi-message">
+<h1>cansatapi.message パッケージ<a class="headerlink" href="#cansatapi-message" title="この見出しへのパーマリンク"></a></h1>
+<section id="cansatapi-message-jsongenerator">
+<h2>cansatapi.message.jsonGenerator モジュール<a class="headerlink" href="#cansatapi-message-jsongenerator" title="この見出しへのパーマリンク"></a></h2>
+</section>
+<section id="module-cansatapi.message.type">
+<span id="cansatapi-message-type"></span><h2>cansatapi.message.type モジュール<a class="headerlink" href="#module-cansatapi.message.type" title="この見出しへのパーマリンク"></a></h2>
+<p>JSONの型を定義するモジュール</p>
+<p><a class="reference external" href="https://json2pyi.pages.dev/">https://json2pyi.pages.dev/</a> を使用して生成したのち微修正しました。</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.message.type.Acceleration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.message.type.</span></span><span class="sig-name descname"><span class="pre">Acceleration</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Acceleration" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Acceleration.x">
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Acceleration.x" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Acceleration.y">
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Acceleration.y" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Acceleration.z">
+<span class="sig-name descname"><span class="pre">z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Acceleration.z" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.message.type.AngularVelocity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.message.type.</span></span><span class="sig-name descname"><span class="pre">AngularVelocity</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.AngularVelocity" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.AngularVelocity.x">
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.AngularVelocity.x" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.AngularVelocity.y">
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.AngularVelocity.y" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.AngularVelocity.z">
+<span class="sig-name descname"><span class="pre">z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.AngularVelocity.z" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.message.type.Azimuth">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.message.type.</span></span><span class="sig-name descname"><span class="pre">Azimuth</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Azimuth" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Azimuth.goal">
+<span class="sig-name descname"><span class="pre">goal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Azimuth.goal" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Azimuth.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Azimuth.sample" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.message.type.Bme280">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.message.type.</span></span><span class="sig-name descname"><span class="pre">Bme280</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Bme280" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Bme280.humidity">
+<span class="sig-name descname"><span class="pre">humidity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Bme280.humidity" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Bme280.pressure">
+<span class="sig-name descname"><span class="pre">pressure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Bme280.pressure" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Bme280.temperature">
+<span class="sig-name descname"><span class="pre">temperature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Bme280.temperature" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.message.type.Distance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.message.type.</span></span><span class="sig-name descname"><span class="pre">Distance</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Distance" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Distance.goal">
+<span class="sig-name descname"><span class="pre">goal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Distance.goal" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Distance.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Distance.sample" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.message.type.Gps">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.message.type.</span></span><span class="sig-name descname"><span class="pre">Gps</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Gps" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Gps.altitude">
+<span class="sig-name descname"><span class="pre">altitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Gps.altitude" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Gps.azimuth">
+<span class="sig-name descname"><span class="pre">azimuth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cansatapi.message.type.Azimuth" title="cansatapi.message.type.Azimuth"><span class="pre">Azimuth</span></a></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Gps.azimuth" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Gps.distance">
+<span class="sig-name descname"><span class="pre">distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cansatapi.message.type.Distance" title="cansatapi.message.type.Distance"><span class="pre">Distance</span></a></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Gps.distance" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Gps.latitude">
+<span class="sig-name descname"><span class="pre">latitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Gps.latitude" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Gps.longitude">
+<span class="sig-name descname"><span class="pre">longitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Gps.longitude" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.message.type.Lps25Hb">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.message.type.</span></span><span class="sig-name descname"><span class="pre">Lps25Hb</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Lps25Hb" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Lps25Hb.altitude">
+<span class="sig-name descname"><span class="pre">altitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Lps25Hb.altitude" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Lps25Hb.pressure">
+<span class="sig-name descname"><span class="pre">pressure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Lps25Hb.pressure" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.Lps25Hb.temperature">
+<span class="sig-name descname"><span class="pre">temperature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.Lps25Hb.temperature" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.message.type.NineAxis">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.message.type.</span></span><span class="sig-name descname"><span class="pre">NineAxis</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.NineAxis" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.NineAxis.acceleration">
+<span class="sig-name descname"><span class="pre">acceleration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cansatapi.message.type.Acceleration" title="cansatapi.message.type.Acceleration"><span class="pre">Acceleration</span></a></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.NineAxis.acceleration" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.NineAxis.angular_velocity">
+<span class="sig-name descname"><span class="pre">angular_velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cansatapi.message.type.AngularVelocity" title="cansatapi.message.type.AngularVelocity"><span class="pre">AngularVelocity</span></a></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.NineAxis.angular_velocity" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.NineAxis.azimuth">
+<span class="sig-name descname"><span class="pre">azimuth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.NineAxis.azimuth" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.message.type.</span></span><span class="sig-name descname"><span class="pre">SensorJson</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson.battery">
+<span class="sig-name descname"><span class="pre">battery</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson.battery" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson.bme280">
+<span class="sig-name descname"><span class="pre">bme280</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cansatapi.message.type.Bme280" title="cansatapi.message.type.Bme280"><span class="pre">Bme280</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson.bme280" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson.camera">
+<span class="sig-name descname"><span class="pre">camera</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson.camera" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson.distance">
+<span class="sig-name descname"><span class="pre">distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson.distance" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson.gps">
+<span class="sig-name descname"><span class="pre">gps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cansatapi.message.type.Gps" title="cansatapi.message.type.Gps"><span class="pre">Gps</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson.gps" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson.lps25hb">
+<span class="sig-name descname"><span class="pre">lps25hb</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cansatapi.message.type.Lps25Hb" title="cansatapi.message.type.Lps25Hb"><span class="pre">Lps25Hb</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson.lps25hb" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson.message" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson.nine_axis">
+<span class="sig-name descname"><span class="pre">nine_axis</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cansatapi.message.type.NineAxis" title="cansatapi.message.type.NineAxis"><span class="pre">NineAxis</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson.nine_axis" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson.soil_moisture">
+<span class="sig-name descname"><span class="pre">soil_moisture</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson.soil_moisture" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cansatapi.message.type.SensorJson.time">
+<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/message/type.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.message.type.SensorJson.time" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="util.html" class="btn btn-neutral float-left" title="cansatapi.util パッケージ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="operation_check.html" class="btn btn-neutral float-right" title="動作確認用のやりかた" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 東京電機大学 千住キャンパス 天文学研究部.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

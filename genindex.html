@@ -42,6 +42,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cansatapi.html">cansatapi パッケージ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="util.html">cansatapi.util パッケージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="message.html">cansatapi.message パッケージ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">その他：</span></p>
 <ul>
@@ -83,6 +84,7 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#J"><strong>J</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
@@ -92,30 +94,61 @@
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
  | <a href="#モ"><strong>モ</strong></a>
  
 </div>
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.Acceleration">Acceleration (cansatapi.message.type のクラス)</a>
+</li>
+      <li><a href="message.html#cansatapi.message.type.NineAxis.acceleration">acceleration (cansatapi.message.type.NineAxis の属性)</a>
+</li>
       <li><a href="util.html#cansatapi.util.convert.acceleration_to_pitch">acceleration_to_pitch() (cansatapi.util.convert モジュール)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="util.html#cansatapi.util.convert.acceleration_to_roll">acceleration_to_roll() (cansatapi.util.convert モジュール)</a>
 </li>
+      <li><a href="message.html#cansatapi.message.type.Gps.altitude">altitude (cansatapi.message.type.Gps の属性)</a>
+
+      <ul>
+        <li><a href="message.html#cansatapi.message.type.Lps25Hb.altitude">(cansatapi.message.type.Lps25Hb の属性)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.NineAxis.angular_velocity">angular_velocity (cansatapi.message.type.NineAxis の属性)</a>
+</li>
+      <li><a href="message.html#cansatapi.message.type.AngularVelocity">AngularVelocity (cansatapi.message.type のクラス)</a>
+</li>
+      <li><a href="message.html#cansatapi.message.type.Azimuth">Azimuth (cansatapi.message.type のクラス)</a>
+</li>
+      <li><a href="message.html#cansatapi.message.type.Gps.azimuth">azimuth (cansatapi.message.type.Gps の属性)</a>
+
+      <ul>
+        <li><a href="message.html#cansatapi.message.type.NineAxis.azimuth">(cansatapi.message.type.NineAxis の属性)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.SensorJson.battery">battery (cansatapi.message.type.SensorJson の属性)</a>
+</li>
       <li><a href="cansatapi.html#cansatapi.batteryfuelgauge.BatteryFuelGauge">BatteryFuelGauge (cansatapi.batteryfuelgauge のクラス)</a>
 </li>
       <li><a href="cansatapi.html#cansatapi.bme280.BME280">BME280 (cansatapi.bme280 のクラス)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.Bme280">Bme280 (cansatapi.message.type のクラス)</a>
+</li>
+      <li><a href="message.html#cansatapi.message.type.SensorJson.bme280">bme280 (cansatapi.message.type.SensorJson の属性)</a>
+</li>
       <li><a href="cansatapi.html#cansatapi.lps25hb.byte_pressure_to_hpa">byte_pressure_to_hpa() (cansatapi.lps25hb モジュール)</a>
 </li>
       <li><a href="cansatapi.html#cansatapi.lps25hb.byte_temp_to_deg_c">byte_temp_to_deg_c() (cansatapi.lps25hb モジュール)</a>
@@ -133,6 +166,8 @@
       <li><a href="cansatapi.html#cansatapi.servo.calc_duty">calc_duty() (cansatapi.servo モジュール)</a>
 </li>
       <li><a href="cansatapi.html#cansatapi.gps.calculate_distance_bearing">calculate_distance_bearing() (cansatapi.gps モジュール)</a>
+</li>
+      <li><a href="message.html#cansatapi.message.type.SensorJson.camera">camera (cansatapi.message.type.SensorJson の属性)</a>
 </li>
       <li><a href="cansatapi.html#cansatapi.camera.CameraError">CameraError</a>
 </li>
@@ -171,8 +206,6 @@
         <li><a href="cansatapi.html#module-cansatapi.distance">モジュール</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     cansatapi.gps
 
@@ -180,11 +213,20 @@
         <li><a href="cansatapi.html#module-cansatapi.gps">モジュール</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     cansatapi.lps25hb
 
       <ul>
         <li><a href="cansatapi.html#module-cansatapi.lps25hb">モジュール</a>
+</li>
+      </ul></li>
+      <li>
+    cansatapi.message.type
+
+      <ul>
+        <li><a href="message.html#module-cansatapi.message.type">モジュール</a>
 </li>
       </ul></li>
       <li>
@@ -234,8 +276,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cansatapi.html#cansatapi.dcmotor.DCMotor">DCMotor (cansatapi.dcmotor のクラス)</a>
 </li>
+      <li><a href="message.html#cansatapi.message.type.Distance">Distance (cansatapi.message.type のクラス)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.Gps.distance">distance (cansatapi.message.type.Gps の属性)</a>
+
+      <ul>
+        <li><a href="message.html#cansatapi.message.type.SensorJson.distance">(cansatapi.message.type.SensorJson の属性)</a>
+</li>
+      </ul></li>
       <li><a href="cansatapi.html#cansatapi.distance.distance_result">distance_result() (cansatapi.distance モジュール)</a>
 </li>
   </ul></td>
@@ -272,8 +322,6 @@
 </li>
       <li><a href="cansatapi.html#cansatapi.batteryfuelgauge.BatteryFuelGauge.get_level">get_level() (cansatapi.batteryfuelgauge.BatteryFuelGauge のメソッド)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cansatapi.html#cansatapi.nineaxissensor.NineAxisSensor.get_magnetic_heading">get_magnetic_heading() (cansatapi.nineaxissensor.NineAxisSensor のメソッド)</a>
 </li>
       <li><a href="cansatapi.html#cansatapi.bme280.BME280.get_pressure">get_pressure() (cansatapi.bme280.BME280 のメソッド)</a>
@@ -282,6 +330,8 @@
         <li><a href="cansatapi.html#cansatapi.lps25hb.LPS25HB.get_pressure">(cansatapi.lps25hb.LPS25HB のメソッド)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cansatapi.html#cansatapi.lps25hb.LPS25HB.get_pressure_altitude_temperature">get_pressure_altitude_temperature() (cansatapi.lps25hb.LPS25HB のメソッド)</a>
 </li>
       <li><a href="cansatapi.html#cansatapi.soil_moisture.SoilMoistureSensor.get_soil_moisture">get_soil_moisture() (cansatapi.soil_moisture.SoilMoistureSensor のメソッド)</a>
@@ -292,6 +342,24 @@
         <li><a href="cansatapi.html#cansatapi.lps25hb.LPS25HB.get_temperature">(cansatapi.lps25hb.LPS25HB のメソッド)</a>
 </li>
       </ul></li>
+      <li><a href="message.html#cansatapi.message.type.Azimuth.goal">goal (cansatapi.message.type.Azimuth の属性)</a>
+
+      <ul>
+        <li><a href="message.html#cansatapi.message.type.Distance.goal">(cansatapi.message.type.Distance の属性)</a>
+</li>
+      </ul></li>
+      <li><a href="message.html#cansatapi.message.type.Gps">Gps (cansatapi.message.type のクラス)</a>
+</li>
+      <li><a href="message.html#cansatapi.message.type.SensorJson.gps">gps (cansatapi.message.type.SensorJson の属性)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.Bme280.humidity">humidity (cansatapi.message.type.Bme280 の属性)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -308,21 +376,33 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cansatapi.html#cansatapi.gps.lat_conv_deg_min_to_decimal">lat_conv_deg_min_to_decimal() (cansatapi.gps モジュール)</a>
 </li>
+      <li><a href="message.html#cansatapi.message.type.Gps.latitude">latitude (cansatapi.message.type.Gps の属性)</a>
+</li>
       <li><a href="util.html#cansatapi.util.logger.Logger.log">log() (cansatapi.util.logger.Logger のメソッド)</a>
+</li>
+      <li><a href="util.html#cansatapi.util.logger.Logger">Logger (cansatapi.util.logger のクラス)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="util.html#cansatapi.util.logger.Logger">Logger (cansatapi.util.logger のクラス)</a>
-</li>
       <li><a href="cansatapi.html#cansatapi.gps.lon_conv_deg_min_to_decimal">lon_conv_deg_min_to_decimal() (cansatapi.gps モジュール)</a>
 </li>
+      <li><a href="message.html#cansatapi.message.type.Gps.longitude">longitude (cansatapi.message.type.Gps の属性)</a>
+</li>
       <li><a href="cansatapi.html#cansatapi.lps25hb.LPS25HB">LPS25HB (cansatapi.lps25hb のクラス)</a>
+</li>
+      <li><a href="message.html#cansatapi.message.type.Lps25Hb">Lps25Hb (cansatapi.message.type のクラス)</a>
+</li>
+      <li><a href="message.html#cansatapi.message.type.SensorJson.lps25hb">lps25hb (cansatapi.message.type.SensorJson の属性)</a>
 </li>
   </ul></td>
 </tr></table>
 
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.SensorJson.message">message (cansatapi.message.type.SensorJson の属性)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="util.html#cansatapi.util.logger.Logger.msg">msg() (cansatapi.util.logger.Logger のメソッド)</a>
 </li>
@@ -332,6 +412,12 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.SensorJson.nine_axis">nine_axis (cansatapi.message.type.SensorJson の属性)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.NineAxis">NineAxis (cansatapi.message.type のクラス)</a>
+</li>
       <li><a href="cansatapi.html#cansatapi.nineaxissensor.NineAxisSensor">NineAxisSensor (cansatapi.nineaxissensor のクラス)</a>
 </li>
   </ul></td>
@@ -342,6 +428,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cansatapi.html#cansatapi.camera.photograph">photograph() (cansatapi.camera モジュール)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.Bme280.pressure">pressure (cansatapi.message.type.Bme280 の属性)</a>
+
+      <ul>
+        <li><a href="message.html#cansatapi.message.type.Lps25Hb.pressure">(cansatapi.message.type.Lps25Hb の属性)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -362,12 +456,22 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cansatapi.html#cansatapi.servo.Servo">Servo (cansatapi.servo のクラス)</a>
+      <li><a href="message.html#cansatapi.message.type.Azimuth.sample">sample (cansatapi.message.type.Azimuth の属性)</a>
+
+      <ul>
+        <li><a href="message.html#cansatapi.message.type.Distance.sample">(cansatapi.message.type.Distance の属性)</a>
 </li>
-      <li><a href="cansatapi.html#cansatapi.soil_moisture.SoilMoistureSensor">SoilMoistureSensor (cansatapi.soil_moisture のクラス)</a>
+      </ul></li>
+      <li><a href="message.html#cansatapi.message.type.SensorJson">SensorJson (cansatapi.message.type のクラス)</a>
+</li>
+      <li><a href="cansatapi.html#cansatapi.servo.Servo">Servo (cansatapi.servo のクラス)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.SensorJson.soil_moisture">soil_moisture (cansatapi.message.type.SensorJson の属性)</a>
+</li>
+      <li><a href="cansatapi.html#cansatapi.soil_moisture.SoilMoistureSensor">SoilMoistureSensor (cansatapi.soil_moisture のクラス)</a>
+</li>
       <li><a href="cansatapi.html#cansatapi.servo.Servo.stop">stop() (cansatapi.servo.Servo のメソッド)</a>
 </li>
       <li><a href="cansatapi.html#cansatapi.dcmotor.DCMotor.stop_motor">stop_motor() (cansatapi.dcmotor.DCMotor のメソッド)</a>
@@ -378,7 +482,17 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.Bme280.temperature">temperature (cansatapi.message.type.Bme280 の属性)</a>
+
+      <ul>
+        <li><a href="message.html#cansatapi.message.type.Lps25Hb.temperature">(cansatapi.message.type.Lps25Hb の属性)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cansatapi.html#cansatapi.bme280.BME280.temperature_result">temperature_result() (cansatapi.bme280.BME280 のメソッド)</a>
+</li>
+      <li><a href="message.html#cansatapi.message.type.SensorJson.time">time (cansatapi.message.type.SensorJson の属性)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -388,6 +502,42 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="util.html#cansatapi.util.convert.ut_to_azimuth">ut_to_azimuth() (cansatapi.util.convert モジュール)</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.Acceleration.x">x (cansatapi.message.type.Acceleration の属性)</a>
+
+      <ul>
+        <li><a href="message.html#cansatapi.message.type.AngularVelocity.x">(cansatapi.message.type.AngularVelocity の属性)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.Acceleration.y">y (cansatapi.message.type.Acceleration の属性)</a>
+
+      <ul>
+        <li><a href="message.html#cansatapi.message.type.AngularVelocity.y">(cansatapi.message.type.AngularVelocity の属性)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="message.html#cansatapi.message.type.Acceleration.z">z (cansatapi.message.type.Acceleration の属性)</a>
+
+      <ul>
+        <li><a href="message.html#cansatapi.message.type.AngularVelocity.z">(cansatapi.message.type.AngularVelocity の属性)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -411,6 +561,8 @@
         <li><a href="cansatapi.html#module-cansatapi.gps">cansatapi.gps</a>
 </li>
         <li><a href="cansatapi.html#module-cansatapi.lps25hb">cansatapi.lps25hb</a>
+</li>
+        <li><a href="message.html#module-cansatapi.message.type">cansatapi.message.type</a>
 </li>
         <li><a href="cansatapi.html#module-cansatapi.nineaxissensor">cansatapi.nineaxissensor</a>
 </li>
