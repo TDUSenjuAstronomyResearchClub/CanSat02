@@ -3,9 +3,11 @@
 import csv
 import sys
 import time
-import datetime
+from datetime import datetime
 
 LOG_DIR = "./log/"
+
+DATETIME_F = "%Y-%m-%d_%H-%M-%S"
 
 
 class Logger:
@@ -22,7 +24,7 @@ class Logger:
         Args:
             file_name: ログファイルの名前
         """
-        self.log_path = LOG_DIR + file_name
+        self.log_path = LOG_DIR + datetime.now().strftime(DATETIME_F) + file_name
         file = open(file_name, 'a')
         writer = csv.writer(file, lineterminator='\n')
 
@@ -39,7 +41,7 @@ class Logger:
         """
         file = open(self.log_path, 'a')
         writer = csv.writer(file, lineterminator='\n')
-        dt_now = datetime.datetime.now()  # 現在日時を取得する
+        dt_now = datetime.now().strftime(DATETIME_F)  # 現在日時を取得する
         log_list = [dt_now, category, content]  # リストに各値を挿入
 
         writer.writerow(log_list)
