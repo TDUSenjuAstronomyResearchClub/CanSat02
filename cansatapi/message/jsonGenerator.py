@@ -17,7 +17,7 @@ def generate_json(
     lps25hb: Lps25Hb = None,
     battery: float = None,
     distance: float = None,
-    camera: float = None,
+    camera: str = None,
     soil_moisture: float = None,
     message: str = None,
 ) -> str:
@@ -28,7 +28,7 @@ def generate_json(
     Args:
         message: 任意のメッセージ
         soil_moisture: 土壌水分量[%]
-        camera: カメラのバイナリデータ
+        camera: カメラのヘックスデータ
         distance: 距離
         battery: バッテリー残量[%]
         lps25hb: LPS25HBのデータ
