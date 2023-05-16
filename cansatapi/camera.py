@@ -3,16 +3,14 @@
 カメラモジュールを使って画像を撮影、地上局に送信するモジュール
 
 使用しているライブラリ:
-    py
+    picamera2
 """
 
 import datetime
-import json
-import time
 
 from picamera2 import Picamera2
-import serial
-from serial import SerialException
+
+import XBee
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -42,24 +40,9 @@ def photograph():
     picam2.capture_file(filename)
     picam2.close()
 
-    ser = serial.Serial(PORT, 9600)  # XBeeシリアルポートを開く
-
-    for i in range(5):
-        with open(filename, 'rb') as img:  # 画像ファイルをバイナリデータとして開く
-            try:
-                data = img.read()
-                camera_data = data.hex()
-                json_data = json.dumps({"camera": camera_data, "time": date})
-
-                ser.write(json_data.encode("UTF-8"))  # XBeeに送信
-
-                ser.close()  # XBeeシリアルポートを閉じる
-                return
-
-            except SerialException:
-                time.sleep(1)
-
-    return
+    with open(filename, 'rb') as img:  # 画像ファイルをバイナリデータとして開く
+        data = img.read()
+        XBee.send_pic(data.hex())
 
 
 class CameraError(Exception):

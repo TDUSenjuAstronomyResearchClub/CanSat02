@@ -59,6 +59,15 @@ def send_msg(msg: str):
     send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), message=msg))
 
 
+def send_pic(pic_hex: str):
+    """写真データを地上に送信する関数
+
+    Args:
+        pic_hex: 写真データ(16進数)
+    """
+    send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), camera=pic_hex))
+
+
 async def receive() -> str:
     """データ受信用関数
 
