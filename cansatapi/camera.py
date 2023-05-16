@@ -10,7 +10,7 @@ import datetime
 import json
 import time
 
-import cv2
+from picamera2 import Picamera2
 import serial
 from serial import SerialException
 
@@ -27,34 +27,29 @@ def photograph():
     Raises:
         CameraError: カメラに不具合があった際に発生
     """
-    cap = cv2.VideoCapture(0)
-    if not cap.isOpened():
-        raise CameraError("カメラを開けません")
+    picam2 = Picamera2()
 
-    # 画像ファイルの作成
-    now = datetime.datetime.now()
-    d = now.strftime('%Y-%m-%d_%H-%M-%S')
-    today = d + '.jpg'
+    # 画像サイズの設定
+    preview_config = picam2.create_preview_configuration(main={"size": (800, 600)})
+    picam2.configure(preview_config)
 
-    ret, frame = cap.read()
-    if not ret:
-        cap.release()
-        raise CameraError("フレームを開けません")
+    # 画像ファイル名の作成
+    date = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    filename = date + ".jpg"
 
-    # ウィンドウをリサイズ
-    window_size = (200, 200)
-    frame = cv2.resize(frame, window_size)  # 画像サイズ
-    cv2.imwrite(today, frame)  # 名前付け保存
-    cap.release()
+    # 撮影
+    picam2.start()
+    picam2.capture_file(filename)
+    picam2.close()
 
     ser = serial.Serial(PORT, 9600)  # XBeeシリアルポートを開く
 
     for i in range(5):
-        with open(today, 'rb') as img:  # 画像ファイルをバイナリデータとして開く
+        with open(filename, 'rb') as img:  # 画像ファイルをバイナリデータとして開く
             try:
                 data = img.read()
                 camera_data = data.hex()
-                json_data = json.dumps({"camera": camera_data, "time": d})
+                json_data = json.dumps({"camera": camera_data, "time": date})
 
                 ser.write(json_data)  # XBeeに送信
 
