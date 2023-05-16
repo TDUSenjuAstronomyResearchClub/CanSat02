@@ -2,12 +2,14 @@
 """
 
 import time
+from datetime import datetime
 
 import serial
 from serial import PortNotOpenError
 from serial import SerialException
 
-from util.logger import json_log
+from util.logger import json_log, DATETIME_F
+from message import jsonGenerator
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -45,6 +47,15 @@ def send(msg: str):
                 continue
         except SerialException:
             raise SerialException  # ここの処理について要件等
+
+
+def send_msg(msg: str):
+    """任意のメッセージを地上に送信する関数
+
+    Args:
+        msg: 任意のメッセージ
+    """
+    send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), message=msg))
 
 
 async def receive() -> str:
