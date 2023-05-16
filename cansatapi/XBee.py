@@ -34,6 +34,7 @@ def send(msg: str):
             ser = serial.Serial(PORT, BAUD_RATE)
             # シリアルにjsonを書き込む
             ser.write(msg.encode('utf-8'))
+            ser.write(0x04)  # EOTを末尾に書き込む
             ser.close()
             return
 
