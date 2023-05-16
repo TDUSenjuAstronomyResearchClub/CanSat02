@@ -3,16 +3,7 @@
 カメラモジュールを使って画像を撮影、地上局に送信するモジュール
 
 使用しているライブラリ:
-    open-cv
-
-依存関係のあるライブラリ:
-sudo apt-get install libhdf5-dev libhdf5-serial-dev libhdf5-100
-sudo apt-get install libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
-sudo apt-get install libatlas-base-dev
-sudo apt-get install libjasper-dev
-
-他にnumpyのバージョンが古いとうまくいかないのでアプデを行うこと
-sudo pip3 install -U numpy
+    py
 """
 
 import datetime
@@ -79,10 +70,3 @@ def photograph():
 class CameraError(Exception):
     """カメラ使用時のエラー
     """
-    try:
-        ser = serial.Serial(PORT, BAUD_RATE)
-        exception = str(Exception)
-        ser.write(exception.encode('utf-8') + b'\n')
-        ser.close()
-    except SerialException:
-        pass  # Runing.pyのログ用ファイルにエラーが起きたことを記入する
