@@ -3,11 +3,24 @@
 import csv
 import sys
 import time
+import json
 from datetime import datetime
 
 LOG_DIR = "./log/"
 
 DATETIME_F = "%Y-%m-%d_%H-%M-%S"
+
+
+def json_log(json_data: str):
+    """JSONファイルとしてログを残す
+
+    Args:
+        json_data (str): JSONデータ
+    """
+    f = open('send_data_' + datetime.now().strftime(DATETIME_F) + '.json', 'a')
+    # jsonとして書き込み
+    json.dump(json_data, f, indent=4, ensure_ascii=False)
+    f.close()
 
 
 class Logger:

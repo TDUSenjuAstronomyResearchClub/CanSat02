@@ -1,13 +1,13 @@
 """機体と地上局の通信を行うモジュール
 """
 
-import json
 import time
-from datetime import datetime
 
 import serial
 from serial import PortNotOpenError
 from serial import SerialException
+
+from util.logger import json_log
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -25,12 +25,7 @@ def send(msg: str):
         PortNotOpenError: ポートが空いておらず、リトライにも失敗した場合発生します
         SerialException: デバイスがみつからないときに発生します
     """
-    # ログ用ファイルをオープン
-    f = open('send_data' + datetime.now().strftime('%Y年%m月%d日_%H時%M分%S秒') + '.json', 'a')
-    # jsonとして書き込み
-    json.dump(msg, f, indent=4, ensure_ascii=False)
-    f.close()
-
+    json_log(msg)  # ローカルにJSONを保存
     retry_c = 0
     while True:
         try:
