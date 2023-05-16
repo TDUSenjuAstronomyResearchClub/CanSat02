@@ -51,7 +51,7 @@ def photograph():
                 camera_data = data.hex()
                 json_data = json.dumps({"camera": camera_data, "time": date})
 
-                ser.write(json_data)  # XBeeに送信
+                ser.write(json_data.encode("UTF-8"))  # XBeeに送信
 
                 ser.close()  # XBeeシリアルポートを閉じる
                 return
