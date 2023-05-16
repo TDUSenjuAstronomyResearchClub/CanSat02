@@ -1,13 +1,15 @@
 """機体と地上局の通信を行うモジュール
 """
 
-from datetime import datetime
-import json
 import time
+from datetime import datetime
 
 import serial
-from serial import SerialException
 from serial import PortNotOpenError
+from serial import SerialException
+
+from util.logger import json_log, DATETIME_F
+from message import jsonGenerator
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -15,28 +17,24 @@ PORT = '/dev/ttyUSB0'
 BAUD_RATE = 9600
 
 
-def send(json_data: str):
+def send(msg: str):
     """データ送信用関数
 
     Args:
-        json_data (str): JSON形式のデータ
+        msg (str): 送信するメッセージ
 
     Raises:
         PortNotOpenError: ポートが空いておらず、リトライにも失敗した場合発生します
         SerialException: デバイスがみつからないときに発生します
     """
-    # ログ用ファイルをオープン
-    f = open('send_data' + datetime.now().strftime('%Y年%m月%d日_%H時%M分%S秒') + '.json', 'a')
-    # jsonとして書き込み
-    json.dump(json_data, f, indent=4, ensure_ascii=False)
-    f.close()
-
+    json_log(msg)  # ローカルにJSONを保存
     retry_c = 0
     while True:
         try:
             ser = serial.Serial(PORT, BAUD_RATE)
             # シリアルにjsonを書き込む
-            ser.write(json_data.encode('utf-8'))
+            ser.write(msg.encode('utf-8'))
+            ser.write(0x04)  # EOTを末尾に書き込む
             ser.close()
             return
 
@@ -52,8 +50,26 @@ def send(json_data: str):
             raise SerialException  # ここの処理について要件等
 
 
-def receive() -> str:
+def send_msg(msg: str):
+    """任意のメッセージを地上に送信する関数
+
+    Args:
+        msg: 任意のメッセージ
+    """
+    send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), message=msg))
+
+
+async def receive() -> str:
     """データ受信用関数
+
+    XBeeでデータを受信するまで待つ関数です。
+
+    Examples:
+        ブロッキング実行するサンプル
+
+        ::
+
+            asyncio.run(XBee.receive())
 
     Returns:
         str: 受信した文字列
@@ -66,19 +82,12 @@ def receive() -> str:
     while True:
         try:
             ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
-            receive_data = ser.read_all()  # 機体から値を受け取る
-            ser.close()
+            receive_data: bytes = bytes()
+            while len(receive_data) == 0:
+                receive_data = ser.readline()
 
-            catch_value = {
-                "time": datetime.now(),
-                "message": receive_data
-            }
-            # ログ用ファイルをオープン
-            f = open('receive_data' + datetime.now().strftime('%Y年%m月%d日_%H時%M分%S秒') + '.json', 'a')
-            # jsonとして書き込み
-            json.dump(catch_value, f, indent=4, ensure_ascii=False)
-            f.close()
-            return receive_data
+            ser.close()
+            return receive_data.decode("utf-8")
 
         except PortNotOpenError:
             # 5回リトライに失敗したらエラーを吐く

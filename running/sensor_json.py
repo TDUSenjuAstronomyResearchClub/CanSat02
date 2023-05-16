@@ -9,7 +9,6 @@ import sys
 import time
 
 import running  # 走行プログラムのソースファイル
-from cansatapi.xbee import XBee  # 地上局と値を送受信するプログラム
 
 from serial import SerialException
 import datetime
@@ -17,7 +16,7 @@ import datetime
 from cansatapi.nineaxissensor import NineAxisSensor
 from cansatapi.lps25hb import LPS25HB
 from cansatapi.batteryfuelgauge import BatteryFuelGauge
-from cansatapi import distance as distance_sensor
+from cansatapi import distance as distance_sensor, XBee
 from cansatapi import gps
 from cansatapi.bme280 import BME280
 
