@@ -2,6 +2,8 @@
 
 JSON形式のデータを地上局に送信するのはsend_receive.pyのsend関数の中で行う。
 """
+from __future__ import annotations
+
 import json
 import sys
 import time

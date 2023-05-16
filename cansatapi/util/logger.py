@@ -1,5 +1,7 @@
 """ロギングモジュール
 """
+from __future__ import annotations
+
 import csv
 import sys
 import time
