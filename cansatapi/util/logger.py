@@ -19,7 +19,7 @@ def json_log(json_data: str):
     Args:
         json_data (str): JSONデータ
     """
-    f = open('send_data_' + datetime.now().strftime(DATETIME_F) + '.json', 'a')
+    f = open(LOG_DIR + 'send_data_' + datetime.now().strftime(DATETIME_F) + '.json', 'a')
     # jsonとして書き込み
     json.dump(json_data, f, indent=4, ensure_ascii=False)
     f.close()
