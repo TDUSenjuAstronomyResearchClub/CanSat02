@@ -1,4 +1,7 @@
+from cansatapi.gps import get_gps_data
 # gps.pyからサンプル取得地点の緯度経度値を取得する関数
+
+
 def get_sample():
     # gps.pyの関数を呼び出してサンプル取得地点の緯度経度値を取得する処理を記述する
     # ここでは、仮の値として示すだけする
@@ -16,8 +19,10 @@ def SeeValue():
     sample_latitude, sample_longitude = get_sample()
 
     # ゴールの緯度経度値
-    goal_latitude = 0
-    goal_longitude = 0
+    goal_let = []
+    goal_let = get_gps_data()
+    goal_latitude = goal_let[1]
+    goal_longitude = goal_let[2]
 
     # ゴール地点とサンプル取得地点の値を表示
     print("ゴール地点の緯度経度値:", goal_latitude, goal_longitude)
