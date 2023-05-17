@@ -1,14 +1,24 @@
+"""DCモーター行動制御用モジュール
+"""
+import time
+from cansatapi import dcmotor
 
-#3秒間前進
 def StraightLine():
-
-    #duty比を80と0にする
-    set_motor_duty(80, 0)
+    """3秒間前進させるための関数
+    """
+    def forward(self, duty: int = 80):
+        """duty比を80と0にする
+        """
+        self.fin.ChangeDutyCycle(duty)
+        self.rin.ChangeDutyCycle(0)
 
     time.sleep(3)
-
-    #duty比を0と0にする
-    set_motor_duty(0, 0)
+    
+    def forward(self, duty: int = 0):
+        """duty比を0と0にする
+        """
+        self.fin.ChangeDutyCycle(duty)
+        self.rin.ChangeDutyCycle(0)
 
     time.sleep(1)
 
