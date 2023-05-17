@@ -60,14 +60,14 @@ AE-BME280
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gK-09421/>
 
-### 電池残量計
+### 電池残量計用IC
 
-SKU 8806
+MCP3008 
 
 - データシート
-  - <http://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf>
+  - <https://akizukidenshi.com/download/ds/microchip/mcp3008.pdf>
 - スイッチサイエンスのリンク
-  - <https://www.switch-science.com/products/8806>
+  - <https://akizukidenshi.com/catalog/g/gI-09485/>
 
 ### 9軸センサー
 
@@ -147,23 +147,16 @@ RA250060-58Y91
 
 ### モータードライバ
 
-TB67H450FNG
+BD6231F-E2
 
 - データシート
-  - <https://akizukidenshi.com/download/ds/Toshiba/TB67H450FNG_datasheet_ja_20190401.pdf>
+  - <https://akizukidenshi.com/download/ds/rohm/bd623x-j.pdf>
 - 秋月のリンク
-  - <https://akizukidenshi.com/catalog/g/gI-14967/>
-
-### サーボモーター（土壌水分、サンプル採取用）	
-
-MG92B
-
-- 秋月のリンク
-  - <https://akizukidenshi.com/catalog/g/gM-13228/>
+  - <https://akizukidenshi.com/catalog/g/gI-05088/>
 
 ### DCモーター
 
-RE-280RA-2865
+RE280RA-2865
 
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gP-06438/>

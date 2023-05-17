@@ -1,3 +1,5 @@
+"""9軸センサ(BMX055)用の動作確認モジュール
+"""
 from cansatapi.nineaxissensor import NineAxisSensor
 import sys
 import time
@@ -18,3 +20,5 @@ if __name__ == "__main__":
             time.sleep(1)
         except KeyboardInterrupt:
             sys.exit(0)
+        except OSError as e:
+            print(e)

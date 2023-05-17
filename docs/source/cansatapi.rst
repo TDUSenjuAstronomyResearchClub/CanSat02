@@ -49,6 +49,14 @@ cansatapi.nineaxissensor モジュール
    :undoc-members:
    :show-inheritance:
 
+cansatapi.dcmotor モジュール
+--------------------------------------
+
+.. automodule:: cansatapi.dcmotor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 cansatapi.servo モジュール
 --------------------------------------
 
@@ -69,6 +77,14 @@ cansatapi.bme280 モジュール
 -----------------------------------
 
 .. automodule:: cansatapi.bme280
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cansatapi.XBee モジュール
+-----------------------------------
+
+.. automodule:: cansatapi.XBee
    :members:
    :undoc-members:
    :show-inheritance:
