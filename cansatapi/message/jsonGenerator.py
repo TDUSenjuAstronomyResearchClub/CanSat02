@@ -17,7 +17,7 @@ def generate_json(
     lps25hb: Lps25Hb = None,
     battery: float = None,
     distance: float = None,
-    camera: str = None,
+    camera: float = None,
     soil_moisture: float = None,
     message: str = None,
 ) -> str:
