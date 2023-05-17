@@ -17,7 +17,7 @@ def generate_json(
     lps25hb: Lps25Hb = None,
     battery: float = None,
     distance: float = None,
-    camera: float = None,
+    camera: str = None,
     soil_moisture: float = None,
     message: str = None,
 ) -> str:
@@ -53,7 +53,21 @@ def generate_json(
         "soil_moisture": soil_moisture,
         "message": message
     }
+    return json.dumps(clean_nones(sensor_json))
 
-    return json.dumps(sensor_json)
 
+def clean_nones(dict_data: dict) -> dict:
+    """値がNoneの要素を再帰的に取り除く
 
+    Args:
+        dict_data (dict): 辞書型データ
+
+    Returns:
+        dict: Noneの要素が取り除かれたデータ
+    """
+    for key, value in list(dict_data.items()):
+        if value is None:
+            del dict_data[key]
+        elif isinstance(value, dict):
+            clean_nones(value)
+    return dict_data
