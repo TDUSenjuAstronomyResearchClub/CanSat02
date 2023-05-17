@@ -3,27 +3,14 @@
 カメラモジュールを使って画像を撮影、地上局に送信するモジュール
 
 使用しているライブラリ:
-    open-cv
-
-依存関係のあるライブラリ:
-sudo apt-get install libhdf5-dev libhdf5-serial-dev libhdf5-100
-sudo apt-get install libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
-sudo apt-get install libatlas-base-dev
-sudo apt-get install libjasper-dev
-
-他にnumpyのバージョンが古いとうまくいかないのでアプデを行うこと
-sudo pip3 install -U numpy
+    picamera2
 """
 
 import datetime
-import time
 
-import cv2
-import serial
-from serial import SerialException
+from picamera2 import Picamera2
 
-import json
-from cansatapi import camera
+from . import XBee
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -38,53 +25,26 @@ def photograph():
     Raises:
         CameraError: カメラに不具合があった際に発生
     """
-    cap = cv2.VideoCapture(0)
-    if not cap.isOpened():
-        raise CameraError("カメラを開けません")
+    picam2 = Picamera2()
 
-    # 画像ファイルの作成
-    now = datetime.datetime.now()
-    d = now.strftime('%Y-%m-%d_%H-%M-%S')
-    today = d + '.jpg'
+    # 画像サイズの設定
+    preview_config = picam2.create_preview_configuration(main={"size": (200, 200)})
+    picam2.configure(preview_config)
 
-    ret, frame = cap.read()
-    if not ret:
-        cap.release()
-        raise CameraError("フレームを開けません")
+    # 画像ファイル名の作成
+    date = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    filename = "./img/" + date + ".jpg"
 
-    # ウィンドウをリサイズ
-    window_size = (200, 200)
-    frame = cv2.resize(frame, window_size)  # 画像サイズ
-    cv2.imwrite(today, frame)  # 名前付け保存
-    cap.release()
+    # 撮影
+    picam2.start()
+    picam2.capture_file(filename)
+    picam2.close()
 
-    ser = serial.Serial(PORT, 9600)  # XBeeシリアルポートを開く
-
-    for i in range(5):
-        with open(today, 'rb') as img:  # 画像ファイルをバイナリデータとして開く
-            try:
-                data = img.read()
-                camera_data = data.hex()
-                json_data = json.dumps({"camera": camera_data , "time":d}) 
-                
-                ser.write(json_data)  # XBeeに送信
-
-                ser.close()  # XBeeシリアルポートを閉じる
-                return
-
-            except SerialException:
-                time.sleep(1)
-
-    return
+    with open(filename, 'rb') as img:  # 画像ファイルをバイナリデータとして開く
+        data = img.read()
+        XBee.send_pic(data.hex())
 
 
 class CameraError(Exception):
     """カメラ使用時のエラー
     """
-    try:
-        ser = serial.Serial(PORT, BAUD_RATE)
-        exception = str(Exception)
-        ser.write(exception.encode('utf-8') + b'\n')
-        ser.close()      
-    except SerialException:
-        pass    #Runing.pyのログ用ファイルにエラーが起きたことを記入する

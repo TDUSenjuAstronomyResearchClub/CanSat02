@@ -1,13 +1,15 @@
 """機体と地上局の通信を行うモジュール
 """
 
-import json
 import time
 from datetime import datetime
 
 import serial
 from serial import PortNotOpenError
 from serial import SerialException
+
+from .util.logger import json_log, DATETIME_F
+from .message import jsonGenerator
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -25,18 +27,14 @@ def send(msg: str):
         PortNotOpenError: ポートが空いておらず、リトライにも失敗した場合発生します
         SerialException: デバイスがみつからないときに発生します
     """
-    # ログ用ファイルをオープン
-    f = open('send_data' + datetime.now().strftime('%Y年%m月%d日_%H時%M分%S秒') + '.json', 'a')
-    # jsonとして書き込み
-    json.dump(msg, f, indent=4, ensure_ascii=False)
-    f.close()
-
+    json_log(msg)  # ローカルにJSONを保存
     retry_c = 0
     while True:
         try:
             ser = serial.Serial(PORT, BAUD_RATE)
             # シリアルにjsonを書き込む
             ser.write(msg.encode('utf-8'))
+            ser.write(0x04)  # EOTを末尾に書き込む
             ser.close()
             return
 
@@ -52,11 +50,28 @@ def send(msg: str):
             raise SerialException  # ここの処理について要件等
 
 
+def send_msg(msg: str):
+    """任意のメッセージを地上に送信する関数
+
+    Args:
+        msg: 任意のメッセージ
+    """
+    send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), message=msg))
+
+
+def send_pic(pic_hex: str):
+    """写真データを地上に送信する関数
+
+    Args:
+        pic_hex: 写真データ(16進数)
+    """
+    send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), camera=pic_hex))
+
+
 async def receive() -> str:
-    """データ受信用非同期関数
+    """データ受信用関数
 
     XBeeでデータを受信するまで待つ関数です。
-    処理を止めてしまうので非同期で実行するようにしてください。
 
     Examples:
         ブロッキング実行するサンプル

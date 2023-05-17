@@ -1,7 +1,11 @@
 """DCモーター行動制御用モジュール
 """
 import time
-from cansatapi import dcmotor
+from cansatapi.dcmotor import DCMotor
+
+# TODO: ピン番号は書き換えること
+FIN = 0
+RIN = 0
 
 def StraightLine():
     """3秒間前進させるための関数
@@ -23,4 +27,3 @@ def StraightLine():
     time.sleep(1)
 
     return
-

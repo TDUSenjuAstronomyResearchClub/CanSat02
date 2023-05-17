@@ -154,16 +154,9 @@ BD6231F-E2
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gI-05088/>
 
-### サーボモーター（土壌水分、サンプル採取用）	
-
-MG92B
-
-- 秋月のリンク
-  - <https://akizukidenshi.com/catalog/g/gM-13228/>
-
 ### DCモーター
 
-RE-280RA-2865
+RE280RA-2865
 
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gP-06438/>
