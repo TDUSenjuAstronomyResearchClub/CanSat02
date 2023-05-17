@@ -121,7 +121,13 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#cansatapi-xbee">cansatapi.XBee モジュール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.XBee">cansatapi.XBee モジュール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.XBee.receive"><code class="docutils literal notranslate"><span class="pre">receive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.XBee.send"><code class="docutils literal notranslate"><span class="pre">send()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.XBee.send_msg"><code class="docutils literal notranslate"><span class="pre">send_msg()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.XBee.send_pic"><code class="docutils literal notranslate"><span class="pre">send_pic()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="util.html">cansatapi.util パッケージ</a></li>
@@ -720,8 +726,74 @@ adafruit-circuitpython-seesaw</p>
 </dd></dl>
 
 </section>
-<section id="cansatapi-xbee">
-<h2>cansatapi.XBee モジュール<a class="headerlink" href="#cansatapi-xbee" title="この見出しへのパーマリンク"></a></h2>
+<section id="module-cansatapi.XBee">
+<span id="cansatapi-xbee"></span><h2>cansatapi.XBee モジュール<a class="headerlink" href="#module-cansatapi.XBee" title="この見出しへのパーマリンク"></a></h2>
+<p>機体と地上局の通信を行うモジュール</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.XBee.receive">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.XBee.</span></span><span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/XBee.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.XBee.receive" title="この定義へのパーマリンク"></a></dt>
+<dd><p>データ受信用関数</p>
+<p>XBeeでデータを受信するまで待つ関数です。</p>
+<p class="rubric">サンプル</p>
+<p>ブロッキング実行するサンプル</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">XBee</span><span class="o">.</span><span class="n">receive</span><span class="p">())</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>受信した文字列</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">例外<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>SerialException</strong> -- デバイスがみつからないときに発生します</p></li>
+<li><p><strong>PortNotOpenError</strong> -- ポートが空いておらず、リトライにも失敗した場合発生します</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.XBee.send">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.XBee.</span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/XBee.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.XBee.send" title="この定義へのパーマリンク"></a></dt>
+<dd><p>データ送信用関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) -- 送信するメッセージ</p>
+</dd>
+<dt class="field-even">例外<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>PortNotOpenError</strong> -- ポートが空いておらず、リトライにも失敗した場合発生します</p></li>
+<li><p><strong>SerialException</strong> -- デバイスがみつからないときに発生します</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.XBee.send_msg">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.XBee.</span></span><span class="sig-name descname"><span class="pre">send_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/XBee.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.XBee.send_msg" title="この定義へのパーマリンク"></a></dt>
+<dd><p>任意のメッセージを地上に送信する関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> -- 任意のメッセージ</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cansatapi.XBee.send_pic">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.XBee.</span></span><span class="sig-name descname"><span class="pre">send_pic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pic_hex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/XBee.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.XBee.send_pic" title="この定義へのパーマリンク"></a></dt>
+<dd><p>写真データを地上に送信する関数</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pic_hex</strong> -- 写真データ(16進数)</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
