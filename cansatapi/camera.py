@@ -33,7 +33,7 @@ def photograph():
 
     # 画像ファイル名の作成
     date = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    filename = date + ".jpg"
+    filename = "./img/" + date + ".jpg"
 
     # 撮影
     picam2.start()
