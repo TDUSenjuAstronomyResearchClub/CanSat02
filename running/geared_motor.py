@@ -1,29 +1,25 @@
-"""DCモーター行動制御用モジュール
+"""DCモーターを使って機体を制御するモジュール
 """
 import time
 from cansatapi.dcmotor import DCMotor
 
-# TODO: ピン番号は書き換えること
 FIN = 0
 RIN = 0
 
 def StraightLine():
     """3秒間前進させるための関数
     """
-    def forward(self, duty: int = 80):
-        """duty比を80と0にする
-        """
-        self.fin.ChangeDutyCycle(duty)
-        self.rin.ChangeDutyCycle(0)
 
-    time.sleep(3)
-    
-    def forward(self, duty: int = 0):
-        """duty比を0と0にする
-        """
-        self.fin.ChangeDutyCycle(duty)
-        self.rin.ChangeDutyCycle(0)
+    # DCモータのインスタンスを生成
+    motor_r = DCMotor(6, 5)
+    motor_l = DCMotor(26, 19)
 
+    # それぞれのモーターのデューティ比を80%に設定
+    motor_r.forward(80)
+    motor_l.forward(80)
+    time.sleep(3)  # 三秒間前進
+
+    # それぞれのモーターを停止
+    motor_r.stop()
+    motor_l.stop()
     time.sleep(1)
-
-    return
