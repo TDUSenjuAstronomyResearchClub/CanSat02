@@ -42,7 +42,7 @@ class DCMotor:
         self.fin.ChangeDutyCycle(0)
         self.rin.ChangeDutyCycle(duty)
 
-    def stop_motor(self):
+    def stop(self):
         """モーターを停止させるメソッド
         """
         # 両方がLOWになる
@@ -55,7 +55,7 @@ class DCMotor:
         GPIOのクリーンアップを行います。
         DCモーター使用後は必ず呼び出して下さい。
         """
-        self.stop_motor()
+        self.stop()
         self.fin.stop()
         self.rin.stop()
         GPIO.cleanup()

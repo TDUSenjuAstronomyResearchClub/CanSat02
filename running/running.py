@@ -1,43 +1,48 @@
+import datetime
+import time
+
 from cansatapi.gps import get_gps_data
-# gps.pyからサンプル取得地点の緯度経度値を取得する関数
+from cansatapi.util import logging
+from cansatapi.util.logging import Logger
+
+# 本番前に記入
+SAMPLE_LON: float = 0.0
+SAMPLE_LAT: float = 0.0
+
+GOAL_LON: float = 0.0
+GOAL_LAT: float = 0.0
 
 
 def get_sample():
     # gps.pyの関数を呼び出してサンプル取得地点の緯度経度値を取得する処理を記述する
-    # 取得地点の緯度経度値
+    # ここでは、仮の値として示すだけする
+    # 要追記
     sample_let = []
     sample_let = get_gps_data()
-    sample_latitude = sample_let[0]
-    sample_longitude = sample_let[1]
+    sample_latitude = sample_let[1]
+    sample_longitude = sample_let[2]
     return sample_latitude, sample_longitude
 
-# SeeValueに渡す緯度経度値を含む関数
+def LandingJudgement():
+    """着地判定をするまで待つ関数"""
 
 
 def SeeValue():
     # gps.pyからサンプル取得地点の緯度経度値を取得
     sample_latitude, sample_longitude = get_sample()
-    # ゴール地点の緯度経度を手入力必須
+
+    # ゴールの緯度経度値
     goal_latitude = 35.6789
     goal_longitude = 139.0123
 
-    # ゴール地点とサンプル取得地点の値を表示
-    print("ゴール地点の緯度経度値:", goal_latitude, goal_longitude)
-    print("サンプル取得地点の緯度経度値:", sample_latitude, sample_longitude)
+    FallJudgement()
+    XBee.send_msg("Detect falling")
 
-    # ゴール地点とサンプル取得地点の値を返す
-    # 関数を呼び出せば求める値が返ってくる予定
-    # ゴールの緯度経度、サンプル取得地点の緯度経度の順で返す
-    return goal_latitude, goal_longitude, sample_latitude, sample_longitude
+    LandingJudgement()
+    XBee.send_msg("Landed")
 
-# 関数を呼び出して緯度経度値を表示
+    detach_parachute(main_logger)
 
 
-result = SeeValue()
-
-# 結果の仮想処理 要削除
-print("結果の仮想処理:")
-goal_latitude, goal_longitude, sample_latitude, sample_longitude = result
-# ここで結果を使った処理を行う
-print("ゴール地点の緯度経度値:", goal_latitude, goal_longitude)
-print("サンプル取得地点の緯度経度値:", sample_latitude, sample_longitude)
+if __name__ == "__main__":
+    main()  # 実行

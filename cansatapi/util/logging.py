@@ -39,7 +39,7 @@ class Logger:
         Args:
             file_name: ログファイルの名前
         """
-        self.log_path = LOG_DIR + datetime.now().strftime(DATETIME_F) + file_name
+        self.log_path = LOG_DIR + datetime.now().strftime(DATETIME_F) + file_name + ".csv"
         file = open(file_name, 'a')
         writer = csv.writer(file, lineterminator='\n')
 

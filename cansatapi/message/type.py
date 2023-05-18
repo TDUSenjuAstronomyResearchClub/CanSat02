@@ -17,7 +17,7 @@ class SensorJson(TypedDict):
     lps25hb: Lps25Hb | None
     battery: float | None
     distance: float | None
-    camera: float | None
+    camera: str | None
     soil_moisture: float | None
     message: str | None
 

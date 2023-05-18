@@ -43,9 +43,13 @@ now = datetime.datetime.now()  # センサ値取得開始日時の取得
 
 try:
     gps_data = gps.get_gps_data()
-    lat_lon = running.SeeValue()  # 走行プログラムに定義されているサンプル採取地点とゴール地点の緯度経度値を持ってくる
-    sample_distance = gps.calculate_distance_bearing(lat_lon[0], lat_lon[1])
-    goal_distance = gps.calculate_distance_bearing(lat_lon[2], lat_lon[3])
+    # runningから各ポイントの緯度経度を取得する
+    sample_lat = running.SAMPLE_LAT
+    sample_lon = running.SAMPLE_LON
+    goal_lat = running.GOAL_LAT
+    goal_lon = running.GOAL_LON
+    sample_distance = gps.calculate_distance_bearing(sample_lat, sample_lon)
+    goal_distance = gps.calculate_distance_bearing(goal_lat, goal_lon)
 except SerialException:
     print("Error: GPSとのシリアル通信でエラーが発生しました", file=sys.stderr)
 
