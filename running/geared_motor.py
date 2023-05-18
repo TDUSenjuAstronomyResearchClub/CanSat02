@@ -3,6 +3,7 @@
 import time
 from cansatapi.dcmotor import DCMotor
 
+
 def StraightLine():
     """3秒間前進させるための関数
     """
