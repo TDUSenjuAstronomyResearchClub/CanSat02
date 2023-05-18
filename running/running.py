@@ -1,7 +1,7 @@
 import datetime
 import time
 
-from cansatapi import *
+from cansatapi.gps import get_gps_data
 from cansatapi.util import logging
 from cansatapi.util.logging import Logger
 
@@ -13,34 +13,27 @@ GOAL_LON: float = 0.0
 GOAL_LAT: float = 0.0
 
 
-def FallJudgement():
-    """落下判定をするまで待つ関数
-    """
-
+def get_sample():
+    # gps.pyの関数を呼び出してサンプル取得地点の緯度経度値を取得する処理を記述する
+    # ここでは、仮の値として示すだけする
+    # 要追記
+    sample_let = []
+    sample_let = get_gps_data()
+    sample_latitude = sample_let[1]
+    sample_longitude = sample_let[2]
+    return sample_latitude, sample_longitude
 
 def LandingJudgement():
     """着地判定をするまで待つ関数"""
 
 
-def detach_parachute(logger: Logger):
-    """パラシュートの切り離しを行います
-    """
-    para_motor = dcmotor.DCMotor(9, 10)
-    logger.msg("パラシュート切り離し開始")
-    para_motor.forward()
+def SeeValue():
+    # gps.pyからサンプル取得地点の緯度経度値を取得
+    sample_latitude, sample_longitude = get_sample()
 
-    time.sleep(10)  # 10秒間巻取り
-
-    para_motor.stop()
-    para_motor.cleanup()
-    logger.msg("パラシュート切り離し終了")
-
-
-def main():
-    """メインアルゴリズム
-    """
-    main_logger = Logger("Running" + datetime.datetime.now().strftime(logging.DATETIME_F))
-    XBee.send_msg("Start running")
+    # ゴールの緯度経度値
+    goal_latitude = 35.6789
+    goal_longitude = 139.0123
 
     FallJudgement()
     XBee.send_msg("Detect falling")
