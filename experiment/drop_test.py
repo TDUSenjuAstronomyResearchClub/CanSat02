@@ -8,7 +8,7 @@ from cansatapi.lps25hb import LPS25HB
 from cansatapi.lps25hb import calc_altitude
 from cansatapi.nineaxissensor import NineAxisSensor
 from cansatapi.dcmotor import DCMotor
-from cansatapi.util.logger import Logger
+from cansatapi.util.logging import Logger
 
 
 def detach_parachute(logger: Logger):

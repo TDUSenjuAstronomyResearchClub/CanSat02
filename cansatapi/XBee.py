@@ -8,7 +8,7 @@ import serial
 from serial import PortNotOpenError
 from serial import SerialException
 
-from .util.logger import json_log, DATETIME_F
+from .util.logging import json_log, DATETIME_F
 from .message import jsonGenerator
 
 # ポート設定

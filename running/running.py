@@ -1,10 +1,9 @@
 import datetime
 import time
 
-from cansatapi.util import logger
-from cansatapi.util.logger import Logger
-from cansatapi.gps import get_gps_data
 from cansatapi import *
+from cansatapi.util import logging
+from cansatapi.util.logging import Logger
 
 # 本番前に記入
 SAMPLE_LON: float = 0.0
@@ -40,7 +39,7 @@ def detach_parachute(logger: Logger):
 def main():
     """メインアルゴリズム
     """
-    main_logger = Logger("Running" + datetime.datetime.now().strftime(logger.DATETIME_F))
+    main_logger = Logger("Running" + datetime.datetime.now().strftime(logging.DATETIME_F))
     XBee.send_msg("Start running")
 
     FallJudgement()
