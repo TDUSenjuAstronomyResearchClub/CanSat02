@@ -20,7 +20,7 @@ def detach_parachute(logger: Logger):
 
     time.sleep(10)  # 10秒間巻取り
 
-    para_motor.stop_motor()
+    para_motor.stop()
     para_motor.cleanup()
     logger.msg("パラシュート切り離し終了")
 
