@@ -71,3 +71,23 @@ class DCMotorController:
     def __init__(self, r_motor: DCMotor, l_motor: DCMotor):
         self.r_motor = r_motor
         self.l_motor = l_motor
+
+    def forward(self, duty: int = 50):
+        """左右のモーターを正転させるメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.forward(duty)
+        self.l_motor.forward(duty)
+
+    def reverse(self, duty: int = 50):
+        """左右のモーターを逆転させるメソッド
+
+        Args:
+            duty (int): デューティ比
+        """
+
+        self.r_motor.reverse(duty)
+        self.l_motor.reverse(duty)
