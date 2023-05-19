@@ -93,6 +93,19 @@
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotor.stop"><code class="docutils literal notranslate"><span class="pre">DCMotor.stop()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController"><code class="docutils literal notranslate"><span class="pre">DCMotorController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController.cleanup"><code class="docutils literal notranslate"><span class="pre">DCMotorController.cleanup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController.forward"><code class="docutils literal notranslate"><span class="pre">DCMotorController.forward()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController.l_pivot_fwd"><code class="docutils literal notranslate"><span class="pre">DCMotorController.l_pivot_fwd()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController.l_pivot_rev"><code class="docutils literal notranslate"><span class="pre">DCMotorController.l_pivot_rev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController.l_spin"><code class="docutils literal notranslate"><span class="pre">DCMotorController.l_spin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController.r_pivot_fwd"><code class="docutils literal notranslate"><span class="pre">DCMotorController.r_pivot_fwd()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController.r_pivot_rev"><code class="docutils literal notranslate"><span class="pre">DCMotorController.r_pivot_rev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController.r_spin"><code class="docutils literal notranslate"><span class="pre">DCMotorController.r_spin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController.reverse"><code class="docutils literal notranslate"><span class="pre">DCMotorController.reverse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotorController.stop"><code class="docutils literal notranslate"><span class="pre">DCMotorController.stop()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.servo">cansatapi.servo モジュール</a><ul>
@@ -571,6 +584,116 @@ DCモーター使用後は必ず呼び出して下さい。</p>
 <dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotor.stop">
 <span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotor.stop" title="この定義へのパーマリンク"></a></dt>
 <dd><p>モーターを停止させるメソッド</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.dcmotor.</span></span><span class="sig-name descname"><span class="pre">DCMotorController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_motor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cansatapi.dcmotor.DCMotor" title="cansatapi.dcmotor.DCMotor"><span class="pre">DCMotor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_motor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cansatapi.dcmotor.DCMotor" title="cansatapi.dcmotor.DCMotor"><span class="pre">DCMotor</span></a></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>左右の2個のモーターを同時にコントロールするクラス</p>
+<p>前進するために左右のモーターを同じデューティ比にするときなどに使います。
+初期化する際にそれぞれのモーターのインスタンスを渡してください。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController.cleanup">
+<span class="sig-name descname"><span class="pre">cleanup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController.cleanup" title="この定義へのパーマリンク"></a></dt>
+<dd><p>GPIOのクリーンアップを行うメソッド</p>
+<p>インスタンスの使用が終わったら必ず呼び出して下さい。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController.forward" title="この定義へのパーマリンク"></a></dt>
+<dd><p>左右のモーターを正転させるメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>duty</strong> (<em>int</em>) -- デューティ比[%]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController.l_pivot_fwd">
+<span class="sig-name descname"><span class="pre">l_pivot_fwd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController.l_pivot_fwd" title="この定義へのパーマリンク"></a></dt>
+<dd><p>反時計回りに左車輪を軸に信地旋回を行うメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>duty</strong> (<em>int</em>) -- デューティ比[%]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController.l_pivot_rev">
+<span class="sig-name descname"><span class="pre">l_pivot_rev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController.l_pivot_rev" title="この定義へのパーマリンク"></a></dt>
+<dd><p>時計回りに左車輪を軸に信地旋回を行うメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>duty</strong> (<em>int</em>) -- デューティ比[%]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController.l_spin">
+<span class="sig-name descname"><span class="pre">l_spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController.l_spin" title="この定義へのパーマリンク"></a></dt>
+<dd><p>反時計回りに超信地回転を行うメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>duty</strong> (<em>int</em>) -- デューティ比[%]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController.r_pivot_fwd">
+<span class="sig-name descname"><span class="pre">r_pivot_fwd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController.r_pivot_fwd" title="この定義へのパーマリンク"></a></dt>
+<dd><p>時計回りに右車輪を軸に信地旋回を行うメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>duty</strong> (<em>int</em>) -- デューティ比[%]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController.r_pivot_rev">
+<span class="sig-name descname"><span class="pre">r_pivot_rev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController.r_pivot_rev" title="この定義へのパーマリンク"></a></dt>
+<dd><p>反時計回りに右車輪を軸に信地旋回を行うメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>duty</strong> (<em>int</em>) -- デューティ比[%]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController.r_spin">
+<span class="sig-name descname"><span class="pre">r_spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController.r_spin" title="この定義へのパーマリンク"></a></dt>
+<dd><p>時計回りに超信地回転を行うメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>duty</strong> (<em>int</em>) -- デューティ比[%]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController.reverse">
+<span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController.reverse" title="この定義へのパーマリンク"></a></dt>
+<dd><p>左右のモーターを逆転させるメソッド</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>duty</strong> (<em>int</em>) -- デューティ比[%]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.DCMotorController.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.DCMotorController.stop" title="この定義へのパーマリンク"></a></dt>
+<dd><p>左右のモーターを停止させるメソッド</p>
 </dd></dl>
 
 </dd></dl>
