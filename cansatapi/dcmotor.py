@@ -138,4 +138,22 @@ class DCMotorController:
         self.r_motor.reverse(duty)
         self.l_motor.stop()
 
+    def r_spin(self, duty: int = 50):
+        """時計回りに超信地回転を行うメソッド
 
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.reverse(duty)
+        self.l_motor.forward(duty)
+
+    def l_spin(self, duty: int = 50):
+        """反時計回りに超信地回転を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.reverse(duty)
+        self.l_motor.forward(duty)
