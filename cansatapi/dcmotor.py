@@ -72,6 +72,14 @@ class DCMotorController:
         self.r_motor = r_motor
         self.l_motor = l_motor
 
+    def cleanup(self):
+        """GPIOのクリーンアップを行うメソッド
+
+        インスタンスの使用が終わったら必ず呼び出して下さい。
+        """
+        self.r_motor.cleanup()
+        self.l_motor.cleanup()
+
     def stop(self):
         """左右のモーターを停止させるメソッド
         """
