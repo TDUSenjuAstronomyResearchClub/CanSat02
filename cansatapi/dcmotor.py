@@ -72,6 +72,12 @@ class DCMotorController:
         self.r_motor = r_motor
         self.l_motor = l_motor
 
+    def stop(self):
+        """左右のモーターを停止させるメソッド
+        """
+        self.r_motor.stop()
+        self.l_motor.stop()
+
     def forward(self, duty: int = 50):
         """左右のモーターを正転させるメソッド
 
@@ -86,8 +92,50 @@ class DCMotorController:
         """左右のモーターを逆転させるメソッド
 
         Args:
-            duty (int): デューティ比
+            duty (int): デューティ比[%]
         """
 
         self.r_motor.reverse(duty)
         self.l_motor.reverse(duty)
+
+    def r_pivot_fwd(self, duty: int = 50):
+        """時計回りに右車輪を軸に信地旋回を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.stop()
+        self.l_motor.forward(duty)
+
+    def r_pivot_rev(self, duty: int = 50):
+        """反時計回りに右車輪を軸に信地旋回を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.stop()
+        self.l_motor.reverse(duty)
+
+    def l_pivot_fwd(self, duty: int = 50):
+        """反時計回りに左車輪を軸に信地旋回を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.forward(duty)
+        self.l_motor.stop()
+
+    def l_pivot_rev(self, duty: int = 50):
+        """時計回りに左車輪を軸に信地旋回を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.reverse(duty)
+        self.l_motor.stop()
+
+
