@@ -59,3 +59,15 @@ class DCMotor:
         self.fin.stop()
         self.rin.stop()
         GPIO.cleanup()
+
+
+class DCMotorController:
+    """左右の2個のモーターを同時にコントロールするクラス
+
+    前進するために左右のモーターを同じデューティ比にするときなどに使います。
+    初期化する際にそれぞれのモーターのインスタンスを渡してください。
+    """
+
+    def __init__(self, r_motor: DCMotor, l_motor: DCMotor):
+        self.r_motor = r_motor
+        self.l_motor = l_motor
