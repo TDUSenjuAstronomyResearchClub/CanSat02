@@ -24,7 +24,9 @@ def recive_data():
     while True:
         recive_command = XBee.receive()
 
-
+def manual_mode():
+    """手動制御を行う関数
+    """
 
 def FallJudgement():
     """落下判定をするまで待つ関数
@@ -81,6 +83,23 @@ def detach_parachute(logger: Logger):
     para_motor.stop()
     para_motor.cleanup()
     logger.msg("パラシュート切り離し終了")
+
+def angle_adjustment():
+    """目的地と機体を一直線にする関数
+    """
+
+
+def go_to_goal():
+    """ゴールまで直進する関数
+    """
+
+def soil_moisture():
+    """土壌水分量を測定する関数
+    """
+
+def sample_collection():
+    """サンプルを採取する関数
+    """
 
 
 def main():
