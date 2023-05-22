@@ -68,17 +68,10 @@ def send_pic(pic_hex: str):
     send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), camera=pic_hex))
 
 
-async def receive() -> str:
+def receive() -> str:
     """データ受信用関数
 
     XBeeでデータを受信するまで待つ関数です。
-
-    Examples:
-        ブロッキング実行するサンプル
-
-        ::
-
-            asyncio.run(XBee.receive())
 
     Returns:
         str: 受信した文字列
