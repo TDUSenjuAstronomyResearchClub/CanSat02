@@ -1,6 +1,6 @@
 import datetime
 
-import cansatapi.XBee
+import cansatapi.xbee
 
 json_data = """"{
   "time": "8533/09/03 20:33:39",

@@ -1,7 +1,7 @@
 import sys
 import time
 
-from cansatapi import XBee
+from cansatapi import xbee
 
 MSG = "test"
 

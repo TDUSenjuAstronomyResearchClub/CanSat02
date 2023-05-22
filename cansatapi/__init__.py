@@ -9,5 +9,5 @@ __all__ = [
     "nineaxissensor",
     "servo",
     "soil_moisture",
-    "XBee"
+    "xbee"
 ]
