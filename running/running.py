@@ -74,11 +74,13 @@ def LandingJudgement():
 def detach_parachute(logger: Logger):
     """パラシュートの切り離しを行います
     """
-    para_motor = dcmotor.DCMotor(9, 10)
+    para_motor = dcmotor.DCMotor(dcmotor.PARACHUTE_FIN, dcmotor.PARACHUTE_RIN)
+    wheels = dcmotor.WheelController()
     logger.msg("パラシュート切り離し開始")
     para_motor.forward()
+    wheels.forward()
 
-    time.sleep(10)  # 10秒間巻取り
+    time.sleep(10)  # 10秒間巻取り&前進
 
     para_motor.stop()
     para_motor.cleanup()
