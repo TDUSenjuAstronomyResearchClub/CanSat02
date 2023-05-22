@@ -2,6 +2,15 @@
 """
 import RPi.GPIO as GPIO
 
+PARACHUTE_FIN = 20
+PARACHUTE_RIN = 16
+
+R_WHEEL_FIN = 25
+R_WHEEL_RIN = 8
+
+L_WHEEL_FIN = 7
+L_WHEEL_RIN = 1
+
 
 class DCMotor:
     """DCモーターをドライバを通してPWM制御するクラス
@@ -61,16 +70,16 @@ class DCMotor:
         GPIO.cleanup()
 
 
-class DCMotorController:
-    """左右の2個のモーターを同時にコントロールするクラス
+class WheelController:
+    """車輪の2個のモーターを同時にコントロールするクラス
 
     前進するために左右のモーターを同じデューティ比にするときなどに使います。
     初期化する際にそれぞれのモーターのインスタンスを渡してください。
     """
 
-    def __init__(self, r_motor: DCMotor, l_motor: DCMotor):
-        self.r_motor = r_motor
-        self.l_motor = l_motor
+    def __init__(self):
+        self.r_motor = DCMotor(R_WHEEL_FIN, R_WHEEL_RIN)
+        self.l_motor = DCMotor(L_WHEEL_FIN, L_WHEEL_RIN)
 
     def cleanup(self):
         """GPIOのクリーンアップを行うメソッド
@@ -81,13 +90,13 @@ class DCMotorController:
         self.l_motor.cleanup()
 
     def stop(self):
-        """左右のモーターを停止させるメソッド
+        """車輪を停止させるメソッド
         """
         self.r_motor.stop()
         self.l_motor.stop()
 
     def forward(self, duty: int = 50):
-        """左右のモーターを正転させるメソッド
+        """車輪を正転させるメソッド
 
         Args:
             duty (int): デューティ比[%]
@@ -97,7 +106,7 @@ class DCMotorController:
         self.l_motor.forward(duty)
 
     def reverse(self, duty: int = 50):
-        """左右のモーターを逆転させるメソッド
+        """車輪を逆転させるメソッド
 
         Args:
             duty (int): デューティ比[%]
