@@ -154,12 +154,12 @@ BD6231F-E2
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gI-05088/>
 
-### DCモーター
+### 超小型モータ
 
-RE280RA-2865
+F-M2-12133-0
 
-- 秋月のリンク
-  - <https://akizukidenshi.com/catalog/g/gP-06438/>
+- 千石電商のリンク
+  - <https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-04YJ>
 
 ###　フルブリッジドライバＩＣ
 

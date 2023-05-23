@@ -2,6 +2,15 @@
 """
 import RPi.GPIO as GPIO
 
+PARACHUTE_FIN = 20
+PARACHUTE_RIN = 16
+
+R_WHEEL_FIN = 25
+R_WHEEL_RIN = 8
+
+L_WHEEL_FIN = 7
+L_WHEEL_RIN = 1
+
 
 class DCMotor:
     """DCモーターをドライバを通してPWM制御するクラス
@@ -59,3 +68,109 @@ class DCMotor:
         self.fin.stop()
         self.rin.stop()
         GPIO.cleanup()
+
+
+class WheelController:
+    """車輪の2個のモーターを同時にコントロールするクラス
+
+    前進するために左右のモーターを同じデューティ比にするときなどに使います。
+    初期化する際にそれぞれのモーターのインスタンスを渡してください。
+    """
+
+    def __init__(self):
+        self.r_motor = DCMotor(R_WHEEL_FIN, R_WHEEL_RIN)
+        self.l_motor = DCMotor(L_WHEEL_FIN, L_WHEEL_RIN)
+
+    def cleanup(self):
+        """GPIOのクリーンアップを行うメソッド
+
+        インスタンスの使用が終わったら必ず呼び出して下さい。
+        """
+        self.r_motor.cleanup()
+        self.l_motor.cleanup()
+
+    def stop(self):
+        """車輪を停止させるメソッド
+        """
+        self.r_motor.stop()
+        self.l_motor.stop()
+
+    def forward(self, duty: int = 50):
+        """車輪を正転させるメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.forward(duty)
+        self.l_motor.forward(duty)
+
+    def reverse(self, duty: int = 50):
+        """車輪を逆転させるメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.reverse(duty)
+        self.l_motor.reverse(duty)
+
+    def r_pivot_fwd(self, duty: int = 50):
+        """時計回りに右車輪を軸に信地旋回を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.stop()
+        self.l_motor.forward(duty)
+
+    def r_pivot_rev(self, duty: int = 50):
+        """反時計回りに右車輪を軸に信地旋回を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.stop()
+        self.l_motor.reverse(duty)
+
+    def l_pivot_fwd(self, duty: int = 50):
+        """反時計回りに左車輪を軸に信地旋回を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.forward(duty)
+        self.l_motor.stop()
+
+    def l_pivot_rev(self, duty: int = 50):
+        """時計回りに左車輪を軸に信地旋回を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.reverse(duty)
+        self.l_motor.stop()
+
+    def r_spin(self, duty: int = 50):
+        """時計回りに超信地回転を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.reverse(duty)
+        self.l_motor.forward(duty)
+
+    def l_spin(self, duty: int = 50):
+        """反時計回りに超信地回転を行うメソッド
+
+        Args:
+            duty (int): デューティ比[%]
+        """
+
+        self.r_motor.reverse(duty)
+        self.l_motor.forward(duty)
