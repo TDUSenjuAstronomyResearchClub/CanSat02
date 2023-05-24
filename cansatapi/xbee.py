@@ -102,7 +102,9 @@ def _begin_receive(callback: Callable[[str], None]):
                     receive_data = ser.readline()
 
                 ser.close()
-            callback(receive_data.decode("utf-8"))  # コールバックを呼び出す
+            data_utf8 = receive_data.decode("utf-8")
+            json_log(data_utf8)  # ロギング
+            callback(data_utf8)  # コールバックを呼び出す
 
         except PortNotOpenError:
             # 5回リトライに失敗したらエラーを吐く
