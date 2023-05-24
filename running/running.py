@@ -1,6 +1,5 @@
 import datetime
 import time
-import threading
 
 from cansatapi import *
 from cansatapi.util import logging
