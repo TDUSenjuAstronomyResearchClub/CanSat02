@@ -16,7 +16,7 @@ import datetime
 from cansatapi.nineaxissensor import NineAxisSensor
 from cansatapi.lps25hb import LPS25HB
 from cansatapi.batteryfuelgauge import BatteryFuelGauge
-from cansatapi import distance as distance_sensor, XBee
+from cansatapi import distance as distance_sensor, xbee
 from cansatapi import gps
 from cansatapi.bme280 import BME280
 

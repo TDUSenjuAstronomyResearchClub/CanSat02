@@ -3,6 +3,7 @@
 import datetime
 
 from cansatapi.util.logging import Logger
+recive_command = ''
 
 def manual_mode():
     """機体をゴールと一直線にする
@@ -11,6 +12,16 @@ def manual_mode():
 def angle_adjustment():
     """機体をゴールと一直線にする
     """
+    global recive_command
+    while True:
+        if recive_command == 'manual':
+          #TODO: マニュアルモードの関数を呼び出す
+           recive_command == '' #コマンドを初期化
+
+        elif recive_command == 'distination':
+            #TODO: 目的地の緯度経度を変更する関数を呼び出す
+             recive_command = '' #コマンドを初期化
+             return
 
 def go_to_goal():
     """機体をゴールに向かわせる
