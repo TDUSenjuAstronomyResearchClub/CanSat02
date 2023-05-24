@@ -23,6 +23,7 @@ def angle_adjustment():
              recive_command = '' #コマンドを初期化
              return
 
+
 def go_to_goal():
     """機体をゴールに向かわせる
     """
