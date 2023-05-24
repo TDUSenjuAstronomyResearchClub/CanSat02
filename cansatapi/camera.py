@@ -10,7 +10,7 @@ import datetime
 
 from picamera2 import Picamera2
 
-from . import XBee
+from . import xbee
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
