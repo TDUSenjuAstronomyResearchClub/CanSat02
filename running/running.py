@@ -1,5 +1,6 @@
 import datetime
 import time
+from multiprocessing import Process
 
 from cansatapi import *
 from cansatapi.util import logging
@@ -81,7 +82,8 @@ def main():
     """メインアルゴリズム
     """
     # 受信を開始
-    xbee.begin_receive(parse_cmd)
+    proc = Process(target=xbee.start, args=(parse_cmd,))
+    proc.start()
 
     main_logger = Logger("Running" + datetime.datetime.now().strftime(logging.DATETIME_F))
     xbee.send_msg("走行開始")
