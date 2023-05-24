@@ -91,25 +91,33 @@ def begin_receive(callback: Callable[[str], None]):
     process.start()
 
 
-def _begin_receive(callback: Callable[[str], None]):
-    retry_c = 0
-    while True:
+def receive(callback: Callable[[str], None]) -> bool:
+    """データを地上から受信する関数
+
+    データを受信した場合はコールバックを呼び出します。
+
+    Args:
+        callback (Callable[[str], None]): 受信した文字列を引数に取るコールバック関数
+
+    Returns:
+        bool: データを受信したかどうか
+    """
+    for i in range(1, 5):
         try:
             with LOCK:
                 ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
-                receive_data: bytes = bytes()
-                while len(receive_data) == 0:
-                    receive_data = ser.readline()
+                receive_data = ser.readline()
+                if len(receive_data) != 0:
+                    data_utf8 = receive_data.decode("utf-8")
+                    json_log(data_utf8)  # ロギング
+                    callback(data_utf8)  # コールバックを呼び出す
 
                 ser.close()
-            data_utf8 = receive_data.decode("utf-8")
-            json_log(data_utf8)  # ロギング
-            callback(data_utf8)  # コールバックを呼び出す
+            return len(receive_data) != 0
 
         except PortNotOpenError:
             # 5回リトライに失敗したらエラーを吐く
-            retry_c += 1
-            if retry_c > 5:
+            if i >= 5:
                 raise PortNotOpenError
             else:
                 time.sleep(0.5)
