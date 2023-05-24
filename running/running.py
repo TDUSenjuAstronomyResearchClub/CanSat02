@@ -66,11 +66,21 @@ def sample_collection():
     """
 
 
+def parse_cmd(cmd: str):
+    """受信したコマンドをもとに処理をする関数
+
+    グローバル変数にモードとかを書き込むことを想定
+
+    Args:
+        cmd (str): 受信したコマンド
+    """
+
+
 def main():
     """メインアルゴリズム
     """
     # 受信を開始
-    xbee.begin_receive()
+    xbee.begin_receive(parse_cmd)
 
     main_logger = Logger("Running" + datetime.datetime.now().strftime(logging.DATETIME_F))
     xbee.send_msg("走行開始")
