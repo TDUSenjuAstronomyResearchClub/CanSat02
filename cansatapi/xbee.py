@@ -73,30 +73,13 @@ def send_pic(pic_hex: str):
     send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), camera=pic_hex))
 
 
-def begin_receive(callback: Callable[[str], None]):
-    """データ受信用関数
-
-    XBeeでデータを受信するまで待つメソッドです。
-    別プロセスで常に地上からの受信を待機します。
-    コールバックは値を受信したときに受信した値を引数に渡されて呼び出されます。
-
-    Args:
-        callback (Callable[[str], None]): 受信した文字列を引数に取るコールバック関数
-
-    Raises:
-        SerialException: デバイスがみつからないときに発生します
-        PortNotOpenError: ポートが空いておらず、リトライにも失敗した場合発生します
-    """
-    process = Process(target=_begin_receive(callback))
-    process.start()
-
-
-def receive(callback: Callable[[str], None]) -> bool:
+def receive(callback: Callable[[str], None], retry: int = 5) -> bool:
     """データを地上から受信する関数
 
     データを受信した場合はコールバックを呼び出します。
 
     Args:
+        retry (int): ポートが使用中だった際のリトライ回数
         callback (Callable[[str], None]): 受信した文字列を引数に取るコールバック関数
 
     Returns:
@@ -117,7 +100,7 @@ def receive(callback: Callable[[str], None]) -> bool:
 
         except PortNotOpenError:
             # 5回リトライに失敗したらエラーを吐く
-            if i >= 5:
+            if i >= retry:
                 raise PortNotOpenError
             else:
                 time.sleep(0.5)
