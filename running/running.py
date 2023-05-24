@@ -12,6 +12,16 @@ SAMPLE_LAT: float = 0.0
 GOAL_LON: float = 0.0
 GOAL_LAT: float = 0.0
 
+# 共有変数
+receive_command = ''
+
+
+def manual_mode():
+    """手動制御を行う関数
+    """
+
+def FallJudgement() -> bool:
+    """落下判定をするまで待つ関数"""
 
 def get_sample():
     # gps.pyの関数を呼び出してサンプル取得地点の緯度経度値を取得する処理を記述する
@@ -23,23 +33,74 @@ def get_sample():
     sample_longitude = sample_let[2]
     return sample_latitude, sample_longitude
 
-def LandingJudgement():
-    """着地判定をするまで待つ関数"""
+
+def LandingJudgement() -> bool:
+    """着地判定をするまで待つ関数
+    """
+def detach_parachute(logger: Logger):
+    """パラシュートの切り離しを行います
+    """
+    para_motor = dcmotor.DCMotor(dcmotor.PARACHUTE_FIN, dcmotor.PARACHUTE_RIN)
+    wheels = dcmotor.WheelController()
+    logger.msg("パラシュート切り離し開始")
+    para_motor.forward()
+    wheels.forward()
+
+    time.sleep(10)  # 10秒間巻取り&前進
+
+    para_motor.stop()
+    para_motor.cleanup()
+    logger.msg("パラシュート切り離し終了")
 
 
-def SeeValue():
-    # gps.pyからサンプル取得地点の緯度経度値を取得
-    sample_latitude, sample_longitude = get_sample()
+def angle_adjustment():
+    """目的地と機体を一直線にする関数
+    """
 
-    # ゴールの緯度経度値
-    goal_latitude = 35.6789
-    goal_longitude = 139.0123
 
-    FallJudgement()
-    XBee.send_msg("Detect falling")
+def go_to_goal():
+    """ゴールまで直進する関数
+    """
 
-    LandingJudgement()
-    XBee.send_msg("Landed")
+
+def soil_moisture():
+    """土壌水分量を測定する関数
+    """
+
+
+def sample_collection():
+    """サンプルを採取する関数
+    """
+
+
+def parse_cmd(cmd: str):
+    """受信したコマンドをもとに処理をする関数
+
+    グローバル変数にモードとかを書き込むことを想定
+
+    Args:
+        cmd (str): 受信したコマンド
+    """
+
+
+def main():
+    """メインアルゴリズム
+    """
+    # 受信を開始
+    xbee.begin_receive(parse_cmd)
+
+    main_logger = Logger("Running" + datetime.datetime.now().strftime(logging.DATETIME_F))
+    xbee.send_msg("走行開始")
+
+    while not FallJudgement():
+        time.sleep(0.1)
+
+    xbee.send_msg("落下検知")
+
+    while not LandingJudgement():
+        time.sleep(0.1)
+
+    xbee.send_msg("着地")
 
     detach_parachute(main_logger)
 
