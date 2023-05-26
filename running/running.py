@@ -1,10 +1,19 @@
 import datetime
+from enum import Enum
 import time
 from multiprocessing import Process
 
 from cansatapi import *
 from cansatapi.util import logging
 from cansatapi.util.logging import Logger
+
+
+class Mode(Enum):
+    """制御モードを表すクラス
+    """
+    AUTO = 0
+    MANUAL = 1
+
 
 # 本番前に記入
 SAMPLE_LON: float = 0.0
@@ -14,7 +23,7 @@ GOAL_LON: float = 0.0
 GOAL_LAT: float = 0.0
 
 # 共有変数
-receive_command = ''
+MODE: Mode = Mode.AUTO
 
 
 def manual_mode():
@@ -55,6 +64,11 @@ def angle_adjustment():
 
 def go_to_goal():
     """ゴールまで直進する関数
+    """
+
+
+def is_goal() -> bool:
+    """gps.calculate_distance_bearingの距離をもとにゴールについたか判定する関数
     """
 
 
@@ -99,6 +113,23 @@ def main():
     xbee.send_msg("着地")
 
     detach_parachute(main_logger)
+
+    go_to_sample = True
+    while True:
+        # 1行動ごとにループを回す
+        if MODE is Mode.AUTO:
+            go_to_goal()
+            if is_goal() and go_to_sample:
+                xbee.send_msg("サンプル地点到達")
+                sample_collection()
+                soil_moisture()
+                go_to_sample = False
+            elif is_goal() and not go_to_sample:
+                xbee.send_msg("ゴール到達")
+                xbee.send_msg("動作終了")
+                break
+        elif MODE is Mode.MANUAL:
+            manual_mode()
 
 
 if __name__ == "__main__":
