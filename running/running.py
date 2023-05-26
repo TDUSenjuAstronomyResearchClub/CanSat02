@@ -1,10 +1,19 @@
 import datetime
+from enum import Enum
 import time
 from multiprocessing import Process
 
 from cansatapi import *
 from cansatapi.util import logging
 from cansatapi.util.logging import Logger
+
+
+class Mode(Enum):
+    """制御モードを表すクラス
+    """
+    AUTO = 0
+    MANUAL = 1
+
 
 # 本番前に記入
 SAMPLE_LON: float = 0.0
@@ -14,7 +23,7 @@ GOAL_LON: float = 0.0
 GOAL_LAT: float = 0.0
 
 # 共有変数
-receive_command = ''
+MODE: Mode = Mode.AUTO
 
 
 def manual_mode():
