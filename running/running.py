@@ -23,12 +23,12 @@ def manual_mode():
 
 
 def FallJudgement() -> bool:
-    """落下判定をするまで待つ関数
+    """落下判定を返す関数
     """
 
 
 def LandingJudgement() -> bool:
-    """着地判定をするまで待つ関数
+    """着地判定を返す関数
     """
 
 
