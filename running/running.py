@@ -67,6 +67,11 @@ def go_to_goal():
     """
 
 
+def is_goal() -> bool:
+    """gps.calculate_distance_bearingの距離をもとにゴールについたか判定する関数
+    """
+
+
 def soil_moisture():
     """土壌水分量を測定する関数
     """
@@ -108,6 +113,23 @@ def main():
     xbee.send_msg("着地")
 
     detach_parachute(main_logger)
+
+    go_to_sample = True
+    while True:
+        # 1行動ごとにループを回す
+        if MODE is Mode.AUTO:
+            go_to_goal()
+            if is_goal() and go_to_sample:
+                xbee.send_msg("サンプル地点到達")
+                sample_collection()
+                soil_moisture()
+                go_to_sample = False
+            elif is_goal() and not go_to_sample:
+                xbee.send_msg("ゴール到達")
+                xbee.send_msg("動作終了")
+                break
+        elif MODE is Mode.MANUAL:
+            manual_mode()
 
 
 if __name__ == "__main__":
