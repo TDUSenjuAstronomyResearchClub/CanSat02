@@ -32,14 +32,14 @@ def get_gps_data() -> list[float]:
     while time.time() - start_time < 5:  # 5秒後にタイムアウトします
         if ser.in_waiting > 0:
             line = ser.readline().decode("utf-8").rstrip()
-            if line.startswith("$GPGGA"):
+            if line.startswith("GGA", 2):
                 # 時刻・位置・GPS関連情報
                 data = line.split(",")
                 if data[6] is not '0':  # データが有効かチェック
                     lat = lat_conv_deg_min_to_decimal(data[2], data[3])
                     lon = lon_conv_deg_min_to_decimal(data[4], data[5])
                     alt = float(data[10])
-            elif line.startswith("$GPRMC"):
+            elif line.startswith("RMC", 2):
                 # 衛星情報
                 data = line.split(",")
                 if data[2] is 'A':
