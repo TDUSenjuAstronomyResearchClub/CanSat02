@@ -15,7 +15,7 @@ def get_gps_data() -> list[float]:
     """GPSデータを取得する関数
 
     Returns:
-        list[float]: 緯度(ddmm.mm), 経度(dddmm.mm), 海抜(m), 磁気偏角(度)
+        list[float]: 緯度(ddmm.mm), 経度(dddmm.mm), 海抜(m)
 
     Raises:
         SerialError: シリアル通信時に発生する可能性がある
@@ -26,7 +26,6 @@ def get_gps_data() -> list[float]:
     lat = None
     lon = None
     alt = None
-    declination = None
     start_time = time.time()
 
     while time.time() - start_time < 5:  # 5秒後にタイムアウトします
@@ -45,12 +44,10 @@ def get_gps_data() -> list[float]:
                 if data[2] == 'A':
                     lat = lat_conv_deg_min_to_decimal(data[3], data[4])
                     lon = lon_conv_deg_min_to_decimal(data[5], data[6])
-                    # 磁気偏差
-                    declination = float(data[10])
             break
 
     ser.close()
-    return [lat, lon, alt, declination]
+    return [lat, lon, alt]
 
 
 def lat_conv_deg_min_to_decimal(lat: str, direction: str) -> float:
@@ -99,21 +96,22 @@ def lon_conv_deg_min_to_decimal(lon: str, direction: str) -> float:
     return decimal
 
 
-def calculate_distance_bearing(lat: float, lon: float) -> list[float]:
+def calculate_distance_bearing(lat: float, lon: float, declination: float) -> list[float]:
     """機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数
 
     Args:
         lat (float): 目的地の緯度
         lon (float): 目的地の経度
+        declination (float): 磁気偏差
 
     Returns:
         list[float]: 2地点間の直線距離, 現在地点から見た方位角
     """
     # gpsの緯度経度・磁器偏角値を取得
     gps_data = get_gps_data()
-    if (gps_data[0] is None) or (gps_data[1] is None) or (gps_data[3] is None):
+    if (gps_data[0] is None) or (gps_data[1] is None):
         return [None, None]
-    return calc_distance_between_two_points(gps_data[0], gps_data[1], lat, lon, gps_data[3])
+    return calc_distance_between_two_points(gps_data[0], gps_data[1], lat, lon, declination)
 
 
 def calc_distance_between_two_points(from_lat: float, from_lon: float,
