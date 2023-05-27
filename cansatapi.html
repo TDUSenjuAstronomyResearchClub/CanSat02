@@ -393,13 +393,14 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cansatapi.gps.calculate_distance_bearing">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">calculate_distance_bearing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.calculate_distance_bearing" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">calculate_distance_bearing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">declination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.calculate_distance_bearing" title="この定義へのパーマリンク"></a></dt>
 <dd><p>機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lat</strong> (<em>float</em>) -- 目的地の緯度</p></li>
 <li><p><strong>lon</strong> (<em>float</em>) -- 目的地の経度</p></li>
+<li><p><strong>declination</strong> (<em>float</em>) -- 磁気偏差</p></li>
 </ul>
 </dd>
 <dt class="field-even">戻り値<span class="colon">:</span></dt>
@@ -417,7 +418,7 @@
 <dd><p>GPSデータを取得する関数</p>
 <dl class="field-list simple">
 <dt class="field-odd">戻り値<span class="colon">:</span></dt>
-<dd class="field-odd"><p>緯度(ddmm.mm), 経度(dddmm.mm), 海抜(m), 磁気偏角(度)</p>
+<dd class="field-odd"><p>緯度(ddmm.mm), 経度(dddmm.mm), 海抜(m)</p>
 </dd>
 <dt class="field-even">戻り値の型<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[float]</p>
