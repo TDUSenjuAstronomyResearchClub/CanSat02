@@ -35,18 +35,19 @@ def get_gps_data() -> list[float]:
             if line.startswith("$GPGGA"):
                 # 時刻・位置・GPS関連情報
                 data = line.split(",")
-                lat = lat_conv_deg_min_to_decimal(data[1], data[2])
-                lon = lon_conv_deg_min_to_decimal(data[3], data[4])
-                alt = float(data[9])
+                if data[6] is not '0':  # データが有効かチェック
+                    lat = lat_conv_deg_min_to_decimal(data[2], data[3])
+                    lon = lon_conv_deg_min_to_decimal(data[4], data[5])
+                    alt = float(data[10])
             elif line.startswith("$GPRMC"):
                 # 衛星情報
                 data = line.split(",")
-                lat = lat_conv_deg_min_to_decimal(data[2], data[3])
-                lon = lon_conv_deg_min_to_decimal(data[4], data[5])
-
-                # 磁気偏差
-                declination = float(data[11])
-                break
+                if data[2] is 'A':
+                    lat = lat_conv_deg_min_to_decimal(data[3], data[4])
+                    lon = lon_conv_deg_min_to_decimal(data[5], data[6])
+                    # 磁気偏差
+                    declination = float(data[10])
+            break
 
     ser.close()
     return [lat, lon, alt, declination]
@@ -110,6 +111,8 @@ def calculate_distance_bearing(lat: float, lon: float) -> list[float]:
     """
     # gpsの緯度経度・磁器偏角値を取得
     gps_data = get_gps_data()
+    if (gps_data[0] is None) or (gps_data[1] is None) or (gps_data[3] is None):
+        return [None, None]
     return calc_distance_between_two_points(gps_data[0], gps_data[1], lat, lon, gps_data[3])
 
 
