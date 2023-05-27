@@ -35,14 +35,14 @@ def get_gps_data() -> list[float]:
             if line.startswith("GGA", 2):
                 # 時刻・位置・GPS関連情報
                 data = line.split(",")
-                if data[6] is not '0':  # データが有効かチェック
+                if data[6] != '0':  # データが有効かチェック
                     lat = lat_conv_deg_min_to_decimal(data[2], data[3])
                     lon = lon_conv_deg_min_to_decimal(data[4], data[5])
                     alt = float(data[10])
             elif line.startswith("RMC", 2):
                 # 衛星情報
                 data = line.split(",")
-                if data[2] is 'A':
+                if data[2] == 'A':
                     lat = lat_conv_deg_min_to_decimal(data[3], data[4])
                     lon = lon_conv_deg_min_to_decimal(data[5], data[6])
                     # 磁気偏差
