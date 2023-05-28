@@ -82,8 +82,8 @@ BMX055
 
 Adafruit STEMMA Soil Sensor - I2C CapacitiveMoisture Sensor
 
-- データシート類
-  - <https://learn.adafruit.com/adafruit-ina219-current-sensor-breakout/downloads>
+- メーカーサイト
+  - <https://learn.adafruit.com/adafruit-stemma-soil-sensor-i2c-capacitive-moisture-sensor/overview>
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gM-16357/>
 
