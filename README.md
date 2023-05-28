@@ -161,13 +161,6 @@ F-M2-12133-0
 - 千石電商のリンク
   - <https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-04YJ>
 
-###　フルブリッジドライバＩＣ
-
-BD6231F-E2
-
-- 秋月のリンク
-  - <https://akizukidenshi.com/catalog/g/gI-05088/>
-
 ### マイクロスイッチ
 SS-5GL2
 
