@@ -36,6 +36,9 @@ def _send():
     """キューからメッセージを送信する関数
     """
     msg = queue.get_nowait()
+    if msg is None:
+        return
+
     retry_c = 0
     while True:
         try:
