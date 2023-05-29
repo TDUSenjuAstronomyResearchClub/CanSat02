@@ -3,32 +3,32 @@
 import math
 
 
-def g_to_m_per_s2(data: list[float]) -> list[float]:
+def g_to_m_per_s2(data: tuple[float, float, float]) -> tuple[float, ...]:
     """単位を[g]から[m/s^2]に変換する関数
 
     Args:
-        data (list[float]): 加速度(x, y, z)[g]
+        data (tuple[float, float, float]): 加速度(x, y, z)[g]
 
     Returns:
-        list[float]: 加速度(x, y, z)[m/s^2]
+        tuple[float, float, float]: 加速度(x, y, z)[m/s^2]
     """
-    return list(map(lambda x: x * 9.80665, data))
+    return tuple(x * 9.80665 for x in data)
 
 
-def raw_ang_rate_to_ang_per_s(data: list[float], range_abs: int) -> list[float]:
+def raw_ang_rate_to_ang_per_s(data: tuple[float, float, float], range_abs: int) -> tuple[float, ...]:
     """生の角速度データを[°/s]に変換する関数
 
     生データの範囲はrange_absで変更できます
 
     Args:
-        data (list[float]): 生の角速度データ
+        data (tuple[float, float, float]): 生の角速度データ
         range_abs (int): 角速度センサの測定範囲[°]
 
     Returns:
-        list[float]: 角速度(x, y, z)[°/s]
+        tuple[float, float, float]: 角速度(x, y, z)[°/s]
     """
     # 範囲変換式で±32767を±range_absの中に収めるように変換
-    return list(map(lambda x: (x + 32767) / 65534 * 2 * range_abs - range_abs, data))
+    return tuple((x + 32767) / 65534 * 2 * range_abs - range_abs for x in data)
 
 
 def ut_to_azimuth(x: float, y: float) -> float:

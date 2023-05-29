@@ -5,13 +5,14 @@ GPSから緯度経度・海抜・磁気偏角を取得し、そこから2地点�
 使用しているライブラリ:
     pyserial
 """
-
-import serial
 import time
 from math import radians, sin, cos, atan2, sqrt, pi
+from typing import Optional
+
+import serial
 
 
-def get_gps_data() -> list[float]:
+def get_gps_data() -> tuple[Optional[float], Optional[float], Optional[float]]:
     """GPSデータを取得する関数
 
     Returns:
@@ -47,7 +48,7 @@ def get_gps_data() -> list[float]:
             break
 
     ser.close()
-    return [lat, lon, alt]
+    return lat, lon, alt
 
 
 def lat_conv_deg_min_to_decimal(lat: str, direction: str) -> float:
@@ -96,7 +97,7 @@ def lon_conv_deg_min_to_decimal(lon: str, direction: str) -> float:
     return decimal
 
 
-def calculate_distance_bearing(lat: float, lon: float, declination: float) -> list[float]:
+def calculate_distance_bearing(lat: float, lon: float, declination: float) -> tuple[Optional[float], Optional[float]]:
     """機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数
 
     Args:
@@ -105,17 +106,17 @@ def calculate_distance_bearing(lat: float, lon: float, declination: float) -> li
         declination (float): 磁気偏差
 
     Returns:
-        list[float]: 2地点間の直線距離, 現在地点から見た方位角
+        tuple[Optional[float], Optional[float]]: 2地点間の直線距離, 現在地点から見た方位角
     """
     # gpsの緯度経度・磁器偏角値を取得
     gps_data = get_gps_data()
     if (gps_data[0] is None) or (gps_data[1] is None):
-        return [None, None]
+        return None, None
     return calc_distance_between_two_points(gps_data[0], gps_data[1], lat, lon, declination)
 
 
 def calc_distance_between_two_points(from_lat: float, from_lon: float,
-                                     dest_lat: float, dest_lon, declination: float) -> list[float]:
+                                     dest_lat: float, dest_lon, declination: float) -> tuple[float, float]:
     """指定された2地点間の距離と始点からの方位角を返す関数
 
     Args:
@@ -126,7 +127,7 @@ def calc_distance_between_two_points(from_lat: float, from_lon: float,
         declination (float): 補正に使う磁気偏差
 
     Returns:
-        list[float]: 2地点間の直線距離, 始点から見た方位角
+        tuple[Optional[float], Optional[float]]: 2地点間の直線距離, 始点から見た方位角
     """
     from_lat, from_lon, dest_lat, dest_lon = map(radians, [from_lat, from_lon, dest_lat, dest_lon])
 
@@ -146,4 +147,4 @@ def calc_distance_between_two_points(from_lat: float, from_lon: float,
     # 磁気偏角の補正
     bearing = (bearing + declination) % 360
 
-    return [distance, bearing]
+    return distance, bearing
