@@ -22,6 +22,8 @@ SAMPLE_LAT: float = 0.0
 GOAL_LON: float = 0.0
 GOAL_LAT: float = 0.0
 
+DECLINATION: float = 0.0
+
 # 共有変数
 MODE: Mode = Mode.AUTO
 
@@ -57,13 +59,19 @@ def detach_parachute(logger: Logger):
     logger.msg("パラシュート切り離し終了")
 
 
+def is_straight(lat: float, lon: float) -> bool:
+    """指定された地点と機体が一定の範囲内に収まってたらTrueを返す関数
+
+    Args:
+        lat (float): 地点の緯度
+        lon (float): 地点の経度
+    """
+    return gps.calculate_distance_bearing(lat, lon, DECLINATION)[0] - nineaxissensor\
+        .nine_axis_sensor.get_magnetic_heading() < 30  # todo: ここの値は要確認
+
+
 def angle_adjustment():
     """目的地と機体を一直線にする関数
-    """
-
-
-def go_to_goal():
-    """ゴールまで直進する関数
     """
 
 
@@ -118,7 +126,16 @@ def main():
     while True:
         # 1行動ごとにループを回す
         if MODE is Mode.AUTO:
-            go_to_goal()
+            lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
+            lon = SAMPLE_LON if go_to_sample else GOAL_LON
+
+            if is_straight(lat, lon):
+                dcmotor.Wheels.forward()  # 方位角が範囲に収まっていれば3秒直進
+                time.sleep(3)
+                dcmotor.Wheels.stop()
+            else:
+                angle_adjustment()  # 収まっていなければ調整
+
             if is_goal() and go_to_sample:
                 xbee.send_msg("サンプル地点到達")
                 sample_collection()

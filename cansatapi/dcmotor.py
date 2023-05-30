@@ -74,7 +74,6 @@ class WheelController:
     """車輪の2個のモーターを同時にコントロールするクラス
 
     前進するために左右のモーターを同じデューティ比にするときなどに使います。
-    初期化する際にそれぞれのモーターのインスタンスを渡してください。
     """
 
     def __init__(self):
@@ -174,3 +173,8 @@ class WheelController:
 
         self.r_motor.reverse(duty)
         self.l_motor.forward(duty)
+
+
+Wheels = WheelController()
+"""車輪のインスタンス
+"""

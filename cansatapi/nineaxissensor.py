@@ -34,11 +34,8 @@ class NineAxisSensor:
     データシート: https://akizukidenshi.com/download/ds/bosch/BST-BMX055-DS000.pdf
     """
 
-    def __init__(self, declination: float = 0):
+    def __init__(self):
         """BMX055センサを初期化する
-
-        Args:
-            declination (float): 地磁気偏角（単位：度）。省略時はゼロを指定する。
         """
         self.bus = smbus2.SMBus(1)
 
@@ -89,24 +86,22 @@ class NineAxisSensor:
         # 0x0F = 15回
         self.bus.write_word_data(MAG_ADDR, 0x52, 0x0F)
 
-        self.declination = declination
-
-    def get_acceleration(self) -> list[float]:
+    def get_acceleration(self) -> tuple[float, float, float]:
         """加速度[m/s^2]を取得する
 
         Returns:
-            list[float]: 加速度（x, y, z）（単位:m/s^2）
+            tuple[float, float, float]: 加速度（x, y, z）（単位:m/s^2）
 
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
         """
         return convert.g_to_m_per_s2(self.__get_acceleration())
 
-    def __get_acceleration(self) -> list[float]:
+    def __get_acceleration(self) -> tuple[float, float, float]:
         """加速度[g]を取得する
 
         Returns:
-            list[float]: 加速度(x, y, z)[g]
+            tuple[float, float, float]: 加速度(x, y, z)[g]
 
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
@@ -132,13 +127,13 @@ class NineAxisSensor:
         accl_x *= 0.00195
         accl_y *= 0.00195
         accl_z *= 0.00195
-        return [accl_x, accl_y, accl_z]
+        return accl_x, accl_y, accl_z
 
-    def get_angular_rate(self) -> list[float]:
+    def get_angular_rate(self) -> tuple[float, float, float]:
         """角速度[°/s]を取得する
 
         Returns:
-            list[float]: 角速度（x, y, z）（単位:[°/s]）
+            tuple[float, float, float]: 角速度（x, y, z）（単位:[°/s]）
         
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
@@ -146,11 +141,11 @@ class NineAxisSensor:
         # 測定範囲は±500°を指定
         return convert.raw_ang_rate_to_ang_per_s(self.__get_angular_rate(), 500)
 
-    def __get_angular_rate(self) -> list[float]:
+    def __get_angular_rate(self) -> tuple[float, float, float]:
         """生の角速度を取得する
 
         Returns:
-            list[float]: 生の角速度データ (x, y, z)
+            tuple[float, float, float]: 生の角速度データ (x, y, z)
         """
         # レジスタから値を読む
         raw_ang_rate = self.bus.read_i2c_block_data(GYRO_ADDR, 0x02, 6)
@@ -166,7 +161,7 @@ class NineAxisSensor:
         ang_rate_z = raw_ang_rate[5] * 256 + raw_ang_rate[4]
         if ang_rate_z > 32767:
             ang_rate_z -= 65536
-        return [ang_rate_x, ang_rate_y, ang_rate_z]
+        return ang_rate_x, ang_rate_y, ang_rate_z
 
     def get_magnetic_heading(self) -> float:
         """地磁気センサから方位角を計算する
@@ -180,11 +175,11 @@ class NineAxisSensor:
         mag_field = self.__get_magnetic_field_data()
         return convert.ut_to_azimuth(mag_field[0], mag_field[1])
 
-    def __get_magnetic_field_data(self) -> list[float]:
+    def __get_magnetic_field_data(self) -> tuple[float, float, float]:
         """3軸地磁気センサから3軸の地磁気[μT]を取得する
 
         Returns:
-            list[float]: 地磁気[μT] (x, y, z)
+            tuple[float, float, float]: 地磁気[μT] (x, y, z)
         """
         # レジスタから値を読む
         raw_mag_x_y = self.bus.read_i2c_block_data(MAG_ADDR, 0x42, 4)
@@ -204,4 +199,7 @@ class NineAxisSensor:
         if mag_z > 16383:
             mag_z -= 32768
 
-        return [mag_x, mag_y, mag_z]
+        return mag_x, mag_y, mag_z
+
+
+nine_axis_sensor = NineAxisSensor()
