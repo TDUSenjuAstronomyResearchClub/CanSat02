@@ -76,15 +76,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.gps.lon_conv_deg_min_to_decimal"><code class="docutils literal notranslate"><span class="pre">lon_conv_deg_min_to_decimal()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.nineaxissensor">cansatapi.nineaxissensor モジュール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_acceleration"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_acceleration()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_angular_rate"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_angular_rate()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cansatapi.nineaxissensor.NineAxisSensor.get_magnetic_heading"><code class="docutils literal notranslate"><span class="pre">NineAxisSensor.get_magnetic_heading()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-nineaxissensor">cansatapi.nineaxissensor モジュール</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.dcmotor">cansatapi.dcmotor モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.dcmotor.DCMotor"><code class="docutils literal notranslate"><span class="pre">DCMotor</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.DCMotor.cleanup"><code class="docutils literal notranslate"><span class="pre">DCMotor.cleanup()</span></code></a></li>
@@ -106,6 +98,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#cansatapi.dcmotor.WheelController.stop"><code class="docutils literal notranslate"><span class="pre">WheelController.stop()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#cansatapi.dcmotor.Wheels"><code class="docutils literal notranslate"><span class="pre">Wheels</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.servo">cansatapi.servo モジュール</a><ul>
@@ -370,7 +363,7 @@
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="cansatapi.gps.calc_distance_between_two_points">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">calc_distance_between_two_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">declination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.calc_distance_between_two_points" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">calc_distance_between_two_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">declination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.calc_distance_between_two_points" title="この定義へのパーマリンク"></a></dt>
 <dd><p>指定された2地点間の距離と始点からの方位角を返す関数</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
@@ -386,14 +379,14 @@
 <dd class="field-even"><p>2地点間の直線距離, 始点から見た方位角</p>
 </dd>
 <dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list[float]</p>
+<dd class="field-odd"><p>tuple[Optional[float], Optional[float]]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cansatapi.gps.calculate_distance_bearing">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">calculate_distance_bearing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">declination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.calculate_distance_bearing" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">calculate_distance_bearing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">declination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.calculate_distance_bearing" title="この定義へのパーマリンク"></a></dt>
 <dd><p>機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
@@ -407,14 +400,14 @@
 <dd class="field-even"><p>2地点間の直線距離, 現在地点から見た方位角</p>
 </dd>
 <dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list[float]</p>
+<dd class="field-odd"><p>tuple[Optional[float], Optional[float]]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cansatapi.gps.get_gps_data">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">get_gps_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.get_gps_data" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">cansatapi.gps.</span></span><span class="sig-name descname"><span class="pre">get_gps_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/gps.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.gps.get_gps_data" title="この定義へのパーマリンク"></a></dt>
 <dd><p>GPSデータを取得する関数</p>
 <dl class="field-list simple">
 <dt class="field-odd">戻り値<span class="colon">:</span></dt>
@@ -474,72 +467,8 @@
 </dd></dl>
 
 </section>
-<section id="module-cansatapi.nineaxissensor">
-<span id="cansatapi-nineaxissensor"></span><h2>cansatapi.nineaxissensor モジュール<a class="headerlink" href="#module-cansatapi.nineaxissensor" title="この見出しへのパーマリンク"></a></h2>
-<p>加速度・角速度・方位角を求めるモジュール</p>
-<dl class="simple">
-<dt>使用しているライブラリ:</dt><dd><p>smbus2</p>
-</dd>
-</dl>
-<dl class="py class">
-<dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.nineaxissensor.</span></span><span class="sig-name descname"><span class="pre">NineAxisSensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">declination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor" title="この定義へのパーマリンク"></a></dt>
-<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>BMX055センサを制御し、加速度・角速度・方位角を求めるクラス</p>
-<p>データシート: <a class="reference external" href="https://akizukidenshi.com/download/ds/bosch/BST-BMX055-DS000.pdf">https://akizukidenshi.com/download/ds/bosch/BST-BMX055-DS000.pdf</a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor.get_acceleration">
-<span class="sig-name descname"><span class="pre">get_acceleration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor.get_acceleration" title="この定義へのパーマリンク"></a></dt>
-<dd><p>加速度[m/s^2]を取得する</p>
-<dl class="field-list simple">
-<dt class="field-odd">戻り値<span class="colon">:</span></dt>
-<dd class="field-odd"><p>加速度（x, y, z）（単位:m/s^2）</p>
-</dd>
-<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[float]</p>
-</dd>
-<dt class="field-odd">例外<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>OSError</strong> -- I2C通信が正常に行えなかった際に発生</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor.get_angular_rate">
-<span class="sig-name descname"><span class="pre">get_angular_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor.get_angular_rate" title="この定義へのパーマリンク"></a></dt>
-<dd><p>角速度[°/s]を取得する</p>
-<dl class="field-list simple">
-<dt class="field-odd">戻り値<span class="colon">:</span></dt>
-<dd class="field-odd"><p>角速度（x, y, z）（単位:[°/s]）</p>
-</dd>
-<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[float]</p>
-</dd>
-<dt class="field-odd">例外<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>OSError</strong> -- I2C通信が正常に行えなかった際に発生</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cansatapi.nineaxissensor.NineAxisSensor.get_magnetic_heading">
-<span class="sig-name descname"><span class="pre">get_magnetic_heading</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/nineaxissensor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.nineaxissensor.NineAxisSensor.get_magnetic_heading" title="この定義へのパーマリンク"></a></dt>
-<dd><p>地磁気センサから方位角を計算する</p>
-<dl class="field-list simple">
-<dt class="field-odd">戻り値<span class="colon">:</span></dt>
-<dd class="field-odd"><p>方位角（単位：度）</p>
-</dd>
-<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
-</dd>
-<dt class="field-odd">例外<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>OSError</strong> -- I2C通信が正常に行えなかった際に発生</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<section id="cansatapi-nineaxissensor">
+<h2>cansatapi.nineaxissensor モジュール<a class="headerlink" href="#cansatapi-nineaxissensor" title="この見出しへのパーマリンク"></a></h2>
 </section>
 <section id="module-cansatapi.dcmotor">
 <span id="cansatapi-dcmotor"></span><h2>cansatapi.dcmotor モジュール<a class="headerlink" href="#module-cansatapi.dcmotor" title="この見出しへのパーマリンク"></a></h2>
@@ -592,8 +521,7 @@ DCモーター使用後は必ず呼び出して下さい。</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.dcmotor.</span></span><span class="sig-name descname"><span class="pre">WheelController</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.WheelController" title="この定義へのパーマリンク"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>車輪の2個のモーターを同時にコントロールするクラス</p>
-<p>前進するために左右のモーターを同じデューティ比にするときなどに使います。
-初期化する際にそれぞれのモーターのインスタンスを渡してください。</p>
+<p>前進するために左右のモーターを同じデューティ比にするときなどに使います。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cansatapi.dcmotor.WheelController.cleanup">
 <span class="sig-name descname"><span class="pre">cleanup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.WheelController.cleanup" title="この定義へのパーマリンク"></a></dt>
@@ -695,6 +623,12 @@ DCモーター使用後は必ず呼び出して下さい。</p>
 <dd><p>車輪を停止させるメソッド</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="cansatapi.dcmotor.Wheels">
+<span class="sig-prename descclassname"><span class="pre">cansatapi.dcmotor.</span></span><span class="sig-name descname"><span class="pre">Wheels</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;cansatapi.dcmotor.WheelController</span> <span class="pre">object&gt;</span></em><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/dcmotor.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.dcmotor.Wheels" title="この定義へのパーマリンク"></a></dt>
+<dd><p>車輪のインスタンス</p>
 </dd></dl>
 
 </section>

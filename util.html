@@ -171,30 +171,30 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cansatapi.util.convert.g_to_m_per_s2">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">g_to_m_per_s2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.g_to_m_per_s2" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">g_to_m_per_s2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.g_to_m_per_s2" title="この定義へのパーマリンク"></a></dt>
 <dd><p>単位を[g]から[m/s^2]に変換する関数</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) -- 加速度(x, y, z)[g]</p>
+<dd class="field-odd"><p><strong>data</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>]</em>) -- 加速度(x, y, z)[g]</p>
 </dd>
 <dt class="field-even">戻り値<span class="colon">:</span></dt>
 <dd class="field-even"><p>加速度(x, y, z)[m/s^2]</p>
 </dd>
 <dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list[float]</p>
+<dd class="field-odd"><p>tuple[float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cansatapi.util.convert.raw_ang_rate_to_ang_per_s">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">raw_ang_rate_to_ang_per_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range_abs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.raw_ang_rate_to_ang_per_s" title="この定義へのパーマリンク"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">cansatapi.util.convert.</span></span><span class="sig-name descname"><span class="pre">raw_ang_rate_to_ang_per_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range_abs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/util/convert.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.util.convert.raw_ang_rate_to_ang_per_s" title="この定義へのパーマリンク"></a></dt>
 <dd><p>生の角速度データを[°/s]に変換する関数</p>
 <p>生データの範囲はrange_absで変更できます</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) -- 生の角速度データ</p></li>
+<li><p><strong>data</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>]</em>) -- 生の角速度データ</p></li>
 <li><p><strong>range_abs</strong> (<em>int</em>) -- 角速度センサの測定範囲[°]</p></li>
 </ul>
 </dd>
@@ -202,7 +202,7 @@
 <dd class="field-even"><p>角速度(x, y, z)[°/s]</p>
 </dd>
 <dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list[float]</p>
+<dd class="field-odd"><p>tuple[float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
