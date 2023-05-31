@@ -117,7 +117,9 @@ def parse_cmd(cmd: str):
     if mode is Mode.AUTO:
         if cmd == "manual":
             mode = Mode.MANUAL
-            return
+        elif cmd == "auto":
+            mode = Mode.AUTO
+        return
     else:
         manual_mode(cmd)
 
