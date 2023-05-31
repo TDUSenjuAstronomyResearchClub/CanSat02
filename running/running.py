@@ -34,6 +34,17 @@ def manual_mode(cmd: str):
     Args:
         cmd(str): コマンド文字列
     """
+    if cmd == "forward":
+        dcmotor.Wheels.forward()
+    elif cmd == "reverse":
+        dcmotor.Wheels.reverse()
+    elif cmd == "right":
+        dcmotor.Wheels.r_pivot_fwd()
+    elif cmd == "left":
+        dcmotor.Wheels.l_pivot_fwd()
+
+    time.sleep(3)
+    dcmotor.Wheels.stop()
 
 
 def FallJudgement() -> bool:
