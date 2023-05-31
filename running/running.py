@@ -25,11 +25,14 @@ GOAL_LAT: float = 0.0
 DECLINATION: float = 0.0
 
 # 共有変数
-MODE: Mode = Mode.AUTO
+mode: Mode = Mode.AUTO
 
 
-def manual_mode():
+def manual_mode(cmd: str):
     """手動制御を行う関数
+
+    Args:
+        cmd(str): コマンド文字列
     """
 
 
@@ -98,6 +101,14 @@ def parse_cmd(cmd: str):
     Args:
         cmd (str): 受信したコマンド
     """
+    global mode
+    mode = Mode.MANUAL
+    if mode is Mode.AUTO:
+        if cmd == "manual":
+            mode = Mode.MANUAL
+            return
+    else:
+        manual_mode(cmd)
 
 
 def main():
@@ -125,7 +136,7 @@ def main():
     go_to_sample = True
     while True:
         # 1行動ごとにループを回す
-        if MODE is Mode.AUTO:
+        if mode is Mode.AUTO:
             lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
             lon = SAMPLE_LON if go_to_sample else GOAL_LON
 
@@ -145,7 +156,7 @@ def main():
                 xbee.send_msg("ゴール到達")
                 xbee.send_msg("動作終了")
                 break
-        elif MODE is Mode.MANUAL:
+        elif mode is Mode.MANUAL:
             manual_mode()
 
 
