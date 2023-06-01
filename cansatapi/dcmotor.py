@@ -30,8 +30,8 @@ class DCMotor:
         self.fin = GPIO.PWM(fin, freq)
         self.rin = GPIO.PWM(rin, freq)
 
-        self.fin = GPIO.start(0)
-        self.rin = GPIO.start(0)
+        self.fin.start(0)
+        self.rin.start(0)
 
     def forward(self, duty: int = 50):
         """モーターを正転させます
