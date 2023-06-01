@@ -108,7 +108,7 @@ def receive(callback: Callable[[str], None], sec: float, retry: int = 5, retry_w
     while time.time() - st < sec:
         try:
             ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
-            receive_data = ser.readline()
+            receive_data = ser.readline().removesuffix(bytes(0x04))
             if len(receive_data) != 0:
                 data_utf8 = receive_data.decode("utf-8")
                 json_log(data_utf8)  # ロギング
