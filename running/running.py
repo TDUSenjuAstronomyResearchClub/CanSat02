@@ -1,7 +1,7 @@
 import datetime
 from enum import Enum
 import time
-from multiprocessing import Process
+from multiprocessing import Process, Event
 
 from cansatapi import *
 from cansatapi.util import logging
@@ -23,9 +23,6 @@ GOAL_LON: float = 0.0
 GOAL_LAT: float = 0.0
 
 DECLINATION: float = 0.0
-
-# 共有変数
-mode: Mode = Mode.AUTO
 
 
 def manual_mode(cmd: str):
@@ -112,24 +109,20 @@ def parse_cmd(cmd: str):
     Args:
         cmd (str): 受信したコマンド
     """
-    global mode
-    mode = Mode.MANUAL
-    if mode is Mode.AUTO:
-        if cmd == "manual":
-            mode = Mode.MANUAL
-        elif cmd == "auto":
-            mode = Mode.AUTO
-        return
-    else:
-        manual_mode(cmd)
+    global isAuto
+    if cmd == "manual":
+        isAuto.clear()  # Falseにする
+    elif cmd == "auto":
+        isAuto.set()  # Trueにする
+    return
 
 
 def main():
     """メインアルゴリズム
     """
     # 受信を開始
-    proc = Process(target=xbee.start, args=(parse_cmd,))
-    proc.start()
+    parse_proc = Process(target=xbee.start, args=(parse_cmd,))
+    parse_proc.start()
 
     main_logger = Logger("Running" + datetime.datetime.now().strftime(logging.DATETIME_F))
     xbee.send_msg("走行開始")
@@ -149,7 +142,7 @@ def main():
     go_to_sample = True
     while True:
         # 1行動ごとにループを回す
-        if mode is Mode.AUTO:
+        if isAuto.isSet():
             lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
             lon = SAMPLE_LON if go_to_sample else GOAL_LON
 
@@ -169,9 +162,13 @@ def main():
                 xbee.send_msg("ゴール到達")
                 xbee.send_msg("動作終了")
                 break
-        elif mode is Mode.MANUAL:
+        else:
             manual_mode()
+
+    parse_proc.terminate()
 
 
 if __name__ == "__main__":
+    isAuto = Event()
+    isAuto.set()  # Trueにする
     main()  # 実行
