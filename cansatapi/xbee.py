@@ -3,7 +3,6 @@
 import multiprocessing
 import time
 from datetime import datetime
-from typing import Callable
 
 import serial
 from serial import PortNotOpenError
@@ -17,25 +16,23 @@ PORT = '/dev/ttyUSB0'
 # 通信レート設定
 BAUD_RATE = 9600
 
-send_queue = multiprocessing.Queue()
+_send_queue = multiprocessing.Queue()
+_receive_queue = multiprocessing.Queue()
 
 
-def start(callback: Callable[[str], None]):
+def start():
     """XBeeモジュールの待機動作を開始する関数
-
-    Args:
-        callback (Callable[[str], None]): 値を受信した際に呼びだされるコールバック
     """
     while True:
-        while send_queue.empty():
-            receive(callback, 1)  # 1秒間待機する
+        while _send_queue.empty():
+            _receive(1)  # 1秒間待機する
         _send()
 
 
 def _send():
     """キューからメッセージを送信する関数
     """
-    msg = send_queue.get_nowait()
+    msg = _send_queue.get_nowait()
     if msg is None:
         return
 
@@ -68,7 +65,7 @@ def send(msg: str):
         msg (str): 送信するメッセージ
     """
     json_log(msg)  # ローカルにJSONを保存
-    send_queue.put_nowait(msg)
+    _send_queue.put_nowait(msg)
 
 
 def send_msg(msg: str):
@@ -89,16 +86,15 @@ def send_pic(pic_hex: str):
     send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), camera=pic_hex))
 
 
-def receive(callback: Callable[[str], None], sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
+def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
     """データを地上から受信する関数
 
-    データを受信した場合はコールバックを呼び出します。
+    データを受信するとキューにデータを格納します。
 
     Args:
         retry_wait (float): リトライ時に待機する秒数
         sec (float): 待機する時間
         retry (int): ポートが使用中だった際のリトライ回数
-        callback (Callable[[str], None]): 受信した文字列を引数に取るコールバック関数
 
     Returns:
         bool: データを受信したかどうか
@@ -109,12 +105,12 @@ def receive(callback: Callable[[str], None], sec: float, retry: int = 5, retry_w
         try:
             ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
             receive_data = ser.readline().removesuffix(bytes(0x04))
+            ser.close()
             if len(receive_data) != 0:
                 data_utf8 = receive_data.decode("utf-8")
                 json_log(data_utf8)  # ロギング
-                callback(data_utf8)  # コールバックを呼び出す
+                _receive_queue.put_nowait(data_utf8)  # キューに受信したデータを追加
 
-            ser.close()
             return len(receive_data) != 0
 
         except PortNotOpenError:
@@ -126,3 +122,12 @@ def receive(callback: Callable[[str], None], sec: float, retry: int = 5, retry_w
                 continue
         except SerialException:  # デバイスが見つからない、または構成できない場合
             raise SerialException
+
+
+def get_received_str() -> str:
+    """受信した文字列を返す関数
+
+    Returns:
+        str: 受信した文字列
+    """
+    return _receive_queue.get_nowait()

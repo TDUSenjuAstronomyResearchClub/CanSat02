@@ -92,27 +92,12 @@ def sample_collection():
     """
 
 
-def parse_cmd(cmd: str):
-    """受信したコマンドをもとに処理をする関数
-
-    グローバル変数にモードとかを書き込むことを想定
-
-    Args:
-        cmd (str): 受信したコマンド
-    """
-    global isAuto
-    if cmd == "manual":
-        isAuto.clear()  # Falseにする
-    elif cmd == "auto":
-        isAuto.set()  # Trueにする
-    return
-
-
 def main():
     """メインアルゴリズム
     """
+    global isAuto
     # 受信を開始
-    parse_proc = Process(target=xbee.start, args=(parse_cmd,))
+    parse_proc = Process(target=xbee.start)
     parse_proc.start()
 
     main_logger = Logger("Running" + datetime.datetime.now().strftime(logging.DATETIME_F))
@@ -133,7 +118,13 @@ def main():
     go_to_sample = True
     while True:
         # 1行動ごとにループを回す
-        if isAuto.isSet():
+        received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
+        if received_str == "manual":
+            isAuto = False
+        elif received_str == "auto":
+            isAuto = True
+
+        if isAuto:
             lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
             lon = SAMPLE_LON if go_to_sample else GOAL_LON
 
@@ -154,12 +145,11 @@ def main():
                 xbee.send_msg("動作終了")
                 break
         else:
-            manual_mode()
+            manual_mode(received_str)
 
     parse_proc.terminate()
 
 
 if __name__ == "__main__":
-    isAuto = Event()
-    isAuto.set()  # Trueにする
+    isAuto = True
     main()  # 実行
