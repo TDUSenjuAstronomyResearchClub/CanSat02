@@ -3,7 +3,6 @@
 import multiprocessing
 import time
 from datetime import datetime
-from typing import Callable
 
 import serial
 from serial import PortNotOpenError
@@ -18,17 +17,15 @@ PORT = '/dev/ttyUSB0'
 BAUD_RATE = 9600
 
 send_queue = multiprocessing.Queue()
+receive_queue = multiprocessing.Queue()
 
 
-def start(callback: Callable[[str], None]):
+def start():
     """XBeeモジュールの待機動作を開始する関数
-
-    Args:
-        callback (Callable[[str], None]): 値を受信した際に呼びだされるコールバック
     """
     while True:
         while send_queue.empty():
-            receive(callback, 1)  # 1秒間待機する
+            receive(1)  # 1秒間待機する
         _send()
 
 
@@ -89,16 +86,15 @@ def send_pic(pic_hex: str):
     send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), camera=pic_hex))
 
 
-def receive(callback: Callable[[str], None], sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
+def receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
     """データを地上から受信する関数
 
-    データを受信した場合はコールバックを呼び出します。
+    データを受信するとキューにデータを格納します。
 
     Args:
         retry_wait (float): リトライ時に待機する秒数
         sec (float): 待機する時間
         retry (int): ポートが使用中だった際のリトライ回数
-        callback (Callable[[str], None]): 受信した文字列を引数に取るコールバック関数
 
     Returns:
         bool: データを受信したかどうか
@@ -109,12 +105,12 @@ def receive(callback: Callable[[str], None], sec: float, retry: int = 5, retry_w
         try:
             ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
             receive_data = ser.readline().removesuffix(bytes(0x04))
+            ser.close()
             if len(receive_data) != 0:
                 data_utf8 = receive_data.decode("utf-8")
                 json_log(data_utf8)  # ロギング
-                callback(data_utf8)  # コールバックを呼び出す
+                receive_queue.put_nowait(data_utf8)  # キューに受信したデータを追加
 
-            ser.close()
             return len(receive_data) != 0
 
         except PortNotOpenError:
