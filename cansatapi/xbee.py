@@ -16,23 +16,23 @@ PORT = '/dev/ttyUSB0'
 # 通信レート設定
 BAUD_RATE = 9600
 
-send_queue = multiprocessing.Queue()
-receive_queue = multiprocessing.Queue()
+_send_queue = multiprocessing.Queue()
+_receive_queue = multiprocessing.Queue()
 
 
 def start():
     """XBeeモジュールの待機動作を開始する関数
     """
     while True:
-        while send_queue.empty():
-            receive(1)  # 1秒間待機する
+        while _send_queue.empty():
+            _receive(1)  # 1秒間待機する
         _send()
 
 
 def _send():
     """キューからメッセージを送信する関数
     """
-    msg = send_queue.get_nowait()
+    msg = _send_queue.get_nowait()
     if msg is None:
         return
 
@@ -65,7 +65,7 @@ def send(msg: str):
         msg (str): 送信するメッセージ
     """
     json_log(msg)  # ローカルにJSONを保存
-    send_queue.put_nowait(msg)
+    _send_queue.put_nowait(msg)
 
 
 def send_msg(msg: str):
@@ -86,7 +86,7 @@ def send_pic(pic_hex: str):
     send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_F), camera=pic_hex))
 
 
-def receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
+def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
     """データを地上から受信する関数
 
     データを受信するとキューにデータを格納します。
@@ -109,7 +109,7 @@ def receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
             if len(receive_data) != 0:
                 data_utf8 = receive_data.decode("utf-8")
                 json_log(data_utf8)  # ロギング
-                receive_queue.put_nowait(data_utf8)  # キューに受信したデータを追加
+                _receive_queue.put_nowait(data_utf8)  # キューに受信したデータを追加
 
             return len(receive_data) != 0
 
@@ -122,3 +122,12 @@ def receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
                 continue
         except SerialException:  # デバイスが見つからない、または構成できない場合
             raise SerialException
+
+
+def get_received_str() -> str:
+    """受信した文字列を返す関数
+
+    Returns:
+        str: 受信した文字列
+    """
+    return _receive_queue.get_nowait()
