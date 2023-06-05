@@ -17,7 +17,7 @@ PORT = '/dev/ttyUSB0'
 # 通信レート設定
 BAUD_RATE = 9600
 
-queue = multiprocessing.Queue()
+send_queue = multiprocessing.Queue()
 
 
 def start(callback: Callable[[str], None]):
@@ -27,7 +27,7 @@ def start(callback: Callable[[str], None]):
         callback (Callable[[str], None]): 値を受信した際に呼びだされるコールバック
     """
     while True:
-        while queue.empty():
+        while send_queue.empty():
             receive(callback, 1)  # 1秒間待機する
         _send()
 
@@ -35,7 +35,7 @@ def start(callback: Callable[[str], None]):
 def _send():
     """キューからメッセージを送信する関数
     """
-    msg = queue.get_nowait()
+    msg = send_queue.get_nowait()
     if msg is None:
         return
 
@@ -68,7 +68,7 @@ def send(msg: str):
         msg (str): 送信するメッセージ
     """
     json_log(msg)  # ローカルにJSONを保存
-    queue.put_nowait(msg)
+    send_queue.put_nowait(msg)
 
 
 def send_msg(msg: str):
