@@ -1,19 +1,10 @@
 import datetime
-from enum import Enum
 import time
 from multiprocessing import Process, Event
 
 from cansatapi import *
 from cansatapi.util import logging
 from cansatapi.util.logging import Logger
-
-
-class Mode(Enum):
-    """制御モードを表すクラス
-    """
-    AUTO = 0
-    MANUAL = 1
-
 
 # 本番前に記入
 SAMPLE_LON: float = 0.0
