@@ -58,14 +58,11 @@ AE-BME280
 - 秋月のリンク
   - <https://akizukidenshi.com/catalog/g/gK-09421/>
 
-### 電池残量計用IC
-
-MCP3008 
-
-- データシート
-  - <https://akizukidenshi.com/download/ds/microchip/mcp3008.pdf>
-- スイッチサイエンスのリンク
-  - <https://akizukidenshi.com/catalog/g/gI-09485/>
+### 電流センサ　INA219　(電池残量計用)
+-秋月リンク
+  - <https://akizukidenshi.com/catalog/g/gM-08221/>
+-データシート類
+  - <https://learn.adafruit.com/adafruit-ina219-current-sensor-breakout/downloads>
 
 ### 9軸センサー
 
