@@ -59,10 +59,10 @@ AE-BME280
   - <https://akizukidenshi.com/catalog/g/gK-09421/>
 
 ### 電流センサ　INA219　(電池残量計用)
--秋月リンク
-  - <https://akizukidenshi.com/catalog/g/gM-08221/>
--データシート類
+- データシート類
   - <https://learn.adafruit.com/adafruit-ina219-current-sensor-breakout/downloads>
+- 秋月のリンク
+  - <https://akizukidenshi.com/catalog/g/gM-08221/>
 
 ### 9軸センサー
 
@@ -137,7 +137,7 @@ Kypom リポバッテリー　1300mA、7.4 V
 
 RA250060-58Y91
 
--千石電商のリンク
+- 千石電商のリンク
   ‐<https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-0SE4>
 
 ### モータードライバ
