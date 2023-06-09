@@ -1,0 +1,12 @@
+{
+	"name": "CanSat Team Basyo Container",
+	"image": "mcr.microsoft.com/devcontainers/python:0-3.9",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.flake8",
+				"MS-CEINTL.vscode-language-pack-ja"
+			]
+		}
+	}
+}
