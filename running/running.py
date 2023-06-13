@@ -1,6 +1,6 @@
 import datetime
 import time
-from multiprocessing import Process, Event
+from multiprocessing import Process
 
 from cansatapi import *
 from cansatapi.util import logging
@@ -35,12 +35,12 @@ def manual_mode(cmd: str):
     dcmotor.Wheels.stop()
 
 
-def FallJudgement() -> bool:
+def fall_judgement() -> bool:
     """落下判定を返す関数
     """
 
 
-def LandingJudgement() -> bool:
+def landing_judgement() -> bool:
     """着地判定を返す関数
     """
 
@@ -103,12 +103,12 @@ def main():
     main_logger = Logger("Running" + datetime.datetime.now().strftime(logging.DATETIME_F))
     xbee.send_msg("走行開始")
 
-    while not FallJudgement():
+    while not fall_judgement():
         time.sleep(0.1)
 
     xbee.send_msg("落下検知")
 
-    while not LandingJudgement():
+    while not landing_judgement():
         time.sleep(0.1)
 
     xbee.send_msg("着地")
