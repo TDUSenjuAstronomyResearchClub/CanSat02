@@ -1,6 +1,6 @@
 import datetime
 import time
-from multiprocessing import Process, Event
+from multiprocessing import Process
 
 from cansatapi import *
 from cansatapi.util import logging
@@ -13,7 +13,7 @@ SAMPLE_LAT: float = 0.0
 GOAL_LON: float = 0.0
 GOAL_LAT: float = 0.0
 
-DECLINATION: float = 0.0    #磁気偏角値
+DECLINATION: float = 0.0  # 磁気偏角値
 
 
 def manual_mode(cmd: str):
@@ -68,18 +68,19 @@ def is_straight(lat: float, lon: float) -> bool:
         lat (float): 地点の緯度
         lon (float): 地点の経度
     """
-    return gps.calculate_distance_bearing(lat, lon, DECLINATION)[0] - nineaxissensor\
+    return gps.calculate_distance_bearing(lat, lon, DECLINATION)[0] - nineaxissensor \
         .nine_axis_sensor.get_magnetic_heading() < 30  # todo: ここの値は要確認
 
 
-def angle_adjustment(lat:float, lon:float):
+def angle_adjustment(lat: float, lon: float):
     """目的地と機体を一直線にする関数
 
     Args:
         lat (float): 地点の緯度
         lon (float): 地点の経度
     """
-    difference = gps.calculate_distance_bearing(lat,lon,DECLINATION) - nineaxissensor.nine_axis_sensor.get_magnetic_heading()
+    gps_temp = gps.calculate_distance_bearing(lat, lon, DECLINATION)
+    difference = gps_temp[1] - nineaxissensor.nine_axis_sensor.get_magnetic_heading()
     if difference >= 0:
         dcmotor.Wheels.r_pivot_fwd()
     else:
