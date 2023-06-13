@@ -1,6 +1,6 @@
 import datetime
 import time
-from multiprocessing import Process, Event
+from multiprocessing import Process
 
 from cansatapi import *
 from cansatapi.util import logging
@@ -13,7 +13,7 @@ SAMPLE_LAT: float = 0.0
 GOAL_LON: float = 0.0
 GOAL_LAT: float = 0.0
 
-DECLINATION: float = 0.0
+DECLINATION: float = 0.0  # 磁気偏角値
 
 
 def manual_mode(cmd: str):
@@ -68,13 +68,25 @@ def is_straight(lat: float, lon: float) -> bool:
         lat (float): 地点の緯度
         lon (float): 地点の経度
     """
-    return gps.calculate_distance_bearing(lat, lon, DECLINATION)[0] - nineaxissensor\
+    return gps.calculate_distance_bearing(lat, lon, DECLINATION)[0] - nineaxissensor \
         .nine_axis_sensor.get_magnetic_heading() < 30  # todo: ここの値は要確認
 
 
-def angle_adjustment():
+def angle_adjustment(lat: float, lon: float):
     """目的地と機体を一直線にする関数
+
+    Args:
+        lat (float): 地点の緯度
+        lon (float): 地点の経度
     """
+    gps_temp = gps.calculate_distance_bearing(lat, lon, DECLINATION)
+    difference = gps_temp[1] - nineaxissensor.nine_axis_sensor.get_magnetic_heading()
+    if difference >= 0:
+        dcmotor.Wheels.r_pivot_fwd()
+    else:
+        dcmotor.Wheels.l_pivot_fwd()
+
+    return
 
 
 def is_goal() -> bool:
@@ -133,7 +145,7 @@ def main():
                 time.sleep(3)
                 dcmotor.Wheels.stop()
             else:
-                angle_adjustment()  # 収まっていなければ調整
+                angle_adjustment(lat, lon)  # 収まっていなければ調整
 
             if is_goal() and go_to_sample:
                 xbee.send_msg("サンプル地点到達")
