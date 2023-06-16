@@ -1,6 +1,6 @@
 """DCモーター制御用モジュール
 """
-import RPi.GPIO as GPIO
+import pwmio
 
 PARACHUTE_FIN = 20
 PARACHUTE_RIN = 16
@@ -24,15 +24,11 @@ class DCMotor:
             rin (int): 逆転制御用ピン
             freq (int): PWMの周波数[Hz]
         """
-        GPIO.cleanup()
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(fin, GPIO.OUT)
-        GPIO.setup(rin, GPIO.OUT)
-        self.fin = GPIO.PWM(fin, freq)
-        self.rin = GPIO.PWM(rin, freq)
+        self.fin = pwmio.PWMOut(fin, frequency=freq)
+        self.rin = pwmio.PWMOut(rin, frequency=freq)
 
-        self.fin.start(0)
-        self.rin.start(0)
+        self.fin.enable()
+        self.rin.enable()
 
     def forward(self, duty: int = 50):
         """モーターを正転させます
@@ -40,8 +36,8 @@ class DCMotor:
         Args:
             duty (int): デューティ比[%]
         """
-        self.fin.ChangeDutyCycle(duty)
-        self.rin.ChangeDutyCycle(0)
+        self.fin.duty_cycle = duty
+        self.rin.duty_cycle = 0
 
     def reverse(self, duty: int = 50):
         """モーターを逆転させます
@@ -49,26 +45,21 @@ class DCMotor:
         Args:
             duty (int): デューティ比[%]
         """
-        self.fin.ChangeDutyCycle(0)
-        self.rin.ChangeDutyCycle(duty)
+        self.fin.duty_cycle = 0
+        self.rin.duty_cycle = duty
 
     def stop(self):
         """モーターを停止させるメソッド
         """
         # 両方がLOWになる
-        self.fin.ChangeDutyCycle(0)
-        self.rin.ChangeDutyCycle(0)
+        self.fin.duty_cycle = 0
+        self.rin.duty_cycle = 0
 
     def cleanup(self):
-        """モーターの使用後に呼び出すメソッド
-
-        GPIOのクリーンアップを行います。
-        DCモーター使用後は必ず呼び出して下さい。
-        """
+        """モーターの使用後に呼び出すメソッド"""
         self.stop()
-        self.fin.stop()
-        self.rin.stop()
-        GPIO.cleanup()
+        self.fin.close()
+        self.rin.close()
 
 
 class WheelController:
