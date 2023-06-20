@@ -76,11 +76,11 @@ class NineAxisSensor:
 
         # MAGレジスタにx, y軸に対する反復の回数を設定する
         # 0x04 = 9回
-        self.bus.write_word_data(MAG_ADDR, 0x51, 0x04)
+        self.bus.write_byte_data(MAG_ADDR, 0x51, 0x04)
 
         # MAGレジスタにz軸に対する反復の回数を設定する
         # 0x0F = 15回
-        self.bus.write_word_data(MAG_ADDR, 0x52, 0x0F)
+        self.bus.write_byte_data(MAG_ADDR, 0x52, 0x0F)
 
     def get_acceleration(self) -> tuple[float, float, float]:
         """加速度[m/s^2]を取得する
