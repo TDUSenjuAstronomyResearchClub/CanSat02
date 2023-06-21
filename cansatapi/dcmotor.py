@@ -1,15 +1,16 @@
 """DCモーター制御用モジュール
 """
 import pwmio
+import board
 
-PARACHUTE_FIN = 20
-PARACHUTE_RIN = 16
+PARACHUTE_FIN = board.D5
+PARACHUTE_RIN = board.D6
 
-R_WHEEL_FIN = 25
-R_WHEEL_RIN = 8
+R_WHEEL_FIN = board.D19
+R_WHEEL_RIN = board.D26
 
-L_WHEEL_FIN = 7
-L_WHEEL_RIN = 1
+L_WHEEL_FIN = board.D9
+L_WHEEL_RIN = board.D10
 
 
 class DCMotor:
