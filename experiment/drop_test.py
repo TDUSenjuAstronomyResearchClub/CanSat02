@@ -28,7 +28,7 @@ def detach_parachute(logger: Logger):
 if __name__ == "__main__":
     # ログ用ファイルの作成
     dt_start = datetime.datetime.now()  # 現在日時を取得する
-    filename = 'driving' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒') + '.csv'  # ファイル名を現在時刻にする
+    filename = 'driving' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')   # ファイル名を現在時刻にする
     LOGGER = Logger(filename)
 
     LOGGER.msg("初期化開始")
