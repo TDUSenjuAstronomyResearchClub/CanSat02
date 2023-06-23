@@ -28,7 +28,7 @@ def detach_parachute(logger: Logger):
 if __name__ == "__main__":
     # ログ用ファイルの作成
     dt_start = datetime.datetime.now()  # 現在日時を取得する
-    filename = 'drop_test' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')   # ファイル名を現在時刻にする
+    filename = 'drop_test' + dt_start.strftime('%Y年%m月%d日_%H時%M分%S秒')  # ファイル名を現在時刻にする
     LOGGER = Logger(filename)
 
     LOGGER.msg("初期化開始")
@@ -39,17 +39,17 @@ if __name__ == "__main__":
     # 落下開始判定
     LOGGER.msg("落下待機中")
 
+    accel_abs_past = 0  # accel_abs_pastを初期化
     try:
         accel = nine_axis.get_acceleration()
         accel_abs_past = math.sqrt(accel[0] ** 2 + accel[1] ** 2 + accel[2] ** 2)  # 9軸から加速度の大きさを求める
         LOGGER.log("加速度", accel_abs_past)  # ログを残す
     except OSError:
         LOGGER.error("9軸センサでOSError")
-    accel_abs = 0.0 
+    accel_abs = 0.0
 
     drop_start_s = time.time()  # 落下後経過時間を初期化
     drop_count = 0
-
 
     while True:
 
@@ -62,7 +62,7 @@ if __name__ == "__main__":
 
         # todo: 落下開始判定を行う加速度の差の閾値を書き込む
         # 5回連続で加速度の差が0 m/s^2以上だったら落下開始判定とする
-        if accel_abs-accel_abs_past > 0:
+        if accel_abs - accel_abs_past > 0:
             drop_count += 1
             if drop_count >= 5:
                 drop_start_s = time.time()
@@ -108,4 +108,3 @@ if __name__ == "__main__":
         time.sleep(0.5)
 
     detach_parachute(LOGGER)
-
