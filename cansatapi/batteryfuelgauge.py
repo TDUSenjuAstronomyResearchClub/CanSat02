@@ -1,37 +1,31 @@
-"""電池残量計を使ってバッテリーガスゲージから電池残量を取得するモジュール.
+"""電流センサを使用して電池残量測定モジュール
 
 使用するにはI2Cが有効になっている必要があります
 
 使用しているライブラリ:
-    smbus2
+    board
+    adafruit_ina219
 """
 
-import smbus2
+import time
+import board
+from adafruit_ina219 import ADCResolution, BusVoltageRange, INA219
 
-# 定数
-DEVICE_ADDRESS = 0x36  # I2Cデバイスのアドレス
-COMMAND = 0xB4  # 電池残量を測定するコマンド
+i2c_bus = board.I2C()  # INA219 が接続されている I2C バス。
+ina219 = INA219(i2c_bus)  # バス上の INA219 のアドレス（0x40）
+
+# バス電圧とシャント電圧の両方に 32 サンプルの平均化を使用するように構成を変更
+ina219.shunt_adc_resolution = ADCResolution.ADCRES_12BIT_32S
+# 電圧範囲を 16V に変更します
+ina219.bus_voltage_range = BusVoltageRange.RANGE_16V
 
 
-class BatteryFuelGauge:
-    """電池残量計(SKU 8806)を扱うクラス
+def get_level() -> float:
+    """電池残量を取得する関数
 
-    データシート: https://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf
+    Returns:
+        float :バッテリーのシャント電圧
+
     """
 
-    def __init__(self):
-        self.bus = smbus2.SMBus(1)
-
-    def get_level(self) -> int:
-        """電池残量[%]を取得するメソッド
-
-        Returns:
-            int: 電池残量[%]を返却する（0-100の範囲で表される整数）
-
-        Raises:
-            OSError: I2C通信が正常に行えなかった際に発生
-        """
-        # 電池残量を測定するコマンドを送信
-        self.bus.write_byte_data(DEVICE_ADDRESS, 0x00, COMMAND)
-        # 電池残量を取得
-        return self.bus.read_byte_data(DEVICE_ADDRESS, 0x00)
+    return ina219.shunt_voltage
