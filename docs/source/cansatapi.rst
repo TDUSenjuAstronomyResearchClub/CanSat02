@@ -68,7 +68,7 @@ cansatapi.servo モジュール
 cansatapi.soil\_moisture モジュール
 --------------------------------------
 
-.. automodule:: cansatapi.soil_moisture
+.. automodule:: cansatapi.batteryvoltagegauge
    :members:
    :undoc-members:
    :show-inheritance:
