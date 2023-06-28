@@ -12,7 +12,7 @@ cansatapi.lps25hb モジュール
 cansatapi.batteryfuelgauge モジュール
 -----------------------------------------
 
-.. automodule:: cansatapi.batteryfuelgauge
+.. automodule:: cansatapi.batteryvoltagegauge
    :members:
    :undoc-members:
    :show-inheritance:
@@ -68,7 +68,7 @@ cansatapi.servo モジュール
 cansatapi.soil\_moisture モジュール
 --------------------------------------
 
-.. automodule:: cansatapi.batteryvoltagegauge
+.. automodule:: cansatapi.soil_moisture
    :members:
    :undoc-members:
    :show-inheritance:
