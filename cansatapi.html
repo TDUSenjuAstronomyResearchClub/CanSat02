@@ -56,13 +56,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.lps25hb.calc_altitude"><code class="docutils literal notranslate"><span class="pre">calc_altitude()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.batteryfuelgauge">cansatapi.batteryfuelgauge モジュール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cansatapi.batteryfuelgauge.BatteryFuelGauge"><code class="docutils literal notranslate"><span class="pre">BatteryFuelGauge</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cansatapi.batteryfuelgauge.BatteryFuelGauge.get_level"><code class="docutils literal notranslate"><span class="pre">BatteryFuelGauge.get_level()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#cansatapi-batteryvoltagegauge">cansatapi.batteryvoltagegauge モジュール</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cansatapi-camera">cansatapi.camera モジュール</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.distance">cansatapi.distance モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.distance.distance_result"><code class="docutils literal notranslate"><span class="pre">distance_result()</span></code></a></li>
@@ -294,39 +288,8 @@
 </dd></dl>
 
 </section>
-<section id="module-cansatapi.batteryfuelgauge">
-<span id="cansatapi-batteryfuelgauge"></span><h2>cansatapi.batteryfuelgauge モジュール<a class="headerlink" href="#module-cansatapi.batteryfuelgauge" title="この見出しへのパーマリンク"></a></h2>
-<p>電池残量計を使ってバッテリーガスゲージから電池残量を取得するモジュール.</p>
-<p>使用するにはI2Cが有効になっている必要があります</p>
-<dl class="simple">
-<dt>使用しているライブラリ:</dt><dd><p>smbus2</p>
-</dd>
-</dl>
-<dl class="py class">
-<dt class="sig sig-object py" id="cansatapi.batteryfuelgauge.BatteryFuelGauge">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.batteryfuelgauge.</span></span><span class="sig-name descname"><span class="pre">BatteryFuelGauge</span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/batteryfuelgauge.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.batteryfuelgauge.BatteryFuelGauge" title="この定義へのパーマリンク"></a></dt>
-<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>電池残量計(SKU 8806)を扱うクラス</p>
-<p>データシート: <a class="reference external" href="https://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf">https://cdn.sparkfun.com/datasheets/Prototyping/MAX17043-MAX17044.pdf</a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="cansatapi.batteryfuelgauge.BatteryFuelGauge.get_level">
-<span class="sig-name descname"><span class="pre">get_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/batteryfuelgauge.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.batteryfuelgauge.BatteryFuelGauge.get_level" title="この定義へのパーマリンク"></a></dt>
-<dd><p>電池残量[%]を取得するメソッド</p>
-<dl class="field-list simple">
-<dt class="field-odd">戻り値<span class="colon">:</span></dt>
-<dd class="field-odd"><p>電池残量[%]を返却する（0-100の範囲で表される整数）</p>
-</dd>
-<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">例外<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>OSError</strong> -- I2C通信が正常に行えなかった際に発生</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<section id="cansatapi-batteryvoltagegauge">
+<h2>cansatapi.batteryvoltagegauge モジュール<a class="headerlink" href="#cansatapi-batteryvoltagegauge" title="この見出しへのパーマリンク"></a></h2>
 </section>
 <section id="cansatapi-camera">
 <h2>cansatapi.camera モジュール<a class="headerlink" href="#cansatapi-camera" title="この見出しへのパーマリンク"></a></h2>
