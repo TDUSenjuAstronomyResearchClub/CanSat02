@@ -9,7 +9,7 @@ cansatapi.lps25hb モジュール
    :undoc-members:
    :show-inheritance:
 
-cansatapi.batteryfuelgauge モジュール
+cansatapi.batteryvoltagegauge モジュール
 -----------------------------------------
 
 .. automodule:: cansatapi.batteryvoltagegauge
