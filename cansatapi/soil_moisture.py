@@ -6,7 +6,6 @@
     Adafruit-Blinka
     adafruit-circuitpython-seesaw
 """
-from time import sleep
 import board
 import busio
 from adafruit_seesaw.seesaw import Seesaw
@@ -22,12 +21,11 @@ class SoilMoistureSensor:
         self.seesaw = Seesaw(i2c_bus, addr=0x36)
 
     def get_soil_moisture(self) -> float:
-        """土壌水分率(%)を取得します
+        """土壌水分量を取得します
+
+        200(非常に乾いた状態)から2000(非常に湿った状態)までの値を取得できます
 
         Returns:
-            float: 0.0から100.0の間の土壌水分率(%)
+            float: 土壌水分量
         """
-        moisture = self.seesaw.moisture_read()
-        sleep(0.1)  # センサが安定するまで 100 ms 待つ
-        return 100 - ((moisture / 65535.0) * 100)
-
+        return self.seesaw.moisture_read()
