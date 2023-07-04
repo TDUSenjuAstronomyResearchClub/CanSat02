@@ -21,7 +21,7 @@ def calc_duty(angle: float) -> float:
         angle = 90
     elif angle < -90:
         angle = -90
-    return conv_range(-90, 90, 2.5, 12.0, angle)
+    return conv_range(angle, -90, 90, 2.5, 12.0)
 
 
 class Servo:
