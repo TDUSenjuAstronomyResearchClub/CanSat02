@@ -15,7 +15,7 @@ import datetime
 
 from cansatapi.nineaxissensor import NineAxisSensor
 from cansatapi.lps25hb import LPS25HB
-from cansatapi import batteryvoltagegauge
+from cansatapi import ina219
 from cansatapi import distance as distance_sensor, xbee
 from cansatapi import gps
 from cansatapi.bme280 import BME280
@@ -70,7 +70,7 @@ except OSError:
     print("Error: 気圧センサと正常に通信できません", file=sys.stderr)
 
 try:
-    battery_level = batteryvoltagegauge.get_level()
+    battery_level = ina219.get_voltage()
 except OSError:
     print("Error: 電池残量計と正常に通信できません", file=sys.stderr)
 
