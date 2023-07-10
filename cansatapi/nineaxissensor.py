@@ -66,6 +66,9 @@ class NineAxisSensor:
         self.bus.write_byte_data(GYRO_ADDR, 0x11, 0x00)
 
         # 磁気コンパスの設定
+        # MAGレジスタに電源管理・ソフトリセット・SPIインターフェースモードを設定
+        # 0x83 = 0b1000_0011 = Soft Reset
+        self.bus.write_byte_data(MAG_ADDR, 0x4B, 0x83)
         # MAGレジスタに実行モードとアウトプットのレートを設定
         # 0x00 = Normal mode, レート 10Hz
         self.bus.write_byte_data(MAG_ADDR, 0x4C, 0x00)
