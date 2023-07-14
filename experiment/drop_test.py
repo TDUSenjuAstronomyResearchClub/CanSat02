@@ -4,8 +4,6 @@ import time
 import datetime
 import math
 
-from cansatapi.lps25hb import LPS25HB
-from cansatapi.lps25hb import calc_altitude
 from cansatapi.nineaxissensor import NineAxisSensor
 from cansatapi.dcmotor import DCMotor
 from cansatapi.util.logging import Logger
@@ -32,7 +30,6 @@ if __name__ == "__main__":
     LOGGER = Logger(filename)
 
     LOGGER.msg("初期化開始")
-    barometer = LPS25HB()
     nine_axis = NineAxisSensor()
     LOGGER.msg("初期化完了")
 
@@ -52,7 +49,6 @@ if __name__ == "__main__":
     drop_count = 0
 
     while True:
-
         try:
             accel = nine_axis.get_acceleration()
             accel_abs = math.sqrt(accel[0] ** 2 + accel[1] ** 2 + accel[2] ** 2)  # 9軸から加速度の大きさを求める
@@ -76,18 +72,7 @@ if __name__ == "__main__":
         time.sleep(0.5)
 
     # 着地判定
-    pressure = 0.0
-    altitude = 0.0
     while True:
-
-        try:
-            pressure = barometer.get_pressure()
-            LOGGER.log("気圧", pressure)
-            altitude = calc_altitude(pressure)
-            LOGGER.log("高度", altitude)  # ログを残す
-        except OSError:
-            LOGGER.error("気圧センサでOSError")
-
         try:
             accel = nine_axis.get_acceleration()
             accel_abs = math.sqrt(accel[0] ** 2 + accel[1] ** 2 + accel[2] ** 2)  # 9軸から加速度の大きさを求める

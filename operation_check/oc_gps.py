@@ -8,7 +8,7 @@ if __name__ == "__main__":
     while True:
         try:
             # GPSデータの取得
-            latitude, longitude, altitude, declination = get_gps_data()
+            latitude, longitude, altitude = get_gps_data()
 
             # 結果の表示
             print("緯度：", latitude)
