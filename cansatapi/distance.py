@@ -1,10 +1,8 @@
 """超音波距離センサを使い、機体前面にある物体と機体との距離を取得するプログラム
-
-使用しているライブラリ:
-    rpi.gpio
 """
 
-import RPi.GPIO as GPIO
+import digitalio
+from adafruit_blinka.board.raspberrypi.raspi_40pin import *
 import time
 from .bme280 import BME280
 
@@ -16,11 +14,8 @@ except OSError:  # OSErrorが発生した場合は、25度として計算をし�
     TEMP = 25
 
 # GPIO設定
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-
-GPIO.setup(17, GPIO.OUT)
-GPIO.setup(27, GPIO.IN)
+OUT = digitalio.DigitalInOut(D17)
+IN = digitalio.DigitalInOut(D27)
 
 
 def distance_result() -> float:
@@ -31,16 +26,16 @@ def distance_result() -> float:
     """
 
     # トリガ信号出力
-    GPIO.output(17, GPIO.HIGH)
+    OUT.value = True
     time.sleep(0.00001)
-    GPIO.output(17, GPIO.LOW)
+    OUT.value = False
 
     # 返送HIGHレベル時間計測
-    while GPIO.input(27) == GPIO.LOW:
+    while not IN.value:
         soff = time.time()  # LOWレベル終了時刻
 
     start = time.time()
-    while GPIO.input(27) == GPIO.HIGH:
+    while IN.value:
         son = time.time()  # HIGHレベル終了時刻
 
         if son - start > 10:  # 10秒よりも長くHIGHレベルにならなかった場合は、Noneを返却する

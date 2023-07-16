@@ -2,7 +2,8 @@
 """
 import time
 
-import RPi.GPIO as GPIO
+import pwmio
+from adafruit_blinka.microcontroller.bcm283x.pin import Pin
 
 from cansatapi.util.convert import conv_range
 
@@ -25,25 +26,18 @@ def calc_duty(angle: float) -> float:
 
 
 class Servo:
-    def __init__(self, pin_number: int):
+    def __init__(self, pin_number: Pin):
         """サーボを初期化するメソッド
 
         Args:
-            pin_number: サーボのピン番号
+            pin_number (Pin): サーボのピン番号
         """
-        self.servo_pin = pin_number
-        # GPIOの番号指定モードをBCMに設定
-        GPIO.setmode(GPIO.BCM)
 
-        # SERVO_PINを出力モードに設定
-        GPIO.setup(self.servo_pin, GPIO.OUT)
-
-        # PWMの設定
-        # SG90と同じように制御できるっぽい
-        self.servo = GPIO.PWM(self.servo_pin, 50)
+        # SERVO_PINをPWM出力モードに設定
+        self.servo = pwmio.PWMOut(pin_number)
 
         # サーボの制御を開始する
-        self.servo.start(0)
+        self.servo.enable()
 
     def rotate_to_angle(self, angle: int):
         """サーボモーターを指定の角度[°]へ動かすメソッド
@@ -54,13 +48,9 @@ class Servo:
         Args:
             angle: 範囲[-90, 90]の角度[°]
         """
-        self.servo.ChangeDutyCycle(calc_duty(angle))
+        self.servo.duty_cycle = calc_duty(angle)
         time.sleep(0.3)
 
     def stop(self):
-        """サーボモーターを停止させるメソッド
-
-        サーボモーター使用後は必ず呼び出すこと
-        """
-        self.servo.stop()
-        GPIO.cleanup()
+        """サーボモーターを停止させるメソッド"""
+        self.servo.close()
