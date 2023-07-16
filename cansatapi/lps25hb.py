@@ -1,12 +1,10 @@
 """気圧・高度・気温取得モジュール
 
 気圧センサ(AE-LPS25HB)を使って気圧、高度、気温を取得できるモジュール
-
-使用しているライブラリ:
-    smbus2
 """
 
-import smbus2
+from .util.i2cutil import *
+
 
 # 気圧センサ(LPS25HB)のための定数を定義
 LPS25HB_ADDRESS = 0x5C
@@ -20,11 +18,11 @@ TEMP_OUT_L = 0x2B
 TEMP_OUT_H = 0x2C
 
 
-def byte_pressure_to_hpa(raw_byte: list) -> float:
+def byte_pressure_to_hpa(raw_byte: bytearray) -> float:
     """生の気圧データをhPaに変換する関数
 
     Parameters:
-        raw_byte (list):　LPS25HBから読み取った生の気圧データ
+        raw_byte (bytearray):　LPS25HBから読み取った生の気圧データ
 
     Returns:
         float: 気圧(hpa)
@@ -33,11 +31,11 @@ def byte_pressure_to_hpa(raw_byte: list) -> float:
     return ((raw_byte[2] << 16) | (raw_byte[1] << 8) | raw_byte[0]) / 4096.0
 
 
-def byte_temp_to_deg_c(raw_byte: list) -> float:
+def byte_temp_to_deg_c(raw_byte: bytearray) -> float:
     """生の温度データを℃に変換する関数
 
     Args:
-        raw_byte (list):　LPS25HBから読み取った生のデータ
+        raw_byte (bytearray):　LPS25HBから読み取った生のデータ
 
     Returns:
         float: 温度(℃)
@@ -75,10 +73,20 @@ class LPS25HB:
         """気圧センサ (AE-LPS25HB)を初期化する
         """
         # I2Cバスを初期化
-        self.bus = smbus2.SMBus(1)
+        self.bus = busio.I2C(SCL, SDA)
+
+        wait_lock(self.bus)  # ロック解放を待つ
+
         # 気圧センサを設定
-        self.bus.write_byte_data(LPS25HB_ADDRESS, CTRL_REG1, 0xC4)
-        self.bus.write_byte_data(LPS25HB_ADDRESS, RES_CONF, 0x00)
+        self.bus.writeto(LPS25HB_ADDRESS, bytearray([CTRL_REG1, 0xC4]))
+        self.bus.writeto(LPS25HB_ADDRESS, bytearray([RES_CONF, 0x00]))
+
+    @property
+    def pressure(self) -> float:
+        """現在の気圧
+        Returns: 気圧[hPa]
+        """
+        return self.get_pressure()
 
     def get_pressure(self) -> float:
         """気圧を読み取るメソッド
@@ -88,8 +96,15 @@ class LPS25HB:
         """
         # PRESS_OUT_XL(0x28)からPRESS_OUT_H(0x2A)までの3つを読み取る
         # 参考: https://github.com/ControlEverythingCommunity/LPS25HB/blob/master/Python/LPS25HB.py
-        press_out = self.bus.read_i2c_block_data(LPS25HB_ADDRESS, PRESS_OUT_XL | CMD_REG, 3)
+        press_out = read_multiple(LPS25HB_ADDRESS, PRESS_OUT_XL | CMD_REG, 3)
         return byte_pressure_to_hpa(press_out)
+
+    @property
+    def temperature(self) -> float:
+        """現在の内蔵温度計の気温
+        Returns: 気温[℃]
+        """
+        return self.get_temperature()
 
     def get_temperature(self) -> float:
         """内蔵の温度計から温度を読み取るメソッド
@@ -101,7 +116,7 @@ class LPS25HB:
         Returns:
             float: 温度[℃]
         """
-        temp_out = self.bus.read_i2c_block_data(LPS25HB_ADDRESS, TEMP_OUT_L | CMD_REG, 2)
+        temp_out = read_multiple(LPS25HB_ADDRESS, TEMP_OUT_L | CMD_REG, 2)
         return byte_temp_to_deg_c(temp_out)
 
     def get_pressure_altitude_temperature(self) -> list[float]:
@@ -114,11 +129,11 @@ class LPS25HB:
             list[float]: 現在の気圧[hPa], 現在の高度[m], 現在の気温[℃], をこの順番で要素とするリスト
         """
         # 生の気圧と気温データをセンサーから読み取る
-        press_out_xl = self.bus.read_byte_data(LPS25HB_ADDRESS, PRESS_OUT_XL)
-        press_out_l = self.bus.read_byte_data(LPS25HB_ADDRESS, PRESS_OUT_L)
-        press_out_h = self.bus.read_byte_data(LPS25HB_ADDRESS, PRESS_OUT_H)
-        temp_out_l = self.bus.read_byte_data(LPS25HB_ADDRESS, TEMP_OUT_L)
-        temp_out_h = self.bus.read_byte_data(LPS25HB_ADDRESS, TEMP_OUT_H)
+        press_out_xl = read8(LPS25HB_ADDRESS, PRESS_OUT_XL)
+        press_out_l = read8(LPS25HB_ADDRESS, PRESS_OUT_L)
+        press_out_h = read8(LPS25HB_ADDRESS, PRESS_OUT_H)
+        temp_out_l = read8(LPS25HB_ADDRESS, TEMP_OUT_L)
+        temp_out_h = read8(LPS25HB_ADDRESS, TEMP_OUT_H)
 
         # 生のデータを気圧(hPa) 気温(deg C)に変換
         raw_pressure = (press_out_h << 16) | (press_out_l << 8) | press_out_xl
