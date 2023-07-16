@@ -1,16 +1,16 @@
 """DCモーター制御用モジュール
 """
 import pwmio
-import board
+from adafruit_blinka.board.raspberrypi.raspi_40pin import *
 
-PARACHUTE_FIN = board.D5
-PARACHUTE_RIN = board.D6
+PARACHUTE_FIN = D5
+PARACHUTE_RIN = D6
 
-R_WHEEL_FIN = board.D19
-R_WHEEL_RIN = board.D26
+R_WHEEL_FIN = D19
+R_WHEEL_RIN = D26
 
-L_WHEEL_FIN = board.D9
-L_WHEEL_RIN = board.D10
+L_WHEEL_FIN = D9
+L_WHEEL_RIN = D10
 
 
 class DCMotor:

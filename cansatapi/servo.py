@@ -3,6 +3,7 @@
 import time
 
 import pwmio
+from adafruit_blinka.microcontroller.bcm283x.pin import Pin
 
 from cansatapi.util.convert import conv_range
 
@@ -25,11 +26,11 @@ def calc_duty(angle: float) -> float:
 
 
 class Servo:
-    def __init__(self, pin_number: int):
+    def __init__(self, pin_number: Pin):
         """サーボを初期化するメソッド
 
         Args:
-            pin_number: サーボのピン番号
+            pin_number (Pin): サーボのピン番号
         """
 
         # SERVO_PINをPWM出力モードに設定
