@@ -6,7 +6,7 @@
     Adafruit-Blinka
     adafruit-circuitpython-seesaw
 """
-import board
+from adafruit_blinka.board.raspberrypi.raspi_40pin import *
 import busio
 from adafruit_seesaw.seesaw import Seesaw
 
@@ -17,7 +17,7 @@ class SoilMoistureSensor:
     製品ページ: https://learn.adafruit.com/adafruit-stemma-soil-sensor-i2c-capacitive-moisture-sensor
     """
     def __init__(self):
-        i2c_bus = busio.I2C(board.SCL, board.SDA)
+        i2c_bus = busio.I2C(SCL, SDA)
         self.seesaw = Seesaw(i2c_bus, addr=0x36)
 
     def get_soil_moisture(self) -> float:
