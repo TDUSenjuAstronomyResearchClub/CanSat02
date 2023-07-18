@@ -4,8 +4,7 @@
     smbus2
 """
 
-import smbus2
-
+from .util.i2cutil import *
 from .util import convert
 
 # アドレスはデータシートのp.145に記載
@@ -37,54 +36,49 @@ class NineAxisSensor:
     def __init__(self):
         """BMX055センサを初期化する
         """
-        self.bus = smbus2.SMBus(1)
 
         # 加速度計の設定
         # PMU_RANGEレジスタに加速度の測定範囲を設定
         # 0b0101 = ±4g
-        self.bus.write_byte_data(ACCL_ADDR, 0x0F, 0b0101)
+        write8(ACCL_ADDR, 0x0F, 0b0101)
 
         # PMU_BWレジスタにローパスフィルターのカットオフ周波数を設定
         # 0b1000 = 7.81Hz
-        self.bus.write_byte_data(ACCL_ADDR, 0x10, 0b1000)
+        write8(ACCL_ADDR, 0x10, 0b1000)
 
         # PMU_LPWレジスタに主電源モードと低電力時スリープ時間を設定
         # 0x00 = NORMAL mode, sleep duration = 0.5ms
-        self.bus.write_byte_data(ACCL_ADDR, 0x11, 0x00)
+        write8(ACCL_ADDR, 0x11, 0x00)
 
         # ジャイロの設定
         # RANGEレジスタに角速度の測定範囲設定
         # 測定範囲を変更したらget_angular_rateの測定範囲も変更すること
         # 0b0010 = ±500°/s
-        self.bus.write_byte_data(GYRO_ADDR, 0x0F, 0b0010)
+        write8(GYRO_ADDR, 0x0F, 0b0010)
 
         # BWレジスタにアウトプットのレートとローパスフィルターのカットオフ周波数を設定
         # 0b0111 = レート 100Hz, カットオフ周波数 32Hz
-        self.bus.write_byte_data(GYRO_ADDR, 0x10, 0b0111)
+        write8(GYRO_ADDR, 0x10, 0b0111)
 
         # LPM1レジスタに主電源モードと低電力時スリープ時間を設定
-        self.bus.write_byte_data(GYRO_ADDR, 0x11, 0x00)
+        write8(GYRO_ADDR, 0x11, 0x00)
 
         # 磁気コンパスの設定
-        # MAGレジスタに電源管理・ソフトリセット・SPIインターフェースモードを設定
-        # 0x83 = 0b1000_0011 = Soft Reset
-        self.bus.write_byte_data(MAG_ADDR, 0x4B, 0x83)
-
         # MAGレジスタに実行モードとアウトプットのレートを設定
         # 0x00 = Normal mode, レート 10Hz
-        self.bus.write_byte_data(MAG_ADDR, 0x4C, 0x00)
+        write8(MAG_ADDR, 0x4C, 0x00)
 
         # MAGレジスタに割り込みとどの軸を有効にするかの設定をする
         # 0x84 = DRDY pinをhighにする(読みだし準備が完了したことを通知する)
-        self.bus.write_byte_data(MAG_ADDR, 0x4E, 0x84)
+        write8(MAG_ADDR, 0x4E, 0x84)
 
         # MAGレジスタにx, y軸に対する反復の回数を設定する
         # 0x04 = 9回
-        self.bus.write_byte_data(MAG_ADDR, 0x51, 0x04)
+        write8(MAG_ADDR, 0x51, 0x04)
 
         # MAGレジスタにz軸に対する反復の回数を設定する
         # 0x0F = 15回
-        self.bus.write_byte_data(MAG_ADDR, 0x52, 0x0F)
+        write8(MAG_ADDR, 0x52, 0x0F)
 
     def get_acceleration(self) -> tuple[float, float, float]:
         """加速度[m/s^2]を取得する
@@ -107,9 +101,9 @@ class NineAxisSensor:
             OSError: I2C通信が正常に行えなかった際に発生
         """
         # レジスタから値を読む
-        raw_accl_x = self.bus.read_i2c_block_data(ACCL_ADDR, 0x02, 2)
-        raw_accl_y = self.bus.read_i2c_block_data(ACCL_ADDR, 0x04, 2)
-        raw_accl_z = self.bus.read_i2c_block_data(ACCL_ADDR, 0x06, 2)
+        raw_accl_x = read_multiple(ACCL_ADDR, 0x02, 2)
+        raw_accl_y = read_multiple(ACCL_ADDR, 0x04, 2)
+        raw_accl_z = read_multiple(ACCL_ADDR, 0x06, 2)
 
         # データを12bitsに変換
         accl_x = ((raw_accl_x[1] * 256) + (raw_accl_x[0] & 0xF0)) / 16
@@ -148,7 +142,7 @@ class NineAxisSensor:
             tuple[float, float, float]: 生の角速度データ (x, y, z)
         """
         # レジスタから値を読む
-        raw_ang_rate = self.bus.read_i2c_block_data(GYRO_ADDR, 0x02, 6)
+        raw_ang_rate = read_multiple(GYRO_ADDR, 0x02, 6)
 
         # ビット範囲の変換
         ang_rate_x = raw_ang_rate[1] * 256 + raw_ang_rate[0]
@@ -182,8 +176,8 @@ class NineAxisSensor:
             tuple[float, float, float]: 地磁気[μT] (x, y, z)
         """
         # レジスタから値を読む
-        raw_mag_x_y = self.bus.read_i2c_block_data(MAG_ADDR, 0x42, 4)
-        raw_mag_z = self.bus.read_i2c_block_data(MAG_ADDR, 0x46, 2)
+        raw_mag_x_y = read_multiple(MAG_ADDR, 0x42, 4)
+        raw_mag_z = read_multiple(MAG_ADDR, 0x46, 2)
 
         # 13ビットに変換
         mag_x = ((raw_mag_x_y[1] * 256) + (raw_mag_x_y[0] & 0xF8)) / 8

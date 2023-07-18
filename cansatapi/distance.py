@@ -2,7 +2,7 @@
 """
 
 import digitalio
-import board
+from adafruit_blinka.board.raspberrypi.raspi_40pin import *
 import time
 from .bme280 import BME280
 
@@ -14,8 +14,8 @@ except OSError:  # OSErrorが発生した場合は、25度として計算をし�
     TEMP = 25
 
 # GPIO設定
-OUT = digitalio.DigitalInOut(board.D17)
-IN = digitalio.DigitalInOut(board.D27)
+OUT = digitalio.DigitalInOut(D17)
+IN = digitalio.DigitalInOut(D27)
 
 
 def distance_result() -> float:

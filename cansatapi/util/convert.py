@@ -45,7 +45,7 @@ def ut_to_azimuth(x: float, y: float) -> float:
     """
     # todo: センサーの傾きを考慮した式にする
     # todo: キャリブレーションを追加する
-    return math.atan2(y, x)
+    return math.degrees(math.atan2(y, x))
 
 
 def acceleration_to_roll(x: float, y: float) -> float:

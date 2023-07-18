@@ -15,14 +15,13 @@ import datetime
 
 from cansatapi.nineaxissensor import NineAxisSensor
 from cansatapi.lps25hb import LPS25HB
-from cansatapi.batteryfuelgauge import BatteryFuelGauge
+from cansatapi import ina219
 from cansatapi import distance as distance_sensor, xbee
 from cansatapi import gps
 from cansatapi.bme280 import BME280
 
 nine_axis = NineAxisSensor()
 barometer = LPS25HB()
-battery_fuel_gauge = BatteryFuelGauge()
 temperature = BME280()
 
 
@@ -36,7 +35,7 @@ ang_velo: list[float] | None = None
 azimuth: float | None = None
 bme280: list | None = None
 lps25hb: list[float] | None = None
-battery_level: int | None = None
+battery_level: float | None = None
 distance: float | None = None
 
 now = datetime.datetime.now()  # センサ値取得開始日時の取得
@@ -71,7 +70,7 @@ except OSError:
     print("Error: 気圧センサと正常に通信できません", file=sys.stderr)
 
 try:
-    battery_level = battery_fuel_gauge.get_level()
+    battery_level = ina219.get_voltage()
 except OSError:
     print("Error: 電池残量計と正常に通信できません", file=sys.stderr)
 
