@@ -19,8 +19,8 @@ except OSError:  # OSErrorが発生した場合は、25度として計算をし�
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(17, GPIO.OUT)
-GPIO.setup(27, GPIO.IN)
+GPIO.setup(5, GPIO.OUT)
+GPIO.setup(6, GPIO.IN)
 
 
 def distance_result() -> float:
