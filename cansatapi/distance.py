@@ -31,16 +31,16 @@ def distance_result() -> float:
     """
 
     # トリガ信号出力
-    GPIO.output(17, GPIO.HIGH)
+    GPIO.output(5, GPIO.HIGH)
     time.sleep(0.00001)
-    GPIO.output(17, GPIO.LOW)
+    GPIO.output(5, GPIO.LOW)
 
     # 返送HIGHレベル時間計測
-    while GPIO.input(27) == GPIO.LOW:
+    while GPIO.input(6) == GPIO.LOW:
         soff = time.time()  # LOWレベル終了時刻
 
     start = time.time()
-    while GPIO.input(27) == GPIO.HIGH:
+    while GPIO.input(6) == GPIO.HIGH:
         son = time.time()  # HIGHレベル終了時刻
 
         if son - start > 10:  # 10秒よりも長くHIGHレベルにならなかった場合は、Noneを返却する
