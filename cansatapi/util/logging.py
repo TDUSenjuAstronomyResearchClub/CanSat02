@@ -10,7 +10,7 @@ from datetime import datetime
 
 LOG_DIR = "./log/"
 
-DATETIME_F = "%Y-%m-%d_%H-%M-%S"
+DATETIME_F = "%Y/%m/%d %H:%M:%S.%f"
 
 
 def json_log(json_data: str):
