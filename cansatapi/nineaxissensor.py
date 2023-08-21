@@ -85,6 +85,8 @@ class NineAxisSensor:
     def get_acceleration(self) -> tuple[float, float, float]:
         """加速度[m/s^2]を取得する
 
+        Z軸方向に対しては重力加速度を排除している値を返します。
+
         Returns:
             tuple[float, float, float]: 加速度（x, y, z）（単位:m/s^2）
 

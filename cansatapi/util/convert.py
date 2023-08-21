@@ -3,8 +3,10 @@
 import math
 
 
-def g_to_m_per_s2(data: tuple[float, float, float]) -> tuple[float, ...]:
+def g_to_m_per_s2(data: tuple[float, float, float]) -> tuple[float, float, float]:
     """単位を[g]から[m/s^2]に変換する関数
+
+    Z軸に関しては重力加速度の影響を排除した値を計算し返します。
 
     Args:
         data (tuple[float, float, float]): 加速度(x, y, z)[g]
@@ -12,7 +14,10 @@ def g_to_m_per_s2(data: tuple[float, float, float]) -> tuple[float, ...]:
     Returns:
         tuple[float, float, float]: 加速度(x, y, z)[m/s^2]
     """
-    return tuple(x * 9.80665 for x in data)
+    x = data[0] * 9.80665
+    y = data[1] * 9.80665
+    z = (data[2] - 1) * 9.80665
+    return x, y, z
 
 
 def raw_ang_rate_to_ang_per_s(data: tuple[float, float, float], range_abs: int) -> tuple[float, ...]:
