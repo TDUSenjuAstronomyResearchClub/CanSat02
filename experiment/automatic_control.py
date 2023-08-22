@@ -1,13 +1,9 @@
 """機体が目的地に向かって進むかのテストモジュール
 """
 
-import datetime
 import time
-from multiprocessing import Process
 
 from cansatapi import *
-from cansatapi.util import logging
-from cansatapi.util.logging import Logger
 
 # ToDo:試験前に記入
 GOAL_LON: float = 0.0
