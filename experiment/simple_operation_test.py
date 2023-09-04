@@ -1,14 +1,15 @@
 """機体が正常に前進などをする構造になっているかのテストモジュール
 """
 from running.geared_motor import *
+
 # 3秒間前進
-geared_motor.StraightLine()
+StraightLine()
 
 # 3秒間後退
-geared_motor.Back()
+Back()
 
 # 左旋回
-geared_motor.TurnLeft()
+TurnLeft()
 
 # 右旋回
-geared_motor.TurnRight()
+TurnRight()
