@@ -1,8 +1,6 @@
 """機体が正常に前進などをする構造になっているかのテストモジュール
 """
-
-from running import geared_motor
-
+from running.geared_motor import *
 # 3秒間前進
 geared_motor.StraightLine()
 
