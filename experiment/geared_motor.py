@@ -31,8 +31,8 @@ def Back():
     motor_l = DCMotor(26, 19)
 
     # それぞれのモーターのデューティ比を80%に設定
-    motor_r.reverseward(80)
-    motor_l.reverseward(80)
+    motor_r.reverse(80)
+    motor_l.reverse(80)
     time.sleep(3)  # 3秒間後退
 
     # それぞれのモーターを停止
