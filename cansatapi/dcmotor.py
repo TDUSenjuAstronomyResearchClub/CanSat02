@@ -3,14 +3,14 @@
 import pwmio
 from adafruit_blinka.board.raspberrypi.raspi_40pin import *
 
-PARACHUTE_FIN = D5
-PARACHUTE_RIN = D6
+PARACHUTE_FIN = D16
+PARACHUTE_RIN = D19
 
-R_WHEEL_FIN = D19
-R_WHEEL_RIN = D26
+R_WHEEL_FIN = D0
+R_WHEEL_RIN = D1
 
-L_WHEEL_FIN = D9
-L_WHEEL_RIN = D10
+L_WHEEL_FIN = D12
+L_WHEEL_RIN = D13
 
 
 class DCMotor:
