@@ -28,8 +28,8 @@ class DCMotor:
         self.fin = pwmio.PWMOut(fin, frequency=freq)
         self.rin = pwmio.PWMOut(rin, frequency=freq)
 
-        # self.fin.enable()
-        # self.rin.enable()
+        self.fin.enable()
+        self.rin.enable()
 
     def forward(self, duty: int = 50):
         """モーターを正転させます
