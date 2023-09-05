@@ -59,8 +59,10 @@ class DCMotor:
     def cleanup(self):
         """モーターの使用後に呼び出すメソッド"""
         self.stop()
-        self.fin.close()
-        self.rin.close()
+        # self.fin.close()
+        # self.rin.close()
+        self.fin.deinit()
+        self.rin.deinit()
 
 
 class WheelController:
