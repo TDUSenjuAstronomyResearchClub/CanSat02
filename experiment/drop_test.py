@@ -5,21 +5,25 @@ import datetime
 import math
 
 from cansatapi.nineaxissensor import NineAxisSensor
-from cansatapi.dcmotor import DCMotor
+from cansatapi.servo import Servo
+from cansatapi import dcmotor
 from cansatapi.util.logging import Logger
 
 
 def detach_parachute(logger: Logger):
     """パラシュートの切り離しを行います
     """
-    para_motor = DCMotor(9, 10)
+    para_motor = Servo(25)
     logger.msg("パラシュート切り離し開始")
-    para_motor.forward()
 
-    time.sleep(10)  # 10秒間巻取り
+    dcmotor.Wheels.forward(80)    # パラシュートを機体から分離させるために前進する
+
+    for i in range(40):  # ToDo:サーボモーターを回す回数が正しいか確かめる
+        para_motor.rotate_to_angle(90)
 
     para_motor.stop()
-    para_motor.cleanup()
+    dcmotor.Wheels.stop()
+    dcmotor.Wheels.cleanup()
     logger.msg("パラシュート切り離し終了")
 
 
