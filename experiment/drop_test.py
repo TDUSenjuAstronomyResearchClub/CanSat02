@@ -51,6 +51,7 @@ if __name__ == "__main__":
 
     drop_start_s = time.time()  # 落下後経過時間を初期化
     drop_count = 0
+    landing_count = 0
 
     while True:
         try:
@@ -85,9 +86,14 @@ if __name__ == "__main__":
             LOGGER.error("9軸センサでOSError")
 
         # todo: 着地判定の高度と加速度の閾値を書き込む
+        # 5回連続で加速度が閾値よりも小さかったら着地判定とする
         if accel_abs < 1.406:
-            LOGGER.msg("着地判定が行われました")
-            break
+            landing_count += 1
+            if landing_count >= 5:
+                LOGGER.msg("着地判定が行われました")
+                break
+        else:
+            landing_count = 0
 
         # 降下開始から2分経過で強制的に着地判定とする
         if drop_start_s + 120 < time.time():
