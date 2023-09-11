@@ -73,7 +73,7 @@ if __name__ == "__main__":
 
         accel_abs_past = accel_abs
 
-        time.sleep(0.5)
+        time.sleep(0.1)
 
     # 着地判定
     while True:
