@@ -16,7 +16,8 @@ def detach_parachute(logger: Logger):
     para_motor = Servo(25)
     logger.msg("パラシュート切り離し開始")
 
-    dcmotor.Wheels.forward(80)    # パラシュートを機体から分離させるために前進する
+    # ToDo:duty比が正しいか確かめる
+    dcmotor.Wheels.forward(80)  # パラシュートを機体から分離させるために前進する
 
     for i in range(40):  # ToDo:サーボモーターを回す回数が正しいか確かめる
         para_motor.rotate_to_angle(90)
