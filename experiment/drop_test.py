@@ -94,6 +94,6 @@ if __name__ == "__main__":
             LOGGER.msg("時間経過で強制的に着地判定が行われました")
             break
 
-        time.sleep(0.5)
+        time.sleep(0.1)
 
     detach_parachute(LOGGER)
