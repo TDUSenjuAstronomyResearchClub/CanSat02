@@ -5,21 +5,26 @@ import datetime
 import math
 
 from cansatapi.nineaxissensor import NineAxisSensor
-from cansatapi.dcmotor import DCMotor
+from cansatapi.servo import Servo
+from cansatapi import dcmotor
 from cansatapi.util.logging import Logger
 
 
 def detach_parachute(logger: Logger):
     """パラシュートの切り離しを行います
     """
-    para_motor = DCMotor(9, 10)
+    para_motor = Servo(25)
     logger.msg("パラシュート切り離し開始")
-    para_motor.forward()
 
-    time.sleep(10)  # 10秒間巻取り
+    # ToDo:duty比が正しいか確かめる
+    dcmotor.Wheels.forward(80)  # パラシュートを機体から分離させるために前進する
+
+    for i in range(40):  # ToDo:サーボモーターを回す回数が正しいか確かめる
+        para_motor.rotate_to_angle(90)
 
     para_motor.stop()
-    para_motor.cleanup()
+    dcmotor.Wheels.stop()
+    dcmotor.Wheels.cleanup()
     logger.msg("パラシュート切り離し終了")
 
 
@@ -47,6 +52,7 @@ if __name__ == "__main__":
 
     drop_start_s = time.time()  # 落下後経過時間を初期化
     drop_count = 0
+    landing_count = 0
 
     while True:
         try:
@@ -69,7 +75,7 @@ if __name__ == "__main__":
 
         accel_abs_past = accel_abs
 
-        time.sleep(0.5)
+        time.sleep(0.1)
 
     # 着地判定
     while True:
@@ -81,15 +87,20 @@ if __name__ == "__main__":
             LOGGER.error("9軸センサでOSError")
 
         # todo: 着地判定の高度と加速度の閾値を書き込む
-        if altitude < 0 or accel_abs < 0:
-            LOGGER.msg("着地判定が行われました")
-            break
+        # 5回連続で加速度が閾値よりも小さかったら着地判定とする
+        if accel_abs < 1.406:
+            landing_count += 1
+            if landing_count >= 5:
+                LOGGER.msg("着地判定が行われました")
+                break
+        else:
+            landing_count = 0
 
         # 降下開始から2分経過で強制的に着地判定とする
         if drop_start_s + 120 < time.time():
             LOGGER.msg("時間経過で強制的に着地判定が行われました")
             break
 
-        time.sleep(0.5)
+        time.sleep(0.1)
 
     detach_parachute(LOGGER)

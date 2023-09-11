@@ -19,7 +19,7 @@ def json_log(json_data: str):
     Args:
         json_data (str): JSONデータ
     """
-    f = open(LOG_DIR + 'send_data_' + datetime.now().strftime(DATETIME_F) + '.json', 'a')
+    f = open(LOG_DIR + 'send_data_' + '.json', 'a')
     # jsonとして書き込み
     json.dump(json_data, f, indent=4, ensure_ascii=False)
     f.close()
@@ -39,7 +39,7 @@ class Logger:
         Args:
             file_name: ログファイルの名前
         """
-        self.log_path = LOG_DIR + datetime.now().strftime(DATETIME_F) + file_name + ".csv"
+        self.log_path = LOG_DIR + file_name + ".csv"
         file = open(file_name, 'a')
         writer = csv.writer(file, lineterminator='\n')
 
