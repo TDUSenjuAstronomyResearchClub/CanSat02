@@ -11,6 +11,8 @@ from serial import SerialException
 from .message import jsonGenerator
 from .util.logging import json_log
 
+from cansatapi.gps import *
+
 # ポート設定
 PORT = '/dev/ttyUSB0'
 # 通信レート設定
@@ -90,6 +92,14 @@ def send_pic(pic_hex: str):
         pic_hex: 写真データ(16進数)
     """
     send(jsonGenerator.generate_json(time=time.time(), camera=pic_hex))
+
+
+def send_sensor_data():
+    """センサーデータをjsonファイルに書き込んで地上に送信する関数（写真・土壌水分・メッセージ以外）
+    """
+    get_time = time.time()
+    get_gps =
+    send(jsonGenerator.generate_json(time=get_time))
 
 
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
