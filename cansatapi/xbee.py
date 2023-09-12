@@ -5,13 +5,18 @@ import time
 from datetime import datetime
 
 import serial
+from pygments.console import x
 from serial import PortNotOpenError
 from serial import SerialException
 
-from .message import jsonGenerator
+from running import running
+from .message import jsonGenerator, type
 from .util.logging import json_log
 
 from cansatapi.gps import *
+from cansatapi.nineaxissensor import *
+from cansatapi.bme280 import *
+from cansatapi.distance import *
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -96,10 +101,68 @@ def send_pic(pic_hex: str):
 
 def send_sensor_data():
     """センサーデータをjsonファイルに書き込んで地上に送信する関数（写真・土壌水分・メッセージ以外）
+        lps25hb（気圧センサー）、batteryは使用しないため、常時Noneを返すようにしている
     """
-    get_time = time.time()
-    get_gps =
-    send(jsonGenerator.generate_json(time=get_time))
+    time_now = time.time()
+
+    # gps関係のデータを読み込み
+    latitude_longitude_altitude = get_gps_data()
+    sample_distance_and_azimuth = calculate_distance_bearing(running.SAMPLE_LAT, running.SAMPLE_LON,
+                                                             running.DECLINATION)
+    goal_distance_and_azimuth = calculate_distance_bearing(running.SAMPLE_LAT, running.SAMPLE_LON, running.DECLINATION)
+
+    # 警告出てるけど、無視して大丈夫な気がする
+    distance_data: type.Distance = {
+        'sample': sample_distance_and_azimuth[0],
+        'goal': goal_distance_and_azimuth[0]
+    }
+
+    azimuth_data: type.Azimuth = {
+        'sample': sample_distance_and_azimuth[1],
+        'goal': goal_distance_and_azimuth[1]
+    }
+
+    gps_data: type.Gps = {
+        'latitude': latitude_longitude_altitude[0],
+        'longitude': latitude_longitude_altitude[1],
+        'altitude': latitude_longitude_altitude[2],
+        'distance': distance_data,
+        'azimuth': azimuth_data
+    }
+
+    # 9軸センサー関係のデータを読み込み
+    acceleration_tmp = nine_axis_sensor.get_acceleration()
+    acceleration_data: type.Acceleration = {
+        'x': acceleration_tmp[0],
+        'y': acceleration_tmp[1],
+        'z': acceleration_tmp[2]
+    }
+
+    angular_rate_tmp = nine_axis_sensor.get_angular_rate()
+    angular_rate_data: type.AngularVelocity = {
+        'x': angular_rate_tmp[0],
+        'y': angular_rate_tmp[1],
+        'z': angular_rate_tmp[2]
+    }
+
+    nine_axis_data: type.NineAxis = {
+        'acceleration': acceleration_data,
+        'angular_velocity': angular_rate_data,
+        'azimuth': nine_axis_sensor.nineget_magnetic_heading()
+    }
+
+    bme280_data: type.Bme280 = {
+        'temperature': bme280_instance.get_temperature(),
+        'humidity': bme280_instance.get_humidity(),
+        'pressure': bme280_instance.get_pressure()
+    }
+
+    # 超音波距離センサーの距離データを読み込み
+    ultrasound_distance = distance_result()
+
+    # lps25hb（気圧センサー）、batteryは使用しないため、常時Noneを返すようにしている
+    send(jsonGenerator.generate_json(time=time_now, gps=gps_data, nine_axis=nine_axis_data, bme280=bme280_data,
+                                     lps25hb=None, battery=None, distance=ultrasound_distance))
 
 
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
