@@ -112,7 +112,7 @@ def main():
     parse_proc = Process(target=xbee.start)
     parse_proc.start()
 
-    main_logger = Logger("Running" + datetime.datetime.now().strftime(logging.DATETIME_F))
+    main_logger = Logger("Running" + datetime.datetime.now().strftime('%Y年%m月%d日_%H時%M分%S秒'))
     xbee.send_msg("走行開始")
 
     while not fall_judgement():
