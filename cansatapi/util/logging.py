@@ -56,7 +56,7 @@ class Logger:
         """
         file = open(self.log_path, 'a')
         writer = csv.writer(file, lineterminator='\n')
-        dt_now = time.time  # UNIX形式で現在日時を取得する
+        dt_now = time.time()  # UNIX形式で現在日時を取得する
         log_list = [dt_now, category, content]  # リストに各値を挿入
 
         writer.writerow(log_list)
