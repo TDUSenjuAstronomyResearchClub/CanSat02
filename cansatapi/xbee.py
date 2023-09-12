@@ -35,7 +35,7 @@ def start():
         while _send_queue.empty():
             c += 1
             if c >= 5:
-                # todo: センサデータ送る
+                send_sensor_data()  # 約5秒に1度各センサー値の入ったjsonファイルを送信する
                 c = 0
             else:
                 _receive(1)  # 1秒間待機する
