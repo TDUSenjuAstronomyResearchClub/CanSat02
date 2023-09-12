@@ -9,7 +9,7 @@ from serial import PortNotOpenError
 from serial import SerialException
 
 from .message import jsonGenerator
-from .util.logging import json_log, DATETIME_FMT
+from .util.logging import json_log
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -74,7 +74,7 @@ def send_msg(msg: str):
     Args:
         msg: 任意のメッセージ
     """
-    send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_FMT), message=msg))
+    send(jsonGenerator.generate_json(time=time.time(), message=msg))
 
 
 def send_pic(pic_hex: str):
@@ -83,7 +83,7 @@ def send_pic(pic_hex: str):
     Args:
         pic_hex: 写真データ(16進数)
     """
-    send(jsonGenerator.generate_json(time=datetime.now().strftime(DATETIME_FMT), camera=pic_hex))
+    send(jsonGenerator.generate_json(time=time.time(), camera=pic_hex))
 
 
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
