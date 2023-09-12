@@ -5,7 +5,6 @@ import time
 from datetime import datetime
 
 import serial
-from pygments.console import x
 from serial import PortNotOpenError
 from serial import SerialException
 
