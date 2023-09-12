@@ -23,9 +23,15 @@ _receive_queue = multiprocessing.Queue()
 def start():
     """XBeeモジュールの待機動作を開始する関数
     """
+    c = 0
     while True:
         while _send_queue.empty():
-            _receive(1)  # 1秒間待機する
+            c += 1
+            if c >= 5:
+                # todo: センサデータ送る
+                c = 0
+            else:
+                _receive(1)  # 1秒間待機する
         _send()
 
 
