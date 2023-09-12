@@ -10,6 +10,7 @@ from datetime import datetime
 
 LOG_DIR = "./log/"
 
+FILE_NAME_FMT = '%Y年%m月%d日_%H時%M分%S秒'
 DATETIME_F = "%Y/%m/%d %H:%M:%S.%f"
 
 
