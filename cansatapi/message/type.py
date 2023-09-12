@@ -10,7 +10,7 @@ from typing import TypedDict
 
 
 class SensorJson(TypedDict):
-    time: str | None
+    time: float | None
     gps: Gps | None
     nine_axis: NineAxis | None
     bme280: Bme280 | None
