@@ -10,15 +10,15 @@ from .type import SensorJson, Gps, NineAxis, Bme280, Lps25Hb
 
 
 def generate_json(
-    time: float = None,
-    gps: Gps = None,
-    nine_axis: NineAxis = None,
-    bme280: Bme280 = None,
-    lps25hb: Lps25Hb = None,
-    battery: float = None,
-    distance: float = None,
+    time: float = 0.0,
+    gps: Gps = 0.0,
+    nine_axis: NineAxis = 0.0,
+    bme280: Bme280 = 0.0,
+    lps25hb: Lps25Hb = 0.0,
+    battery: float = 0.0,
+    distance: float = 0.0,
     camera: str = None,
-    soil_moisture: float = None,
+    soil_moisture: float = 0.0,
     message: str = None,
 ) -> str:
     """JSONを生成する関数
