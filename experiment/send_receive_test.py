@@ -8,19 +8,18 @@ from cansatapi.xbee import *
 import sys
 
 if __name__ == "__main__":
-    try:
+    parse_proc = Process(target=xbee.start)
+    parse_proc.start()
 
-        parse_proc = Process(target=xbee.start)
-        parse_proc.start()
-
-        while True:
+    while True:
+        try:
             receive_val = get_received_str()    # 地上局から受信した値を格納する
             print(get_received_str())
             time.sleep(1)
 
-    except queue.Empty:     # 地上局から受信した値がなければpass
-        print("地上局から値を受信してない")
-        pass
+        except queue.Empty:     # 地上局から受信した値がなければpass
+            print("地上局から値を受信してない")
+            pass
 
-    except KeyboardInterrupt:
-        sys.exit(0)
+        except KeyboardInterrupt:
+            sys.exit(0)
