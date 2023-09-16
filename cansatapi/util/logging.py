@@ -22,7 +22,7 @@ class LoggerJSON:
     def __init__(self, file_name: str):
         self.log_path = LOG_DIR + file_name + ".json"   # ファイル名を入れる
 
-    def log_json(self, json_data: str):
+    def log_json(self, json_data: dict):
         """JSONファイルとしてログを残す
 
         Args:
