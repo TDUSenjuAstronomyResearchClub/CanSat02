@@ -31,7 +31,6 @@ def start():
         try:
             while not _send_queue.empty():
                 _send()
-
         except:
             c += 1
             if c >= 5:
@@ -99,19 +98,52 @@ def send_pic(pic_hex: str):
 
 
 def send_sensor_data():
-    """センサーデータをjsonファイルに書き込んで地上に送信する関数（写真・土壌水分・メッセージ以外）
-        lps25hb（気圧センサー）、batteryは使用しないため、常時Noneを返すようにしている
+    """ラズパイから各種センサの値を一定時間ごとに取得し、JSON形式のデータを作成するモジュール
+        JSON形式のデータを地上局に送信するのはsend_receive.pyのsend関数の中で行う。
+        lps25hb（気圧センサー）、batteryは使用しないため、常時0.0を返すようにしている
     """
+    # ここで初期化することで、例外処理が起きた時に初期値でjson形式で書き込みができる
+    latitude_longitude_altitude = (0.0, 0.0, 0.0)
+    sample_distance_and_azimuth = (0.0, 0.0)
+    goal_distance_and_azimuth = (0.0, 0.0)
+    acceleration_tmp = (0.0, 0.0, 0.0)
+    angular_rate_tmp = (0.0, 0.0, 0.0)
+    azimuth_tmp = 0.0
+    temperature_tmp = 0.0
+    humidity_tmp = 0.0
+    pressure_tmp = 0.0
+    ultrasound_distance = 0.0
+
     time_now = time.time()
+    point = get_lon_lat_decl()  # サンプル採取地点とゴール地点の緯度経度・磁気偏角値を取得
 
-    # gps関係のデータを読み込み
-    latitude_longitude_altitude = get_gps_data()
+    try:
+        # gps関係のデータを読み込み
+        latitude_longitude_altitude = get_gps_data()
+        sample_distance_and_azimuth = calculate_distance_bearing(point[0], point[1], point[4])
+        goal_distance_and_azimuth = calculate_distance_bearing(point[2], point[3], point[4])
+    except SerialException:
+        pass
 
-    point = get_lon_lat_decl()
-    sample_distance_and_azimuth = calculate_distance_bearing(point[0], point[1], point[4])
-    goal_distance_and_azimuth = calculate_distance_bearing(point[2], point[3], point[4])
+    try:
+        # 9軸センサー関係のデータを読み込み
+        acceleration_tmp = nine_axis_sensor.get_acceleration()
+        angular_rate_tmp = nine_axis_sensor.get_angular_rate()
+        azimuth_tmp = nine_axis_sensor.nineget_magnetic_heading()
 
-    # 警告出てるけど、無視して大丈夫な気がする
+        # 温湿度気圧センサー関係のデータを読み込み
+        temperature_tmp = bme280_instance.get_temperature()
+        humidity_tmp = bme280_instance.get_humidity()
+        pressure_tmp = bme280_instance.get_pressure()
+    except OSError:
+        pass
+
+    try:
+        # 超音波距離センサーの距離データを読み込み
+        ultrasound_distance = distance_result()
+    except TypeError:
+        pass
+
     distance_data: type.Distance = {
         'sample': sample_distance_and_azimuth[0],
         'goal': goal_distance_and_azimuth[0]
@@ -130,15 +162,12 @@ def send_sensor_data():
         'azimuth': azimuth_data
     }
 
-    # 9軸センサー関係のデータを読み込み
-    acceleration_tmp = nine_axis_sensor.get_acceleration()
     acceleration_data: type.Acceleration = {
         'x': acceleration_tmp[0],
         'y': acceleration_tmp[1],
         'z': acceleration_tmp[2]
     }
 
-    angular_rate_tmp = nine_axis_sensor.get_angular_rate()
     angular_rate_data: type.AngularVelocity = {
         'x': angular_rate_tmp[0],
         'y': angular_rate_tmp[1],
@@ -148,21 +177,25 @@ def send_sensor_data():
     nine_axis_data: type.NineAxis = {
         'acceleration': acceleration_data,
         'angular_velocity': angular_rate_data,
-        'azimuth': nine_axis_sensor.nineget_magnetic_heading()
+        'azimuth': azimuth_tmp
     }
 
     bme280_data: type.Bme280 = {
-        'temperature': bme280_instance.get_temperature(),
-        'humidity': bme280_instance.get_humidity(),
-        'pressure': bme280_instance.get_pressure()
+        'temperature': temperature_tmp,
+        'humidity': humidity_tmp,
+        'pressure': pressure_tmp
     }
 
-    # 超音波距離センサーの距離データを読み込み
-    ultrasound_distance = distance_result()
+    # lps25hb（気圧センサーは使用しないため、常時0.0を返すようにしている
+    lps25hb_data: type.Lps25Hb = {
+        'temperature': 0.0,
+        'pressure': 0.0,
+        'altitude': 0.0
+    }
 
-    # lps25hb（気圧センサー）、batteryは使用しないため、常時Noneを返すようにしている
+    # lps25hb（気圧センサー）、batteryは使用しないため、常時0.0を返すようにしている
     send(jsonGenerator.generate_json(time=time_now, gps=gps_data, nine_axis=nine_axis_data, bme280=bme280_data,
-                                     lps25hb=None, battery=None, distance=ultrasound_distance))
+                                     lps25hb=lps25hb_data, battery=0.0, distance=ultrasound_distance))
 
 
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
