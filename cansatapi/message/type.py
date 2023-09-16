@@ -10,15 +10,15 @@ from typing import TypedDict
 
 
 class SensorJson(TypedDict):
-    time: float | None
-    gps: Gps | None
-    nine_axis: NineAxis | None
-    bme280: Bme280 | None
-    lps25hb: Lps25Hb | None
-    battery: float | None
-    distance: float | None
+    time: float
+    gps: Gps
+    nine_axis: NineAxis
+    bme280: Bme280
+    lps25hb: Lps25Hb
+    battery: float
+    distance: float
     camera: str | None
-    soil_moisture: float | None
+    soil_moisture: float
     message: str | None
 
 
