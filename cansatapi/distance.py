@@ -29,6 +29,8 @@ def distance_result() -> float:
     Returns:
         float: 距離(cm)
     """
+    # プログラム動作時間測定の基準
+    start_time = time.time()
 
     # トリガ信号出力
     GPIO.output(5, GPIO.HIGH)
@@ -38,13 +40,14 @@ def distance_result() -> float:
     # 返送HIGHレベル時間計測
     while GPIO.input(6) == GPIO.LOW:
         soff = time.time()  # LOWレベル終了時刻
+        if soff - start_time > 5:   # 5秒よりも長くLOWレベルにならなかった場合は、0.0を返却する
+            return 0.0
 
-    start = time.time()
     while GPIO.input(6) == GPIO.HIGH:
         son = time.time()  # HIGHレベル終了時刻
 
-        if son - start > 10:  # 10秒よりも長くHIGHレベルにならなかった場合は、Noneを返却する
-            return None
+        if son - start_time > 10:  # 10秒よりも長くHIGHレベルにならなかった場合は、0.0を返却する
+            return 0.0
 
     # HIGHレベル期間の計算
     clc = son - soff
