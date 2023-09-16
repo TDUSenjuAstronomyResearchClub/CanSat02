@@ -1,15 +1,12 @@
 """機体と地上局の通信を行うモジュール
 """
 import multiprocessing
-import time
-from datetime import datetime
 
-import serial
 from serial import PortNotOpenError
 from serial import SerialException
 
-from running.main import *
 from .message import jsonGenerator, type
+from .point_declination import get_lon_lat_decl
 from .util.logging import json_log
 
 from cansatapi.gps import *
