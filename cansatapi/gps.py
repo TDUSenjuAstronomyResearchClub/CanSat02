@@ -7,12 +7,11 @@ GPSから緯度経度・海抜・磁気偏角を取得し、そこから2地点�
 """
 import time
 from math import radians, sin, cos, atan2, sqrt, pi
-from typing import Optional
 
 import serial
 
 
-def get_gps_data() -> tuple[Optional[float], Optional[float], Optional[float]]:
+def get_gps_data() -> tuple[float, float, float]:
     """GPSデータを取得する関数
 
     Returns:
@@ -98,7 +97,7 @@ def lon_conv_deg_min_to_decimal(lon: str, direction: str) -> float:
     return decimal
 
 
-def calculate_distance_bearing(lat: float, lon: float, declination: float) -> tuple[Optional[float], Optional[float]]:
+def calculate_distance_bearing(lat: float, lon: float, declination: float) -> tuple[float, float]:
     """機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数
 
     Args:
@@ -112,7 +111,7 @@ def calculate_distance_bearing(lat: float, lon: float, declination: float) -> tu
     # gpsの緯度経度・磁器偏角値を取得
     gps_data = get_gps_data()
     if (gps_data[0] is None) or (gps_data[1] is None):
-        return None, None
+        return 0.0, 0.0
     return calc_distance_between_two_points(gps_data[0], gps_data[1], lat, lon, declination)
 
 
