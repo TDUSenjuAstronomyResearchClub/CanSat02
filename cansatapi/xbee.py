@@ -69,7 +69,7 @@ def _send():
 
 
 def send(msg: str):
-    """データ送信用関数
+    """データ送信用関数(データを送信用キューに格納する）
 
     Args:
         msg (str): 送信するメッセージ
@@ -221,7 +221,7 @@ def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
             ser.close()
             if len(receive_data) != 0:
                 data_utf8 = receive_data.decode("utf-8")
-                json_log(data_utf8)  # ロギング
+                LoggerJSON.log_json(data_utf8)  # ロギング
                 _receive_queue.put_nowait(data_utf8)  # キューに受信したデータを追加
 
             return len(receive_data) != 0
