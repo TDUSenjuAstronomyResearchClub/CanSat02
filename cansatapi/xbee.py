@@ -128,7 +128,7 @@ def send_sensor_data():
         # 9軸センサー関係のデータを読み込み
         acceleration_tmp = nine_axis_sensor.get_acceleration()
         angular_rate_tmp = nine_axis_sensor.get_angular_rate()
-        azimuth_tmp = nine_axis_sensor.nineget_magnetic_heading()
+        azimuth_tmp = nine_axis_sensor.get_magnetic_heading()
 
         # 温湿度気圧センサー関係のデータを読み込み
         temperature_tmp = bme280_instance.get_temperature()
