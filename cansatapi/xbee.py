@@ -137,11 +137,13 @@ def send_sensor_data():
     except OSError:
         pass
 
+    """
     try:
         # 超音波距離センサーの距離データを読み込み
         ultrasound_distance = distance_result()
     except TypeError:
         pass
+    """
 
     distance_data: type.Distance = {
         'sample': sample_distance_and_azimuth[0],
@@ -194,7 +196,7 @@ def send_sensor_data():
 
     # lps25hb（気圧センサー）、batteryは使用しないため、常時0.0を返すようにしている
     send(jsonGenerator.generate_json(time=time_now, gps=gps_data, nine_axis=nine_axis_data, bme280=bme280_data,
-                                     lps25hb=lps25hb_data, battery=0.0, distance=ultrasound_distance))
+                                     lps25hb=lps25hb_data, battery=0.0, distance=0.0))
 
 
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
