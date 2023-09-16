@@ -8,7 +8,7 @@ from serial import SerialException
 
 from .message import jsonGenerator, type
 from .point_declination import get_lon_lat_decl
-from .util.logging import json_log
+from .util.logging import LoggerJSON
 
 from cansatapi.gps import *
 from cansatapi.nineaxissensor import *
@@ -74,7 +74,7 @@ def send(msg: str):
     Args:
         msg (str): 送信するメッセージ
     """
-    json_log(msg)  # ローカルにJSONを保存
+    LoggerJSON.json_log(msg)  # ローカルにJSONを保存
     _send_queue.put_nowait(msg)
 
 
