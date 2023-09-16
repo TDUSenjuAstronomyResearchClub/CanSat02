@@ -6,6 +6,7 @@ from cansatapi import *
 from cansatapi.point_declination import SAMPLE_LON, SAMPLE_LAT, GOAL_LON, GOAL_LAT, DECLINATION
 from cansatapi.util import logging
 from cansatapi.util.logging import LoggerCSV
+from cansatapi.util.logging import LoggerJSON
 
 # 本番前に記入
 
@@ -102,6 +103,12 @@ def main():
     """メインアルゴリズム
     """
     global isAuto
+
+    # ローカル保存用jsonファイル名を決定
+    dt_start = datetime.datetime.now()  # 現在日時を取得する
+    filename = 'send_test' + dt_start.strftime(logging.FILE_NAME_FMT)  # ファイル名を現在時刻にする
+    LoggerJSON(filename)
+
     # 受信を開始
     parse_proc = Process(target=xbee.start)
     parse_proc.start()

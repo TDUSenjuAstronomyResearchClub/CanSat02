@@ -4,10 +4,17 @@
 from cansatapi import xbee
 from multiprocessing import Process
 from cansatapi.xbee import *
+from cansatapi.util import logging
 
+import datetime
 import sys
 
 if __name__ == "__main__":
+    # ログ用ファイルの作成
+    dt_start = datetime.datetime.now()  # 現在日時を取得する
+    filename = 'send_data' + dt_start.strftime(logging.FILE_NAME_FMT)  # ファイル名を現在時刻にする
+    LoggerJSON(filename)
+
     parse_proc = Process(target=xbee.start)
     parse_proc.start()
 

@@ -13,20 +13,29 @@ LOG_DIR = "./log/"
 FILE_NAME_FMT = '%Y年%m月%d日_%H時%M分%S秒'
 
 
-def json_log(json_data: str):
-    """JSONファイルとしてログを残す
+class LoggerJSON:
+    """ロガーJSONクラス
 
-    Args:
-        json_data (str): JSONデータ
+    JSON形式で地上局に送信するデータのロギングを行います。
     """
-    f = open(LOG_DIR + 'send_data_' + '.json', 'a')
-    # jsonとして書き込み
-    json.dump(json_data, f, indent=4, ensure_ascii=False)
-    f.close()
+
+    def __init__(self, file_name: str):
+        self.log_path = LOG_DIR + file_name + ".json"   # ファイル名を入れる
+
+    def json_log(self, json_data: str):
+        """JSONファイルとしてログを残す
+
+        Args:
+            json_data (str): JSONデータ
+        """
+        file = open(self.log_path, 'a')
+        # jsonとして書き込み
+        json.dump(json_data, file, indent=4, ensure_ascii=False)
+        file.close()
 
 
-class Logger:
-    """ロガークラス
+class LoggerCSV:
+    """ロガーCSVクラス
 
     CSV形式でロギングを行います。
     """
