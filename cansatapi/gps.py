@@ -24,9 +24,10 @@ def get_gps_data() -> tuple[Optional[float], Optional[float], Optional[float]]:
 
     ser = serial.Serial("/dev/serial0", baudrate=9600, timeout=1)
     ser.flush()
-    lat = None
-    lon = None
-    alt = None
+    # type.pyでfloatとして扱っているので初期値を0.0にする
+    lat = 0.0
+    lon = 0.0
+    alt = 0.0
     start_time = time.time()
 
     while time.time() - start_time < 5:  # 5秒後にタイムアウトします
