@@ -127,7 +127,7 @@ class NineAxisSensor:
         accl_z *= 0.00195
         return accl_x, accl_y, accl_z
 
-    def get_angular_rate(self) -> tuple[float, float, float]:
+    def get_angular_rate(self) -> tuple[float, ...]:
         """角速度[°/s]を取得する
 
         Returns:
