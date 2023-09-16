@@ -12,9 +12,11 @@ if __name__ == "__main__":
         parse_proc = Process(target=xbee.start)
         parse_proc.start()
 
-        receive_val = get_received_str()
-        if receive_val != 'Null':
-            print(get_received_str())
+        receive_val = get_received_str()    # 地上局から受信した値を格納する
+        print(get_received_str())
+
+    except queue.Empty:     # 地上局から受信した値がなければpass
+        pass
 
     except KeyboardInterrupt:
         sys.exit(0)
