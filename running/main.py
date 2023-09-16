@@ -45,7 +45,7 @@ def detach_parachute(logger: LoggerCSV):
     """
     para_motor = dcmotor.DCMotor(dcmotor.PARACHUTE_FIN, dcmotor.PARACHUTE_RIN)
     wheels = dcmotor.WheelController()
-    logger.msg("パラシュート切り離し開始")
+    logger.msg_csv("パラシュート切り離し開始")
     para_motor.forward()
     wheels.forward()
 
@@ -53,7 +53,7 @@ def detach_parachute(logger: LoggerCSV):
 
     para_motor.stop()
     para_motor.cleanup()
-    logger.msg("パラシュート切り離し終了")
+    logger.msg_csv("パラシュート切り離し終了")
 
 
 def is_straight(lat: float, lon: float) -> bool:

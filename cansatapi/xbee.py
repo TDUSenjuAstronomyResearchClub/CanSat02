@@ -74,7 +74,7 @@ def send(msg: str):
     Args:
         msg (str): 送信するメッセージ
     """
-    LoggerJSON.json_log(msg)  # ローカルにJSONを保存
+    LoggerJSON.log_json(msg)  # ローカルにJSONを保存
     _send_queue.put_nowait(msg)
 
 

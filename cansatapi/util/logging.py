@@ -22,7 +22,7 @@ class LoggerJSON:
     def __init__(self, file_name: str):
         self.log_path = LOG_DIR + file_name + ".json"   # ファイル名を入れる
 
-    def json_log(self, json_data: str):
+    def log_json(self, json_data: str):
         """JSONファイルとしてログを残す
 
         Args:
@@ -56,7 +56,7 @@ class LoggerCSV:
         writer.writerow(['現在日時', '説明', '内容'])
         file.close()
 
-    def log(self, category: str, content: str | float):
+    def log_csv(self, category: str, content: str | float):
         """ロギング用のメソッド
 
         Args:
@@ -72,20 +72,20 @@ class LoggerCSV:
         file.close()
         time.sleep(0.1)
 
-    def msg(self, msg: str):
+    def msg_csv(self, msg: str):
         """メッセージロギング用メソッド
 
         Args:
             msg (str): メッセージ
         """
-        self.log("message", msg)
+        self.log_csv("message", msg)
         print("[Msg]" + msg, file=sys.stdout)
 
-    def error(self, msg: str):
+    def error_csv(self, msg: str):
         """エラーロギング用のメソッド
 
         Args:
             msg (str): エラーメッセージ
         """
-        self.log("ERROR", msg)
+        self.log_csv("ERROR", msg)
         print("[Error]" + msg, file=sys.stderr)
