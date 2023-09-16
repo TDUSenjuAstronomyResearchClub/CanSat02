@@ -8,7 +8,7 @@ import serial
 from serial import PortNotOpenError
 from serial import SerialException
 
-from running import running
+from running import main
 from .message import jsonGenerator, type
 from .util.logging import json_log
 
@@ -109,9 +109,8 @@ def send_sensor_data():
 
     # gps関係のデータを読み込み
     latitude_longitude_altitude = get_gps_data()
-    sample_distance_and_azimuth = calculate_distance_bearing(running.SAMPLE_LAT, running.SAMPLE_LON,
-                                                             running.DECLINATION)
-    goal_distance_and_azimuth = calculate_distance_bearing(running.SAMPLE_LAT, running.SAMPLE_LON, running.DECLINATION)
+    sample_distance_and_azimuth = calculate_distance_bearing(main.SAMPLE_LAT, main.SAMPLE_LON, main.DECLINATION)
+    goal_distance_and_azimuth = calculate_distance_bearing(main.SAMPLE_LAT, main.SAMPLE_LON, main.DECLINATION)
 
     # 警告出てるけど、無視して大丈夫な気がする
     distance_data: type.Distance = {
