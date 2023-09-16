@@ -7,11 +7,11 @@ import math
 from cansatapi.nineaxissensor import NineAxisSensor
 from cansatapi.servo import Servo
 from cansatapi import dcmotor
-from cansatapi.util.logging import Logger
+from cansatapi.util.logging import LoggerCSV
 from cansatapi.util import logging
 
 
-def detach_parachute(logger: Logger):
+def detach_parachute(logger: LoggerCSV):
     """パラシュートの切り離しを行います
     """
     para_motor = Servo(25)
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     # ログ用ファイルの作成
     dt_start = datetime.datetime.now()  # 現在日時を取得する
     filename = 'drop_test' + dt_start.strftime(logging.FILE_NAME_FMT)  # ファイル名を現在時刻にする
-    LOGGER = Logger(filename)
+    LOGGER = LoggerCSV(filename)
 
     LOGGER.msg("初期化開始")
     nine_axis = NineAxisSensor()

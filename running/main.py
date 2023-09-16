@@ -5,7 +5,7 @@ from multiprocessing import Process
 from cansatapi import *
 from cansatapi.point_declination import SAMPLE_LON, SAMPLE_LAT, GOAL_LON, GOAL_LAT, DECLINATION
 from cansatapi.util import logging
-from cansatapi.util.logging import Logger
+from cansatapi.util.logging import LoggerCSV
 
 # 本番前に記入
 
@@ -39,7 +39,7 @@ def landing_judgement() -> bool:
     """
 
 
-def detach_parachute(logger: Logger):
+def detach_parachute(logger: LoggerCSV):
     """パラシュートの切り離しを行います
     """
     para_motor = dcmotor.DCMotor(dcmotor.PARACHUTE_FIN, dcmotor.PARACHUTE_RIN)
@@ -106,7 +106,7 @@ def main():
     parse_proc = Process(target=xbee.start)
     parse_proc.start()
 
-    main_logger = Logger("Running" + datetime.datetime.now().strftime(logging.FILE_NAME_FMT))
+    main_logger = LoggerCSV("Running" + datetime.datetime.now().strftime(logging.FILE_NAME_FMT))
     xbee.send_msg("走行開始")
 
     while not fall_judgement():
