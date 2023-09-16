@@ -1,6 +1,7 @@
 """機体と地上局の通信を行うモジュール
 """
 import multiprocessing
+import queue
 
 from serial import PortNotOpenError
 from serial import SerialException
@@ -31,7 +32,7 @@ def start():
         try:
             while not _send_queue.empty():
                 _send()
-        except:
+        except queue.Empty:
             c += 1
             if c >= 5:
                 send_sensor_data()  # 約5秒に1度各センサー値の入ったjsonファイルを送信する
