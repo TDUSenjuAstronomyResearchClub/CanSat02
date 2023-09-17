@@ -104,11 +104,6 @@ def main():
     """
     global isAuto
 
-    # ローカル保存用jsonファイル名を決定
-    dt_start = datetime.datetime.now()  # 現在日時を取得する
-    filename = 'send_test' + dt_start.strftime(logging.FILE_NAME_FMT)  # ファイル名を現在時刻にする
-    LoggerJSON(filename)
-
     # 受信を開始
     parse_proc = Process(target=xbee.start)
     parse_proc.start()
