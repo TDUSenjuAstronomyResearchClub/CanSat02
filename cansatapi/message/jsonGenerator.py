@@ -10,6 +10,7 @@ from .type import SensorJson, Gps, NineAxis, Bme280, Lps25Hb
 
 
 def generate_json(
+    data_type: str = None,
     time: float = 0.0,
     gps: Gps = 0.0,
     nine_axis: NineAxis = 0.0,
@@ -26,6 +27,7 @@ def generate_json(
     各引数に値を入れると対応するJSONデータを生成します。
 
     Args:
+        data_type: sonファイルに何のデータが入っているか判定する
         message: 任意のメッセージ
         soil_moisture: 土壌水分量[%]
         camera: カメラのヘックスデータ
@@ -42,6 +44,7 @@ def generate_json(
     """
 
     sensor_json: SensorJson = {
+        "data_type": data_type,
         "time": time,
         "gps": gps,
         "nine_axis": nine_axis,

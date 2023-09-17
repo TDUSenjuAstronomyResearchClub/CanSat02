@@ -10,6 +10,7 @@ from typing import TypedDict
 
 
 class SensorJson(TypedDict):
+    data_type: str
     time: float
     gps: Gps
     nine_axis: NineAxis
