@@ -21,7 +21,7 @@ if __name__ == "__main__":
             time.sleep(1)
 
         except queue.Empty:  # 地上局から受信した値がなければpass
-            print("地上局から値を受信してない")
+            # print("地上局から値を受信してない")
             pass
 
         except KeyboardInterrupt:
