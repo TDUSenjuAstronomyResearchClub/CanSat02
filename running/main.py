@@ -6,7 +6,6 @@ from cansatapi import *
 from cansatapi.point_declination import SAMPLE_LON, SAMPLE_LAT, GOAL_LON, GOAL_LAT, DECLINATION
 
 
-
 def manual_mode(cmd: str):
     """手動制御を行う関数
 
