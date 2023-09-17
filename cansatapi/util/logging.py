@@ -22,11 +22,19 @@ class LoggerJSON:
     _is_initialized = False  # 初期化がすでに行われたかどうかを確認するためのフラグ
 
     def __new__(cls):
+        """新しいインスタンスを作成するメソッド。
+            _instanceがNoneの場合にのみ新しいインスタンスを作成します。
+
+            Return:
+                LoggerJSON: 新しいインスタンス
+        """
         if cls._instance is None:
             cls._instance = super().__new__(cls)  # オブジェクトクラスの__new__メソッドを呼び出して、新しいインスタンスを作成
         return cls._instance
 
     def __init__(self):
+        """JSONファイル用ロガーのコンストラクタ
+        """
         # シングルトンの初期化は一度のみ行う
         if LoggerJSON._is_initialized:
             return
@@ -60,7 +68,7 @@ class LoggerCSV:
     """
 
     def __init__(self, file_name: str):
-        """ロガーのコンストラクタ
+        """CSVファイル用ロガーのコンストラクタ
 
         CSV形式でロギングを行います。
 
