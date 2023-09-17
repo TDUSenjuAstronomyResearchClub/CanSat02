@@ -10,7 +10,7 @@ from .type import SensorJson, Gps, NineAxis, Bme280, Lps25Hb
 
 
 def generate_json(
-    time: str = None,
+    time: float = None,
     gps: Gps = None,
     nine_axis: NineAxis = None,
     bme280: Bme280 = None,
@@ -33,7 +33,7 @@ def generate_json(
         battery: バッテリー残量[%]
         lps25hb: LPS25HBのデータ
         bme280: BME280のデータ
-        time (str): データの送信時時間
+        time (float): データの送信時時間
         gps (Gps): GPSデータ
         nine_axis (NineAxis): 9軸データ
 

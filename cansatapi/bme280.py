@@ -17,7 +17,6 @@ I2C_ADDRESS = 0x76
 class BME280:
 
     def __init__(self):
-
         bme280_i2c.set_default_i2c_address(I2C_ADDRESS)
         bme280_i2c.set_default_bus(BUS_NUMBER)
         bme280.setup()
@@ -56,3 +55,6 @@ class BME280:
             float: 気圧[hPa]
         """
         return bme280.read_pressure()
+
+
+bme280_instance = BME280()

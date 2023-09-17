@@ -10,7 +10,7 @@ from datetime import datetime
 
 LOG_DIR = "./log/"
 
-DATETIME_F = "%Y/%m/%d %H:%M:%S.%f"
+FILE_NAME_FMT = '%Y年%m月%d日_%H時%M分%S秒'
 
 
 def json_log(json_data: str):
@@ -19,7 +19,7 @@ def json_log(json_data: str):
     Args:
         json_data (str): JSONデータ
     """
-    f = open(LOG_DIR + 'send_data_' + datetime.now().strftime(DATETIME_F) + '.json', 'a')
+    f = open(LOG_DIR + 'send_data_' + '.json', 'a')
     # jsonとして書き込み
     json.dump(json_data, f, indent=4, ensure_ascii=False)
     f.close()
@@ -39,7 +39,7 @@ class Logger:
         Args:
             file_name: ログファイルの名前
         """
-        self.log_path = LOG_DIR + datetime.now().strftime(DATETIME_F) + file_name + ".csv"
+        self.log_path = LOG_DIR + file_name + ".csv"
         file = open(file_name, 'a')
         writer = csv.writer(file, lineterminator='\n')
 
@@ -56,7 +56,7 @@ class Logger:
         """
         file = open(self.log_path, 'a')
         writer = csv.writer(file, lineterminator='\n')
-        dt_now = datetime.now().strftime(DATETIME_F)  # 現在日時を取得する
+        dt_now = time.time()  # UNIX形式で現在日時を取得する
         log_list = [dt_now, category, content]  # リストに各値を挿入
 
         writer.writerow(log_list)

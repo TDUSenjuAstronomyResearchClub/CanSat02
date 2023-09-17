@@ -1,5 +1,4 @@
 __all__ = [
-    "batteryfuelgauge",
     "bme280",
     "camera",
     "dcmotor",
