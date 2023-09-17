@@ -28,16 +28,16 @@ def generate_json(
 
     Args:
         data_type: sonファイルに何のデータが入っているか判定する
-        message: 任意のメッセージ
-        soil_moisture: 土壌水分量[%]
-        camera: カメラのヘックスデータ
-        distance: 距離
-        battery: バッテリー残量[%]
-        lps25hb: LPS25HBのデータ
-        bme280: BME280のデータ
         time (float): データの送信時時間
         gps (Gps): GPSデータ
         nine_axis (NineAxis): 9軸データ
+        bme280: BME280のデータ
+        lps25hb: LPS25HBのデータ
+        battery: バッテリー残量[%]
+        distance: 距離
+        camera: カメラのヘックスデータ
+        soil_moisture: 土壌水分量[%]
+        message: 任意のメッセージ
 
     Returns:
         str: 生成されたJSON文字列
