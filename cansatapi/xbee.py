@@ -97,6 +97,15 @@ def send_pic(pic_hex: str):
     send(jsonGenerator.generate_json(data_type="only_picture_data", time=time.time(), camera=pic_hex))
 
 
+def send_soilmois_data(moisture: float):
+    """土壌水分量データをjson形式に変換し、送信用キューに格納する関数を呼び出す
+
+    Args:
+        moisture: 土壌水分量
+    """
+    send(jsonGenerator.generate_json(data_type="only_soil_data", time=time.time(), soil_moisture=moisture))
+
+
 def send_sensor_data():
     """ラズパイから各種センサの値を一定時間ごとに取得し、json形式に変換・送信用キューに格納する関数を呼び出す
 
