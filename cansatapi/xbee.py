@@ -33,7 +33,7 @@ def start():
         while _send_queue.empty():
             c += 1
             if c >= 5:
-                send_sensor_data()  # 約5秒に1度各センサー値の入ったjsonファイルを送信する
+                get_send_sensor_data()  # 約5秒に1度各センサー値の入ったjsonファイルを送信する
                 c = 0
             else:
                 _receive(1)  # 1秒間待機する
@@ -106,7 +106,7 @@ def send_soilmois_data(moisture: float):
     send(jsonGenerator.generate_json(data_type="only_soil_data", time=time.time(), soil_moisture=moisture))
 
 
-def send_sensor_data():
+def get_send_sensor_data():
     """ラズパイから各種センサの値を一定時間ごとに取得し、json形式に変換・送信用キューに格納する関数を呼び出す
 
         土壌水分・カメラ・気圧センサ(機体に載せていない）・バッテリー残量計（機体に載せていない）以外を取得する
