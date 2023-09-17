@@ -36,7 +36,7 @@ class LoggerJSON:
         self.log_path = LOG_DIR + file_name + ".json"  # ファイル名を入れる
         LoggerJSON._is_initialized = True
 
-    def log_json(self, json_data: dict):
+    def log_json(self, json_data: str):
         """JSONファイルとしてログを残す
 
         Args:
