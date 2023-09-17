@@ -26,6 +26,7 @@ _receive_queue = multiprocessing.Queue()
 
 def start():
     """XBeeモジュールの待機動作を開始する関数
+        マルチスレッドを使用する際、新しいプロセスとして動作させる
     """
     c = 0
     while True:
@@ -69,7 +70,7 @@ def _send():
 
 
 def send(msg: str):
-    """データ送信用関数(データを送信用キューに格納する）
+    """データをローカルにJSONファイルを保存し、送信用キューに格納する
 
     Args:
         msg (str): 送信するメッセージ
@@ -79,7 +80,7 @@ def send(msg: str):
 
 
 def send_msg(msg: str):
-    """任意のメッセージを地上に送信する関数
+    """メッセージをjson形式に変換し、送信用キューに格納する関数を呼び出す
 
     Args:
         msg: 任意のメッセージ
@@ -88,7 +89,7 @@ def send_msg(msg: str):
 
 
 def send_pic(pic_hex: str):
-    """写真データを地上に送信する関数
+    """写真データをjson形式に変換し、送信用キューに格納する関数を呼び出す
 
     Args:
         pic_hex: 写真データ(16進数)
@@ -97,8 +98,8 @@ def send_pic(pic_hex: str):
 
 
 def send_sensor_data():
-    """ラズパイから各種センサの値を一定時間ごとに取得し、JSON形式のデータを作成するモジュール
-        JSON形式のデータを地上局に送信するのはsend_receive.pyのsend関数の中で行う。
+    """ラズパイから各種センサの値を一定時間ごとに取得し、json形式に変換・送信用キューに格納する関数を呼び出す
+
         lps25hb（気圧センサー）、batteryは使用しないため、常時0.0を返すようにしている
     """
     # ここで初期化することで、例外処理が起きた時に初期値でjson形式で書き込みができる
@@ -237,6 +238,7 @@ def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
 
 def get_received_str() -> str:
     """受信した文字列を返す関数
+        受信した値が入っているキューから値を取り出す
 
     Returns:
         str: 受信した文字列
