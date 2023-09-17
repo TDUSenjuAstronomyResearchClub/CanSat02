@@ -17,7 +17,7 @@ if __name__ == "__main__":
     while True:
         try:
             receive_val = get_received_str()  # 地上局から受信した値を格納する
-            print(get_received_str())
+            print(receive_val)
             time.sleep(1)
 
         except queue.Empty:  # 地上局から受信した値がなければpass
