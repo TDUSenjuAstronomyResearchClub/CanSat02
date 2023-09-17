@@ -44,6 +44,7 @@ def _send():
     """キューからメッセージを送信する関数
     """
     msg = _send_queue.get_nowait()
+    eol = '\n'  # end of line
     if msg is None:
         return
 
@@ -53,7 +54,7 @@ def _send():
             ser = serial.Serial(PORT, BAUD_RATE)
             # シリアルにjsonを書き込む
             ser.write(msg.encode('utf-8'))
-            ser.write(0x04)  # EOTを末尾に書き込む
+            ser.write(eol.encode('utf-8'))  # EOLを末尾に書き込む
             ser.close()
             return
 
