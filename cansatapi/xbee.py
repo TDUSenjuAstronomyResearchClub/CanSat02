@@ -85,7 +85,7 @@ def send_msg(msg: str):
     Args:
         msg: 任意のメッセージ
     """
-    send(jsonGenerator.generate_json(time=time.time(), message=msg))
+    send(jsonGenerator.generate_json(data_type="only_message_data", time=time.time(), message=msg))
 
 
 def send_pic(pic_hex: str):
@@ -94,7 +94,7 @@ def send_pic(pic_hex: str):
     Args:
         pic_hex: 写真データ(16進数)
     """
-    send(jsonGenerator.generate_json(time=time.time(), camera=pic_hex))
+    send(jsonGenerator.generate_json(data_type="only_picture_data", time=time.time(), camera=pic_hex))
 
 
 def send_sensor_data():
@@ -186,7 +186,7 @@ def send_sensor_data():
         'pressure': pressure_tmp
     }
 
-    send(jsonGenerator.generate_json(time=time_now, gps=gps_data, nine_axis=nine_axis_data, bme280=bme280_data,
+    send(jsonGenerator.generate_json(data_type="only_sensor_data", time=time_now, gps=gps_data, nine_axis=nine_axis_data, bme280=bme280_data,
                                      distance=ultrasound_distance))
 
 
