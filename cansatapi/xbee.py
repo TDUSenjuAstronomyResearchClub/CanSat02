@@ -196,8 +196,8 @@ def get_send_sensor_data():
         'pressure': pressure_tmp
     }
 
-    send(jsonGenerator.generate_json(data_type="only_sensor_data", time=time_now, gps=gps_data, nine_axis=nine_axis_data, bme280=bme280_data,
-                                     distance=ultrasound_distance))
+    send(jsonGenerator.generate_json(data_type="only_sensor_data", time=time_now, gps=gps_data, nine_axis=nine_axis_data
+                                     , bme280=bme280_data, distance=ultrasound_distance))
 
 
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
