@@ -41,7 +41,7 @@ class LoggerJSON:
 
         # ローカル保存用jsonファイル名を決定
         dt_start = datetime.datetime.now()  # 現在日時を取得する
-        file_name = 'send_test' + dt_start.strftime(FILE_NAME_FMT)  # ファイル名を現在時刻にする
+        file_name = 'send_' + dt_start.strftime(FILE_NAME_FMT)  # ファイル名を現在時刻にする
         self.log_path = LOG_DIR + file_name + ".json"  # ファイル名を入れる
         LoggerJSON._is_initialized = True
 
