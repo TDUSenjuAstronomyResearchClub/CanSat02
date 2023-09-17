@@ -6,7 +6,7 @@ import csv
 import sys
 import time
 import json
-from datetime import datetime
+import datetime
 
 LOG_DIR = "./log/"
 
@@ -18,9 +18,23 @@ class LoggerJSON:
 
     JSON形式で地上局に送信するデータのロギングを行います。
     """
+    _instance = None
+    _is_initialized = False  # 初期化がすでに行われたかどうかを確認するためのフラグ
 
-    def __init__(self, file_name: str):
-        self.log_path = LOG_DIR + file_name + ".json"   # ファイル名を入れる
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)  # オブジェクトクラスの__new__メソッドを呼び出して、新しいインスタンスを作成
+
+    def __init__(self):
+        # シングルトンの初期化は一度のみ行う
+        if LoggerJSON._is_initialized:
+            return
+
+        # ローカル保存用jsonファイル名を決定
+        dt_start = datetime.datetime.now()  # 現在日時を取得する
+        file_name = 'send_test' + dt_start.strftime(FILE_NAME_FMT)  # ファイル名を現在時刻にする
+        self.log_path = LOG_DIR + file_name + ".json"  # ファイル名を入れる
+        LoggerJSON._is_initialized = True
 
     def log_json(self, json_data: dict):
         """JSONファイルとしてログを残す
@@ -32,6 +46,10 @@ class LoggerJSON:
         # jsonとして書き込み
         json.dump(json_data, file, indent=4, ensure_ascii=False)
         file.close()
+
+
+# グローバルなインスタンスを作成し、他のモジュールからアクセスできるようにする
+log_json_singleton = LoggerJSON()
 
 
 class LoggerCSV:
