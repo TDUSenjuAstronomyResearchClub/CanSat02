@@ -57,10 +57,6 @@ class LoggerJSON:
         file.close()
 
 
-# グローバルなインスタンスを作成し、他のモジュールからアクセスできるようにする
-log_json_singleton = LoggerJSON()
-
-
 class LoggerCSV:
     """ロガーCSVクラス
 
