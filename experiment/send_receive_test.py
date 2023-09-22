@@ -1,8 +1,9 @@
 """地上局のテストモジュール
     地上局にセンサーの値を送り、地上局からのデータを受け取る
 """
-from cansatapi import xbee
 from multiprocessing import Process
+
+from cansatapi import xbee
 from cansatapi.xbee import *
 from cansatapi.util import logging
 
