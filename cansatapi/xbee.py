@@ -5,8 +5,6 @@ import multiprocessing
 from serial import PortNotOpenError
 from serial import SerialException
 
-from running import running
-
 from .message import jsonGenerator, type
 from .point_declination import get_lon_lat_decl
 from .util.logging import LoggerJSON
