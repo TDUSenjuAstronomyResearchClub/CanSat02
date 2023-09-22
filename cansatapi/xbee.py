@@ -263,7 +263,7 @@ def send_sensor_data():
 
     # lps25hb（気圧センサー）、batteryは使用しないため、常時Noneを返すようにしている
     send(jsonGenerator.generate_json(time=time_now, gps=gps_data, nine_axis=nine_axis_data, bme280=bme280_data,
-                                     lps25hb=None, battery=None, distance=ultrasound_distance))
+                                     distance=ultrasound_distance))
 
 
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
