@@ -1,6 +1,7 @@
 """地上局のテストモジュール
     地上局にセンサーの値を送り、地上局からのデータを受け取る
 """
+import queue
 from multiprocessing import Process
 
 from cansatapi import xbee
