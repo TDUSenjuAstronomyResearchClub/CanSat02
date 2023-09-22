@@ -6,33 +6,65 @@ import csv
 import sys
 import time
 import json
-from datetime import datetime
+import datetime
 
 LOG_DIR = "./log/"
 
 FILE_NAME_FMT = '%Y年%m月%d日_%H時%M分%S秒'
 
 
-def json_log(json_data: str):
-    """JSONファイルとしてログを残す
+class LoggerJSON:
+    """ロガーJSONクラス
 
-    Args:
-        json_data (str): JSONデータ
+    JSON形式で地上局に送信するデータのロギングを行います。
     """
-    f = open(LOG_DIR + 'send_data_' + '.json', 'a')
-    # jsonとして書き込み
-    json.dump(json_data, f, indent=4, ensure_ascii=False)
-    f.close()
+    _instance = None
+    _is_initialized = False  # 初期化がすでに行われたかどうかを確認するためのフラグ
+
+    def __new__(cls):
+        """新しいインスタンスを作成するメソッド。
+            _instanceがNoneの場合にのみ新しいインスタンスを作成します。
+
+            Return:
+                LoggerJSON: 新しいインスタンス
+        """
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)  # オブジェクトクラスの__new__メソッドを呼び出して、新しいインスタンスを作成
+        return cls._instance
+
+    def __init__(self):
+        """JSONファイル用ロガーのコンストラクタ
+        """
+        # シングルトンの初期化は一度のみ行う
+        if LoggerJSON._is_initialized:
+            return
+
+        # ローカル保存用jsonファイル名を決定
+        dt_start = datetime.datetime.now()  # 現在日時を取得する
+        file_name = 'send_' + dt_start.strftime(FILE_NAME_FMT)  # ファイル名を現在時刻にする
+        self.log_path = LOG_DIR + file_name + ".json"  # ファイル名を入れる
+        LoggerJSON._is_initialized = True
+
+    def log_json(self, json_data: str):
+        """JSONファイルとしてログを残す
+
+        Args:
+            json_data (str): JSONデータ
+        """
+        file = open(self.log_path, 'a')
+        # jsonとして書き込み
+        json.dump(json_data, file, indent=4, ensure_ascii=False)
+        file.close()
 
 
-class Logger:
-    """ロガークラス
+class LoggerCSV:
+    """ロガーCSVクラス
 
     CSV形式でロギングを行います。
     """
 
     def __init__(self, file_name: str):
-        """ロガーのコンストラクタ
+        """CSVファイル用ロガーのコンストラクタ
 
         CSV形式でロギングを行います。
 
@@ -47,7 +79,7 @@ class Logger:
         writer.writerow(['現在日時', '説明', '内容'])
         file.close()
 
-    def log(self, category: str, content: str | float):
+    def log_csv(self, category: str, content: str | float):
         """ロギング用のメソッド
 
         Args:
@@ -63,20 +95,20 @@ class Logger:
         file.close()
         time.sleep(0.1)
 
-    def msg(self, msg: str):
+    def msg_csv(self, msg: str):
         """メッセージロギング用メソッド
 
         Args:
             msg (str): メッセージ
         """
-        self.log("message", msg)
+        self.log_csv("message", msg)
         print("[Msg]" + msg, file=sys.stdout)
 
-    def error(self, msg: str):
+    def error_csv(self, msg: str):
         """エラーロギング用のメソッド
 
         Args:
             msg (str): エラーメッセージ
         """
-        self.log("ERROR", msg)
+        self.log_csv("ERROR", msg)
         print("[Error]" + msg, file=sys.stderr)

@@ -10,15 +10,16 @@ from .type import SensorJson, Gps, NineAxis, Bme280, Lps25Hb
 
 
 def generate_json(
-    time: float = None,
-    gps: Gps = None,
-    nine_axis: NineAxis = None,
-    bme280: Bme280 = None,
-    lps25hb: Lps25Hb = None,
-    battery: float = None,
-    distance: float = None,
+    data_type: str = None,
+    time: float = 0.0,
+    gps: Gps = 0.0,
+    nine_axis: NineAxis = 0.0,
+    bme280: Bme280 = 0.0,
+    lps25hb: Lps25Hb = 0.0,
+    battery: float = 0.0,
+    distance: float = 0.0,
     camera: str = None,
-    soil_moisture: float = None,
+    soil_moisture: float = 0.0,
     message: str = None,
 ) -> str:
     """JSONを生成する関数
@@ -26,22 +27,24 @@ def generate_json(
     各引数に値を入れると対応するJSONデータを生成します。
 
     Args:
-        message: 任意のメッセージ
-        soil_moisture: 土壌水分量[%]
-        camera: カメラのヘックスデータ
-        distance: 距離
-        battery: バッテリー残量[%]
-        lps25hb: LPS25HBのデータ
-        bme280: BME280のデータ
+        data_type: sonファイルに何のデータが入っているか判定する
         time (float): データの送信時時間
         gps (Gps): GPSデータ
         nine_axis (NineAxis): 9軸データ
+        bme280: BME280のデータ
+        lps25hb: LPS25HBのデータ
+        battery: バッテリー残量[%]
+        distance: 距離
+        camera: カメラのヘックスデータ
+        soil_moisture: 土壌水分量[%]
+        message: 任意のメッセージ
 
     Returns:
         str: 生成されたJSON文字列
     """
 
     sensor_json: SensorJson = {
+        "data_type": data_type,
         "time": time,
         "gps": gps,
         "nine_axis": nine_axis,
