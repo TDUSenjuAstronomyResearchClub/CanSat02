@@ -207,7 +207,7 @@ def send_sensor_data():
     time_now = time.time()
 
     # gps関係のデータを読み込み
-    point_and_decl = get_lon_lat_decl()     # サンプル採取地点とゴール地点の緯度経度・磁気偏角値を取得
+    point_and_decl = get_lon_lat_decl()  # サンプル採取地点とゴール地点の緯度経度・磁気偏角値を取得
     latitude_longitude_altitude = get_gps_data()
     sample_distance_and_azimuth = calculate_distance_bearing(point_and_decl[1], point_and_decl[0], point_and_decl[4])
     goal_distance_and_azimuth = calculate_distance_bearing(point_and_decl[3], point_and_decl[2], point_and_decl[4])
