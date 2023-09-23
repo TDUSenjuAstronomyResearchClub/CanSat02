@@ -25,8 +25,8 @@ if __name__ == "__main__":
             send_msg("test_message")
             time.sleep(1)
 
-        except queue.Empty:  # 地上局から受信した値がなければpass
-            pass
+        # except queue.Empty:  # 地上局から受信した値がなければpass
+            # pass
 
         except KeyboardInterrupt:
             sys.exit(0)
