@@ -23,7 +23,7 @@ if __name__ == "__main__":
             time.sleep(1)
 
         except queue.Empty:  # 地上局から受信した値がなければpass
-            print("debug comment:send message")
+            # print("debug comment:send message")
             send_msg("test_message")
             pass
 
