@@ -25,6 +25,7 @@ if __name__ == "__main__":
         except queue.Empty:  # 地上局から受信した値がなければpass
             # print("debug comment:send message")
             send_msg("test_message")
+            time.sleep(3)   # センサーデータを送信する時間を作るため
             pass
 
         except KeyboardInterrupt:
