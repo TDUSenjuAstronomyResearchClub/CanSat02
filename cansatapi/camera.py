@@ -42,7 +42,7 @@ def photograph():
 
     with open(filename, 'rb') as img:  # 画像ファイルをバイナリデータとして開く
         data = img.read()
-        XBee.send_pic(data.hex())
+        send_pic(data.hex())
 
 
 class CameraError(Exception):
