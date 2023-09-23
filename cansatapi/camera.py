@@ -48,3 +48,4 @@ def photograph():
 class CameraError(Exception):
     """カメラ使用時のエラー
     """
+    pass    # TODO:仮で記入したため再考が必要
