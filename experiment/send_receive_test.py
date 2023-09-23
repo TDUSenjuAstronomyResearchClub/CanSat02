@@ -20,11 +20,12 @@ if __name__ == "__main__":
         try:
             receive_val = get_received_str()  # 地上局から受信した値を格納する
             print(receive_val)
+
+            print("debug comment:send message")
             send_msg("test_message")
             time.sleep(1)
 
         except queue.Empty:  # 地上局から受信した値がなければpass
-            # print("地上局から値を受信してない")
             pass
 
         except KeyboardInterrupt:
