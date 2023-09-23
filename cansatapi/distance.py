@@ -49,6 +49,7 @@ def distance_result() -> float:
 
     sig_on = time.time()  # 初期値の設定
     timeout = time.time() + 0.02  # タイムアウトを0.02秒に設定
+    print(f"デバック用 echo timeout: {timeout}")
 
     while GPIO.input(ECHO) == GPIO.HIGH and time.time() < timeout:  # 返送HIGHレベル時間計測
         sig_on = time.time()  # HIGHレベル終了時刻更新
