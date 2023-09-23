@@ -247,5 +247,6 @@ def get_received_str() -> str:
     Returns:
         str: 受信した文字列
     """
+    print("debug comment:action get_received_str")
     return _receive_queue.get_nowait()
 
