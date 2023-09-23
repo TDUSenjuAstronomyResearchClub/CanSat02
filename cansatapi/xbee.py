@@ -248,3 +248,4 @@ def get_received_str() -> str:
         str: 受信した文字列
     """
     return _receive_queue.get_nowait()
+
