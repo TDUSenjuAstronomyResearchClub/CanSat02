@@ -19,14 +19,16 @@ if __name__ == "__main__":
     while True:
         try:
             receive_val = get_received_str()  # 地上局から受信した値を格納する
-            print(receive_val)
 
-            print("debug comment:send message")
-            send_msg("test_message")
+            if queue.Empty:  # 地上局から受信した値がなければ
+                print("debug comment:send message")
+                send_msg("test_message")
+            else:
+                print(receive_val)  # 地上局から値を受信していたら
             time.sleep(1)
 
         # except queue.Empty:  # 地上局から受信した値がなければpass
-            # pass
+        # pass
 
         except KeyboardInterrupt:
             sys.exit(0)
