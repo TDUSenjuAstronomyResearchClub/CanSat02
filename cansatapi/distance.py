@@ -45,15 +45,18 @@ def distance_result() -> float:
 
     while GPIO.input(ECHO) == GPIO.LOW and time.time() < timeout:  # 返送LOWレベル時間計測
         sig_off = time.time()  # LOWレベル終了時刻更新
+        print(f"デバック用 sig_off: {sig_off}")
 
     sig_on = time.time()  # 初期値の設定
     timeout = time.time() + 0.02  # タイムアウトを0.02秒に設定
 
     while GPIO.input(ECHO) == GPIO.HIGH and time.time() < timeout:  # 返送HIGHレベル時間計測
         sig_on = time.time()  # HIGHレベル終了時刻更新
+        print(f"デバック用 sig_on: {sig_on}")
 
     # HIGHレベル期間の計算
     elapsed = sig_on - sig_off
+    print(f"デバック用 elapsed: {elapsed}")
 
     # 時間から距離に変換(TEMPは測定環境温度)
     duration = elapsed * (331.50 + (0.6 * TEMP)) / 2 * 100
