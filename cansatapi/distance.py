@@ -59,7 +59,7 @@ def distance_result() -> float:
     elapsed = sig_on - sig_off
     print(f"デバック用 elapsed: {elapsed}")
 
-    # 時間から距離に変換(TEMPは測定環境温度)
-    duration = elapsed * (331.50 + (0.6 * TEMP)) / 2 * 100
+    speed = 331.50 + 0.6 * TEMP     # 音速を求める(TEMPは測定環境温度)
+    duration = elapsed * speed / 2 * 100     # elapsedは経過時間（秒）、最後に100をかけてメートルからセンチメートルに変換
 
     return duration
