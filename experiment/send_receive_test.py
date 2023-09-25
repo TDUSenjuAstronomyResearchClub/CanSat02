@@ -4,11 +4,9 @@
 import queue
 from multiprocessing import Process
 
-from cansatapi import xbee
 from cansatapi.xbee import *
-from cansatapi.util import logging
+from cansatapi import *
 
-import datetime
 import sys
 
 if __name__ == "__main__":
@@ -24,7 +22,7 @@ if __name__ == "__main__":
 
         except queue.Empty:  # 地上局から受信した値がなければpass
             # print("debug comment:send message")
-            send_msg("test_message")
+            send_msg("test_message")    # 地上局にメッセージを機体から送信
             time.sleep(3)   # センサーデータを送信する時間を作るため
             pass
 
