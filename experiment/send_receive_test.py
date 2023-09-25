@@ -24,6 +24,10 @@ if __name__ == "__main__":
             # print("debug comment:send message")
             send_msg("test_message")    # 地上局にメッセージを機体から送信
             time.sleep(3)   # センサーデータを送信する時間を作るため
+
+            soilmois = soil_moisture.get_soil_moisture()    # 土壌水分値を取得
+            send_soilmois_data(soilmois)    # 土壌水分値を地上局に送信
+            time.sleep(3)   # センサーデータを送信する時間を作るため
             pass
 
         except KeyboardInterrupt:
