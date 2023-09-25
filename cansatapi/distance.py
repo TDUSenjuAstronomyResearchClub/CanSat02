@@ -45,19 +45,19 @@ def distance_result() -> float:
 
     while GPIO.input(ECHO) == GPIO.LOW and time.time() < timeout:  # 返送LOWレベル時間計測
         sig_off = time.time()  # LOWレベル終了時刻更新
-        print(f"デバック用 sig_off: {sig_off}")
+        # print(f"デバック用 sig_off: {sig_off}")
 
     sig_on = time.time()  # 初期値の設定
     timeout = time.time() + 0.02  # タイムアウトを0.02秒に設定
-    print(f"デバック用 echo timeout: {timeout}")
+    # print(f"デバック用 echo timeout: {timeout}")
 
     while GPIO.input(ECHO) == GPIO.HIGH and time.time() < timeout:  # 返送HIGHレベル時間計測
         sig_on = time.time()  # HIGHレベル終了時刻更新
-        print(f"デバック用 sig_on: {sig_on}")
+        # print(f"デバック用 sig_on: {sig_on}")
 
     # HIGHレベル期間の計算
     elapsed = sig_on - sig_off
-    print(f"デバック用 elapsed: {elapsed}")
+    # print(f"デバック用 elapsed: {elapsed}")
 
     speed = 331.50 + 0.6 * TEMP     # 音速を求める(TEMPは測定環境温度)
     duration = elapsed * speed / 2 * 100     # elapsedは経過時間（秒）、最後に100をかけてメートルからセンチメートルに変換
