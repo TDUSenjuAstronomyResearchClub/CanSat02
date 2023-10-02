@@ -12,12 +12,6 @@ from picamera2 import Picamera2
 
 from .xbee import *
 
-# ポート設定
-PORT = '/dev/ttyUSB0'
-
-# 通信レート設定
-BAUD_RATE = 9600
-
 
 def photograph():
     """カメラモジュールを使って画像を撮影ができるプログラム
