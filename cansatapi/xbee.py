@@ -96,6 +96,7 @@ def send_pic(pic_hex: str):
     Args:
         pic_hex: 写真データ(16進数)
     """
+    print("debug comment:action send_pic")
     send(jsonGenerator.generate_json(data_type="only_picture_data", time=time.time(), camera=pic_hex))
 
 
