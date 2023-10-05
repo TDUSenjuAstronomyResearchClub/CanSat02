@@ -110,8 +110,10 @@ def calculate_distance_bearing(lat: float, lon: float, declination: float) -> tu
     """
     # gpsの緯度経度・磁器偏角値を取得
     gps_data = get_gps_data()
-    if (gps_data[0] is None) or (gps_data[1] is None):
-        return 0.0, 0.0
+
+    # 初期値をNoneから0.0に変更したのでコメントアウト
+    # if (gps_data[0] is None) or (gps_data[1] is None):
+    # return 0.0, 0.0
     return calc_distance_between_two_points(gps_data[0], gps_data[1], lat, lon, declination)
 
 
