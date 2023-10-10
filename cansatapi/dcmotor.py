@@ -21,7 +21,7 @@ class DCMotor:
             rin (int): 逆転制御用ピン
             freq (int): PWMの周波数[Hz]
         """
-        GPIO.cleanup()
+        # GPIO.cleanup()
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(fin, GPIO.OUT)
         GPIO.setup(rin, GPIO.OUT)
