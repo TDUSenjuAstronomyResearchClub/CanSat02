@@ -16,3 +16,21 @@ if __name__ == "__main__":
 
     dcmotor.Wheels.cleanup()
     # GPIO.cleanup()
+
+    print("デバック:右モーターだけ動かす")
+    right_motor = dcmotor.DCMotor(dcmotor.R_WHEEL_FIN, dcmotor.R_WHEEL_RIN)
+    right_motor.forward()
+    time.sleep(2)
+    right_motor.reverse()
+    time.sleep(2)
+    right_motor.stop()
+    right_motor.cleanup()
+
+    print("デバック:左モーターだけ動かす")
+    left_motor = dcmotor.DCMotor(dcmotor.L_WHEEL_FIN, dcmotor.L_WHEEL_RIN)
+    left_motor.forward()
+    time.sleep(2)
+    left_motor.reverse()
+    time.sleep(2)
+    left_motor.stop()
+    left_motor.cleanup()
