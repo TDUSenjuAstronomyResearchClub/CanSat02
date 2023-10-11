@@ -1,7 +1,7 @@
 import time
 
 from cansatapi import dcmotor
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
 if __name__ == "__main__":
     print("デバック:モーターストップ")
@@ -14,5 +14,5 @@ if __name__ == "__main__":
     dcmotor.Wheels.reverse()
     time.sleep(2)
 
-    # dcmotor.Wheels.cleanup()
-    GPIO.cleanup()
+    dcmotor.Wheels.cleanup()
+    # GPIO.cleanup()
