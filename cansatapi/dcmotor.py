@@ -13,7 +13,7 @@ class DCMotor:
     """DCモーターをドライバを通してPWM制御するクラス
     """
 
-    def __init__(self, fin: int, rin: int, freq: int = 100):
+    def __init__(self, fin: int, rin: int, freq: int = 50):
         """DCモーターを初期化するメソッド
 
         Args:
