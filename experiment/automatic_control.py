@@ -6,9 +6,9 @@ import time
 from cansatapi import *
 
 # ToDo:試験前に記入
-GOAL_LON: float = 0.0
-GOAL_LAT: float = 0.0
-DECLINATION: float = 0.0  # 磁気偏角値
+GOAL_LON: float = 35.758660
+GOAL_LAT: float = 139.817332
+DECLINATION: float = 7.78  # 磁気偏角値
 
 
 def is_straight(lat: float, lon: float) -> bool:
