@@ -31,7 +31,7 @@ def get_gps_data() -> tuple[float, float, float]:
 
     while time.time() - start_time < 5:  # 5秒後にタイムアウトします
         if ser.in_waiting > 0:
-            line = ser.readline().decode("ASCII").rstrip()
+            line = ser.readline().decode("ascii").rstrip()
             if line.startswith("GGA", 2):
                 # 時刻・位置・GPS関連情報
                 data = line.split(",")
