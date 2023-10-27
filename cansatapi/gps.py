@@ -39,12 +39,33 @@ def get_gps_data() -> tuple[float, float, float]:
                     lat = lat_conv_deg_min_to_decimal(data[2], data[3])
                     lon = lon_conv_deg_min_to_decimal(data[4], data[5])
                     alt = float(data[10])
+            elif line.startswith("GPGGA", 2):
+                # 時刻や位置とGPS関連の情報
+                data = line.split(",")
+                if data[6] != '0':  # データが有効かチェック
+                    lat = lat_conv_deg_min_to_decimal(data[2], data[3])
+                    lon = lon_conv_deg_min_to_decimal(data[4], data[5])
+                    alt = float(data[10])
+
             elif line.startswith("RMC", 2):
                 # 衛星情報
                 data = line.split(",")
                 if data[2] == 'A':
                     lat = lat_conv_deg_min_to_decimal(data[3], data[4])
                     lon = lon_conv_deg_min_to_decimal(data[5], data[6])
+            elif line.startswith("GPRMC", 2):
+                # 衛星情報
+                data = line.split(",")
+                if data[2] == 'A':
+                    lat = lat_conv_deg_min_to_decimal(data[3], data[4])
+                    lon = lon_conv_deg_min_to_decimal(data[5], data[6])
+
+            elif line.startswith("GPGLL", 2):
+                # 地理的位置を取得
+                data = line.split(",")
+                if data[6] == 'A':
+                    lat = lat_conv_deg_min_to_decimal(data[1], data[2])
+                    lon = lat_conv_deg_min_to_decimal(data[3], data[4])
             break
 
     ser.close()
