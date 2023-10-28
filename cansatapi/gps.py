@@ -8,7 +8,7 @@ GPSから緯度経度・海抜・磁気偏角を取得し、そこから2地点�
 """
 import time
 from math import radians, sin, cos, atan2, sqrt, pi
-from micropyGPS.micropyGPS import MicropyGPS
+from micropyGPS import MicropyGPS
 
 import serial
 
