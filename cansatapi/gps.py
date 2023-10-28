@@ -11,7 +11,6 @@ https://zenn.dev/kotaproj/books/raspberrypi-tips/viewer/370_kiso_gps
 
 https://github.com/inmcm/micropyGPS/tree/master
 """
-import time
 from math import radians, sin, cos, atan2, sqrt, pi
 from micropyGPS import MicropyGPS
 
