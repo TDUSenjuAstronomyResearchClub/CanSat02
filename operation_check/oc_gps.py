@@ -1,6 +1,7 @@
 """GPSの動作確認用モジュール
 """
 import sys
+import time
 
 from cansatapi.gps import *
 
@@ -25,5 +26,7 @@ if __name__ == "__main__":
             # 結果の表示
             print("目的地までの距離：", distance, "m")
             print("方位角：", bearing, "°")
+
+            time.sleep(5)
         except KeyboardInterrupt:
             sys.exit(0)
