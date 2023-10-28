@@ -19,6 +19,7 @@ import serial
 
 def get_gps_data() -> tuple[float, float, float]:
     """GPSデータを取得する関数
+    緯度経度・海抜の初期値が0.0なため，その値が出たら再度取得するプログラムにする
 
     Returns:
         list[float]: 緯度(ddmm.mm), 経度(dddmm.mm), 海抜(m)
