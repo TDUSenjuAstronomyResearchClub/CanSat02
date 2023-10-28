@@ -8,6 +8,8 @@ cansatapiディレクトリに移動して，以下のコマンドを実行す�
 git clone https://github.com/inmcm/micropyGPS
 cd micropyGPS
 python setup.py install
+cd ..
+cp micropyGPS/micropyGPS.py .
 ```
 
 ## APIのインストール方法
