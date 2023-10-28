@@ -4,9 +4,11 @@ GPSから緯度経度・海抜・磁気偏角を取得し、そこから2地点�
 
 使用しているライブラリ:
     pyserial
+    micropyGPS
 """
 import time
 from math import radians, sin, cos, atan2, sqrt, pi
+from micropyGPS.micropyGPS import MicropyGPS
 
 import serial
 
@@ -20,102 +22,29 @@ def get_gps_data() -> tuple[float, float, float]:
     Raises:
         SerialError: シリアル通信時に発生する可能性がある
     """
-
+    # シリアル通信設定
     ser = serial.Serial("/dev/serial0", baudrate=9600, timeout=1)
-    ser.flush()
-    # type.pyでfloatとして扱っているので初期値を0.0にする
+    ser.flush()  # 送信バッファをクリア
+
+    # gpsの設定(UTCとのタイムゾーン差が日本は9時間, 10進数形式で値を取り出す）
+    my_gps = MicropyGPS(9, 'dd')
+
+    # 緯度経度・海抜の変数初期化
     lat = 0.0
     lon = 0.0
     alt = 0.0
-    start_time = time.time()
 
-    while time.time() - start_time < 5:  # 5秒後にタイムアウトします
-        if ser.in_waiting > 0:
-            line = ser.readline().decode("ascii").rstrip()
-            if line.startswith("GGA", 2):
-                # 時刻・位置・GPS関連情報
-                data = line.split(",")
-                if data[6] != '0':  # データが有効かチェック
-                    lat = lat_conv_deg_min_to_decimal(data[2], data[3])
-                    lon = lon_conv_deg_min_to_decimal(data[4], data[5])
-                    alt = float(data[10])
-            elif line.startswith("GPGGA", 2):
-                # 時刻や位置とGPS関連の情報
-                data = line.split(",")
-                if data[6] != '0':  # データが有効かチェック
-                    lat = lat_conv_deg_min_to_decimal(data[2], data[3])
-                    lon = lon_conv_deg_min_to_decimal(data[4], data[5])
-                    alt = float(data[10])
+    sentence = ser.readline()
+    # シリアル通信で受信しているか
+    if len(sentence) > 0:
+        for x in ser:
+            my_gps.update(x)
 
-            elif line.startswith("RMC", 2):
-                # 衛星情報
-                data = line.split(",")
-                if data[2] == 'A':
-                    lat = lat_conv_deg_min_to_decimal(data[3], data[4])
-                    lon = lon_conv_deg_min_to_decimal(data[5], data[6])
-            elif line.startswith("GPRMC", 2):
-                # 衛星情報
-                data = line.split(",")
-                if data[2] == 'A':
-                    lat = lat_conv_deg_min_to_decimal(data[3], data[4])
-                    lon = lon_conv_deg_min_to_decimal(data[5], data[6])
-
-            elif line.startswith("GPGLL", 2):
-                # 地理的位置を取得
-                data = line.split(",")
-                if data[6] == 'A':
-                    lat = lat_conv_deg_min_to_decimal(data[1], data[2])
-                    lon = lat_conv_deg_min_to_decimal(data[3], data[4])
-            break
-
+        lat = my_gps.latitude[0]
+        lon = my_gps.longitude[0]
+        alt = my_gps.altitude
     ser.close()
     return lat, lon, alt
-
-
-def lat_conv_deg_min_to_decimal(lat: str, direction: str) -> float:
-    """緯度を度分形式から10進数形式に変換する関数
-
-    GPGGA緯度フォーマット: ddmm.mm
-    https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data
-
-    Args:
-        lat (str): 度分形式の緯度
-        direction (str): 方向（N, Sのどちらか）
-
-    Returns:
-        float: 10進数形式の経度
-    """
-    d = float(lat[:2])
-    m = float(lat[2:])
-    decimal = d + m / 60
-
-    if direction == "S":
-        decimal *= -1
-
-    return decimal
-
-
-def lon_conv_deg_min_to_decimal(lon: str, direction: str) -> float:
-    """経度を度分形式から10進数形式に変換する関数
-
-    GPGGA経度フォーマット: dddmm.mm
-    https://gpsd.gitlab.io/gpsd/NMEA.html#_gga_global_positioning_system_fix_data
-
-    Args:
-        lon (str): 度分形式の経度
-        direction (str): 方向（E, Wのいずれか）
-
-    Returns:
-        float: 10進数形式の経度
-    """
-    d = float(lon[:3])
-    m = float(lon[3:])
-    decimal = d + m / 60
-
-    if direction == "W":
-        decimal *= -1
-
-    return decimal
 
 
 def calculate_distance_bearing(lat: float, lon: float, declination: float) -> tuple[float, float]:
