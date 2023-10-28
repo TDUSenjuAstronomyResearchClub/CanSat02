@@ -5,6 +5,11 @@ GPSから緯度経度・海抜・磁気偏角を取得し、そこから2地点�
 使用しているライブラリ:
     pyserial
     micropyGPS
+
+参考サイト：
+https://zenn.dev/kotaproj/books/raspberrypi-tips/viewer/370_kiso_gps
+
+https://github.com/inmcm/micropyGPS/tree/master
 """
 import time
 from math import radians, sin, cos, atan2, sqrt, pi
