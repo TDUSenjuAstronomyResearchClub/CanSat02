@@ -37,12 +37,13 @@ def get_gps_data() -> tuple[float, float, float]:
     sentence = ser.readline()
     # シリアル通信で受信しているか
     if len(sentence) > 0:
-        for x in ser:
-            my_gps.update(x)
-
-        lat = my_gps.latitude[0]
-        lon = my_gps.longitude[0]
-        alt = my_gps.altitude
+        for x in sentence:
+            if 10 <= x <= 126:  # 文字列の長さの正弦がupdateにはあるため
+                stat = my_gps.update(chr(x))
+                if stat:
+                    lat = my_gps.latitude[0]
+                    lon = my_gps.longitude[0]
+                    alt = my_gps.altitude
     ser.close()
     return lat, lon, alt
 
