@@ -5,7 +5,7 @@ from cansatapi.servo import Servo
 from cansatapi.soil_moisture import SoilMoistureSensor
 import time
 
-# パラシュート分離用のgpioを指定
+# 土壌水分センサ差し込み用モータのgpioを指定
 soil_servo = Servo(25)
 
 sensor = SoilMoistureSensor()
