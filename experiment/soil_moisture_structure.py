@@ -1,7 +1,6 @@
 """土壌水分量測定の構造が正しく動作するかのテストモジュール
 """
 
-from cansatapi import *
 from cansatapi.servo import Servo
 from cansatapi.soil_moisture import SoilMoistureSensor
 import time
