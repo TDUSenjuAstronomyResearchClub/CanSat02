@@ -12,7 +12,7 @@ soil_servo = Servo(25)
 try:
     for _ in range(20):
         para_servo.rotate_to_angle(90)
-        time.sleep(0.1)
+        time.sleep(0.5)
 except KeyboardInterrupt:
     para_servo.rotate_to_angle(0)
 
@@ -23,7 +23,7 @@ print("サンプル採取機構を土と接触させる")
 try:
     for _ in range(10):
         sample_servo.rotate_to_angle(90)
-        time.sleep(0.1)
+        time.sleep(0.5)
 except KeyboardInterrupt:
     sample_servo.rotate_to_angle(0)
 
@@ -32,6 +32,7 @@ print("サンプル採取機構を機体に格納する")
 try:
     for _ in range(10):
         sample_servo.rotate_to_angle(-90)
+        time.sleep(0.5)
 except KeyboardInterrupt:
     sample_servo.rotate_to_angle(0)
 
@@ -42,7 +43,7 @@ print("土壌水分センサを土に挿し込む")
 try:
     for _ in range(10):
         soil_servo.rotate_to_angle(90)
-        time.sleep(0.1)
+        time.sleep(0.5)
 except KeyboardInterrupt:
     soil_servo.rotate_to_angle(0)
 
@@ -51,7 +52,7 @@ print("土壌水分センサを機体に格納する")
 try:
     for _ in range(10):
         soil_servo.rotate_to_angle(-90)
-        time.sleep(0.1)
+        time.sleep(0.5)
 except KeyboardInterrupt:
     soil_servo.rotate_to_angle(0)
 
