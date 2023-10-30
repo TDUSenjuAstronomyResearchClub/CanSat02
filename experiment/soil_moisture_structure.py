@@ -9,8 +9,9 @@ import time
 soil_servo = Servo(25)
 
 sensor = SoilMoistureSensor()
-start_insert_time = time.time()
 
+# 土壌水分センサを土に挿し込む
+start_insert_time = time.time()
 try:
     while True:
         soil_servo.rotate_to_angle(90)
@@ -21,8 +22,10 @@ try:
 except KeyboardInterrupt:
     soil_servo.rotate_to_angle(0)
 
+# 土壌水分量を出力
 print(f"{sensor.get_soil_moisture()}")
 
+# 土壌水分センサを機体に格納する
 start_pull_out_time = time.time()
 try:
     while True:
