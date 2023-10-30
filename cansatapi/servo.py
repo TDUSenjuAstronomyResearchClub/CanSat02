@@ -31,7 +31,7 @@ class Servo:
         # 停止時のduty比 = 1500us/(20ms*1000)*100 = 7.5%
         self.servo.start(7.5)
 
-    def rotate_cw_or_ccw(self, duty: int):
+    def rotate_cw_or_ccw(self, duty: float):
         """サーボモーターを指定の角度[°]へ動かすメソッド
 
         Args:
