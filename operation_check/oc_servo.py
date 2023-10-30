@@ -13,7 +13,7 @@ try:
     for _ in range(20):
         para_servo.rotate_to_angle(180)
         time.sleep(0.1)
-        para_servo.rotate_to_angle(0)
+        para_servo.rotate_to_angle(-0)
         time.sleep(0.1)
 except KeyboardInterrupt:
     para_servo.rotate_to_angle(0)
@@ -26,7 +26,7 @@ try:
     for _ in range(10):
         sample_servo.rotate_to_angle(180)
         time.sleep(0.1)
-        sample_servo.rotate_to_angle(0)
+        sample_servo.rotate_to_angle(-0)
         time.sleep(0.1)
 except KeyboardInterrupt:
     sample_servo.rotate_to_angle(0)
@@ -37,7 +37,7 @@ try:
     for _ in range(10):
         sample_servo.rotate_to_angle(-180)
         time.sleep(0.1)
-        sample_servo.rotate_to_angle(-0)
+        sample_servo.rotate_to_angle(0)
         time.sleep(0.1)
 except KeyboardInterrupt:
     sample_servo.rotate_to_angle(-0)
@@ -50,7 +50,7 @@ try:
     for _ in range(10):
         soil_servo.rotate_to_angle(180)
         time.sleep(0.1)
-        soil_servo.rotate_to_angle(0)
+        soil_servo.rotate_to_angle(-0)
         time.sleep(0.1)
 except KeyboardInterrupt:
     soil_servo.rotate_to_angle(0)
@@ -61,7 +61,7 @@ try:
     for _ in range(10):
         soil_servo.rotate_to_angle(-180)
         time.sleep(0.1)
-        soil_servo.rotate_to_angle(-0)
+        soil_servo.rotate_to_angle(0)
         time.sleep(0.1)
 except KeyboardInterrupt:
     soil_servo.rotate_to_angle(0)
