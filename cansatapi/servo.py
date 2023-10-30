@@ -4,7 +4,6 @@ https://akizukidenshi.com/download/ds/feetech/fs90r_20201214.pdf
 参考資料
 https://mickey-happygolucky.hatenablog.com/entry/2019/10/23/114711
 """
-import time
 
 import RPi.GPIO as GPIO
 
