@@ -17,13 +17,11 @@ try:
     while True:
         para_servo.rotate_to_angle(90)
         # TODO: パラシュート分離にかかる時間を測定し，変更・反映させる
-        """
-        if time.time() - start_time >= 10:
+        if time.time() - start_time >= 20:
             dcmotor.Wheels.stop()
             para_servo.rotate_to_angle(0)
             dcmotor.Wheels.cleanup()
             break
-        """
 
 
 except KeyboardInterrupt:
