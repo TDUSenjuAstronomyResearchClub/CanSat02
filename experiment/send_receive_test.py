@@ -27,11 +27,14 @@ if __name__ == "__main__":
             send_msg("test_message")    # 地上局にメッセージを機体から送信
             time.sleep(3)   # センサーデータを送信する時間を作るため
 
-            soilmois = SoilMoistureSensor()
-            soilmois_data = soilmois.get_soil_moisture()    # 土壌水分値を取得
-            send_soilmois_data(soilmois_data)    # 土壌水分値を地上局に送信
-            time.sleep(3)   # センサーデータを送信する時間を作るため
-            pass
+            try:
+                soilmois = SoilMoistureSensor()
+                soilmois_data = soilmois.get_soil_moisture()    # 土壌水分値を取得
+                send_soilmois_data(soilmois_data)    # 土壌水分値を地上局に送信
+                time.sleep(3)   # センサーデータを送信する時間を作るため
+                pass
+            except RuntimeError:    # 土壌水分センサーでのエラーを例外処理
+                pass
 
         except KeyboardInterrupt:
             sys.exit(0)
