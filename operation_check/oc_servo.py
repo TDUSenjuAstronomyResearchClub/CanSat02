@@ -9,6 +9,7 @@ sample_servo = Servo(24)
 soil_servo = Servo(25)
 
 # パラシュート分離用モーターにパラシュート分離の動作をさせる
+print("パラシュート分離用モーターを動かす")
 try:
     for _ in range(20):
         para_servo.rotate_cw_or_ccw(3.5)
