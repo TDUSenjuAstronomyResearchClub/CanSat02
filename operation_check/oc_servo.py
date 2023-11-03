@@ -24,7 +24,8 @@ time.sleep(1)
 # サンプル採取用モーターにサンプル採取機構を土と接触させる動作をさせる
 print("サンプル採取機構を土と接触させる")
 try:
-    for _ in range(10):
+    for i in range(10):
+        print(i)
         sample_servo.rotate_cw_or_ccw(3.5)
         time.sleep(2)
 except KeyboardInterrupt:
