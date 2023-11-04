@@ -7,7 +7,7 @@ if __name__ == "__main__":
     print("デバック:モーターストップ")
     dcmotor.Wheels.stop()
     print("デバック:モーター前進")
-    dcmotor.Wheels.forward()
+    dcmotor.Wheels.forward(100)
     time.sleep(7200)
 
     print("デバック:モーター後退")
