@@ -23,7 +23,7 @@ print("サンプル採取機構を土と接触させる")
 sample_servo = Servo(24)
 try:
     sample_servo.rotate_cw_or_ccw(11.5)
-    time.sleep(0.3)
+    time.sleep(0.2)
 except KeyboardInterrupt:
     sample_servo.rotate_cw_or_ccw(7.5)
 sample_servo.stop()
@@ -34,7 +34,7 @@ print("サンプル採取機構を機体に格納する")
 sample_servo = Servo(24)
 try:
     sample_servo.rotate_cw_or_ccw(3.5)
-    time.sleep(0.3)
+    time.sleep(0.2)
 except KeyboardInterrupt:
     sample_servo.rotate_cw_or_ccw(7.5)
 sample_servo.stop()
