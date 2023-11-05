@@ -51,7 +51,7 @@ class Servo:
     def rotate_stop(self):
         """ローテーションサーボモーターを止めるメソッド
         """
-        self.servo.ChangeDutyCycle(7.5)
+        self.servo.ChangeDutyCycle(7.1)
 
     def finish(self):
         """サーボモーターを停止させるメソッド
