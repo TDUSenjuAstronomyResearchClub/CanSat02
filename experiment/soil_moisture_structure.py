@@ -5,35 +5,33 @@ from cansatapi.servo import Servo
 from cansatapi.soil_moisture import SoilMoistureSensor
 import time
 
-# 土壌水分センサ差し込み用モータのgpioを指定
-soil_servo = Servo(25)
+# 土壌水分センサ差し込み用モータのpin番号を指定
+soil_motor_pin = 25
 
+
+# サーボモーターと土壌水分センサのインスタンスを宣言
+soil_servo = Servo(soil_motor_pin)
 sensor = SoilMoistureSensor()
-
-# 土壌水分センサを土に挿し込む
-start_insert_time = time.time()
 try:
-    while True:
-        soil_servo.rotate_to_angle(90)
-        # TODO: 土壌水分センサが土に挿入するのにかかる時間を測定し，変更・反映させる
-        if time.time() - start_insert_time >= 10:
-            soil_servo.rotate_to_angle(0)
-            break
+    print("土壌水分センサを土に挿し込む")
+    soil_servo.rotate_cw_or_ccw(3.5)
+    time.sleep(0.5)
+    soil_servo.stop()
 except KeyboardInterrupt:
-    soil_servo.rotate_to_angle(0)
+    soil_servo.stop()
+
 
 # 土壌水分量を出力
 print(f"{sensor.get_soil_moisture()}")
 
+
 # 土壌水分センサを機体に格納する
-start_pull_out_time = time.time()
+soil_servo = Servo(soil_motor_pin)
 try:
-    while True:
-        soil_servo.rotate_to_angle(-90)
-        # TODO: 土壌水分センサが機体に格納されるのにかかる時間を測定し，変更・反映させる
-        if time.time() - start_pull_out_time >= 10:
-            soil_servo.rotate_to_angle(0)
-            break
+    print("土壌水分センサを機体に格納する")
+    soil_servo.rotate_cw_or_ccw(11.5)
+    time.sleep(0.5)
+    soil_servo.stop()
 except KeyboardInterrupt:
-    soil_servo.rotate_to_angle(0)
+    soil_servo.stop()
 
