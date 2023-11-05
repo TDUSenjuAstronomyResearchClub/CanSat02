@@ -10,7 +10,7 @@ soil_servo = Servo(25)
 
 
 para_servo.rotate_cw_or_ccw(3.5)
-time.sleep(1)
+time.sleep(10)
 para_servo.stop()
 
 """
