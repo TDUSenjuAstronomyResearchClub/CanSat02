@@ -18,7 +18,6 @@ try:
 except KeyboardInterrupt:
     sample_servo.finish()
 
-
 # 機体を前進させ，土をサンプル採取機構の中に入れる
 print("機体を前進")
 dcmotor.Wheels.forward()
