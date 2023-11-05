@@ -38,7 +38,22 @@ class Servo:
         """
         self.servo.ChangeDutyCycle(duty)
 
-    def stop(self):
+    def rotate_cw(self):
+        """ローテーションサーボモーターを時計回りに最速で回すメソッド
+        """
+        self.servo.ChangeDutyCycle(3.5)
+
+    def rotate_ccw(self):
+        """ローテーションサーボモーターを反時計回りに最速で回すメソッド
+        """
+        self.servo.ChangeDutyCycle(11.5)
+
+    def rotate_stop(self):
+        """ローテーションサーボモーターを止めるメソッド
+        """
+        self.servo.ChangeDutyCycle(7.5)
+
+    def finish(self):
         """サーボモーターを停止させるメソッド
 
         サーボモーター使用後は必ず呼び出すこと
