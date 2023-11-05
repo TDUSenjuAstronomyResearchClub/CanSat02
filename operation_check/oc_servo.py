@@ -13,7 +13,7 @@ soil_servo = Servo(25)
 print("パラシュート分離用モーターを動かす")
 try:
     para_servo.rotate_cw_or_ccw(3.5)
-    time.sleep(2)
+    time.sleep(10)
 except KeyboardInterrupt:
     para_servo.rotate_cw_or_ccw(7.5)
     para_servo.stop()
