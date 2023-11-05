@@ -25,7 +25,7 @@ try:
     time.sleep(0.3)
 except KeyboardInterrupt:
     sample_servo.rotate_cw_or_ccw(7.5)
-
+time.sleep(2)
 # サンプル採取機構を機体に格納する
 print("サンプル採取機構を機体に格納する")
 try:
@@ -45,7 +45,7 @@ try:
     time.sleep(0.5)
 except KeyboardInterrupt:
     soil_servo.rotate_cw_or_ccw(7.5)
-
+time.sleep(2)
 # 土壌水分センサを機体に格納する
 print("土壌水分センサを機体に格納する")
 try:
