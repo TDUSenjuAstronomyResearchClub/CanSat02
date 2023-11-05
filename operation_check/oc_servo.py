@@ -8,6 +8,12 @@ para_servo = Servo(23)
 sample_servo = Servo(24)
 soil_servo = Servo(25)
 
+
+para_servo.rotate_cw_or_ccw(3.5)
+time.sleep(1)
+para_servo.stop()
+
+"""
 # パラシュート分離用モーターにパラシュート分離の動作をさせる
 print("パラシュート分離用モーターを動かす")
 try:
@@ -62,3 +68,4 @@ except KeyboardInterrupt:
     soil_servo.rotate_cw_or_ccw(7.5)
 
 soil_servo.stop()
+"""
