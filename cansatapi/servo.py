@@ -31,7 +31,7 @@ class Servo:
         self.servo.start(7.5)
 
     def rotate_cw_or_ccw(self, duty: float):
-        """サーボモーターを指定の角度[°]へ動かすメソッド
+        """ローテーションサーボモーターを時計回りか反時計回りに任意の速さで回すメソッド
 
         Args:
             duty: 3.5~11.5を入力する．7.5以下が時計回り，7.5以上が反時計回り
