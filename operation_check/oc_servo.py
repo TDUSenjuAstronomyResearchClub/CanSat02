@@ -21,7 +21,7 @@ sample_servo = Servo(24)
 # サンプル採取用モーターにサンプル採取機構を土と接触させる動作をさせる
 print("サンプル採取機構を土と接触させる")
 try:
-    sample_servo.rotate_cw_or_ccw(3.5)
+    sample_servo.rotate_cw_or_ccw(11.5)
     time.sleep(10)
 except KeyboardInterrupt:
     sample_servo.rotate_cw_or_ccw(7.5)
@@ -29,7 +29,7 @@ except KeyboardInterrupt:
 # サンプル採取機構を機体に格納する
 print("サンプル採取機構を機体に格納する")
 try:
-    sample_servo.rotate_cw_or_ccw(11.5)
+    sample_servo.rotate_cw_or_ccw(3.5)
     time.sleep(10)
 except KeyboardInterrupt:
     sample_servo.rotate_cw_or_ccw(7.5)
@@ -41,7 +41,7 @@ soil_servo = Servo(25)
 # 土壌水分量測定モータで土壌水分センサを土に挿し込む
 print("土壌水分センサを土に挿し込む")
 try:
-    soil_servo.rotate_cw_or_ccw(11.5)
+    soil_servo.rotate_cw_or_ccw(3.5)
     time.sleep(10)
 except KeyboardInterrupt:
     soil_servo.rotate_cw_or_ccw(7.5)
@@ -49,7 +49,7 @@ except KeyboardInterrupt:
 # 土壌水分センサを機体に格納する
 print("土壌水分センサを機体に格納する")
 try:
-    soil_servo.rotate_cw_or_ccw(3.5)
+    soil_servo.rotate_cw_or_ccw(11.5)
     time.sleep(10)
 except KeyboardInterrupt:
     soil_servo.rotate_cw_or_ccw(7.5)
