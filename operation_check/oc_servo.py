@@ -5,10 +5,6 @@ from cansatapi.servo import Servo
 import time
 
 para_servo = Servo(23)
-sample_servo = Servo(24)
-soil_servo = Servo(25)
-
-
 # パラシュート分離用モーターにパラシュート分離の動作をさせる
 print("パラシュート分離用モーターを動かす")
 try:
@@ -21,6 +17,7 @@ except KeyboardInterrupt:
 para_servo.stop()
 time.sleep(1)
 
+sample_servo = Servo(24)
 # サンプル採取用モーターにサンプル採取機構を土と接触させる動作をさせる
 print("サンプル採取機構を土と接触させる")
 try:
@@ -40,6 +37,7 @@ except KeyboardInterrupt:
 sample_servo.stop()
 time.sleep(1)
 
+soil_servo = Servo(25)
 # 土壌水分量測定モータで土壌水分センサを土に挿し込む
 print("土壌水分センサを土に挿し込む")
 try:
