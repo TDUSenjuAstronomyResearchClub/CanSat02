@@ -13,7 +13,6 @@ try:
 except KeyboardInterrupt:
     para_servo.rotate_cw_or_ccw(7.5)
     para_servo.stop()
-
 para_servo.stop()
 time.sleep(1)
 
@@ -25,16 +24,16 @@ try:
     time.sleep(0.3)
 except KeyboardInterrupt:
     sample_servo.rotate_cw_or_ccw(7.5)
+sample_servo.stop()
+time.sleep(1)
 
 # サンプル採取機構を機体に格納する
 print("サンプル採取機構を機体に格納する")
-time.sleep(2)
 try:
     sample_servo.rotate_cw_or_ccw(3.5)
     time.sleep(0.3)
 except KeyboardInterrupt:
     sample_servo.rotate_cw_or_ccw(7.5)
-
 sample_servo.stop()
 time.sleep(1)
 
@@ -46,14 +45,14 @@ try:
     time.sleep(0.5)
 except KeyboardInterrupt:
     soil_servo.rotate_cw_or_ccw(7.5)
+soil_servo.stop()
+time.sleep(1)
 
 # 土壌水分センサを機体に格納する
 print("土壌水分センサを機体に格納する")
-time.sleep(2)
 try:
     soil_servo.rotate_cw_or_ccw(11.5)
     time.sleep(0.5)
 except KeyboardInterrupt:
     soil_servo.rotate_cw_or_ccw(7.5)
-
 soil_servo.stop()
