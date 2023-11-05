@@ -7,16 +7,16 @@ import time
 # サンプル採取機構のピン番号を指定
 sample_motor_pin = 24
 
+sample_servo = Servo(sample_motor_pin)
 
 # サンプル採取機構を土と接触させる
 print("サンプル採取機構を土と接触させる")
-sample_servo = Servo(sample_motor_pin)
 try:
-    sample_servo.rotate_cw_or_ccw(11.5)
+    sample_servo.rotate_ccw()
     time.sleep(0.2)
-    sample_servo.stop()
+    sample_servo.rotate_stop()
 except KeyboardInterrupt:
-    sample_servo.stop()
+    sample_servo.finish()
 
 
 # 機体を前進させ，土をサンプル採取機構の中に入れる
@@ -28,10 +28,9 @@ dcmotor.Wheels.cleanup()
 
 # サンプル採取機構を機体に格納する
 print("サンプル採取機構を機体に格納する")
-sample_servo = Servo(sample_motor_pin)
 try:
-    sample_servo.rotate_cw_or_ccw(3.5)
+    sample_servo.rotate_cw()
     time.sleep(0.2)
-    sample_servo.stop()
+    sample_servo.finish()
 except KeyboardInterrupt:
-    sample_servo.stop()
+    sample_servo.finish()
