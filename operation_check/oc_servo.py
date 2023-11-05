@@ -4,60 +4,59 @@
 from cansatapi.servo import Servo
 import time
 
-
+para_servo = Servo(23)
 # パラシュート分離用モーターにパラシュート分離の動作をさせる
 print("パラシュート分離用モーターを動かす")
-para_servo = Servo(23)
 try:
-    para_servo.rotate_cw_or_ccw(3.5)
+    para_servo.rotate_cw()
     time.sleep(10)
+    para_servo.finish()
 except KeyboardInterrupt:
-    para_servo.rotate_cw_or_ccw(7.5)
-    para_servo.stop()
-para_servo.stop()
+    para_servo.finish()
+
 time.sleep(1)
 
 
+sample_servo = Servo(24)
 # サンプル採取用モーターにサンプル採取機構を土と接触させる動作をさせる
 print("サンプル採取機構を土と接触させる")
-sample_servo = Servo(24)
 try:
-    sample_servo.rotate_cw_or_ccw(11.5)
+    sample_servo.rotate_ccw()
     time.sleep(0.2)
+    sample_servo.rotate_stop()
 except KeyboardInterrupt:
-    sample_servo.rotate_cw_or_ccw(7.5)
-sample_servo.stop()
+    sample_servo.finish()
+
 time.sleep(1)
 
 # サンプル採取機構を機体に格納する
 print("サンプル採取機構を機体に格納する")
-sample_servo = Servo(24)
 try:
-    sample_servo.rotate_cw_or_ccw(3.5)
+    sample_servo.rotate_cw()
     time.sleep(0.2)
+    sample_servo.finish()
 except KeyboardInterrupt:
-    sample_servo.rotate_cw_or_ccw(7.5)
-sample_servo.stop()
+    sample_servo.finish()
 time.sleep(1)
 
 
+soil_servo = Servo(25)
 # 土壌水分量測定モータで土壌水分センサを土に挿し込む
 print("土壌水分センサを土に挿し込む")
-soil_servo = Servo(25)
 try:
-    soil_servo.rotate_cw_or_ccw(3.5)
+    soil_servo.rotate_cw()
     time.sleep(0.5)
+    soil_servo.rotate_stop()
 except KeyboardInterrupt:
-    soil_servo.rotate_cw_or_ccw(7.5)
-soil_servo.stop()
+    soil_servo.finish()
+
 time.sleep(1)
 
 # 土壌水分センサを機体に格納する
 print("土壌水分センサを機体に格納する")
-soil_servo = Servo(25)
 try:
-    soil_servo.rotate_cw_or_ccw(11.5)
+    soil_servo.rotate_ccw()
     time.sleep(0.5)
+    soil_servo.finish()
 except KeyboardInterrupt:
-    soil_servo.rotate_cw_or_ccw(7.5)
-soil_servo.stop()
+    soil_servo.finish()
