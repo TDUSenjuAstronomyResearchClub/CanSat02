@@ -5,28 +5,27 @@ from cansatapi import *
 from cansatapi.servo import Servo
 import time
 
-# パラシュート分離用のgpioを指定
-para_servo = Servo(23)
+# パラシュート分離用モーターのピン番号
+para_pin = 23
 
-# 機体を前進させる
-dcmotor.Wheels.forward()
-
-start_time = time.time()
-
+# パラシュート分離線を巻き取り
+para_servo = Servo(para_pin)
 try:
-    while True:
-        para_servo.rotate_to_angle(90)
-        # TODO: パラシュート分離にかかる時間を測定し，変更・反映させる
-        if time.time() - start_time >= 20:
-            dcmotor.Wheels.stop()
-            para_servo.rotate_to_angle(0)
-            dcmotor.Wheels.cleanup()
-            break
+    print("パラシュート分離線を巻き取り")
+    para_servo.rotate_cw_or_ccw(3.5)
+    time.sleep(10)
+    para_servo.stop()
 
+    # 機体を前進させる
+    print("機体を20秒前進させる")
+    dcmotor.Wheels.forward()
+    time.sleep(20)
+    dcmotor.Wheels.stop()
+    dcmotor.Wheels.cleanup()
 
 except KeyboardInterrupt:
     dcmotor.Wheels.stop()
-    para_servo.rotate_to_angle(0)
-
     dcmotor.Wheels.cleanup()
+    para_servo.stop()
+
 
