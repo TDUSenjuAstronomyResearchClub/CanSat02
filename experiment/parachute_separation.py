@@ -12,9 +12,9 @@ para_pin = 23
 para_servo = Servo(para_pin)
 try:
     print("パラシュート分離線を巻き取り")
-    para_servo.rotate_cw_or_ccw(3.5)
+    para_servo.rotate_cw()
     time.sleep(10)
-    para_servo.stop()
+    para_servo.finish()
 
     # 機体を前進させる
     print("機体を20秒前進させる")
@@ -26,6 +26,6 @@ try:
 except KeyboardInterrupt:
     dcmotor.Wheels.stop()
     dcmotor.Wheels.cleanup()
-    para_servo.stop()
+    para_servo.finish()
 
 
