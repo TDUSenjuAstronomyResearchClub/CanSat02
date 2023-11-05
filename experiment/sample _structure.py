@@ -4,38 +4,34 @@ from cansatapi.servo import Servo
 from cansatapi import *
 import time
 
-# サンプル採取用サーボモーターのgpioを指定
-sample_servo = Servo(24)
+# サンプル採取機構のピン番号を指定
+sample_motor_pin = 24
 
-start_hang_down_time = time.time()
 
 # サンプル採取機構を土と接触させる
 print("サンプル採取機構を土と接触させる")
+sample_servo = Servo(sample_motor_pin)
 try:
-    while True:
-        sample_servo.rotate_to_angle(90)
-        # TODO: サンプル採取機構が土と接触するのにかかる時間を測定し，変更・反映させる
-        if time.time() - start_hang_down_time >= 5:
-            sample_servo.rotate_to_angle(0)
-            break
+    sample_servo.rotate_cw_or_ccw(11.5)
+    time.sleep(0.2)
+    sample_servo.stop()
 except KeyboardInterrupt:
-    sample_servo.rotate_to_angle(0)
+    sample_servo.stop()
+
 
 # 機体を前進させ，土をサンプル採取機構の中に入れる
+print("機体を前進")
 dcmotor.Wheels.forward()
-time.sleep(3)
+time.sleep(5)
 dcmotor.Wheels.stop()
 dcmotor.Wheels.cleanup()
 
 # サンプル採取機構を機体に格納する
-start_pull_out_time = time.time()
+print("サンプル採取機構を機体に格納する")
+sample_servo = Servo(sample_motor_pin)
 try:
-    while True:
-        sample_servo.rotate_to_angle(-90)
-        # TODO: サンプル採取機構が機体に格納されるのにかかる時間を測定し，変更・反映させる
-        if time.time() - start_pull_out_time >= 10:
-            sample_servo.rotate_to_angle(0)
-            break
+    sample_servo.rotate_cw_or_ccw(3.5)
+    time.sleep(0.2)
+    sample_servo.stop()
 except KeyboardInterrupt:
-    sample_servo.rotate_to_angle(0)
-
+    sample_servo.stop()
