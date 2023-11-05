@@ -9,7 +9,7 @@ sample_servo = Servo(24)
 soil_servo = Servo(25)
 
 
-para_servo.rotate_cw_or_ccw(3.5)
+para_servo.rotate_cw_or_ccw(11.5)
 time.sleep(10)
 para_servo.stop()
 
