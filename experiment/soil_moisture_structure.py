@@ -14,7 +14,7 @@ soil_servo = Servo(soil_motor_pin)
 sensor = SoilMoistureSensor()
 try:
     print("土壌水分センサを土に挿し込む")
-    soil_servo.rotate_cw_or_ccw(3.5)
+    soil_servo.rotate_cw_or_ccw(11.5)
     time.sleep(0.5)
     soil_servo.stop()
 except KeyboardInterrupt:
@@ -29,7 +29,7 @@ print(f"{sensor.get_soil_moisture()}")
 soil_servo = Servo(soil_motor_pin)
 try:
     print("土壌水分センサを機体に格納する")
-    soil_servo.rotate_cw_or_ccw(11.5)
+    soil_servo.rotate_cw_or_ccw(3.5)
     time.sleep(0.5)
     soil_servo.stop()
 except KeyboardInterrupt:
