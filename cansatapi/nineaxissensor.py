@@ -184,7 +184,7 @@ class NineAxisSensor:
         mag_field = self.__get_magnetic_field_data()
         return convert.ut_to_azimuth(mag_field[0], mag_field[1])
 
-    def __get_magnetic_field_data(self) -> tuple[float, float, float]:
+    def get_magnetic_field_data(self) -> tuple[float, float, float]:
         """3軸地磁気センサから3軸の地磁気[μT]を取得する
 
         Returns:
