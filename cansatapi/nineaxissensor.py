@@ -5,7 +5,7 @@
 """
 
 import smbus2
-
+import time
 from .util import convert
 
 # アドレスはデータシートのp.145に記載
@@ -67,6 +67,16 @@ class NineAxisSensor:
         self.bus.write_byte_data(GYRO_ADDR, 0x11, 0x00)
 
         # 磁気コンパスの設定
+        # 磁力計のレジスタ0x4Bから現在の値を読み取る
+        data = self.bus.read_byte_data(MAG_ADDR, 0x4B)
+        # もし値が0ならば、磁力計をリセットするために同じレジスタに0x83を書き込む
+        if data == 0:
+            self.bus.write_byte_data(MAG_ADDR, 0x4B, 0x83)
+            time.sleep(0.5)
+
+        # 磁力計を通常モードに設定
+        self.bus.write_byte_data(MAG_ADDR, 0x4B, 0x01)
+
         # MAGレジスタに実行モードとアウトプットのレートを設定
         # 0x00 = Normal mode, レート 10Hz
         self.bus.write_byte_data(MAG_ADDR, 0x4C, 0x00)
