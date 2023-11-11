@@ -12,6 +12,7 @@ from .util import convert
 # 回路によってアドレスが変わるのでコメントアウトしておきます
 # 詳しくは説明書 https://akizukidenshi.com/download/ds/akizuki/AE-BMX055_20220804.pdf を参照
 # データシートp.145のTable 64にも記載あり
+# 地磁気センサ制御についての参考資料　https://rfsec.ddns.net/db/?p=305
 
 # 加速度計のアドレス
 # ACCL_ADDR = 0x18
