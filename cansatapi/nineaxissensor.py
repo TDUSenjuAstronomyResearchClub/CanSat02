@@ -181,8 +181,9 @@ class NineAxisSensor:
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
         """
-        mag_field = self.__get_magnetic_field_data()
-        return convert.ut_to_azimuth(mag_field[0], mag_field[1])
+        acc = self.get_acceleration()
+        mag_field = self.get_magnetic_field_data()
+        return convert.ut_to_azimuth(acc[0], acc[1], acc[2], mag_field[0], mag_field[1])
 
     def get_magnetic_field_data(self) -> tuple[float, float, float]:
         """3軸地磁気センサから3軸の地磁気[μT]を取得する
@@ -200,7 +201,7 @@ class NineAxisSensor:
         # 符号付整数なので、0ビット目が1ならば負の数に変換する
         if mag_x > 4095:
             mag_x -= 8192
-        mag_y = ((raw_mag_y[1] * 256) + (raw_mag_y[0] & 0xF8)) / 8
+        mag_y = ((raw_mag_x[3] * 256) + (raw_mag_x[2] & 0xF8)) / 8
         if mag_y > 4095:
             mag_y -= 8192
 
