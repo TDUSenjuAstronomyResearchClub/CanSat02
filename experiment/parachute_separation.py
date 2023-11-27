@@ -17,6 +17,7 @@ try:
     para_servo.finish()
 
     # 機体を前進させる
+    dcmotor.Wheels.stop()
     print("機体を20秒前進させる")
     dcmotor.Wheels.forward()
     time.sleep(20)
