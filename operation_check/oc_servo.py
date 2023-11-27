@@ -41,7 +41,7 @@ except KeyboardInterrupt:
 time.sleep(1)
 """
 
-soil_servo = Servo(25)
+soil_servo = Servo(24)
 # 土壌水分量測定モータで土壌水分センサを土に挿し込む
 print("土壌水分センサを土に挿し込む")
 try:
