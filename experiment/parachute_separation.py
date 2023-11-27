@@ -1,7 +1,7 @@
 """機体とパラシュートが分離できるかのテストモジュール
 パラシュートを付けた状態で機体をセットする
 """
-from cansatapi import *
+from cansatapi import dcmotor
 from cansatapi.servo import Servo
 import time
 
