@@ -6,7 +6,7 @@ from cansatapi.soil_moisture import SoilMoistureSensor
 import time
 
 # 土壌水分センサ差し込み用モータのpin番号を指定
-soil_motor_pin = 25
+soil_motor_pin = 24
 
 # サーボモーターと土壌水分センサのインスタンスを宣言
 soil_servo = Servo(soil_motor_pin)

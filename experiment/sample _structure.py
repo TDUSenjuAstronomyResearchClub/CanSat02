@@ -5,7 +5,7 @@ from cansatapi import *
 import time
 
 # サンプル採取機構のピン番号を指定
-sample_motor_pin = 24
+sample_motor_pin = 25
 
 sample_servo = Servo(sample_motor_pin)
 
