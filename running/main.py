@@ -114,6 +114,7 @@ def main():
         time.sleep(0.1)
 
     xbee.send_msg("着地")
+    detach_parachute()
 
     go_to_sample = True
     while True:
