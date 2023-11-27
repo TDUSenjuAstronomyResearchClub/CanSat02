@@ -1,27 +1,13 @@
-"""サーボモーターを制御するモジュール
+"""ローテーションサーボモーターを制御するモジュール
+データシート
+https://akizukidenshi.com/download/ds/feetech/fs90r_20201214.pdf
+参考資料
+https://mickey-happygolucky.hatenablog.com/entry/2019/10/23/114711
 """
-import time
 
 import RPi.GPIO as GPIO
 
-from cansatapi.util.convert import conv_range
-
-
-def calc_duty(angle: float) -> float:
-    """指定の角度からデューティ比を求める関数
-
-    Args:
-        angle (float): 角度[°]
-
-    Returns:
-
-    """
-    # 範囲変換式で±90°からデューティ比2.5~12[%]に収める
-    if angle > 90:
-        angle = 90
-    elif angle < -90:
-        angle = -90
-    return conv_range(angle, -90, 90, 2.5, 12.0)
+PARA_PIN = 23
 
 
 class Servo:
@@ -39,25 +25,37 @@ class Servo:
         GPIO.setup(self.servo_pin, GPIO.OUT)
 
         # PWMの設定
-        # SG90と同じように制御できるっぽい
         self.servo = GPIO.PWM(self.servo_pin, 50)
 
         # サーボの制御を開始する
-        self.servo.start(0)
+        # PWM周波数:50Hz→周期:20ms　サーボモーター停止のパルス幅1500us
+        # 停止時のduty比 = 1500us/(20ms*1000)*100 = 7.5%
+        self.servo.start(7.5)
 
-    def rotate_to_angle(self, angle: int):
-        """サーボモーターを指定の角度[°]へ動かすメソッド
-
-        範囲は±90°で指定してください。
-        指定された角度が[-90, 90]の範囲を越えていた場合はこの範囲に収めます。
+    def rotate_cw_or_ccw(self, duty: float):
+        """ローテーションサーボモーターを時計回りか反時計回りに任意の速さで回すメソッド
 
         Args:
-            angle: 範囲[-90, 90]の角度[°]
+            duty: 3.5~11.5を入力する．7.5以下が時計回り，7.5以上が反時計回り
         """
-        self.servo.ChangeDutyCycle(calc_duty(angle))
-        time.sleep(0.3)
+        self.servo.ChangeDutyCycle(duty)
 
-    def stop(self):
+    def rotate_cw(self):
+        """ローテーションサーボモーターを時計回りに最速で回すメソッド
+        """
+        self.servo.ChangeDutyCycle(3.5)
+
+    def rotate_ccw(self):
+        """ローテーションサーボモーターを反時計回りに最速で回すメソッド
+        """
+        self.servo.ChangeDutyCycle(11.5)
+
+    def rotate_stop(self):
+        """ローテーションサーボモーターを止めるメソッド
+        """
+        self.servo.ChangeDutyCycle(7.1)
+
+    def finish(self):
         """サーボモーターを停止させるメソッド
 
         サーボモーター使用後は必ず呼び出すこと
