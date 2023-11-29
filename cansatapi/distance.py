@@ -27,6 +27,30 @@ except OSError:  # OSErrorが発生した場合は、25度として計算をし�
     TEMP = 25
 
 
+def speed_calculation() -> float:
+    """音波のスピードを計算する
+
+    Returns:
+            float: スピード
+    """
+    return 331.50 + 0.6 * TEMP  # 音速を求める(TEMPは測定環境温度)
+
+
+def duration_calculation(elapsed: float, speed: float) -> float:
+    """前方の障害物との距離を計算する
+
+    Args:
+        elapsed:
+            float: HIGHになっている時間
+        speed:
+            float: スピード
+
+    Returns:
+        float: 距離(cm)
+    """
+    return elapsed * speed / 2 * 100  # elapsedは経過時間（秒）、最後に100をかけてメートルからセンチメートルに変換
+
+
 def distance_result() -> float:
     """超音波距離センサ(HC-SR04)を使って機体前面にある物体と機体との距離を取得する
 
@@ -59,7 +83,7 @@ def distance_result() -> float:
     elapsed = sig_on - sig_off
     # print(f"デバック用 elapsed: {elapsed}")
 
-    speed = 331.50 + 0.6 * TEMP     # 音速を求める(TEMPは測定環境温度)
-    duration = elapsed * speed / 2 * 100     # elapsedは経過時間（秒）、最後に100をかけてメートルからセンチメートルに変換
+    speed = speed_calculation()
+    duration = duration_calculation(elapsed, speed)
 
     return duration
