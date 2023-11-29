@@ -9,8 +9,8 @@ import time
 from .bme280 import BME280
 
 # ポート番号の定義
-TRIG = 5  # 変数"Trig"に27を代入
-ECHO = 6  # 変数"Echo"に18を代入
+TRIG = 5  # 変数"Trig"にgpio5を代入
+ECHO = 6  # 変数"Echo"にgpio6を代入
 
 # GPIO設定
 GPIO.setwarnings(False)
