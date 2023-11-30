@@ -116,6 +116,8 @@ def main():
     xbee.send_msg("着地")
     detach_parachute()
 
+
+"""
     go_to_sample = True
     while True:
         # 1行動ごとにループを回す
@@ -149,7 +151,7 @@ def main():
             manual_mode(received_str)
 
     parse_proc.terminate()
-
+"""
 
 if __name__ == "__main__":
     isAuto = True
