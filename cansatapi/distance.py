@@ -57,6 +57,7 @@ def distance_result() -> float:
     Returns:
         float: 距離(cm)
     """
+    
     time.sleep(0.1)  # センサーの安定を待つ
 
     # トリガ信号出力

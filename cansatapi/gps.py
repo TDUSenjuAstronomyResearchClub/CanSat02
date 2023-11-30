@@ -52,7 +52,7 @@ def get_gps_data() -> tuple[float, float, float]:
     ser.close()
     return lat, lon, alt
 
-
+  
 def calculate_distance_bearing(lat: float, lon: float, declination: float) -> tuple[float, float]:
     """機体の現在地点から指定された地点の緯度経度までの直線距離と方位角を計算する関数
 

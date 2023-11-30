@@ -103,7 +103,6 @@ def send_pic(pic_hex: str):
     print("debug comment:action send_pic")
     send(jsonGenerator.generate_json(data_type="only_picture_data", time=time.time(), camera=pic_hex))
 
-
 def send_soilmois_data(moisture: float):
     """土壌水分量データをjson形式に変換し、送信用キューに格納する関数を呼び出す
 
