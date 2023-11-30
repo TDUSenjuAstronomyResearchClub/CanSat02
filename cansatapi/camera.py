@@ -10,17 +10,11 @@ import datetime
 
 from picamera2 import Picamera2
 
-from . import xbee
-
-# ポート設定
-PORT = '/dev/ttyUSB0'
-
-# 通信レート設定
-BAUD_RATE = 9600
+from .xbee import *
 
 
 def photograph():
-    """カメラモジュールを使って画像を撮影、地上局に送信ができるプログラム
+    """カメラモジュールを使って画像を撮影ができるプログラム
 
     Raises:
         CameraError: カメラに不具合があった際に発生
@@ -42,9 +36,10 @@ def photograph():
 
     with open(filename, 'rb') as img:  # 画像ファイルをバイナリデータとして開く
         data = img.read()
-        XBee.send_pic(data.hex())
+        send_pic(data.hex())
 
 
 class CameraError(Exception):
     """カメラ使用時のエラー
     """
+    pass    # TODO:仮で記入したため再考が必要

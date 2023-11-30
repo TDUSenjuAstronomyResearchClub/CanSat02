@@ -8,6 +8,17 @@ import RPi.GPIO as GPIO
 import time
 from .bme280 import BME280
 
+# ポート番号の定義
+TRIG = 5  # Triggerピン
+ECHO = 6  # Echoピン
+
+# GPIO設定
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(TRIG, GPIO.OUT)
+GPIO.setup(ECHO, GPIO.IN)
+
 # 測定環境温度
 try:
     temp = BME280().temperature_result()  # 温湿度気圧センサから現在の温度値を呼び出す
@@ -15,12 +26,29 @@ try:
 except OSError:  # OSErrorが発生した場合は、25度として計算をしていく
     TEMP = 25
 
-# GPIO設定
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(5, GPIO.OUT)
-GPIO.setup(6, GPIO.IN)
+def speed_calculation() -> float:
+    """音波のスピードを計算する
+
+    Returns:
+            float: スピード
+    """
+    return 331.50 + 0.6 * TEMP  # 音速を求める(TEMPは測定環境温度)
+
+
+def duration_calculation(elapsed: float, speed: float) -> float:
+    """前方の障害物との距離を計算する
+
+    Args:
+        elapsed:
+            float: HIGHになっている時間
+        speed:
+            float: スピード
+
+    Returns:
+        float: 距離(cm)
+    """
+    return elapsed * speed / 2 * 100  # elapsedは経過時間（秒）、最後に100をかけてメートルからセンチメートルに変換
 
 
 def distance_result() -> float:
@@ -29,32 +57,34 @@ def distance_result() -> float:
     Returns:
         float: 距離(cm)
     """
-    # プログラム動作時間測定の基準
-    start_time = time.time()
+    
+    time.sleep(0.1)  # センサーの安定を待つ
 
     # トリガ信号出力
-    GPIO.output(5, GPIO.HIGH)
-    time.sleep(0.00001)
-    GPIO.output(5, GPIO.LOW)
+    GPIO.output(TRIG, GPIO.HIGH)  # GPIO5の出力をHigh(3.3V)にする
+    time.sleep(0.00001)  # 10μ秒間待つ
+    GPIO.output(TRIG, GPIO.LOW)  # GPIO5の出力をLow(0V)にする
 
-    soff = time.time()  # 初期値の設定
-    # 返送LOWレベル時間計測
-    while GPIO.input(6) == GPIO.LOW:
-        soff = time.time()  # LOWレベル終了時刻更新
-        if soff - start_time > 5:   # 5秒よりも長くLOWレベルにならなかった場合は、0.0を返却する
-            return 0.0
+    sig_off = time.time()  # 初期値の設定
+    timeout = time.time() + 0.02  # タイムアウトを0.02秒に設定
 
-    son = time.time()  # 初期値の設定
-    # 返送HIGHレベル時間計測
-    while GPIO.input(6) == GPIO.HIGH:
-        son = time.time()  # HIGHレベル終了時刻更新
-        if son - start_time > 10:  # 10秒よりも長くHIGHレベルにならなかった場合は、0.0を返却する
-            return 0.0
+    while GPIO.input(ECHO) == GPIO.LOW and time.time() < timeout:  # 返送LOWレベル時間計測
+        sig_off = time.time()  # LOWレベル終了時刻更新
+        # print(f"デバック用 sig_off: {sig_off}")
+
+    sig_on = time.time()  # 初期値の設定
+    timeout = time.time() + 0.02  # タイムアウトを0.02秒に設定
+    # print(f"デバック用 echo timeout: {timeout}")
+
+    while GPIO.input(ECHO) == GPIO.HIGH and time.time() < timeout:  # 返送HIGHレベル時間計測
+        sig_on = time.time()  # HIGHレベル終了時刻更新
+        # print(f"デバック用 sig_on: {sig_on}")
 
     # HIGHレベル期間の計算
-    clc = son - soff
+    elapsed = sig_on - sig_off
+    # print(f"デバック用 elapsed: {elapsed}")
 
-    # 時間から距離に変換(TEMPは測定環境温度)
-    clc = clc * (331.50 + (0.6 * TEMP)) / 2 * 100
+    speed = speed_calculation()
+    duration = duration_calculation(elapsed, speed)
 
-    return clc
+    return duration

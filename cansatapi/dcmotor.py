@@ -13,7 +13,7 @@ class DCMotor:
     """DCモーターをドライバを通してPWM制御するクラス
     """
 
-    def __init__(self, fin: int, rin: int, freq: int = 50_000):
+    def __init__(self, fin: int, rin: int, freq: int = 50):
         """DCモーターを初期化するメソッド
 
         Args:
@@ -21,7 +21,7 @@ class DCMotor:
             rin (int): 逆転制御用ピン
             freq (int): PWMの周波数[Hz]
         """
-        GPIO.cleanup()
+        # GPIO.cleanup()
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(fin, GPIO.OUT)
         GPIO.setup(rin, GPIO.OUT)

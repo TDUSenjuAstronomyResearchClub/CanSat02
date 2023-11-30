@@ -5,13 +5,14 @@
 """
 
 import smbus2
-
+import time
 from .util import convert
 
 # アドレスはデータシートのp.145に記載
 # 回路によってアドレスが変わるのでコメントアウトしておきます
 # 詳しくは説明書 https://akizukidenshi.com/download/ds/akizuki/AE-BMX055_20220804.pdf を参照
 # データシートp.145のTable 64にも記載あり
+# 地磁気センサ制御についての参考資料　https://rfsec.ddns.net/db/?p=305
 
 # 加速度計のアドレス
 # ACCL_ADDR = 0x18
@@ -66,6 +67,16 @@ class NineAxisSensor:
         self.bus.write_byte_data(GYRO_ADDR, 0x11, 0x00)
 
         # 磁気コンパスの設定
+        # 磁力計のレジスタ0x4Bから現在の値を読み取る
+        data = self.bus.read_byte_data(MAG_ADDR, 0x4B)
+        # もし値が0ならば、磁力計をリセットするために同じレジスタに0x83を書き込む
+        if data == 0:
+            self.bus.write_byte_data(MAG_ADDR, 0x4B, 0x83)
+            time.sleep(0.5)
+
+        # 磁力計を通常モードに設定
+        self.bus.write_byte_data(MAG_ADDR, 0x4B, 0x01)
+
         # MAGレジスタに実行モードとアウトプットのレートを設定
         # 0x00 = Normal mode, レート 10Hz
         self.bus.write_byte_data(MAG_ADDR, 0x4C, 0x00)
@@ -170,25 +181,27 @@ class NineAxisSensor:
         Raises:
             OSError: I2C通信が正常に行えなかった際に発生
         """
-        mag_field = self.__get_magnetic_field_data()
+        # acc = self.get_acceleration()
+        mag_field = self.get_magnetic_field_data()
         return convert.ut_to_azimuth(mag_field[0], mag_field[1])
 
-    def __get_magnetic_field_data(self) -> tuple[float, float, float]:
+    def get_magnetic_field_data(self) -> tuple[float, float, float]:
         """3軸地磁気センサから3軸の地磁気[μT]を取得する
 
         Returns:
             tuple[float, float, float]: 地磁気[μT] (x, y, z)
         """
         # レジスタから値を読む
-        raw_mag_x_y = self.bus.read_i2c_block_data(MAG_ADDR, 0x42, 4)
+        raw_mag_x = self.bus.read_i2c_block_data(MAG_ADDR, 0x42, 4)
+        raw_mag_y = self.bus.read_i2c_block_data(MAG_ADDR, 0x44, 4)
         raw_mag_z = self.bus.read_i2c_block_data(MAG_ADDR, 0x46, 2)
 
         # 13ビットに変換
-        mag_x = ((raw_mag_x_y[1] * 256) + (raw_mag_x_y[0] & 0xF8)) / 8
+        mag_x = ((raw_mag_x[1] * 256) + (raw_mag_x[0] & 0xF8)) / 8
         # 符号付整数なので、0ビット目が1ならば負の数に変換する
         if mag_x > 4095:
             mag_x -= 8192
-        mag_y = ((raw_mag_x_y[3] * 256) + (raw_mag_x_y[2] & 0xF8)) / 8
+        mag_y = ((raw_mag_x[3] * 256) + (raw_mag_x[2] & 0xF8)) / 8
         if mag_y > 4095:
             mag_y -= 8192
 

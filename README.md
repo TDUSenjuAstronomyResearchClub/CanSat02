@@ -2,6 +2,16 @@
 
 能代宇宙イベントで使用する機体のプログラムです
 
+## micropyGPSの導入(sdカードを変えたら実行する)
+cansatapiディレクトリに移動して，以下のコマンドを実行する．
+```shell
+git clone https://github.com/inmcm/micropyGPS
+cd micropyGPS
+python setup.py install
+cd ..
+cp micropyGPS/micropyGPS.py .
+```
+
 ## APIのインストール方法
 
 まず、`git clone`でこのリポジトリをラズパイにクローンします。

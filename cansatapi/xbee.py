@@ -5,8 +5,6 @@ import multiprocessing
 from serial import PortNotOpenError
 from serial import SerialException
 
-from running import running
-
 from .message import jsonGenerator, type
 from .point_declination import get_lon_lat_decl
 from .util.logging import LoggerJSON
@@ -34,10 +32,14 @@ def start():
         while _send_queue.empty():
             c += 1
             if c >= 5:
+                print("jsonファイル送信作業開始")
                 get_send_sensor_data()  # 約5秒に1度各センサー値の入ったjsonファイルを送信する
                 c = 0
+                print("jsonファイル送信作業終了")
             else:
+                print("jsonファイル受信開始")
                 _receive(1)  # 1秒間待機する
+                print("jsonファイル送信作業終了")
         _send()
 
 
@@ -89,6 +91,7 @@ def send_msg(msg: str):
         msg: 任意のメッセージ
     """
     send(jsonGenerator.generate_json(data_type="only_message_data", time=time.time(), message=msg))
+    # print("debug comment:action send_msg")
 
 
 def send_pic(pic_hex: str):
@@ -97,8 +100,8 @@ def send_pic(pic_hex: str):
     Args:
         pic_hex: 写真データ(16進数)
     """
+    print("debug comment:action send_pic")
     send(jsonGenerator.generate_json(data_type="only_picture_data", time=time.time(), camera=pic_hex))
-
 
 def send_soilmois_data(moisture: float):
     """土壌水分量データをjson形式に変換し、送信用キューに格納する関数を呼び出す
@@ -202,72 +205,6 @@ def get_send_sensor_data():
                                      nine_axis=nine_axis_data, bme280=bme280_data, distance=ultrasound_distance))
 
 
-def send_sensor_data():
-    """センサーデータをjsonファイルに書き込んで地上に送信する関数（写真・土壌水分・メッセージ以外）
-        lps25hb（気圧センサー）、batteryは使用しないため、常時Noneを返すようにしている
-    """
-    time_now = time.time()
-
-    # gps関係のデータを読み込み
-    latitude_longitude_altitude = get_gps_data()
-    sample_distance_and_azimuth = calculate_distance_bearing(running.SAMPLE_LAT, running.SAMPLE_LON,
-                                                             running.DECLINATION)
-    goal_distance_and_azimuth = calculate_distance_bearing(running.SAMPLE_LAT, running.SAMPLE_LON, running.DECLINATION)
-
-    # 警告出てるけど、無視して大丈夫な気がする
-    distance_data: type.Distance = {
-        'sample': sample_distance_and_azimuth[0],
-        'goal': goal_distance_and_azimuth[0]
-    }
-
-    azimuth_data: type.Azimuth = {
-        'sample': sample_distance_and_azimuth[1],
-        'goal': goal_distance_and_azimuth[1]
-    }
-
-    gps_data: type.Gps = {
-        'latitude': latitude_longitude_altitude[0],
-        'longitude': latitude_longitude_altitude[1],
-        'altitude': latitude_longitude_altitude[2],
-        'distance': distance_data,
-        'azimuth': azimuth_data
-    }
-
-    # 9軸センサー関係のデータを読み込み
-    acceleration_tmp = nine_axis_sensor.get_acceleration()
-    acceleration_data: type.Acceleration = {
-        'x': acceleration_tmp[0],
-        'y': acceleration_tmp[1],
-        'z': acceleration_tmp[2]
-    }
-
-    angular_rate_tmp = nine_axis_sensor.get_angular_rate()
-    angular_rate_data: type.AngularVelocity = {
-        'x': angular_rate_tmp[0],
-        'y': angular_rate_tmp[1],
-        'z': angular_rate_tmp[2]
-    }
-
-    nine_axis_data: type.NineAxis = {
-        'acceleration': acceleration_data,
-        'angular_velocity': angular_rate_data,
-        'azimuth': nine_axis_sensor.nineget_magnetic_heading()
-    }
-
-    bme280_data: type.Bme280 = {
-        'temperature': bme280_instance.get_temperature(),
-        'humidity': bme280_instance.get_humidity(),
-        'pressure': bme280_instance.get_pressure()
-    }
-
-    # 超音波距離センサーの距離データを読み込み
-    ultrasound_distance = distance_result()
-
-    # lps25hb（気圧センサー）、batteryは使用しないため、常時Noneを返すようにしている
-    send(jsonGenerator.generate_json(time=time_now, gps=gps_data, nine_axis=nine_axis_data, bme280=bme280_data,
-                                     lps25hb=None, battery=None, distance=ultrasound_distance))
-
-
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
     """データを地上から受信する関数
 
@@ -314,4 +251,6 @@ def get_received_str() -> str:
     Returns:
         str: 受信した文字列
     """
+    # print("debug comment:action get_received_str")
     return _receive_queue.get_nowait()
+
