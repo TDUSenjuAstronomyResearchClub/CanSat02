@@ -1,3 +1,5 @@
+import time
+
 from cansatapi.nineaxissensor import *
 
 if __name__ == "__main__":
@@ -22,13 +24,19 @@ if __name__ == "__main__":
     Obj = NineAxisSensor()
 
     print('get_accelaration関数を実行します・・・')
-    print(Obj.get_acceleration())
+    for i in range(60):
+        print("\r" + str(Obj.get_acceleration()), end="")
+        time.sleep(1)
 
     print('get_angular_rate関数を実行します・・・')
-    print(Obj.get_angular_rate())
+    for i in range(60):
+        print("\r" + str(Obj.get_angular_rate()), end="")
+        time.sleep(1)
 
     print('get_magnetic_heading関数を実行します・・・')
-    print(Obj.get_magnetic_heading())
+    for i in range(60):
+        print(Obj.get_magnetic_heading())
+        time.sleep(1)
 
     print('すべての関数の実行が完了しました。')
 
