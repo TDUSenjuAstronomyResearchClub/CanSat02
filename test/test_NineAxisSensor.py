@@ -23,19 +23,19 @@ if __name__ == "__main__":
 
     Obj = NineAxisSensor()
 
-    print('get_accelaration関数を実行します・・・')
-    for i in range(60):
-        data = Obj.get_acceleration()
-        first = "{:.4f}".format(data[0])
-        second = "{:.4f}".format(data[1])
-        third = "{:4f}".format(data[2])
-        print("\r" + str(first) + "," + str(second) + "," + str(third), end="")
-        time.sleep(1)
-
-    print('get_angular_rate関数を実行します・・・')
-    for i in range(60):
-        print("\r" + str(Obj.get_angular_rate()), end="")
-        time.sleep(1)
+    # print('get_accelaration関数を実行します・・・')
+    # for i in range(60):
+    #     data = Obj.get_acceleration()
+    #     first = "{:.4f}".format(data[0])
+    #     second = "{:.4f}".format(data[1])
+    #     third = "{:.4f}".format(data[2])
+    #     print("\r" + str(first) + "," + str(second) + "," + str(third), end="")
+    #     time.sleep(1)
+    #
+    # print('get_angular_rate関数を実行します・・・')
+    # for i in range(60):
+    #     print("\r" + str(Obj.get_angular_rate()), end="")
+    #     time.sleep(1)
 
     print('get_magnetic_heading関数を実行します・・・')
     for i in range(60):
