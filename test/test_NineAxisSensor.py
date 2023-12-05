@@ -26,9 +26,9 @@ if __name__ == "__main__":
     print('get_accelaration関数を実行します・・・')
     for i in range(60):
         data = Obj.get_acceleration()
-        first = data[0].__format__("dddd.dddd")
-        second = data[1].__format__("dddd.dddd")
-        third = data[2].__format__("dddd.dddd")
+        first = "{:.4f}".format(data[0])
+        second = "{:.4f}".format(data[1])
+        third = "{:4f}".format(data[2])
         print("\r" + str(first) + "," + str(second) + "," + str(third), end="")
         time.sleep(1)
 
