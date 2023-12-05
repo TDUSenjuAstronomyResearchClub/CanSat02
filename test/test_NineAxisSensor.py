@@ -39,8 +39,9 @@ if __name__ == "__main__":
 
     print('get_magnetic_heading関数を実行します・・・')
     for i in range(60):
-        print("\r" + str(Obj.get_magnetic_heading()), end="")
+        print("\r" + str(i) + "回目：" + str(Obj.get_magnetic_heading()), end="")
         time.sleep(1)
+    print("\n")
 
     print('すべての関数の実行が完了しました。')
 
