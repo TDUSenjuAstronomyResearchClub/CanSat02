@@ -106,15 +106,15 @@ def main():
 
     xbee.send_msg("走行開始")
 
-    while not fall_judgement():
-        time.sleep(0.1)
+    # while not fall_judgement():
+    #    time.sleep(0.1)
 
-    xbee.send_msg("落下検知")
+    #xbee.send_msg("落下検知")
 
-    while not landing_judgement():
-        time.sleep(0.1)
+    #while not landing_judgement():
+    #    time.sleep(0.1)
 
-    xbee.send_msg("着地")
+    #xbee.send_msg("着地")
     detach_parachute()
 
 
