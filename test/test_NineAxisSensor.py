@@ -25,7 +25,11 @@ if __name__ == "__main__":
 
     print('get_accelaration関数を実行します・・・')
     for i in range(60):
-        print("\r" + str(Obj.get_acceleration()), end="")
+        data = Obj.get_acceleration()
+        first = data[0].__format__("dddd.dddd")
+        second = data[1].__format__("dddd.dddd")
+        third = data[2].__format__("dddd.dddd")
+        print("\r" + str(first) + "," + str(second) + "," + str(third), end="")
         time.sleep(1)
 
     print('get_angular_rate関数を実行します・・・')
@@ -35,7 +39,7 @@ if __name__ == "__main__":
 
     print('get_magnetic_heading関数を実行します・・・')
     for i in range(60):
-        print(Obj.get_magnetic_heading())
+        print("\r" + str(Obj.get_magnetic_heading()), end="")
         time.sleep(1)
 
     print('すべての関数の実行が完了しました。')
