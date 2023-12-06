@@ -1,9 +1,9 @@
-import datetime
 import time
 from multiprocessing import Process
 
 from cansatapi import *
 from cansatapi.point_declination import SAMPLE_LON, SAMPLE_LAT, GOAL_LON, GOAL_LAT, DECLINATION
+from cansatapi.servo import Servo
 
 
 def manual_mode(cmd: str):
@@ -38,17 +38,19 @@ def landing_judgement() -> bool:
 def detach_parachute():
     """パラシュートの切り離しを行います
     """
-    para_motor = dcmotor.DCMotor(dcmotor.PARACHUTE_FIN, dcmotor.PARACHUTE_RIN)
-    wheels = dcmotor.WheelController()
-    xbee.send_msg("パラシュート切り離し開始")
-    para_motor.forward()
-    wheels.forward()
+    print(servo.PARA_PIN)
+    para_servo = Servo(servo.PARA_PIN)
+    para_servo.rotate_cw()
+    time.sleep(10)
+    para_servo.rotate_stop()
 
-    time.sleep(10)  # 10秒間巻取り&前進
-
-    para_motor.stop()
-    para_motor.cleanup()
-    xbee.send_msg("パラシュート切り離し終了")
+    # 機体を前進させる
+    dcmotor.Wheels.stop()
+    print("機体を20秒前進させる")
+    dcmotor.Wheels.forward()
+    time.sleep(20)
+    dcmotor.Wheels.stop()
+    dcmotor.Wheels.cleanup()
 
 
 def is_straight(lat: float, lon: float) -> bool:
@@ -100,21 +102,24 @@ def main():
     global isAuto
 
     # 受信を開始
-    parse_proc = Process(target=xbee.start)
-    parse_proc.start()
+    # parse_proc = Process(target=xbee.start)
+    # parse_proc.start()
 
     xbee.send_msg("走行開始")
 
-    while not fall_judgement():
-        time.sleep(0.1)
+    # while not fall_judgement():
+    #    time.sleep(0.1)
 
-    xbee.send_msg("落下検知")
+    #xbee.send_msg("落下検知")
 
-    while not landing_judgement():
-        time.sleep(0.1)
+    #while not landing_judgement():
+    #    time.sleep(0.1)
 
-    xbee.send_msg("着地")
+    #xbee.send_msg("着地")
+    detach_parachute()
 
+
+"""
     go_to_sample = True
     while True:
         # 1行動ごとにループを回す
@@ -148,7 +153,7 @@ def main():
             manual_mode(received_str)
 
     parse_proc.terminate()
-
+"""
 
 if __name__ == "__main__":
     isAuto = True
