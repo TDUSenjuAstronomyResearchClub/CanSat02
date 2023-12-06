@@ -92,11 +92,13 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.servo">cansatapi.servo モジュール</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cansatapi.servo.Servo"><code class="docutils literal notranslate"><span class="pre">Servo</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.rotate_to_angle"><code class="docutils literal notranslate"><span class="pre">Servo.rotate_to_angle()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.stop"><code class="docutils literal notranslate"><span class="pre">Servo.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.finish"><code class="docutils literal notranslate"><span class="pre">Servo.finish()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.rotate_ccw"><code class="docutils literal notranslate"><span class="pre">Servo.rotate_ccw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.rotate_cw"><code class="docutils literal notranslate"><span class="pre">Servo.rotate_cw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.rotate_cw_or_ccw"><code class="docutils literal notranslate"><span class="pre">Servo.rotate_cw_or_ccw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cansatapi.servo.Servo.rotate_stop"><code class="docutils literal notranslate"><span class="pre">Servo.rotate_stop()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#cansatapi.servo.calc_duty"><code class="docutils literal notranslate"><span class="pre">calc_duty()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-cansatapi.soil_moisture">cansatapi.soil_moisture モジュール</a><ul>
@@ -508,43 +510,51 @@ DCモーター使用後は必ず呼び出して下さい。</p>
 </section>
 <section id="module-cansatapi.servo">
 <span id="cansatapi-servo"></span><h2>cansatapi.servo モジュール<a class="headerlink" href="#module-cansatapi.servo" title="この見出しへのパーマリンク"></a></h2>
-<p>サーボモーターを制御するモジュール</p>
+<p>ローテーションサーボモーターを制御するモジュール
+データシート
+<a class="reference external" href="https://akizukidenshi.com/download/ds/feetech/fs90r_20201214.pdf">https://akizukidenshi.com/download/ds/feetech/fs90r_20201214.pdf</a>
+参考資料
+<a class="reference external" href="https://mickey-happygolucky.hatenablog.com/entry/2019/10/23/114711">https://mickey-happygolucky.hatenablog.com/entry/2019/10/23/114711</a></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="cansatapi.servo.Servo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cansatapi.servo.</span></span><span class="sig-name descname"><span class="pre">Servo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pin_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo" title="この定義へのパーマリンク"></a></dt>
 <dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="cansatapi.servo.Servo.rotate_to_angle">
-<span class="sig-name descname"><span class="pre">rotate_to_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.rotate_to_angle" title="この定義へのパーマリンク"></a></dt>
-<dd><p>サーボモーターを指定の角度[°]へ動かすメソッド</p>
-<p>範囲は±90°で指定してください。
-指定された角度が[-90, 90]の範囲を越えていた場合はこの範囲に収めます。</p>
+<dt class="sig sig-object py" id="cansatapi.servo.Servo.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.finish" title="この定義へのパーマリンク"></a></dt>
+<dd><p>サーボモーターを停止させるメソッド</p>
+<p>サーボモーター使用後は必ず呼び出すこと</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.servo.Servo.rotate_ccw">
+<span class="sig-name descname"><span class="pre">rotate_ccw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.rotate_ccw" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ローテーションサーボモーターを反時計回りに最速で回すメソッド</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.servo.Servo.rotate_cw">
+<span class="sig-name descname"><span class="pre">rotate_cw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.rotate_cw" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ローテーションサーボモーターを時計回りに最速で回すメソッド</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cansatapi.servo.Servo.rotate_cw_or_ccw">
+<span class="sig-name descname"><span class="pre">rotate_cw_or_ccw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.rotate_cw_or_ccw" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ローテーションサーボモーターを時計回りか反時計回りに任意の速さで回すメソッド</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>angle</strong> -- 範囲[-90, 90]の角度[°]</p>
+<dd class="field-odd"><p><strong>duty</strong> -- 3.5~11.5を入力する．7.5以下が時計回り，7.5以上が反時計回り</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="cansatapi.servo.Servo.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.stop" title="この定義へのパーマリンク"></a></dt>
-<dd><p>サーボモーターを停止させるメソッド</p>
-<p>サーボモーター使用後は必ず呼び出すこと</p>
+<dt class="sig sig-object py" id="cansatapi.servo.Servo.rotate_stop">
+<span class="sig-name descname"><span class="pre">rotate_stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.Servo.rotate_stop" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ローテーションサーボモーターを止めるメソッド</p>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cansatapi.servo.calc_duty">
-<span class="sig-prename descclassname"><span class="pre">cansatapi.servo.</span></span><span class="sig-name descname"><span class="pre">calc_duty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference external" href="https://github.com/Else156/CanSat02/tree/main/cansatapi/servo.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#cansatapi.servo.calc_duty" title="この定義へのパーマリンク"></a></dt>
-<dd><p>指定の角度からデューティ比を求める関数</p>
-<dl class="field-list simple">
-<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>angle</strong> (<em>float</em>) -- 角度[°]</p>
-</dd>
-</dl>
-<p>Returns:</p>
 </dd></dl>
 
 </section>
