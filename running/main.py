@@ -99,12 +99,6 @@ def main():
     """メインアルゴリズム
     """
     global isAuto
-
-    # 受信を開始
-    parse_proc = Process(target=xbee.start)
-    parse_proc.start()
-    print("main.pyとxbee.pyが同時に動いているか確認")
-
     xbee.send_msg("走行開始")
 
     # while not fall_judgement():
@@ -153,9 +147,18 @@ def main():
             manual_mode(received_str)
 
     parse_proc.terminate()
+    proc_main.terminate()
 
 
 if __name__ == "__main__":
     isAuto = True
+
+    # 受信を開始
+    parse_proc = Process(target=xbee.start)
+    proc_main = Process(target=main())
+    parse_proc.start()
+    proc_main.start()
+
+    print("main.pyとxbee.pyが同時に動いているか確認")
     main()  # 実行
     dcmotor.Wheels.cleanup()
