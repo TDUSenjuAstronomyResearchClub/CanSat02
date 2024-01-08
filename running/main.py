@@ -155,7 +155,7 @@ if __name__ == "__main__":
 
     # 受信を開始
     parse_proc = Process(target=xbee.start)
-    proc_main = Process(target=main.main)
+    proc_main = Process(target=main)
     parse_proc.start()
     proc_main.start()
     print("プログラムスタート")
