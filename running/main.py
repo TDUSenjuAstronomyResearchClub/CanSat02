@@ -158,6 +158,7 @@ if __name__ == "__main__":
     proc_main = Process(target=main())
     parse_proc.start()
     proc_main.start()
+    print("プログラムスタート")
 
     print("main.pyとxbee.pyが同時に動いているか確認")
     main()  # 実行
