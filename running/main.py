@@ -102,8 +102,8 @@ def main():
     global isAuto
 
     # 受信を開始
-    # parse_proc = Process(target=xbee.start)
-    # parse_proc.start()
+    parse_proc = Process(target=xbee.start)
+    parse_proc.start()
 
     xbee.send_msg("走行開始")
 
@@ -118,7 +118,6 @@ def main():
 
     detach_parachute()  # パラシュート分離
 
-"""
     go_to_sample = True
     while True:
         # 1行動ごとにループを回す
@@ -152,7 +151,7 @@ def main():
             manual_mode(received_str)
 
     parse_proc.terminate()
-"""
+
 
 if __name__ == "__main__":
     isAuto = True
