@@ -159,7 +159,4 @@ if __name__ == "__main__":
     parse_proc.start()
     proc_main.start()
     print("プログラムスタート")
-
-    print("main.pyとxbee.pyが同時に動いているか確認")
-    main()  # 実行
     dcmotor.Wheels.cleanup()
