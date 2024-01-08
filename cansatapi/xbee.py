@@ -32,14 +32,14 @@ def start():
         while _send_queue.empty():
             c += 1
             if c >= 5:
-                print("jsonファイル送信作業開始")
+                # print("jsonファイル送信作業開始")
                 get_send_sensor_data()  # 約5秒に1度各センサー値の入ったjsonファイルを送信する
                 c = 0
-                print("jsonファイル送信作業終了")
+                # print("jsonファイル送信作業終了")
             else:
-                print("jsonファイル受信開始")
+                # print("jsonファイル受信開始")
                 _receive(1)  # 1秒間待機する
-                print("jsonファイル送信作業終了")
+                # print("jsonファイル送信作業終了")
         _send()
 
 
