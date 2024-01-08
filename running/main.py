@@ -118,12 +118,14 @@ def main():
 
     go_to_sample = True
     while True:
+        print("manual or auto")
         # 1行動ごとにループを回す
         received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
         if received_str == "manual":
             isAuto = False
         elif received_str == "auto":
             isAuto = True
+        print("mode select")
 
         if isAuto:
             lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
