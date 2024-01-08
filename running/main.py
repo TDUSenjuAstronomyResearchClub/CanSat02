@@ -128,6 +128,7 @@ def main():
         print("mode select")
 
         if isAuto:
+            print("自立制御開始")
             lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
             lon = SAMPLE_LON if go_to_sample else GOAL_LON
 
