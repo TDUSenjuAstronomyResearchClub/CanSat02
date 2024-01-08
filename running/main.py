@@ -109,7 +109,6 @@ def main():
 
     # while not fall_judgement():
     #    time.sleep(0.1)
-
     # xbee.send_msg("落下検知")
 
     # while not landing_judgement():
