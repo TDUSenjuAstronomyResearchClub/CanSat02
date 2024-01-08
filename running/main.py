@@ -50,7 +50,6 @@ def detach_parachute():
     dcmotor.Wheels.forward()
     time.sleep(20)
     dcmotor.Wheels.stop()
-    dcmotor.Wheels.cleanup()
 
 
 def is_straight(lat: float, lon: float) -> bool:
@@ -155,3 +154,4 @@ def main():
 if __name__ == "__main__":
     isAuto = True
     main()  # 実行
+    dcmotor.Wheels.cleanup()
