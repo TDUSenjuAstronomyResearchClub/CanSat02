@@ -110,14 +110,13 @@ def main():
     # while not fall_judgement():
     #    time.sleep(0.1)
 
-    #xbee.send_msg("落下検知")
+    # xbee.send_msg("落下検知")
 
-    #while not landing_judgement():
+    # while not landing_judgement():
     #    time.sleep(0.1)
+    # xbee.send_msg("着地")
 
-    #xbee.send_msg("着地")
-    detach_parachute()
-
+    detach_parachute()  # パラシュート分離
 
 """
     go_to_sample = True
