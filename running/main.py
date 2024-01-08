@@ -103,6 +103,7 @@ def main():
     # 受信を開始
     parse_proc = Process(target=xbee.start)
     parse_proc.start()
+    print("main.pyとxbee.pyが同時に動いているか確認")
 
     xbee.send_msg("走行開始")
 
