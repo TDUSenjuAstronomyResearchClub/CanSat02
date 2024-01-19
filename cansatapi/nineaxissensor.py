@@ -181,7 +181,16 @@ class NineAxisSensor:
         """
         # レジスタから値を読む
         raw_mag_x_y = self.bus.read_i2c_block_data(MAG_ADDR, 0x42, 4)
+        # デバッグ用
+        print("raw_mag_x_y => ")
+        for i in raw_mag_x_y:
+            print(hex(i))
+
         raw_mag_z = self.bus.read_i2c_block_data(MAG_ADDR, 0x46, 2)
+        # デバッグ用
+        print("raw_mag_z => ")
+        for i in raw_mag_z:
+            print(hex(i))
 
         # 13ビットに変換
         mag_x = ((raw_mag_x_y[1] * 256) + (raw_mag_x_y[0] & 0xF8)) / 8
@@ -197,6 +206,10 @@ class NineAxisSensor:
         if mag_z > 16383:
             mag_z -= 32768
 
+        # デバッグ用
+        print ("mag_x => " + str(mag_x))
+        print ("mag_y => " + str(mag_y))
+        print ("mag_z => " + str(mag_z))
         return mag_x, mag_y, mag_z
 
 
