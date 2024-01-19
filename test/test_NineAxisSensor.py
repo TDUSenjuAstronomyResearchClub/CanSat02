@@ -9,9 +9,9 @@ if __name__ == "__main__":
     print('RaspberryPi-CanSat02拡張ボードがGPIOに適切に接続されているか')
     print('RaspberryPi-CanSat02拡張ボード上に9軸センサが正しい向きで接続されているか')
     print('9軸センサのモジュール上のジャンパの状態が次の状態であること')
-    print('加速度計のアドレス・・・' + str(ACCL_ADDR))
-    print('ジャイロセンサーのアドレス・・・' + str(GYRO_ADDR))
-    print('磁気コンパスのアドレス・・・' + str(MAG_ADDR))
+    print('加速度計のアドレス・・・0x' + hex(ACCL_ADDR))
+    print('ジャイロセンサーのアドレス・・・0x' + hex(GYRO_ADDR))
+    print('磁気コンパスのアドレス・・・0x' + hex(MAG_ADDR))
     keyInput = input('以上について確認の上、実行を続行しますか？？[Y/N]')
     if (keyInput == 'N') or (keyInput == 'n'):
         print('実行を中断しました。')
