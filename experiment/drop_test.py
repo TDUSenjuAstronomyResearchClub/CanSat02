@@ -67,7 +67,6 @@ if __name__ == "__main__":
         # 5回連続で加速度の差が0 m/s^2以上だったら落下開始判定とする
         if accel_abs - accel_abs_past > 0:
             drop_count += 1
-            print(drop_count)
             if drop_count >= 5:
                 drop_start_s = time.time()
                 LOGGER.msg_csv("落下開始判定が行われました")
