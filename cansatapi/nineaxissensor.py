@@ -3,6 +3,7 @@
 使用しているライブラリ:
     smbus2
 """
+import time
 
 import smbus2
 
@@ -66,6 +67,18 @@ class NineAxisSensor:
         self.bus.write_byte_data(GYRO_ADDR, 0x11, 0x00)
 
         # 磁気コンパスの設定
+        # 0x4Bの値が0x00なら、0x4Bの0ビット目が0であるので、1にすることで磁気コンパスの電源を入れる
+        # 0x83=0b10000011　意味は、7ビット目と1ビット目を1にすることで磁気コンパスを初期化、末尾を1ビットにすることで電源ON
+        # これで初期化が完了するので、このあと、0x4Bの末尾1ビットだけを1にして電源を入れ直す
+        # 参考 => データシートP134、および、https://rfsec.ddns.net/db/?p=305
+        data = self.bus.read_byte_data(MAG_ADDR, 0x4B)
+        if (data == 0):
+            self.bus.write_byte_data(MAG_ADDR, 0x4B, 0x83)
+            time.sleep(0.5)
+
+        # 0x4Bの末尾1ビットだけを1にして電源を入れ直す
+        self.bus.write_byte_data(MAG_ADDR, 0x4B, 0x01)
+
         # MAGレジスタに実行モードとアウトプットのレートを設定
         # 0x00 = Normal mode, レート 10Hz
         self.bus.write_byte_data(MAG_ADDR, 0x4C, 0x00)
@@ -81,6 +94,9 @@ class NineAxisSensor:
         # MAGレジスタにz軸に対する反復の回数を設定する
         # 0x0F = 15回
         self.bus.write_byte_data(MAG_ADDR, 0x52, 0x0F)
+
+        # 初期化完了なので、少し待つ
+        time.sleep(0.5)
 
     def get_acceleration(self) -> tuple[float, float, float]:
         """加速度[m/s^2]を取得する
