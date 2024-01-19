@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
         # todo: 落下開始判定を行う加速度の差の閾値を書き込む
         # 5回連続で加速度の差が0 m/s^2以上だったら落下開始判定とする
-        if accel_abs - accel_abs_past > 0:
+        if accel_abs - accel_abs_past >= 0:
             drop_count += 1
             print(drop_count)
             if drop_count >= 5:
