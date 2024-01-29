@@ -6,23 +6,32 @@ from cansatapi.point_declination import SAMPLE_LON, SAMPLE_LAT, GOAL_LON, GOAL_L
 from cansatapi.servo import Servo
 
 
-def manual_mode(cmd: str):
+def manual_mode()
     """手動制御を行う関数
 
-    Args:
-        cmd(str): コマンド文字列
     """
-    if cmd == "forward":
-        dcmotor.Wheels.forward()
-    elif cmd == "reverse":
-        dcmotor.Wheels.reverse()
-    elif cmd == "right":
-        dcmotor.Wheels.r_pivot_fwd()
-    elif cmd == "left":
-        dcmotor.Wheels.l_pivot_fwd()
+    while True:
+        xbee.send_msg("手動運転モード：コマンドを送信してください")
+        cmd = xbee.get_received_str()
 
-    time.sleep(3)
-    dcmotor.Wheels.stop()
+        if cmd == "forward":
+            dcmotor.Wheels.forward()
+            time.sleep(3)
+            dcmotor.Wheels.stop()
+        elif cmd == "reverse":
+            dcmotor.Wheels.reverse()
+            time.sleep(3)
+            dcmotor.Wheels.stop()
+        elif cmd == "right":
+            dcmotor.Wheels.r_pivot_fwd()
+            time.sleep(3)
+            dcmotor.Wheels.stop()
+        elif cmd == "left":
+            dcmotor.Wheels.l_pivot_fwd()
+            time.sleep(3)
+            dcmotor.Wheels.stop()
+        else:
+            return
 
 
 def fall_judgement() -> bool:
