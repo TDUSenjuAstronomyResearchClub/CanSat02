@@ -255,5 +255,5 @@ def get_received_str() -> str:
     try:
         print("debug comment:action get_received_str")
         return _receive_queue.get_nowait()
-    except multiprocessing.Empty:   # 何も受信していない場合はNoneを返す
+    except multiprocessing.Queue.Empty:   # 何も受信していない場合はNoneを返す
         return None
