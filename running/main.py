@@ -172,7 +172,7 @@ def main():
                 xbee.send_msg("動作終了")
                 break
 
-        elif not isAuto:    # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
+        elif not isAuto:  # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
             manual_mode()
         else:
             manual_mode()
@@ -181,9 +181,8 @@ def main():
     proc_main.terminate()
 
 
-
 if __name__ == "__main__":
-    isAuto = False   # TODO:手動運転の動作確認のためFalseにしている．本番はTrueにする
+    isAuto = False  # TODO:手動運転の動作確認のためFalseにしている．本番はTrueにする
 
     # 受信を開始
     parse_proc = Process(target=xbee.start)
