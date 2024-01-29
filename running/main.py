@@ -122,7 +122,7 @@ def main():
             isAuto = False
         elif received_str == "auto":
             isAuto = True
-        else:
+        elif received_str == "None":
             isAuto = False  # TODO:手動運転の動作確認のためFalseにしている．本番はTrueにする
         print("mode select")
 
