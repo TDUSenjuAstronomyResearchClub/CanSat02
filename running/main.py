@@ -153,7 +153,7 @@ def main():
 
 
 if __name__ == "__main__":
-    isAuto = True
+    isAuto = False   # TODO:手動運転の動作確認のためFalseにしている．本番はTrueにする
 
     # 受信を開始
     parse_proc = Process(target=xbee.start)
