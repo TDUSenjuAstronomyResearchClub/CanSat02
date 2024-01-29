@@ -130,6 +130,10 @@ def sample_collection():
 def main():
     """メインアルゴリズム
     """
+    # 受信を開始
+    parse_proc = Process(target=xbee.start)
+    parse_proc.start()
+
     global isAuto
     xbee.send_msg("走行開始")
 
@@ -184,17 +188,10 @@ def main():
             manual_mode()
 
     parse_proc.terminate()
-    proc_main.terminate()
     GPIO.cleanup()
 
 
 if __name__ == "__main__":
     isAuto = False  # TODO:手動運転の動作確認のためFalseにしている．本番はTrueにする
-
-    # 受信を開始
-    parse_proc = Process(target=xbee.start)
-    proc_main = Process(target=main)
-    parse_proc.start()
-    proc_main.start()
     print("プログラムスタート")
 
