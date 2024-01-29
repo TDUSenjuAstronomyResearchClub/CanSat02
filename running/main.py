@@ -190,3 +190,4 @@ if __name__ == "__main__":
     parse_proc.start()
     proc_main.start()
     print("プログラムスタート")
+    dcmotor.Wheels.cleanup()
