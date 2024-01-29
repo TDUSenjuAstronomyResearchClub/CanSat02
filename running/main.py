@@ -75,10 +75,6 @@ def detach_parachute():
     # time.sleep(10)
     # para_servo.rotate_stop()
 
-    while True:
-        acceleration_tmp = nineaxissensor.nine_axis_sensor.get_magnetic_heading()
-        print(acceleration_tmp)
-
     # 機体を前進させる
     dcmotor.Wheels.stop()
     print("機体を20秒前進させる")
