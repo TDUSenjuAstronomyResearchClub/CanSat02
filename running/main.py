@@ -13,6 +13,35 @@ from cansatapi import nineaxissensor
 from cansatapi import servo
 
 
+def fall_judgement() -> bool:
+    """落下判定を返す関数
+    """
+
+
+def landing_judgement() -> bool:
+    """着地判定を返す関数
+    """
+
+
+def detach_parachute():
+    """パラシュートの切り離しを行います
+    """
+
+    print(servo.PARA_PIN)
+    para_servo = Servo(servo.PARA_PIN)
+    para_servo.rotate_cw()
+    time.sleep(10)
+    para_servo.rotate_stop()
+
+    # 機体を前進させる
+    dcmotor.Wheels.stop()
+    print("機体を20秒前進させる")
+    dcmotor.Wheels.forward()
+    time.sleep(20)
+    dcmotor.Wheels.stop()
+    dcmotor.Wheels.cleanup()
+
+
 def manual_mode():
     """手動制御を行う関数
 
@@ -56,35 +85,6 @@ def manual_mode():
             print("end")
             dcmotor.Wheels.cleanup()
             return
-
-
-def fall_judgement() -> bool:
-    """落下判定を返す関数
-    """
-
-
-def landing_judgement() -> bool:
-    """着地判定を返す関数
-    """
-
-
-def detach_parachute():
-    """パラシュートの切り離しを行います
-    """
-
-    print(servo.PARA_PIN)
-    para_servo = Servo(servo.PARA_PIN)
-    para_servo.rotate_cw()
-    time.sleep(10)
-    para_servo.rotate_stop()
-
-    # 機体を前進させる
-    dcmotor.Wheels.stop()
-    print("機体を20秒前進させる")
-    dcmotor.Wheels.forward()
-    time.sleep(20)
-    dcmotor.Wheels.stop()
-    dcmotor.Wheels.cleanup()
 
 
 def is_straight(lat: float, lon: float) -> bool:
