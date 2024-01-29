@@ -25,28 +25,28 @@ def manual_mode():
             print("forward")
             print(cmd)
             dcmotor.Wheels.forward()
-            time.sleep(3)
+            time.sleep(10)
             dcmotor.Wheels.stop()
             xbee.send_msg("手動運転モード：コマンドを送信してください")
 
         elif cmd == "reverse":
             print("reverse")
             dcmotor.Wheels.reverse()
-            time.sleep(3)
+            time.sleep(10)
             dcmotor.Wheels.stop()
             xbee.send_msg("手動運転モード：コマンドを送信してください")
 
         elif cmd == "right":
             print("right")
             dcmotor.Wheels.r_pivot_fwd()
-            time.sleep(3)
+            time.sleep(10)
             dcmotor.Wheels.stop()
             xbee.send_msg("手動運転モード：コマンドを送信してください")
 
         elif cmd == "left":
             print("left")
             dcmotor.Wheels.l_pivot_fwd()
-            time.sleep(3)
+            time.sleep(10)
             dcmotor.Wheels.stop()
             xbee.send_msg("手動運転モード：コマンドを送信してください")
 
@@ -162,8 +162,8 @@ def main():
             lon = SAMPLE_LON if go_to_sample else GOAL_LON
 
             if is_straight(lat, lon):
-                dcmotor.Wheels.forward()  # 方位角が範囲に収まっていれば3秒直進
-                time.sleep(3)
+                dcmotor.Wheels.forward()  # 方位角が範囲に収まっていれば10秒直進
+                time.sleep(10)
                 dcmotor.Wheels.stop()
             else:
                 angle_adjustment(lat, lon)  # 収まっていなければ調整
