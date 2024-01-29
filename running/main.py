@@ -194,4 +194,5 @@ def main():
 if __name__ == "__main__":
     isAuto = False  # TODO:手動運転の動作確認のためFalseにしている．本番はTrueにする
     print("プログラムスタート")
+    main()
 
