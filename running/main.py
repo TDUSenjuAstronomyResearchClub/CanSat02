@@ -133,6 +133,9 @@ def main():
     global isAuto
     xbee.send_msg("走行開始")
 
+    # dcモーターを初期化する
+    dcmotor.Wheels.initialize()
+
     # while not fall_judgement():
     #    time.sleep(0.1)
     # xbee.send_msg("落下検知")
@@ -189,7 +192,6 @@ def main():
 
 
 if __name__ == "__main__":
-    GPIO.cleanup()
     isAuto = False  # TODO:手動運転の動作確認のためFalseにしている．本番はTrueにする
 
     # 受信を開始
