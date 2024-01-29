@@ -92,7 +92,7 @@ def send_msg(msg: str):
         msg: 任意のメッセージ
     """
     send(jsonGenerator.generate_json(data_type="only_message_data", time=time.time(), message=msg))
-    # print("debug comment:action send_msg")
+    print(str)
 
 
 def send_pic(pic_hex: str):
