@@ -155,11 +155,13 @@ def get_send_sensor_data():
     except OSError:
         pass
 
-    try:
-        # 超音波距離センサーの距離データを読み込み
-        ultrasound_distance = distance_result()
-    except TypeError:
-        pass
+    ultrasound_distance = 0.0
+    # 超音波距離センサは使用しないため以下コメントアウト
+    # try:
+    # 超音波距離センサーの距離データを読み込み
+    #    ultrasound_distance = distance_result()
+    # except TypeError:
+    #    pass
 
     distance_data: type.Distance = {
         'sample': sample_distance_and_azimuth[0],
@@ -256,5 +258,5 @@ def get_received_str() -> str:
     try:
         # print("debug comment:action get_received_str")
         return _receive_queue.get_nowait()
-    except queue.Empty:   # 何も受信していない場合はNoneを返す
+    except queue.Empty:  # 何も受信していない場合はNoneを返す
         return None
