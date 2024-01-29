@@ -22,6 +22,7 @@ def manual_mode():
 
         if cmd == "forward":
             print("forward")
+            print(cmd)
             dcmotor.Wheels.forward()
             time.sleep(3)
             dcmotor.Wheels.stop()
