@@ -6,7 +6,7 @@ from cansatapi.point_declination import SAMPLE_LON, SAMPLE_LAT, GOAL_LON, GOAL_L
 from cansatapi.servo import Servo
 
 
-def manual_mode()
+def manual_mode():
     """手動制御を行う関数
 
     """
