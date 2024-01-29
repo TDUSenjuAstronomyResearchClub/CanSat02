@@ -154,6 +154,9 @@ def main():
                 xbee.send_msg("ゴール到達")
                 xbee.send_msg("動作終了")
                 break
+
+        elif not isAuto:    # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
+            manual_mode()
         else:
             manual_mode()
 
