@@ -4,6 +4,7 @@ from multiprocessing import Process
 from cansatapi import *
 from cansatapi.point_declination import SAMPLE_LON, SAMPLE_LAT, GOAL_LON, GOAL_LAT, DECLINATION
 from cansatapi.servo import Servo
+from cansatapi import dcmotor
 
 
 def manual_mode():
@@ -45,6 +46,7 @@ def manual_mode():
 
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             print("end")
+            dcmotor.Wheels.cleanup()
             return
 
 
@@ -73,6 +75,7 @@ def detach_parachute():
     dcmotor.Wheels.forward()
     time.sleep(20)
     dcmotor.Wheels.stop()
+    dcmotor.Wheels.cleanup()
 
 
 def is_straight(lat: float, lon: float) -> bool:
@@ -176,7 +179,7 @@ def main():
 
     parse_proc.terminate()
     proc_main.terminate()
-    dcmotor.Wheels.cleanup()
+
 
 
 if __name__ == "__main__":
