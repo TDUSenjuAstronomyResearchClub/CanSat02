@@ -1,4 +1,5 @@
 import time
+import RPi.GPIO as GPIO
 from multiprocessing import Process
 
 # from cansatapi import *
