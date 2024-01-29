@@ -30,7 +30,7 @@ def manual_mode():
             dcmotor.Wheels.l_pivot_fwd()
             time.sleep(3)
             dcmotor.Wheels.stop()
-        else:
+        elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             return
 
 
