@@ -1,10 +1,14 @@
 import time
 from multiprocessing import Process
 
-from cansatapi import *
+# from cansatapi import *
 from cansatapi.point_declination import SAMPLE_LON, SAMPLE_LAT, GOAL_LON, GOAL_LAT, DECLINATION
 from cansatapi.servo import Servo
 from cansatapi import dcmotor
+from cansatapi import xbee
+from cansatapi import gps
+from cansatapi import nineaxissensor
+from cansatapi import servo
 
 
 def manual_mode():
