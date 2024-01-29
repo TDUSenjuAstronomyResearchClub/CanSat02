@@ -10,26 +10,34 @@ def manual_mode():
     """手動制御を行う関数
 
     """
+    xbee.send_msg("手動運転モード：コマンドを送信してください")
     while True:
-        xbee.send_msg("手動運転モード：コマンドを送信してください")
         cmd = xbee.get_received_str()
 
         if cmd == "forward":
             dcmotor.Wheels.forward()
             time.sleep(3)
             dcmotor.Wheels.stop()
+            xbee.send_msg("手動運転モード：コマンドを送信してください")
+
         elif cmd == "reverse":
             dcmotor.Wheels.reverse()
             time.sleep(3)
             dcmotor.Wheels.stop()
+            xbee.send_msg("手動運転モード：コマンドを送信してください")
+
         elif cmd == "right":
             dcmotor.Wheels.r_pivot_fwd()
             time.sleep(3)
             dcmotor.Wheels.stop()
+            xbee.send_msg("手動運転モード：コマンドを送信してください")
+
         elif cmd == "left":
             dcmotor.Wheels.l_pivot_fwd()
             time.sleep(3)
             dcmotor.Wheels.stop()
+            xbee.send_msg("手動運転モード：コマンドを送信してください")
+
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             return
 
