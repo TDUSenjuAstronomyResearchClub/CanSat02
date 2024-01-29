@@ -245,8 +245,8 @@ def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
                 time.sleep(retry_wait)
                 continue
         except SerialException:  # デバイスが見つからない、または構成できない場合
-            raise SerialException
-
+            # raise SerialException
+            pass
         except OSError:
             pass
 
