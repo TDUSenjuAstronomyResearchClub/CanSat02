@@ -247,6 +247,9 @@ def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
         except SerialException:  # デバイスが見つからない、または構成できない場合
             raise SerialException
 
+        except OSError:
+            pass
+
 
 def get_received_str() -> str:
     """受信した文字列を返す関数
