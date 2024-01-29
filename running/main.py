@@ -16,30 +16,35 @@ def manual_mode():
         cmd = xbee.get_received_str()
 
         if cmd == "forward":
+            print("forward")
             dcmotor.Wheels.forward()
             time.sleep(3)
             dcmotor.Wheels.stop()
             xbee.send_msg("手動運転モード：コマンドを送信してください")
 
         elif cmd == "reverse":
+            print("reverse")
             dcmotor.Wheels.reverse()
             time.sleep(3)
             dcmotor.Wheels.stop()
             xbee.send_msg("手動運転モード：コマンドを送信してください")
 
         elif cmd == "right":
+            print("right")
             dcmotor.Wheels.r_pivot_fwd()
             time.sleep(3)
             dcmotor.Wheels.stop()
             xbee.send_msg("手動運転モード：コマンドを送信してください")
 
         elif cmd == "left":
+            print("left")
             dcmotor.Wheels.l_pivot_fwd()
             time.sleep(3)
             dcmotor.Wheels.stop()
             xbee.send_msg("手動運転モード：コマンドを送信してください")
 
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
+            print("end")
             return
 
 
