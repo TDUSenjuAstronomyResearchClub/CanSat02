@@ -1,6 +1,7 @@
 """機体と地上局の通信を行うモジュール
 """
 import multiprocessing
+import queue
 
 from serial import PortNotOpenError
 from serial import SerialException
