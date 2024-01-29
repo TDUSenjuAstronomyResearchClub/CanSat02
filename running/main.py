@@ -184,6 +184,7 @@ def main():
 
     parse_proc.terminate()
     proc_main.terminate()
+    GPIO.cleanup()
 
 
 if __name__ == "__main__":
@@ -195,4 +196,4 @@ if __name__ == "__main__":
     parse_proc.start()
     proc_main.start()
     print("プログラムスタート")
-    dcmotor.Wheels.cleanup()
+
