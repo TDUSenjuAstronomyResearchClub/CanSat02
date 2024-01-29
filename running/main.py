@@ -69,11 +69,11 @@ def landing_judgement() -> bool:
 def detach_parachute():
     """パラシュートの切り離しを行います
     """
-    print(servo.PARA_PIN)
-    para_servo = Servo(servo.PARA_PIN)
-    para_servo.rotate_cw()
-    time.sleep(10)
-    para_servo.rotate_stop()
+    # print(servo.PARA_PIN)
+    # para_servo = Servo(servo.PARA_PIN)
+    # para_servo.rotate_cw()
+    # time.sleep(10)
+    # para_servo.rotate_stop()
 
     # 機体を前進させる
     dcmotor.Wheels.stop()
