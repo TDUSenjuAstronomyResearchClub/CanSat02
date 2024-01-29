@@ -98,7 +98,7 @@ class WheelController:
         Args:
             duty (int): デューティ比[%]
         """
-
+        print("forward関数")
         self.r_motor.forward(duty)
         self.l_motor.forward(duty)
 
