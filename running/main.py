@@ -116,6 +116,8 @@ def main():
         print("manual or auto")
         # 1行動ごとにループを回す
         received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
+        print(received_str)
+
         if received_str == "manual":
             isAuto = False
         elif received_str == "auto":
