@@ -52,26 +52,38 @@ def _send():
     if msg is None:
         return
 
+    ser = None
+    try:
+        ser = serial.Serial(PORT, BAUD_RATE)
+    except SerialException:
+        pass  # ここでSerialExceptionが発生した場合、serはNoneのままになる
+
     retry_c = 0
     while True:
         try:
-            ser = serial.Serial(PORT, BAUD_RATE)
-            # シリアルにjsonを書き込む
-            ser.write(msg.encode('utf-8'))
-            ser.write(eol.encode('utf-8'))  # EOLを末尾に書き込む
-            ser.close()
-            return
+            if ser is not None:
+                ser.write(msg.encode('utf-8'))
+                ser.write(eol.encode('utf-8'))  # EOLを末尾に書き込む
+                return
+            else:
+                raise SerialException  # ここでSerialExceptionを発生させる
 
-        except PortNotOpenError:
-            # 5回リトライに失敗したらエラーを吐く
+        except (SerialException, OSError) as e:
+            # エラーが発生した場合のリトライ処理
             retry_c += 1
             if retry_c > 5:
-                raise PortNotOpenError
+                print(f"Error: {e}")
+                break  # リトライ回数を超えたらループを抜ける
             else:
                 time.sleep(0.5)
-                continue
-        except SerialException:
-            raise SerialException  # ここの処理について要件等
+                try:
+                    ser = serial.Serial(PORT, BAUD_RATE)  # 再試行
+                except SerialException:
+                    pass
+        finally:
+            if ser is not None:
+                ser.close()
+
 
 
 def send(msg: str):
@@ -224,31 +236,38 @@ def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
     """
     st = time.time()
     ret = 0
-    log_json = LoggerJSON()
+    ser = None
+    try:
+        ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
+    except SerialException:
+        pass  # ここでSerialExceptionが発生した場合、serはNoneのままになる
+
     while time.time() - st < sec:
         try:
-            ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
-            receive_data = ser.readline().removesuffix(bytes(0x04))
-            ser.close()
-            if len(receive_data) != 0:
-                data_utf8 = receive_data.decode("utf-8")
-                log_json.log_json(data_utf8)  # ロギング
-                _receive_queue.put_nowait(data_utf8)  # キューに受信したデータを追加
+            if ser is not None:
+                receive_data = ser.readline().removesuffix(b'\n')
+                if len(receive_data) != 0:
+                    data_utf8 = receive_data.decode("utf-8")
+                    _receive_queue.put_nowait(data_utf8)  # キューに受信したデータを追加
+                    return True
+            else:
+                raise SerialException  # ここでSerialExceptionを発生させる
 
-            return len(receive_data) != 0
-
-        except PortNotOpenError:
-            # 5回リトライに失敗したらエラーを吐く
+        except (SerialException, OSError) as e:
+            # エラーが発生した場合のリトライ処理
             if ret >= retry:
-                raise PortNotOpenError
+                print(f"Error: {e}")
+                break  # リトライ回数を超えたらループを抜ける
             else:
                 time.sleep(retry_wait)
-                continue
-        except SerialException:  # デバイスが見つからない、または構成できない場合
-            # raise SerialException
-            pass
-        except OSError:
-            pass
+                try:
+                    ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)  # 再試行
+                except SerialException:
+                    pass
+        finally:
+            if ser is not None:
+                ser.close()
+    return False
 
 
 def get_received_str() -> str:
