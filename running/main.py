@@ -1,3 +1,4 @@
+import multiprocessing
 import time
 import RPi.GPIO as GPIO
 from multiprocessing import Process
@@ -22,7 +23,6 @@ def manual_mode():
     while True:
         cmd = xbee.get_received_str()
 
-        Process.active_children()[0].suspend()  # 他のプロセスを一時停止
         if cmd == "forward":
             print("forward")
             print(cmd)
@@ -55,10 +55,7 @@ def manual_mode():
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             print("end")
             dcmotor.Wheels.cleanup()
-            Process.active_children()[0].resume()  # 他のプロセスを再開
             return
-
-        Process.active_children()[0].resume()  # 他のプロセスを再開
 
 
 def fall_judgement() -> bool:
@@ -74,7 +71,6 @@ def landing_judgement() -> bool:
 def detach_parachute():
     """パラシュートの切り離しを行います
     """
-    Process.active_children()[0].suspend()  # 他のプロセスを一時停止
 
     print(servo.PARA_PIN)
     para_servo = Servo(servo.PARA_PIN)
@@ -89,8 +85,6 @@ def detach_parachute():
     time.sleep(20)
     dcmotor.Wheels.stop()
     dcmotor.Wheels.cleanup()
-
-    Process.active_children()[0].resume()  # 他のプロセスを再開
 
 
 def is_straight(lat: float, lon: float) -> bool:
@@ -204,4 +198,3 @@ if __name__ == "__main__":
     isAuto = False  # TODO:手動運転の動作確認のためFalseにしている．本番はTrueにする
     print("プログラムスタート")
     main()
-
