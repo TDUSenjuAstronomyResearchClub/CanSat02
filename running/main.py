@@ -133,9 +133,6 @@ def main():
     global isAuto
     xbee.send_msg("走行開始")
 
-    # dcモーターを初期化する
-    dcmotor.Wheels.initialize()
-
     # while not fall_judgement():
     #    time.sleep(0.1)
     # xbee.send_msg("落下検知")
