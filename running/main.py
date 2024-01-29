@@ -10,6 +10,7 @@ def manual_mode():
     """手動制御を行う関数
 
     """
+    dcmotor.Wheels.stop()
     xbee.send_msg("手動運転モード：コマンドを送信してください")
     while True:
         cmd = xbee.get_received_str()
