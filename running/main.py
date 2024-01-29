@@ -16,11 +16,13 @@ def manual_mode():
     """手動制御を行う関数
 
     """
+
     dcmotor.Wheels.stop()
     xbee.send_msg("手動運転モード：コマンドを送信してください")
     while True:
         cmd = xbee.get_received_str()
 
+        Process.active_children()[0].suspend()  # 他のプロセスを一時停止
         if cmd == "forward":
             print("forward")
             print(cmd)
@@ -53,7 +55,10 @@ def manual_mode():
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             print("end")
             dcmotor.Wheels.cleanup()
+            Process.active_children()[0].resume()  # 他のプロセスを再開
             return
+
+        Process.active_children()[0].resume()  # 他のプロセスを再開
 
 
 def fall_judgement() -> bool:
@@ -69,11 +74,13 @@ def landing_judgement() -> bool:
 def detach_parachute():
     """パラシュートの切り離しを行います
     """
-    # print(servo.PARA_PIN)
-    # para_servo = Servo(servo.PARA_PIN)
-    # para_servo.rotate_cw()
-    # time.sleep(10)
-    # para_servo.rotate_stop()
+    Process.active_children()[0].suspend()  # 他のプロセスを一時停止
+
+    print(servo.PARA_PIN)
+    para_servo = Servo(servo.PARA_PIN)
+    para_servo.rotate_cw()
+    time.sleep(10)
+    para_servo.rotate_stop()
 
     # 機体を前進させる
     dcmotor.Wheels.stop()
@@ -82,6 +89,8 @@ def detach_parachute():
     time.sleep(20)
     dcmotor.Wheels.stop()
     dcmotor.Wheels.cleanup()
+
+    Process.active_children()[0].resume()  # 他のプロセスを再開
 
 
 def is_straight(lat: float, lon: float) -> bool:
