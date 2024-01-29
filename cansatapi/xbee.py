@@ -71,7 +71,7 @@ def _send():
         except (SerialException, OSError) as e:
             # エラーが発生した場合のリトライ処理
             retry_c += 1
-            if retry_c > 5:
+            if retry_c > 42:  # モーターを回すとシリアル通信が不安定になるため，モーターが回る時間が一番長いパラシュート分離時を乗り越えられるようにした
                 print(f"Error: {e}")
                 break  # リトライ回数を超えたらループを抜ける
             else:
@@ -83,7 +83,6 @@ def _send():
         finally:
             if ser is not None:
                 ser.close()
-
 
 
 def send(msg: str):
@@ -221,7 +220,7 @@ def get_send_sensor_data():
                                      nine_axis=nine_axis_data, bme280=bme280_data, distance=ultrasound_distance))
 
 
-def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
+def _receive(sec: float, retry: int = 5, retry_wait: float = 21) -> bool:
     """データを地上から受信する関数
 
     データを受信するとキューにデータを格納します。
@@ -230,6 +229,7 @@ def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
         retry_wait (float): リトライ時に待機する秒数
         sec (float): 待機する時間
         retry (int): ポートが使用中だった際のリトライ回数
+        (モーターを回すとシリアル通信が不安定になるため，モーターが回る時間が一番長いパラシュート分離時を乗り越えられるようにした）
 
     Returns:
         bool: データを受信したかどうか
