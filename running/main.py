@@ -155,7 +155,7 @@ def main():
                 xbee.send_msg("動作終了")
                 break
         else:
-            manual_mode(received_str)
+            manual_mode()
 
     parse_proc.terminate()
     proc_main.terminate()
