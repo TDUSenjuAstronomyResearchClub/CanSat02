@@ -10,20 +10,23 @@ from cansatapi import dcmotor
 from cansatapi.util.logging import LoggerCSV
 from cansatapi.util import logging
 
+from cansatapi import *
+
 
 def detach_parachute(logger: LoggerCSV):
     """パラシュートの切り離しを行います
     """
-    para_motor = Servo(25)
     logger.msg_csv("パラシュート切り離し開始")
+    para_servo = Servo(servo.PARA_PIN)
+    para_servo.rotate_cw()
+    time.sleep(10)
+    para_servo.rotate_stop()
 
-    # ToDo:duty比が正しいか確かめる
-    dcmotor.Wheels.forward(80)  # パラシュートを機体から分離させるために前進する
-
-    for i in range(40):  # ToDo:サーボモーターを回す回数が正しいか確かめる
-        para_motor.rotate_to_angle(90)
-
-    para_motor.stop()
+    # 機体を前進させる
+    dcmotor.Wheels.stop()
+    logger.msg_csv("機体を20秒前進させる")
+    dcmotor.Wheels.forward()
+    time.sleep(20)
     dcmotor.Wheels.stop()
     dcmotor.Wheels.cleanup()
     logger.msg_csv("パラシュート切り離し終了")
@@ -67,6 +70,7 @@ if __name__ == "__main__":
         # 5回連続で加速度の差が0 m/s^2以上だったら落下開始判定とする
         if accel_abs - accel_abs_past > 0:
             drop_count += 1
+            print(drop_count)
             if drop_count >= 5:
                 drop_start_s = time.time()
                 LOGGER.msg_csv("落下開始判定が行われました")
