@@ -220,7 +220,7 @@ def get_send_sensor_data():
                                      nine_axis=nine_axis_data, bme280=bme280_data, distance=ultrasound_distance))
 
 
-def _receive(sec: float, retry: int = 5, retry_wait: float = 11) -> bool:
+def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
     """データを地上から受信する関数
 
     データを受信するとキューにデータを格納します。
