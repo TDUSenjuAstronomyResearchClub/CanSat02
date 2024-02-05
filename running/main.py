@@ -1,28 +1,16 @@
+import multiprocessing
 import time
+import RPi.GPIO as GPIO
 from multiprocessing import Process
 
-from cansatapi import *
+# from cansatapi import *
 from cansatapi.point_declination import SAMPLE_LON, SAMPLE_LAT, GOAL_LON, GOAL_LAT, DECLINATION
 from cansatapi.servo import Servo
-
-
-def manual_mode(cmd: str):
-    """手動制御を行う関数
-
-    Args:
-        cmd(str): コマンド文字列
-    """
-    if cmd == "forward":
-        dcmotor.Wheels.forward()
-    elif cmd == "reverse":
-        dcmotor.Wheels.reverse()
-    elif cmd == "right":
-        dcmotor.Wheels.r_pivot_fwd()
-    elif cmd == "left":
-        dcmotor.Wheels.l_pivot_fwd()
-
-    time.sleep(3)
-    dcmotor.Wheels.stop()
+from cansatapi import dcmotor
+from cansatapi import xbee
+from cansatapi import gps
+from cansatapi import nineaxissensor
+from cansatapi import servo
 
 
 def fall_judgement() -> bool:
@@ -38,6 +26,7 @@ def landing_judgement() -> bool:
 def detach_parachute():
     """パラシュートの切り離しを行います
     """
+
     print(servo.PARA_PIN)
     para_servo = Servo(servo.PARA_PIN)
     para_servo.rotate_cw()
@@ -50,7 +39,57 @@ def detach_parachute():
     dcmotor.Wheels.forward()
     time.sleep(20)
     dcmotor.Wheels.stop()
-    dcmotor.Wheels.cleanup()
+
+
+def manual_mode():
+    """手動制御を行う関数
+
+    """
+
+    dcmotor.Wheels.stop()
+    xbee.send_msg("Manual operation mode: Please send command")
+    while True:
+        cmd = xbee.get_received_str()
+        # print(f"cmd={cmd}")
+
+        if cmd == "forward":
+            # print("forward")
+            print(cmd)
+            dcmotor.Wheels.forward()
+            time.sleep(10)
+            dcmotor.Wheels.stop()
+            xbee.send_msg("Manual operation mode: Please send command")
+
+        elif cmd == "reverse":
+            print("reverse")
+            dcmotor.Wheels.reverse()
+            time.sleep(10)
+            dcmotor.Wheels.stop()
+            xbee.send_msg("Manual operation mode: Please send command")
+
+        elif cmd == "right":
+            print("right")
+            dcmotor.Wheels.r_pivot_fwd()
+            time.sleep(10)
+            dcmotor.Wheels.stop()
+            xbee.send_msg("Manual operation mode: Please send command")
+
+        elif cmd == "left":
+            print("left")
+            dcmotor.Wheels.l_pivot_fwd()
+            time.sleep(10)
+            dcmotor.Wheels.stop()
+            xbee.send_msg("Manual operation mode: Please send command")
+
+        # elif cmd == "picture"
+        #    TODO:カメラの画像を取得し，地上局に送信するコードを書く（camera.py動確すんでないため未記入．動確担当者りくお）
+        #    xbee.send_msg("Manual operation mode: Please send command")
+
+        elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
+            print("end")
+            return
+
+        time.sleep(0.1)
 
 
 def is_straight(lat: float, lon: float) -> bool:
@@ -99,43 +138,44 @@ def sample_collection():
 def main():
     """メインアルゴリズム
     """
-    global isAuto
-
     # 受信を開始
-    # parse_proc = Process(target=xbee.start)
-    # parse_proc.start()
+    parse_proc = Process(target=xbee.start)
+    parse_proc.start()
 
-    xbee.send_msg("走行開始")
+    global isAuto
+    xbee.send_msg("system start")
 
     # while not fall_judgement():
     #    time.sleep(0.1)
+    # xbee.send_msg("落下検知")
 
-    #xbee.send_msg("落下検知")
-
-    #while not landing_judgement():
+    # while not landing_judgement():
     #    time.sleep(0.1)
+    # xbee.send_msg("着地")
 
-    #xbee.send_msg("着地")
-    detach_parachute()
+    detach_parachute()  # パラシュート分離
 
-
-"""
     go_to_sample = True
     while True:
+        print("manual or auto")
         # 1行動ごとにループを回す
         received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
+        print(received_str)
+
         if received_str == "manual":
             isAuto = False
         elif received_str == "auto":
             isAuto = True
+        print("mode select")
 
         if isAuto:
+            print("自立制御開始")
             lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
             lon = SAMPLE_LON if go_to_sample else GOAL_LON
 
             if is_straight(lat, lon):
-                dcmotor.Wheels.forward()  # 方位角が範囲に収まっていれば3秒直進
-                time.sleep(3)
+                dcmotor.Wheels.forward()  # 方位角が範囲に収まっていれば10秒直進
+                time.sleep(10)
                 dcmotor.Wheels.stop()
             else:
                 angle_adjustment(lat, lon)  # 収まっていなければ調整
@@ -149,12 +189,17 @@ def main():
                 xbee.send_msg("ゴール到達")
                 xbee.send_msg("動作終了")
                 break
+
+        elif not isAuto:  # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
+            manual_mode()
         else:
-            manual_mode(received_str)
+            manual_mode()
 
     parse_proc.terminate()
-"""
+    GPIO.cleanup()
+
 
 if __name__ == "__main__":
-    isAuto = True
-    main()  # 実行
+    isAuto = False  # TODO:手動運転の動作確認のためFalseにしている．本番はTrueにする
+    print("プログラムスタート")
+    main()

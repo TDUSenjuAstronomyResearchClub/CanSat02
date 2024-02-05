@@ -1,6 +1,7 @@
 """機体と地上局の通信を行うモジュール
 """
 import multiprocessing
+import queue
 
 from serial import PortNotOpenError
 from serial import SerialException
@@ -32,14 +33,14 @@ def start():
         while _send_queue.empty():
             c += 1
             if c >= 5:
-                print("jsonファイル送信作業開始")
+                # print("jsonファイル送信作業開始")
                 get_send_sensor_data()  # 約5秒に1度各センサー値の入ったjsonファイルを送信する
                 c = 0
-                print("jsonファイル送信作業終了")
+                # print("jsonファイル送信作業終了")
             else:
-                print("jsonファイル受信開始")
+                # print("jsonファイル受信開始")
                 _receive(1)  # 1秒間待機する
-                print("jsonファイル送信作業終了")
+                # print("jsonファイル送信作業終了")
         _send()
 
 
@@ -51,26 +52,37 @@ def _send():
     if msg is None:
         return
 
+    ser = None
+    try:
+        ser = serial.Serial(PORT, BAUD_RATE)
+    except SerialException:
+        pass  # ここでSerialExceptionが発生した場合、serはNoneのままになる
+
     retry_c = 0
     while True:
         try:
-            ser = serial.Serial(PORT, BAUD_RATE)
-            # シリアルにjsonを書き込む
-            ser.write(msg.encode('utf-8'))
-            ser.write(eol.encode('utf-8'))  # EOLを末尾に書き込む
-            ser.close()
-            return
+            if ser is not None:
+                ser.write(msg.encode('utf-8'))
+                ser.write(eol.encode('utf-8'))  # EOLを末尾に書き込む
+                return
+            else:
+                raise SerialException  # ここでSerialExceptionを発生させる
 
-        except PortNotOpenError:
-            # 5回リトライに失敗したらエラーを吐く
+        except (SerialException, OSError) as e:
+            # エラーが発生した場合のリトライ処理
             retry_c += 1
             if retry_c > 5:
-                raise PortNotOpenError
+                print(f"Error: {e}")
+                break  # リトライ回数を超えたらループを抜ける
             else:
                 time.sleep(0.5)
-                continue
-        except SerialException:
-            raise SerialException  # ここの処理について要件等
+                try:
+                    ser = serial.Serial(PORT, BAUD_RATE)  # 再試行
+                except SerialException:
+                    pass
+        finally:
+            if ser is not None:
+                ser.close()
 
 
 def send(msg: str):
@@ -91,7 +103,7 @@ def send_msg(msg: str):
         msg: 任意のメッセージ
     """
     send(jsonGenerator.generate_json(data_type="only_message_data", time=time.time(), message=msg))
-    # print("debug comment:action send_msg")
+    print(msg)
 
 
 def send_pic(pic_hex: str):
@@ -102,6 +114,7 @@ def send_pic(pic_hex: str):
     """
     print("debug comment:action send_pic")
     send(jsonGenerator.generate_json(data_type="only_picture_data", time=time.time(), camera=pic_hex))
+
 
 def send_soilmois_data(moisture: float):
     """土壌水分量データをjson形式に変換し、送信用キューに格納する関数を呼び出す
@@ -127,7 +140,6 @@ def get_send_sensor_data():
     temperature_tmp = 0.0
     humidity_tmp = 0.0
     pressure_tmp = 0.0
-    ultrasound_distance = 0.0
 
     time_now = time.time()
     point = get_lon_lat_decl()  # サンプル採取地点とゴール地点の緯度経度・磁気偏角値を取得
@@ -151,12 +163,6 @@ def get_send_sensor_data():
         humidity_tmp = bme280_instance.get_humidity()
         pressure_tmp = bme280_instance.get_pressure()
     except OSError:
-        pass
-
-    try:
-        # 超音波距離センサーの距離データを読み込み
-        ultrasound_distance = distance_result()
-    except TypeError:
         pass
 
     distance_data: type.Distance = {
@@ -202,7 +208,7 @@ def get_send_sensor_data():
     }
 
     send(jsonGenerator.generate_json(data_type="only_sensor_data", time=time_now, gps=gps_data,
-                                     nine_axis=nine_axis_data, bme280=bme280_data, distance=ultrasound_distance))
+                                     nine_axis=nine_axis_data, bme280=bme280_data))
 
 
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
@@ -220,28 +226,38 @@ def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
     """
     st = time.time()
     ret = 0
-    log_json = LoggerJSON()
+    ser = None
+    try:
+        ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
+    except SerialException:
+        pass  # ここでSerialExceptionが発生した場合、serはNoneのままになる
+
     while time.time() - st < sec:
         try:
-            ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)
-            receive_data = ser.readline().removesuffix(bytes(0x04))
-            ser.close()
-            if len(receive_data) != 0:
-                data_utf8 = receive_data.decode("utf-8")
-                log_json.log_json(data_utf8)  # ロギング
-                _receive_queue.put_nowait(data_utf8)  # キューに受信したデータを追加
+            if ser is not None:
+                receive_data = ser.readline().removesuffix(b'\n')
+                if len(receive_data) != 0:
+                    data_utf8 = receive_data.decode("utf-8")
+                    _receive_queue.put_nowait(data_utf8)  # キューに受信したデータを追加
+                    return True
+            else:
+                raise SerialException  # ここでSerialExceptionを発生させる
 
-            return len(receive_data) != 0
-
-        except PortNotOpenError:
-            # 5回リトライに失敗したらエラーを吐く
+        except (SerialException, OSError) as e:
+            # エラーが発生した場合のリトライ処理
             if ret >= retry:
-                raise PortNotOpenError
+                print(f"Error: {e}")
+                break  # リトライ回数を超えたらループを抜ける
             else:
                 time.sleep(retry_wait)
-                continue
-        except SerialException:  # デバイスが見つからない、または構成できない場合
-            raise SerialException
+                try:
+                    ser = serial.Serial(PORT, BAUD_RATE, timeout=0.1)  # 再試行
+                except SerialException:
+                    pass
+        finally:
+            if ser is not None:
+                ser.close()
+    return False
 
 
 def get_received_str() -> str:
@@ -251,6 +267,9 @@ def get_received_str() -> str:
     Returns:
         str: 受信した文字列
     """
-    # print("debug comment:action get_received_str")
-    return _receive_queue.get_nowait()
-
+    try:
+        # print("debug comment:action get_received_str")
+        return _receive_queue.get_nowait()
+    except queue.Empty:  # 何も受信していない場合はNoneを返す
+        # print("debug comment:return None")
+        return None

@@ -37,6 +37,7 @@ class DCMotor:
         Args:
             duty (int): デューティ比[%]
         """
+        print("DCMotor.forward")
         self.fin.ChangeDutyCycle(duty)
         self.rin.ChangeDutyCycle(0)
 
@@ -98,7 +99,7 @@ class WheelController:
         Args:
             duty (int): デューティ比[%]
         """
-
+        print("forward関数")
         self.r_motor.forward(duty)
         self.l_motor.forward(duty)
 
