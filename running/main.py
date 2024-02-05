@@ -86,6 +86,8 @@ def manual_mode():
             dcmotor.Wheels.cleanup()
             return
 
+        time.sleep(0.1)
+
 
 def is_straight(lat: float, lon: float) -> bool:
     """指定された地点と機体が一定の範囲内に収まってたらTrueを返す関数
