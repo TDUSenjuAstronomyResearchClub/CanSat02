@@ -24,6 +24,15 @@ _send_queue = multiprocessing.Queue()
 _receive_queue = multiprocessing.Queue()
 
 
+def start_serial():
+    """シリアルポートを開始する関数"""
+    try:
+        return serial.Serial(PORT, BAUD_RATE)
+    except SerialException as e:
+        print(f"シリアルポートの開始に失敗しました: {e}")
+        return None
+
+
 def start():
     """XBeeモジュールの待機動作を開始する関数
         マルチスレッドを使用する際、新しいプロセスとして動作させる
