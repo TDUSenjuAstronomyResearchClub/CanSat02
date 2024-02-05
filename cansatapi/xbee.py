@@ -140,7 +140,6 @@ def get_send_sensor_data():
     temperature_tmp = 0.0
     humidity_tmp = 0.0
     pressure_tmp = 0.0
-    # ultrasound_distance = 0.0
 
     time_now = time.time()
     point = get_lon_lat_decl()  # サンプル採取地点とゴール地点の緯度経度・磁気偏角値を取得
@@ -165,14 +164,6 @@ def get_send_sensor_data():
         pressure_tmp = bme280_instance.get_pressure()
     except OSError:
         pass
-
-    # ultrasound_distance = 0.0
-    # 超音波距離センサは使用しないため以下コメントアウト
-    # try:
-    # 超音波距離センサーの距離データを読み込み
-    #    ultrasound_distance = distance_result()
-    # except TypeError:
-    #    pass
 
     distance_data: type.Distance = {
         'sample': sample_distance_and_azimuth[0],
@@ -216,7 +207,6 @@ def get_send_sensor_data():
         'pressure': pressure_tmp
     }
 
-    # 超音波距離センサは使用しないので「distance=ultrasound_distance」を削除した
     send(jsonGenerator.generate_json(data_type="only_sensor_data", time=time_now, gps=gps_data,
                                      nine_axis=nine_axis_data, bme280=bme280_data))
 
