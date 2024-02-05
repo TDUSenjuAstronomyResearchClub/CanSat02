@@ -140,7 +140,7 @@ def get_send_sensor_data():
     temperature_tmp = 0.0
     humidity_tmp = 0.0
     pressure_tmp = 0.0
-    ultrasound_distance = 0.0
+    # ultrasound_distance = 0.0
 
     time_now = time.time()
     point = get_lon_lat_decl()  # サンプル採取地点とゴール地点の緯度経度・磁気偏角値を取得
@@ -166,7 +166,7 @@ def get_send_sensor_data():
     except OSError:
         pass
 
-    ultrasound_distance = 0.0
+    # ultrasound_distance = 0.0
     # 超音波距離センサは使用しないため以下コメントアウト
     # try:
     # 超音波距離センサーの距離データを読み込み
@@ -216,8 +216,9 @@ def get_send_sensor_data():
         'pressure': pressure_tmp
     }
 
+    # 超音波距離センサは使用しないので「distance=ultrasound_distance」を削除した
     send(jsonGenerator.generate_json(data_type="only_sensor_data", time=time_now, gps=gps_data,
-                                     nine_axis=nine_axis_data, bme280=bme280_data, distance=ultrasound_distance))
+                                     nine_axis=nine_axis_data, bme280=bme280_data))
 
 
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
