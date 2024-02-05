@@ -138,7 +138,7 @@ def main():
     parse_proc.start()
 
     global isAuto
-    xbee.send_msg("走行開始")
+    xbee.send_msg("system start")
 
     # while not fall_judgement():
     #    time.sleep(0.1)
