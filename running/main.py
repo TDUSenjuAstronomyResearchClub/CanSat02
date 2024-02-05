@@ -79,7 +79,11 @@ def manual_mode():
             dcmotor.Wheels.l_pivot_fwd()
             time.sleep(10)
             dcmotor.Wheels.stop()
-            xbee.send_msg("手動運転モード：コマンドを送信してください")
+            xbee.send_msg("Manual operation mode: Please send command")
+
+        # elif cmd == "picture"
+        #    TODO:カメラの画像を取得し，地上局に送信するコードを書く（camera.py動確すんでないため未記入．動確担当者りくお）
+        #    xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             print("end")
