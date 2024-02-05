@@ -39,7 +39,6 @@ def detach_parachute():
     dcmotor.Wheels.forward()
     time.sleep(20)
     dcmotor.Wheels.stop()
-    dcmotor.Wheels.cleanup()
 
 
 def manual_mode():
@@ -84,7 +83,6 @@ def manual_mode():
 
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             print("end")
-            dcmotor.Wheels.cleanup()
             return
 
         time.sleep(0.1)
