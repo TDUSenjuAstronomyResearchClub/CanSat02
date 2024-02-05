@@ -47,7 +47,7 @@ def manual_mode():
     """
 
     dcmotor.Wheels.stop()
-    xbee.send_msg("手動運転モード：コマンドを送信してください")
+    xbee.send_msg("Manual operation mode: Please send command")
     while True:
         cmd = xbee.get_received_str()
         # print(f"cmd={cmd}")
@@ -58,21 +58,21 @@ def manual_mode():
             dcmotor.Wheels.forward()
             time.sleep(10)
             dcmotor.Wheels.stop()
-            xbee.send_msg("手動運転モード：コマンドを送信してください")
+            xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "reverse":
             print("reverse")
             dcmotor.Wheels.reverse()
             time.sleep(10)
             dcmotor.Wheels.stop()
-            xbee.send_msg("手動運転モード：コマンドを送信してください")
+            xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "right":
             print("right")
             dcmotor.Wheels.r_pivot_fwd()
             time.sleep(10)
             dcmotor.Wheels.stop()
-            xbee.send_msg("手動運転モード：コマンドを送信してください")
+            xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "left":
             print("left")
