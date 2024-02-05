@@ -51,10 +51,10 @@ def manual_mode():
     xbee.send_msg("手動運転モード：コマンドを送信してください")
     while True:
         cmd = xbee.get_received_str()
-        print(f"cmd={cmd}")
+        # print(f"cmd={cmd}")
 
         if cmd == "forward":
-            print("forward")
+            # print("forward")
             print(cmd)
             dcmotor.Wheels.forward()
             time.sleep(10)
