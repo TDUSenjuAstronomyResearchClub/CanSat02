@@ -51,6 +51,7 @@ def manual_mode():
     xbee.send_msg("手動運転モード：コマンドを送信してください")
     while True:
         cmd = xbee.get_received_str()
+        print(f"cmd={cmd}")
 
         if cmd == "forward":
             print("forward")
