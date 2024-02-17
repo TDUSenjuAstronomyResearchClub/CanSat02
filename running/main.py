@@ -159,7 +159,8 @@ def main():
     while True:
         print("manual or auto")
         # 1行動ごとにループを回す
-        received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
+        #received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
+        received_str = input()
         print(received_str)
 
         if received_str == "manual":
@@ -170,8 +171,10 @@ def main():
 
         if isAuto:
             print("自立制御開始")
-            lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
-            lon = SAMPLE_LON if go_to_sample else GOAL_LON
+            #lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
+            #lon = SAMPLE_LON if go_to_sample else GOAL_LON
+            lat = input("lat = ")
+            lon = input("lon = ")
 
             if is_straight(lat, lon):
                 dcmotor.Wheels.forward()  # 方位角が範囲に収まっていれば10秒直進
