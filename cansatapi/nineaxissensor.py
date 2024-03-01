@@ -201,7 +201,7 @@ class NineAxisSensor:
         # 符号付整数なので、0ビット目が1ならば負の数に変換する
         if mag_x > 4095:
             mag_x -= 8192
-        mag_y = ((raw_mag_x[3] * 256) + (raw_mag_x[2] & 0xF8)) / 8
+        mag_y = ((raw_mag_y[1] * 256) + (raw_mag_y[0] & 0xF8)) / 8
         if mag_y > 4095:
             mag_y -= 8192
 
