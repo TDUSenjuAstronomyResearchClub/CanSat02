@@ -99,7 +99,7 @@ def is_straight(lat: float, lon: float) -> bool:
         lat (float): 地点の緯度
         lon (float): 地点の経度
     """
-    return gps.calculate_distance_bearing(lat, lon, DECLINATION)[0] - nineaxissensor \
+    return gps.calculate_distance_bearing(lat, lon, DECLINATION)[1] - nineaxissensor \
         .nine_axis_sensor.get_magnetic_heading() < 30  # todo: ここの値は要確認
 
 
@@ -133,7 +133,19 @@ def soil_moisture():
 def sample_collection():
     """サンプルを採取する関数
     """
+def serial_data():
+    while True:
+        print("manual or auto")
+        # 1行動ごとにループを回す
+        # received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
+        received_str = input()
+        print(received_str)
 
+        if received_str == "manual":
+            isAuto = False
+        elif received_str == "auto":
+            isAuto = True
+        print("mode select")
 
 def main():
     """メインアルゴリズム
@@ -156,50 +168,69 @@ def main():
     detach_parachute()  # パラシュート分離
 
     go_to_sample = True
-    while True:
-        print("manual or auto")
-        # 1行動ごとにループを回す
-        #received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
-        received_str = input()
-        print(received_str)
+    # 受信後の判定開始
+    serial_proc = Process(target=serial_data)
+    serial_proc.start()
 
-        if received_str == "manual":
-            isAuto = False
-        elif received_str == "auto":
-            isAuto = True
-        print("mode select")
+    try:
+        while True:
 
-        if isAuto:
-            print("自立制御開始")
-            #lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
-            #lon = SAMPLE_LON if go_to_sample else GOAL_LON
-            lat = input("lat = ")
-            lon = input("lon = ")
+            """
+            print("manual or auto")
+            # 1行動ごとにループを回す
+            #received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
+            received_str = input()
+            print(received_str)
+    
+            if received_str == "manual":
+                isAuto = False
+            elif received_str == "auto":
+                isAuto = True
+            print("mode select")
+            """
 
-            if is_straight(lat, lon):
-                dcmotor.Wheels.forward()  # 方位角が範囲に収まっていれば10秒直進
-                time.sleep(10)
-                dcmotor.Wheels.stop()
+            if isAuto:
+                print("自立制御開始")
+                lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
+                lon = SAMPLE_LON if go_to_sample else GOAL_LON
+                # lat = float(input("lat = "))
+                # lon = float(input("lon = "))
+
+                if is_straight(lat, lon):
+                    dcmotor.Wheels.forward()  # 方位角が範囲に収まっていれば10秒直進
+                    time.sleep(10)
+                    dcmotor.Wheels.stop()
+                else:
+                    angle_adjustment(lat, lon)  # 収まっていなければ調整
+
+                if is_goal() and go_to_sample:
+                    xbee.send_msg("サンプル地点到達")
+                    sample_collection()
+                    soil_moisture()
+                    go_to_sample = False
+                elif is_goal() and not go_to_sample:
+                    xbee.send_msg("ゴール到達")
+                    xbee.send_msg("動作終了")
+                    break
+
+            elif not isAuto:  # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
+                manual_mode()
             else:
-                angle_adjustment(lat, lon)  # 収まっていなければ調整
+                manual_mode()
 
-            if is_goal() and go_to_sample:
-                xbee.send_msg("サンプル地点到達")
-                sample_collection()
-                soil_moisture()
-                go_to_sample = False
-            elif is_goal() and not go_to_sample:
-                xbee.send_msg("ゴール到達")
-                xbee.send_msg("動作終了")
-                break
+        parse_proc.terminate()
+        serial_proc.terminate()
+        GPIO.cleanup()
 
-        elif not isAuto:  # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
-            manual_mode()
-        else:
-            manual_mode()
-
-    parse_proc.terminate()
-    GPIO.cleanup()
+    except KeyboardInterrupt:
+        # Ctrl+Cが押された場合の処理
+        # プログラムを終了する際の処理
+        GPIO.cleanup()
+        parse_proc.terminate()
+        serial_proc.terminate()
+        serial_proc.join()
+        parse_proc.join()
+        print("プログラムを終了しました.")
 
 
 if __name__ == "__main__":
