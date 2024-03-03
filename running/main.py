@@ -12,6 +12,7 @@ from cansatapi import gps
 from cansatapi import nineaxissensor
 from cansatapi import servo
 
+import queue #追加
 
 def fall_judgement() -> bool:
     """落下判定を返す関数
@@ -133,19 +134,34 @@ def soil_moisture():
 def sample_collection():
     """サンプルを採取する関数
     """
-def serial_data():
+def serial_data(input_queue, mode_pipe):
     while True:
-        print("manual or auto")
-        # 1行動ごとにループを回す
-        # received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
-        received_str = input()
-        print(received_str)
+        try:
+            received_str = None
+            print("manual or auto")
+            # 1行動ごとにループを回す
+            time.sleep(5)
+            # received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
+            # キューから文字列を非ブロッキングで受け取る
+            try:
+                received_str = input_queue.get(block=False)
+            except queue.Empty:
+                received_str = None
 
-        if received_str == "manual":
-            isAuto = False
-        elif received_str == "auto":
-            isAuto = True
-        print("mode select")
+            print(received_str)
+            if received_str == "manual":
+                isauto = False
+                mode_pipe.send(isauto)
+            elif received_str == "auto":
+                isauto = True
+                mode_pipe.send(isauto)
+            else:
+                print(f"Unknown command: {received_str}")
+            print("mode select")
+        except EOFError:
+            print("error")
+            time.sleep(1)
+            pass
 
 def main():
     """メインアルゴリズム
@@ -169,7 +185,10 @@ def main():
 
     go_to_sample = True
     # 受信後の判定開始
-    serial_proc = Process(target=serial_data)
+    #input_pipe, serial_mode_pipe = multiprocessing.Pipe()
+    input_queue = multiprocessing.Queue()
+    mode_pipe, main_mode_pipe = multiprocessing.Pipe()
+    serial_proc = Process(target=serial_data, args=(input_queue, mode_pipe))
     serial_proc.start()
 
     try:
@@ -188,7 +207,7 @@ def main():
                 isAuto = True
             print("mode select")
             """
-
+            isAuto = main_mode_pipe.recv()
             if isAuto:
                 print("自立制御開始")
                 lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
@@ -225,11 +244,11 @@ def main():
     except KeyboardInterrupt:
         # Ctrl+Cが押された場合の処理
         # プログラムを終了する際の処理
-        GPIO.cleanup()
         parse_proc.terminate()
         serial_proc.terminate()
         serial_proc.join()
         parse_proc.join()
+        GPIO.cleanup()
         print("プログラムを終了しました.")
 
 
