@@ -8,7 +8,7 @@ https://mickey-happygolucky.hatenablog.com/entry/2019/10/23/114711
 import RPi.GPIO as GPIO
 
 PARA_PIN = 23
-SOIL_PIN = 25
+SOIL_PIN = 24
 
 
 
