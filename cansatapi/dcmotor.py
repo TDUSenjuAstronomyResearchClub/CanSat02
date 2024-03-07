@@ -5,8 +5,8 @@ import RPi.GPIO as GPIO
 R_WHEEL_FIN = 12
 R_WHEEL_RIN = 18
 
-L_WHEEL_FIN = 13
-L_WHEEL_RIN = 19
+L_WHEEL_FIN = 19
+L_WHEEL_RIN = 13
 
 
 class DCMotor:
