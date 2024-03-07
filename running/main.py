@@ -135,7 +135,7 @@ def soil_moisture():
     """
 
     # print(servo.SOIL_PIN)
-    soil_servo = Servo(25)
+    soil_servo = Servo(servo.SOIL_PIN)
     soil_servo.rotate_cw()  # センサの差し込み
     time.sleep(2)
     soil_servo.rotate_stop()
