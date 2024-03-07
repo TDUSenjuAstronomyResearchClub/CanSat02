@@ -39,7 +39,7 @@ def start():
                 # print("jsonファイル送信作業終了")
             else:
                 # print("jsonファイル受信開始")
-                _receive(1)  # 1秒間待機する
+                _receive(5)  # 5秒間待機する
                 # print("jsonファイル送信作業終了")
         _send()
 
