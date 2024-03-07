@@ -16,6 +16,9 @@ if __name__ == "__main__":
             ang_rate = nineaxis.get_angular_rate()
             print(f'角速度 X: {ang_rate[0]}, Y: {ang_rate[1]}, Z: {ang_rate[2]}')
 
+            mag = nineaxis.get_magnetic_field_data()
+            print(f'地磁気 X: {mag[0]}, Y: {mag[1]}, Z:{mag[2]}')
+
             heading = nineaxis.get_magnetic_heading()
             print(f'方位角: {heading}')
 
