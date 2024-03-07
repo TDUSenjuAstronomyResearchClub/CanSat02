@@ -11,8 +11,7 @@ from cansatapi import xbee
 from cansatapi import gps
 from cansatapi import nineaxissensor
 from cansatapi import servo
-
-import queue #追加
+from cansatapi.soil_moisture import SoilMoistureSensor
 
 def fall_judgement() -> bool:
     """落下判定を返す関数
@@ -28,7 +27,7 @@ def detach_parachute():
     """パラシュートの切り離しを行います
     """
 
-    print(servo.PARA_PIN)
+    # print(servo.PARA_PIN)
     para_servo = Servo(servo.PARA_PIN)
     para_servo.rotate_cw()
     time.sleep(10)
@@ -36,7 +35,7 @@ def detach_parachute():
 
     # 機体を前進させる
     dcmotor.Wheels.stop()
-    print("機体を20秒前進させる")
+    # print("機体を20秒前進させる")
     dcmotor.Wheels.forward()
     time.sleep(20)
     dcmotor.Wheels.stop()
@@ -44,7 +43,6 @@ def detach_parachute():
 
 def manual_mode():
     """手動制御を行う関数
-
     """
 
     dcmotor.Wheels.stop()
@@ -57,30 +55,36 @@ def manual_mode():
             # print("forward")
             print(cmd)
             dcmotor.Wheels.forward()
-            time.sleep(10)
+            time.sleep(6)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "reverse":
-            print("reverse")
+            # print("reverse")
             dcmotor.Wheels.reverse()
-            time.sleep(10)
+            time.sleep(4)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "right":
-            print("right")
+            # print("right")
             dcmotor.Wheels.r_pivot_fwd()
-            time.sleep(10)
+            time.sleep(1)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "left":
-            print("left")
+            # print("left")
             dcmotor.Wheels.l_pivot_fwd()
-            time.sleep(10)
+            time.sleep(1)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
+
+        elif cmd == "soil":
+            # print("soil")
+            soil_moisture()
+            xbee.send_msg("Manual operation mode: Please send command")
+
 
         # elif cmd == "picture"
         #    TODO:カメラの画像を取得し，地上局に送信するコードを書く（camera.py動確すんでないため未記入．動確担当者りくお）
@@ -130,38 +134,27 @@ def soil_moisture():
     """土壌水分量を測定する関数
     """
 
+    # print(servo.SOIL_PIN)
+    soil_servo = Servo(servo.SOIL_PIN)
+    soil_servo.rotate_cw()  # センサの差し込み
+    time.sleep(2)
+    soil_servo.rotate_stop()
+
+    time.sleep(0.1)
+    sensor = SoilMoistureSensor()
+    xbee.send_soilmois_data(sensor.get_soil_moisture())  # 土壌水分の測定と送信
+
+    time.sleep(0.1)
+    soil_servo.rotate_ccw()  # センサの収納
+    time.sleep(2)
+    soil_servo.finish()
+
+    return
+
 
 def sample_collection():
     """サンプルを採取する関数
     """
-def serial_data(input_queue, mode_pipe):
-    while True:
-        try:
-            received_str = None
-            print("manual or auto")
-            # 1行動ごとにループを回す
-            time.sleep(5)
-            # received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
-            # キューから文字列を非ブロッキングで受け取る
-            try:
-                received_str = input_queue.get(block=False)
-            except queue.Empty:
-                received_str = None
-
-            print(received_str)
-            if received_str == "manual":
-                isauto = False
-                mode_pipe.send(isauto)
-            elif received_str == "auto":
-                isauto = True
-                mode_pipe.send(isauto)
-            else:
-                print(f"Unknown command: {received_str}")
-            print("mode select")
-        except EOFError:
-            print("error")
-            time.sleep(1)
-            pass
 
 def main():
     """メインアルゴリズム
@@ -184,36 +177,24 @@ def main():
     detach_parachute()  # パラシュート分離
 
     go_to_sample = True
-    # 受信後の判定開始
-    #input_pipe, serial_mode_pipe = multiprocessing.Pipe()
-    input_queue = multiprocessing.Queue()
-    mode_pipe, main_mode_pipe = multiprocessing.Pipe()
-    serial_proc = Process(target=serial_data, args=(input_queue, mode_pipe))
-    serial_proc.start()
 
     try:
         while True:
-
-            """
             print("manual or auto")
             # 1行動ごとにループを回す
-            #received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
-            received_str = input()
-            print(received_str)
-    
+            received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
+
+
             if received_str == "manual":
                 isAuto = False
             elif received_str == "auto":
                 isAuto = True
             print("mode select")
-            """
-            isAuto = main_mode_pipe.recv()
+
             if isAuto:
                 print("自立制御開始")
                 lat = SAMPLE_LAT if go_to_sample else GOAL_LAT
                 lon = SAMPLE_LON if go_to_sample else GOAL_LON
-                # lat = float(input("lat = "))
-                # lon = float(input("lon = "))
 
                 if is_straight(lat, lon):
                     dcmotor.Wheels.forward()  # 方位角が範囲に収まっていれば10秒直進
@@ -238,16 +219,12 @@ def main():
                 manual_mode()
 
         parse_proc.terminate()
-        serial_proc.terminate()
         GPIO.cleanup()
 
     except KeyboardInterrupt:
         # Ctrl+Cが押された場合の処理
         # プログラムを終了する際の処理
         parse_proc.terminate()
-        serial_proc.terminate()
-        serial_proc.join()
-        parse_proc.join()
         GPIO.cleanup()
         print("プログラムを終了しました.")
 
