@@ -30,7 +30,7 @@ def detach_parachute():
     # print(servo.PARA_PIN)
     para_servo = Servo(servo.PARA_PIN)
     para_servo.rotate_cw()
-    time.sleep(10)
+    time.sleep(8)
     para_servo.rotate_stop()
 
     # 機体を前進させる
@@ -137,16 +137,16 @@ def soil_moisture():
     # print(servo.SOIL_PIN)
     soil_servo = Servo(servo.SOIL_PIN)
     soil_servo.rotate_cw()  # センサの差し込み
-    time.sleep(2)
+    time.sleep(1.5)
     soil_servo.rotate_stop()
 
-    time.sleep(0.1)
+    time.sleep(1)
     sensor = SoilMoistureSensor()
     xbee.send_soilmois_data(sensor.get_soil_moisture())  # 土壌水分の測定と送信
 
-    time.sleep(0.1)
+    time.sleep(1)
     soil_servo.rotate_ccw()  # センサの収納
-    time.sleep(2)
+    time.sleep(1.5)
     soil_servo.finish()
 
     return
