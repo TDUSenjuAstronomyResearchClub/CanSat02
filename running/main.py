@@ -231,12 +231,11 @@ def main():
         else:
             manual_mode()
             print("b")
-
-        if goal:
-            xbee.send_msg("end1")
             break
+        break
     parse_proc.terminate()
     GPIO.cleanup()
+    return
 
 
 
