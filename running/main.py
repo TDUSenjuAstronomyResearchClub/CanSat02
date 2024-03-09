@@ -225,6 +225,7 @@ def main():
 
     parse_proc.terminate()
     GPIO.cleanup()
+    return
 
 
 if __name__ == "__main__":
