@@ -97,6 +97,7 @@ def manual_mode():
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             print("end")
             xbee.send_msg("end")
+            goal = True
             return
 
         time.sleep(0.1)
@@ -184,6 +185,7 @@ def main():
     detach_parachute()  # パラシュート分離
 
     go_to_sample = True
+    goal = False
 
     while True:
         print("manual or auto")
@@ -220,12 +222,14 @@ def main():
 
         elif not isAuto:  # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
             manual_mode()
+            if goal:
+                xbee.send_msg("動作終了")
+                break
         else:
             manual_mode()
 
     parse_proc.terminate()
     GPIO.cleanup()
-    return
 
 
 if __name__ == "__main__":
