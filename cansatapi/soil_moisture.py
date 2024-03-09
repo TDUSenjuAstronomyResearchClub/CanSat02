@@ -16,6 +16,7 @@ class SoilMoistureSensor:
 
     製品ページ: https://learn.adafruit.com/adafruit-stemma-soil-sensor-i2c-capacitive-moisture-sensor
     """
+
     def __init__(self):
         i2c_bus = busio.I2C(board.SCL, board.SDA)
         self.seesaw = Seesaw(i2c_bus, addr=0x36)
@@ -29,3 +30,6 @@ class SoilMoistureSensor:
             float: 土壌水分量
         """
         return self.seesaw.moisture_read()
+
+
+soilmoisture = SoilMoistureSensor()
