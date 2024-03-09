@@ -147,7 +147,7 @@ def soil_moisture():
 
     time.sleep(5)
     soil_servo.rotate_ccw()  # センサの収納
-    time.sleep(0.7)
+    time.sleep(0.6)
     soil_servo.finish()
 
     return
