@@ -97,7 +97,7 @@ def manual_mode():
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             print("end")
             xbee.send_msg("end")
-            break
+            return
 
         time.sleep(0.1)
 
