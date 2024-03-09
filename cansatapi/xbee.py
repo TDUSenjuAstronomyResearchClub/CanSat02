@@ -14,6 +14,7 @@ from cansatapi.gps import *
 from cansatapi.nineaxissensor import *
 from cansatapi.bme280 import *
 from cansatapi.distance import *
+from cansatapi.soil_moisture import *
 
 # ポート設定
 PORT = '/dev/ttyUSB0'
@@ -140,6 +141,7 @@ def get_send_sensor_data():
     temperature_tmp = 0.0
     humidity_tmp = 0.0
     pressure_tmp = 0.0
+    moisture = 0.0
 
     time_now = time.time()
     point = get_lon_lat_decl()  # サンプル採取地点とゴール地点の緯度経度・磁気偏角値を取得
@@ -162,6 +164,9 @@ def get_send_sensor_data():
         temperature_tmp = bme280_instance.get_temperature()
         humidity_tmp = bme280_instance.get_humidity()
         pressure_tmp = bme280_instance.get_pressure()
+
+        # 土壌水分センサのデータを読み込み
+        moisture = soilmoisture.get_soil_moisture()
     except OSError:
         pass
 
@@ -208,7 +213,7 @@ def get_send_sensor_data():
     }
 
     send(jsonGenerator.generate_json(data_type="only_sensor_data", time=time_now, gps=gps_data,
-                                     nine_axis=nine_axis_data, bme280=bme280_data))
+                                     nine_axis=nine_axis_data, bme280=bme280_data, soil_moisture=moisture))
 
 
 def _receive(sec: float, retry: int = 5, retry_wait: float = 0.5) -> bool:
