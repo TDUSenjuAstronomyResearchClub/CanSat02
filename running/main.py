@@ -139,10 +139,11 @@ def soil_moisture():
     time.sleep(0.7)
     soil_servo.rotate_stop()
 
-    time.sleep(1)
-    xbee.send_soilmois_data(soilmoisture.get_soil_moisture())  # 土壌水分の測定と送信
+    for n in range(5):
+        time.sleep(1)
+        xbee.send_soilmois_data(soilmoisture.get_soil_moisture())  # 土壌水分の測定と送信
 
-    time.sleep(5)
+    time.sleep(1)
     soil_servo.rotate_ccw()  # センサの収納
     time.sleep(0.6)
     soil_servo.finish()
