@@ -98,7 +98,8 @@ def manual_mode():
             print("end")
             xbee.send_msg("end")
             goal = True
-            return
+            break
+            # return
 
         time.sleep(0.1)
 
