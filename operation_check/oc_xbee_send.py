@@ -8,7 +8,7 @@ MSG = "test"
 if __name__ == "__main__":
     while True:
         try:
-            XBee.send(MSG)
+            xbee.send(MSG)
             print(f"Send message: {MSG}")
             time.sleep(1)
         except KeyboardInterrupt:

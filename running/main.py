@@ -38,7 +38,7 @@ def detach_parachute():
     dcmotor.Wheels.stop()
     # print("機体を20秒前進させる")
     dcmotor.Wheels.forward()
-    time.sleep(20)
+    time.sleep(8)
     dcmotor.Wheels.stop()
 
 
@@ -138,7 +138,7 @@ def soil_moisture():
     # print(servo.SOIL_PIN)
     soil_servo = Servo(servo.SOIL_PIN)
     soil_servo.rotate_cw()  # センサの差し込み
-    time.sleep(1.2)
+    time.sleep(0.7)
     soil_servo.rotate_stop()
 
     # time.sleep(1)
@@ -147,7 +147,7 @@ def soil_moisture():
 
     time.sleep(5)
     soil_servo.rotate_ccw()  # センサの収納
-    time.sleep(1.2)
+    time.sleep(0.7)
     soil_servo.finish()
 
     return
