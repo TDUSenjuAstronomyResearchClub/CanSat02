@@ -212,7 +212,7 @@ def main():
 
             if is_goal() and go_to_sample:
                 xbee.send_msg("サンプル地点到達")
-                sample_collection()
+                # sample_collection()
                 soil_moisture()
                 go_to_sample = False
             elif is_goal() and not go_to_sample:
@@ -223,13 +223,17 @@ def main():
         elif not isAuto:  # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
             manual_mode()
             if goal:
-                xbee.send_msg("動作終了")
+                xbee.send_msg("end1")
                 break
         else:
             manual_mode()
+            if goal:
+                xbee.send_msg("end2")
+                break
 
     parse_proc.terminate()
     GPIO.cleanup()
+    return
 
 
 if __name__ == "__main__":
