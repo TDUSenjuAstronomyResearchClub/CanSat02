@@ -43,7 +43,7 @@ def detach_parachute():
 def manual_mode():
     """手動制御を行う関数
     """
-
+    goal = False
     dcmotor.Wheels.stop()
     xbee.send_msg("Manual operation mode: Please send command")
     while True:
@@ -102,6 +102,8 @@ def manual_mode():
             # return
 
         time.sleep(0.1)
+        if goal == True:
+            return
 
 
 
