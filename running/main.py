@@ -29,16 +29,20 @@ def detach_parachute():
     """
 
     # print(servo.PARA_PIN)
-    para_servo = Servo(servo.PARA_PIN)
-    para_servo.rotate_cw()
-    time.sleep(8)
-    para_servo.rotate_stop()
+    # para_servo = Servo(servo.PARA_PIN)
+    # para_servo.rotate_cw()
+    # time.sleep(8)
+    # para_servo.rotate_stop()
 
     # 機体を前進させる
     dcmotor.Wheels.stop()
     # print("機体を20秒前進させる")
     dcmotor.Wheels.forward()
-    time.sleep(6)
+    # time.sleep(6)
+    para_servo = Servo(servo.PARA_PIN)
+    para_servo.rotate_cw()
+    time.sleep(10)
+    para_servo.rotate_stop()
     dcmotor.Wheels.stop()
 
 
