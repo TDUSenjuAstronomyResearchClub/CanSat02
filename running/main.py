@@ -51,7 +51,8 @@ def manual_mode():
         # print(f"cmd={cmd}")
 
         if cmd == "forward":
-            # print("forward")
+            print("forward mode")
+            xbee.send_msg("forward mode")
             print(cmd)
             dcmotor.Wheels.forward()
             time.sleep(6)
@@ -59,28 +60,32 @@ def manual_mode():
             xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "reverse":
-            # print("reverse")
+            print("reverse mode")
+            xbee.send_msg("reverse mode")
             dcmotor.Wheels.reverse()
             time.sleep(4)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "right":
-            # print("right")
+            print("right mode")
+            xbee.send_msg("right mode")
             dcmotor.Wheels.r_pivot_fwd()
             time.sleep(1)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "left":
-            # print("left")
+            print("left mode")
+            xbee.send_msg("left mode")
             dcmotor.Wheels.l_pivot_fwd()
             time.sleep(1)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
 
         elif cmd == "soil":
-            # print("soil")
+            print("soil mode")
+            xbee.send_msg("soil mode")
             soil_moisture()
             xbee.send_msg("Manual operation mode: Please send command")
 
@@ -91,7 +96,8 @@ def manual_mode():
 
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             print("end")
-            return
+            xbee.send_msg("end")
+            break
 
         time.sleep(0.1)
 
@@ -140,7 +146,7 @@ def soil_moisture():
     soil_servo.rotate_stop()
 
     for n in range(5):
-        time.sleep(1)
+        time.sleep(2)
         xbee.send_soilmois_data(soilmoisture.get_soil_moisture())  # 土壌水分の測定と送信
 
     time.sleep(1)
