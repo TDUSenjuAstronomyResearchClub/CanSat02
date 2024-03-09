@@ -11,7 +11,8 @@ from cansatapi import xbee
 from cansatapi import gps
 from cansatapi import nineaxissensor
 from cansatapi import servo
-from cansatapi.soil_moisture import SoilMoistureSensor
+# from cansatapi.soil_moisture import *
+
 
 def fall_judgement() -> bool:
     """落下判定を返す関数
@@ -140,11 +141,11 @@ def soil_moisture():
     time.sleep(1.5)
     soil_servo.rotate_stop()
 
-    time.sleep(1)
-    sensor = SoilMoistureSensor()
-    xbee.send_soilmois_data(sensor.get_soil_moisture())  # 土壌水分の測定と送信
+    # time.sleep(1)
+    # soilmoisuture= SoilMoistureSensor()
+    # xbee.send_soilmois_data(soilmoisture.get_soil_moisture())  # 土壌水分の測定と送信
 
-    time.sleep(1)
+    time.sleep(5)
     soil_servo.rotate_ccw()  # センサの収納
     time.sleep(1.5)
     soil_servo.finish()
@@ -155,6 +156,7 @@ def soil_moisture():
 def sample_collection():
     """サンプルを採取する関数
     """
+
 
 def main():
     """メインアルゴリズム
@@ -183,7 +185,6 @@ def main():
             print("manual or auto")
             # 1行動ごとにループを回す
             received_str = xbee.get_received_str()  # モード指定orマニュアルモードのコマンドが入る
-
 
             if received_str == "manual":
                 isAuto = False
