@@ -38,7 +38,7 @@ def detach_parachute():
     dcmotor.Wheels.stop()
     # print("機体を20秒前進させる")
     dcmotor.Wheels.forward()
-    time.sleep(8)
+    time.sleep(6)
     dcmotor.Wheels.stop()
 
 
