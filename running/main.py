@@ -100,8 +100,7 @@ def manual_mode():
             break
 
         time.sleep(0.1)
-
-    return
+        return
 
 
 def is_straight(lat: float, lon: float) -> bool:
