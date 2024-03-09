@@ -11,7 +11,7 @@ from cansatapi import xbee
 from cansatapi import gps
 from cansatapi import nineaxissensor
 from cansatapi import servo
-# from cansatapi.soil_moisture import *
+from cansatapi.soil_moisture import soilmoisture
 
 
 def fall_judgement() -> bool:
@@ -139,9 +139,8 @@ def soil_moisture():
     time.sleep(0.7)
     soil_servo.rotate_stop()
 
-    # time.sleep(1)
-    # soilmoisuture= SoilMoistureSensor()
-    # xbee.send_soilmois_data(soilmoisture.get_soil_moisture())  # 土壌水分の測定と送信
+    time.sleep(1)
+    xbee.send_soilmois_data(soilmoisture.get_soil_moisture())  # 土壌水分の測定と送信
 
     time.sleep(5)
     soil_servo.rotate_ccw()  # センサの収納
