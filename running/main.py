@@ -102,8 +102,8 @@ def manual_mode():
             # return
 
         time.sleep(0.1)
-        if goal == True:
-            return
+        #if goal == True:
+        #   return
 
 
 
@@ -225,18 +225,16 @@ def main():
 
         elif not isAuto:  # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
             manual_mode()
-            if goal:
-                xbee.send_msg("end1")
-                break
+
         else:
             manual_mode()
-            if goal:
-                xbee.send_msg("end2")
-                break
 
+        if goal:
+            xbee.send_msg("end1")
+            break
     parse_proc.terminate()
     GPIO.cleanup()
-    return
+
 
 
 if __name__ == "__main__":
