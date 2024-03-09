@@ -101,6 +101,8 @@ def manual_mode():
 
         time.sleep(0.1)
 
+    return
+
 
 def is_straight(lat: float, lon: float) -> bool:
     """指定された地点と機体が一定の範囲内に収まってたらTrueを返す関数
