@@ -43,7 +43,6 @@ def detach_parachute():
 def manual_mode():
     """手動制御を行う関数
     """
-    goal = False
     dcmotor.Wheels.stop()
     xbee.send_msg("Manual operation mode: Please send command")
     while True:
@@ -97,14 +96,9 @@ def manual_mode():
         elif cmd == "end":  # elseにすると文字列がPCから送られてこなかったらcmdがNoneになり，条件が整ってしまうためelse ifにした
             print("end")
             xbee.send_msg("end")
-            goal = True
-            print("d")
             return
 
         time.sleep(0.1)
-        print("c")
-        #if goal == True:
-        #   return
 
 
 
@@ -189,7 +183,6 @@ def main():
     detach_parachute()  # パラシュート分離
 
     go_to_sample = True
-    goal = False
 
     while True:
         print("manual or auto")
@@ -226,12 +219,9 @@ def main():
 
         elif not isAuto:  # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
             manual_mode()
-            print("a")
-
         else:
             manual_mode()
-            print("b")
-            break
+
         break
     parse_proc.terminate()
     GPIO.cleanup()
