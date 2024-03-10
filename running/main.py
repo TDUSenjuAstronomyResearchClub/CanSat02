@@ -70,7 +70,7 @@ def manual_mode():
             print("right mode")
             xbee.send_msg("right mode")
             dcmotor.Wheels.r_pivot_fwd(100)
-            time.sleep(1)
+            time.sleep(0.4)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
 
@@ -78,7 +78,7 @@ def manual_mode():
             print("left mode")
             xbee.send_msg("left mode")
             dcmotor.Wheels.l_pivot_fwd(100)
-            time.sleep(1)
+            time.sleep(0.4)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
 
