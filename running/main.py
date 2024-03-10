@@ -181,12 +181,17 @@ def main():
     # xbee.send_msg("着地")
 
     while True:
+        print("sleep mode")
         received_start = xbee.get_received_str()
         if received_start == "start":
+            print("parachute start")
+            xbee.send_msg("parachute start")
+            detach_parachute()  # パラシュート分離
             break
+        else:
+            time.sleep(0.1)
 
-
-    detach_parachute()  # パラシュート分離
+    # detach_parachute()  # パラシュート分離
 
     go_to_sample = True
 
