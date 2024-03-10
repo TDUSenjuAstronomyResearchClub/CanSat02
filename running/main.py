@@ -233,7 +233,6 @@ def main():
         else:
             manual_mode()
 
-        break
     parse_proc.terminate()
     GPIO.cleanup()
     return
