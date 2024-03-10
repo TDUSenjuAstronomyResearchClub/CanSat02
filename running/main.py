@@ -69,7 +69,7 @@ def manual_mode():
         elif cmd == "right":
             print("right mode")
             xbee.send_msg("right mode")
-            dcmotor.Wheels.r_pivot_fwd()
+            dcmotor.Wheels.r_pivot_fwd(100)
             time.sleep(1)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
@@ -77,7 +77,7 @@ def manual_mode():
         elif cmd == "left":
             print("left mode")
             xbee.send_msg("left mode")
-            dcmotor.Wheels.l_pivot_fwd()
+            dcmotor.Wheels.l_pivot_fwd(100)
             time.sleep(1)
             dcmotor.Wheels.stop()
             xbee.send_msg("Manual operation mode: Please send command")
@@ -230,6 +230,7 @@ def main():
 
         elif not isAuto:  # isAutoがFalseの場合動く．手動運転動作確認のため初期値をFalseにしたので設けた．本番で入らない？
             manual_mode()
+            break
         else:
             manual_mode()
 
