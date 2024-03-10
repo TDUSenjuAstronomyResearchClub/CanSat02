@@ -180,6 +180,12 @@ def main():
     #    time.sleep(0.1)
     # xbee.send_msg("着地")
 
+    while True:
+        received_start = xbee.get_received_str()
+        if received_start == "start":
+            break
+
+
     detach_parachute()  # パラシュート分離
 
     go_to_sample = True
